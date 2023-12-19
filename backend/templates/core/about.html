@@ -1,0 +1,72 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+{% block body_content %}
+    {% include 'partials/navbar.html' %}
+
+    <section class="About">      
+        <div class="story container">
+            <h1>Why Shea.254?</h1>
+            <p>Our mission is to offer affordable skincare products for your skin.</p>
+            <p>We are a game changer when it comes to achieving healthy, nourished and glowing skin.</p>
+        </div>  
+        
+        <div class="services container">
+            <h1>Our Services</h1>
+            <p>We sell both Retail and Wholesale:</p>
+            <div class="services_list">
+                <!-- <div class="service">
+                    <img src="" alt="">
+                    <p>Shea Butter and Cocoa Butter</p>
+                </div> -->
+
+                <div class="service">
+                    <img src="{% static 'images/bodybutters.jpg' %}" alt="Body Butters">
+                    <p>Whipped Body Butters</p>
+                </div>
+
+                <div class="service">
+                    <img src="{% static 'images/lipbalms.jpg' %}" alt="Lip Balms">
+                    <p>Lip Balms</p>                    
+                </div>
+
+                <div class="service">
+                    <img src="{% static 'images/essentialoils.jpg' %}" alt="Essential Oils">
+                    <p>Essential Oils</p>
+                </div>
+
+                <div class="service">
+                    <img src="{% static 'images/bodyoils.jpg' %}" alt="Body Oils">
+                    <p>Body Oils</p>
+                </div>
+
+                <div class="service">
+                    <img src="{% static 'images/haircare.jpg' %}" alt="Hair Care">
+                    <p>Hair Care Products</p>
+                </div>
+            </div>            
+        </div>
+
+        <div class="socialize container">
+            <h1>Stay Connected</h1>
+            <p>Live your best life!</p>
+            <div class="socials">
+                <span>
+                    <img src="{% static 'images/instagram.png' %}" alt="Instagram">
+                    <a href="https://www.instagram.com/shea.254/" target="_blank">shea.254</a>
+                </span>
+                <span>
+                    <img src="{% static 'images/tiktok.png' %}" alt="Tiktok">
+                    <a href="https://www.tiktok.com/@shea.254?_t=8gJ9b2q8TP4&_r=1">shea.254</a>
+                </span>   
+                <span>
+                    <img src="{% static 'images/call.png' %}" alt="Telephone">
+                    <a href="#">+254 711 894 267</a>
+                </span>    
+                <span>
+                    <img src="{% static 'images/map.png' %}" alt="Location">
+                    <a href="">Nairobi, Sasa Mall, Moi Avenue, Shop G20.</a>
+                </span>         
+            </div>            
+        </div>
+    </section>
+{% endblock body_content %}

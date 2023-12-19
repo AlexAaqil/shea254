@@ -1,0 +1,54 @@
+{% extends 'partials/base.html' %} {% load static %} {% block body_content %}
+<main class="Homepage">
+  {% include 'partials/navbar.html' %}
+
+  <section class="Hero">
+    <div class="container">
+      <div class="text">
+        <h1>Shea.254</h1>
+        <p>
+          Choosing suitable skincare products for your skin is a game changer to
+          achieve healthy, nourished and glowing skin.
+        </p>
+        <div class="hero_btn">
+          <a href="#">Start Shopping</a>
+        </div>
+      </div>
+
+      <div class="image">
+        <img src="{% static 'images/hero.jpg' %}" alt="Hero" />
+      </div>
+    </div>
+  </section>
+
+  <section class="Categories">
+    <div class="container">
+        {% for category in categories %}
+            <div class="category">
+                <div class="image">
+                    <img src="{{ category.image.url }}" alt="Category" />
+                </div>
+                <p>{{ category.title }}</p>
+            </div>
+        {% endfor %}
+    </div>
+  </section>
+
+  <section class="Categories">
+    <div class="container">
+        <h1>Most Popular</h1>
+        {% for product in products %}
+            <div class="category">
+                <div class="image">
+                    <img src="{{ product.image.url }}" alt="Product">
+                </div>
+
+                <p>{{ product.title }}</p>
+                <p>{{ product.price }}</p>
+                <button>Add to Cart</button>
+            </div>
+        {% endfor %}
+    </div>
+  </section>
+</main>
+{% endblock body_content %}
