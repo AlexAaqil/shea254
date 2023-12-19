@@ -1,72 +1,80 @@
-Footer {
+footer {
   background: #000;
   color: #fff;
 
-  .branding,
-  .shop,
-  .links,
-  .enquiries {
-    margin: 0 0 1.8em;
-  }
-
-  .shop,
-  .links,
-  .enquiries {
-    h1 {
-        font-size: 1em;
-    }
-  }
-
   .container {
-    padding: 1em auto;
+    display: grid;
+    gap: 1em;
+    padding: 1em $container_sides_padding;
+
     a {
       color: #fff;
     }
 
-    ul {
-      list-style: none;
+    .branding {
+      img {
+        width: 80px;
+        height: 80px;
+      }
 
-      li {
-        margin: 0 0 0.2em;
+      h1 {
+        font-size: clamp(1.5em, 1em, 1.8em);
+      }
+
+      p {
+        margin: 0.5em 0;
       }
     }
 
-    .branding {
-        img {
-            width: 80px;
-            height: 80px;
-        }
+    .shop,
+    .links,
+    .enquiries {
+      display: grid;
+      gap: 0.25em 0;
 
-        h1 {
-            font-size: 1.5em;
-        }
-
-        p {
-            margin: 0.5em 0;
-        }
+      h1 {
+        font-size: clamp(1.2em, 1em, 1.8em);
+      }
     }
 
     .enquiries {
+        p {
+            display: flex;
+            gap: 0 0.5em;
+        }
+
         .socials {
             margin: 1em 0;
-            ul {
-                display: flex;
-                gap: 0 2em;
-
-                li {
-                    i {
-                        font-size: 1.5em;
-                    }
-                }
+            i {
+                font-size: 1.5em;
+                margin: 0 0.6em 0 0;
             }
         }
     }
   }
 
   .copyright {
-    margin: 0;
     padding: 0.5em 0;
     text-align: center;
     border-top: 1px solid #707070;
+  }
+}
+
+@media screen and (width >= 726px) {
+  footer {
+    .container {
+      grid-template-columns: 30% auto auto auto;
+
+      .shop,
+      .links,
+      .enquiries {
+        grid-template-rows: auto;
+        align-content: start;
+
+        h1 {
+          font-size: clamp(1.2em, 1em, 1.8em);
+        }
+      }
+    }
   }
 }

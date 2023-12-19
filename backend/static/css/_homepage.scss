@@ -1,17 +1,23 @@
-img {
-  width: 200px;
-}
-
 .Homepage {
+  section {
+    padding: 2em 0;
+  }
+
   .Hero {
     .container {
-      height: 60vh;
+      height: 40vh;
       display: flex;
       align-items: center;
+      text-align: center;
 
       .text {
         h1 {
-          font-size: 4em;
+          font-size: max(3em, 6vw);
+          letter-spacing: 1px;
+        }
+
+        p {
+          font-size: max(1em, 1.5vw);
         }
 
         .hero_btn {
@@ -35,8 +41,6 @@ img {
 
   .Categories,
   .Products {
-    margin: 0 0 1em;
-
     .container {
       h1 {
         text-align: center;
@@ -50,10 +54,10 @@ img {
     .categories_wrapper {
       display: grid;
       grid-template-columns: 1fr 1fr;
+      gap: 1em;
 
       .category {
         text-align: center;
-        margin: 0 0 1em;
 
         img {
           height: 150px;
@@ -68,15 +72,12 @@ img {
   .Products {
     .container {
       .products_wrapper {
-        .product {
-            width: 70%;
-            margin: 0 auto 1em;
-          text-align: center;
+        display: grid;
+        gap: 1em 0;
 
+        .product {
           img {
             width: 100%;
-            object-fit: cover;
-            object-position: center;
             border-radius: 32px 32px 0 0;
           }
 
@@ -87,21 +88,64 @@ img {
             text-align: left;
 
             .details {
-                .title {
-                    font-size: 0.95em;
-                }
+              padding: 1em 0;
 
-                .price {
-                    font-weight: bold;
-                }
+              .price {
+                font-weight: bold;
+              }
             }
 
             .cart {
-                text-align: center;
+              text-align: center;
 
-                i {
-                    font-size: 1.8em;
-                }
+              i {
+                font-size: 2.2em;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .Instagram {
+    h1,
+    p {
+      text-align: center;
+    }
+  }
+}
+
+@media screen and (width >= 726px) {
+  .Homepage {
+    .Hero {
+      .container {
+        height: 85vh;
+        text-align: left;
+
+        img {
+          display: unset;
+        }
+      }
+    }
+
+    .Categories {
+      .categories_wrapper {
+        grid-template-columns: repeat(5, 1fr);
+      }
+    }
+
+    .Products {
+      .container {
+        .products_wrapper {
+          grid-template-columns: repeat(4, 1fr);
+          gap: 1em 2em;
+
+          .product {
+            img {
+              height: 300px;
+              object-fit: cover;
+              object-position: center;
             }
           }
         }
