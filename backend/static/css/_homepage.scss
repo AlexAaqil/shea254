@@ -1,66 +1,108 @@
+img {
+  width: 200px;
+}
+
 .Homepage {
   .Hero {
     .container {
-      height: 90vh;
+      height: 60vh;
       display: flex;
       align-items: center;
 
       .text {
         h1 {
-          font-size: 5em;
-          font-weight: bold;
+          font-size: 4em;
         }
 
-        p {
-          font-size: 1.2em;
-          margin: 1em 0 0;
-        }
-
-        div {
-          border: none;
-          margin: 2em 0;
+        .hero_btn {
+          margin: 1.5em 0 0;
 
           a {
-            border: 1px solid rgb(61, 61, 61);
+            font-weight: bold;
+            background: #000;
+            color: #fff;
+            padding: 12px 24px;
             border-radius: 32px;
-            padding: 12px 32px;
-            text-decoration: none;
-            color: #000;
-            font-size: 1.2em;
-            font-weight: 600;
-            transition: border 0.3s ease-in-out;
-            transform-origin: center;
-
-            &:hover {
-              border: 2px solid #000;
-            }
           }
         }
       }
 
-      .image {
-        img {
-          height: 400px;
-        }
+      img {
+        display: none;
+      }
+    }
+  }
+
+  .Categories,
+  .Products {
+    margin: 0 0 1em;
+
+    .container {
+      h1 {
+        text-align: center;
+        font-size: 1.5em;
+        margin: 0 0 1em;
       }
     }
   }
 
   .Categories {
-    .container {
+    .categories_wrapper {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: 1fr 1fr;
 
       .category {
         text-align: center;
+        margin: 0 0 1em;
 
-        .image {
+        img {
+          height: 150px;
+          width: 150px;
+          border-radius: 50%;
+          object-fit: contain;
+        }
+      }
+    }
+  }
+
+  .Products {
+    .container {
+      .products_wrapper {
+        .product {
+            width: 70%;
+            margin: 0 auto 1em;
+          text-align: center;
+
           img {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: contain;
+            width: 100%;
+            object-fit: cover;
             object-position: center;
+            border-radius: 32px 32px 0 0;
+          }
+
+          .text {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            align-items: center;
+            text-align: left;
+
+            .details {
+                .title {
+                    font-size: 0.95em;
+                }
+
+                .price {
+                    font-weight: bold;
+                }
+            }
+
+            .cart {
+                text-align: center;
+
+                i {
+                    font-size: 1.8em;
+                }
+            }
           }
         }
       }

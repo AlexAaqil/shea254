@@ -5,8 +5,14 @@
   font-family: Arial;
 }
 
+a {
+  text-decoration: none;
+  color: #000;
+  font-size: 1em;
+}
+
 .container {
-  padding: 0 3em;
+  padding: 0 5%;
 }
 
 nav {
@@ -40,55 +46,86 @@ nav .container ul li a {
   text-decoration: none;
 }
 
+img {
+  width: 200px;
+}
+
 .Homepage .Hero .container {
-  height: 90vh;
+  height: 60vh;
   display: flex;
   align-items: center;
 }
 .Homepage .Hero .container .text h1 {
-  font-size: 5em;
+  font-size: 4em;
+}
+.Homepage .Hero .container .text .hero_btn {
+  margin: 1.5em 0 0;
+}
+.Homepage .Hero .container .text .hero_btn a {
   font-weight: bold;
-}
-.Homepage .Hero .container .text p {
-  font-size: 1.2em;
-  margin: 1em 0 0;
-}
-.Homepage .Hero .container .text div {
-  border: none;
-  margin: 2em 0;
-}
-.Homepage .Hero .container .text div a {
-  border: 1px solid rgb(61, 61, 61);
+  background: #000;
+  color: #fff;
+  padding: 12px 24px;
   border-radius: 32px;
-  padding: 12px 32px;
-  text-decoration: none;
-  color: #000;
-  font-size: 1.2em;
-  font-weight: 600;
-  transition: border 0.3s ease-in-out;
-  transform-origin: center;
 }
-.Homepage .Hero .container .text div a:hover {
-  border: 2px solid #000;
+.Homepage .Hero .container img {
+  display: none;
 }
-.Homepage .Hero .container .image img {
-  height: 400px;
+.Homepage .Categories,
+.Homepage .Products {
+  margin: 0 0 1em;
 }
-.Homepage .Categories .container {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-}
-.Homepage .Categories .container .category {
+.Homepage .Categories .container h1,
+.Homepage .Products .container h1 {
   text-align: center;
+  font-size: 1.5em;
+  margin: 0 0 1em;
 }
-.Homepage .Categories .container .category .image img {
-  width: 150px;
+.Homepage .Categories .categories_wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.Homepage .Categories .categories_wrapper .category {
+  text-align: center;
+  margin: 0 0 1em;
+}
+.Homepage .Categories .categories_wrapper .category img {
   height: 150px;
+  width: 150px;
   border-radius: 50%;
   -o-object-fit: contain;
      object-fit: contain;
+}
+.Homepage .Products .container .products_wrapper .product {
+  width: 70%;
+  margin: 0 auto 1em;
+  text-align: center;
+}
+.Homepage .Products .container .products_wrapper .product img {
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
   -o-object-position: center;
      object-position: center;
+  border-radius: 32px 32px 0 0;
+}
+.Homepage .Products .container .products_wrapper .product .text {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  align-items: center;
+  text-align: left;
+}
+.Homepage .Products .container .products_wrapper .product .text .details .title {
+  font-size: 0.95em;
+}
+.Homepage .Products .container .products_wrapper .product .text .details .price {
+  font-weight: bold;
+}
+.Homepage .Products .container .products_wrapper .product .text .cart {
+  text-align: center;
+}
+.Homepage .Products .container .products_wrapper .product .text .cart i {
+  font-size: 1.8em;
 }
 
 .About {
@@ -143,4 +180,58 @@ nav .container ul li a {
 .About .socialize .socials span a {
   text-decoration: none;
   color: #000;
+}
+
+Footer {
+  background: #000;
+  color: #fff;
+}
+Footer .branding,
+Footer .shop,
+Footer .links,
+Footer .enquiries {
+  margin: 0 0 1.8em;
+}
+Footer .shop h1,
+Footer .links h1,
+Footer .enquiries h1 {
+  font-size: 1em;
+}
+Footer .container {
+  padding: 1em auto;
+}
+Footer .container a {
+  color: #fff;
+}
+Footer .container ul {
+  list-style: none;
+}
+Footer .container ul li {
+  margin: 0 0 0.2em;
+}
+Footer .container .branding img {
+  width: 80px;
+  height: 80px;
+}
+Footer .container .branding h1 {
+  font-size: 1.5em;
+}
+Footer .container .branding p {
+  margin: 0.5em 0;
+}
+Footer .container .enquiries .socials {
+  margin: 1em 0;
+}
+Footer .container .enquiries .socials ul {
+  display: flex;
+  gap: 0 2em;
+}
+Footer .container .enquiries .socials ul li i {
+  font-size: 1.5em;
+}
+Footer .copyright {
+  margin: 0;
+  padding: 0.5em 0;
+  text-align: center;
+  border-top: 1px solid #707070;
 }/*# sourceMappingURL=styles.css.map */

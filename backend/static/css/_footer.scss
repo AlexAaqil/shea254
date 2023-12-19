@@ -1,0 +1,72 @@
+Footer {
+  background: #000;
+  color: #fff;
+
+  .branding,
+  .shop,
+  .links,
+  .enquiries {
+    margin: 0 0 1.8em;
+  }
+
+  .shop,
+  .links,
+  .enquiries {
+    h1 {
+        font-size: 1em;
+    }
+  }
+
+  .container {
+    padding: 1em auto;
+    a {
+      color: #fff;
+    }
+
+    ul {
+      list-style: none;
+
+      li {
+        margin: 0 0 0.2em;
+      }
+    }
+
+    .branding {
+        img {
+            width: 80px;
+            height: 80px;
+        }
+
+        h1 {
+            font-size: 1.5em;
+        }
+
+        p {
+            margin: 0.5em 0;
+        }
+    }
+
+    .enquiries {
+        .socials {
+            margin: 1em 0;
+            ul {
+                display: flex;
+                gap: 0 2em;
+
+                li {
+                    i {
+                        font-size: 1.5em;
+                    }
+                }
+            }
+        }
+    }
+  }
+
+  .copyright {
+    margin: 0;
+    padding: 0.5em 0;
+    text-align: center;
+    border-top: 1px solid #707070;
+  }
+}
