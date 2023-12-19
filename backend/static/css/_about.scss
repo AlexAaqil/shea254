@@ -1,0 +1,64 @@
+.About {    
+    text-align: center;
+
+    h1 {
+        margin: 0 0 0.5em;
+    }
+
+    p {
+        margin: 0.4em 0;
+    } 
+    
+    .story,
+    .services,
+    .socialize {
+        margin: 3em 0;              
+    }
+
+    .services {
+        .services_list {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1em 1em;
+
+            .service {
+                text-align: center;
+                img {
+                    height: 130px;
+                    aspect-ratio: 1;
+                    object-fit: cover;
+                    border-radius: 50%;
+                }
+            }
+        }
+    }
+
+    .socialize {
+        text-align: center;
+
+        .socials {
+            display: flex;
+            gap: 0 1em;
+            justify-content: center;
+
+            span {
+                display: flex;
+                align-items: center;
+                gap: 0 0.18em;
+                padding: 8px 12px;
+                border: 1px solid rgb(206, 206, 206);
+                border-radius: 16px;
+
+                img {
+                    width: 20px;
+                    aspect-ratio: 1;
+                }
+
+                a {            
+                    text-decoration: none;
+                    color: #000;                                
+                }
+            }            
+        }        
+    }
+}

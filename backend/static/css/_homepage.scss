@@ -1,0 +1,69 @@
+.Homepage {
+  .Hero {
+    .container {
+      height: 90vh;
+      display: flex;
+      align-items: center;
+
+      .text {
+        h1 {
+          font-size: 5em;
+          font-weight: bold;
+        }
+
+        p {
+          font-size: 1.2em;
+          margin: 1em 0 0;
+        }
+
+        div {
+          border: none;
+          margin: 2em 0;
+
+          a {
+            border: 1px solid rgb(61, 61, 61);
+            border-radius: 32px;
+            padding: 12px 32px;
+            text-decoration: none;
+            color: #000;
+            font-size: 1.2em;
+            font-weight: 600;
+            transition: border 0.3s ease-in-out;
+            transform-origin: center;
+
+            &:hover {
+              border: 2px solid #000;
+            }
+          }
+        }
+      }
+
+      .image {
+        img {
+          height: 400px;
+        }
+      }
+    }
+  }
+
+  .Categories {
+    .container {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+
+      .category {
+        text-align: center;
+
+        .image {
+          img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: contain;
+            object-position: center;
+          }
+        }
+      }
+    }
+  }
+}
