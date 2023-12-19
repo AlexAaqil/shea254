@@ -23,32 +23,49 @@
 
   <section class="Categories">
     <div class="container">
+      <h1>Categories</h1>
+
+      <div class="categories_wrapper">
         {% for category in categories %}
-            <div class="category">
-                <div class="image">
-                    <img src="{{ category.image.url }}" alt="Category" />
-                </div>
-                <p>{{ category.title }}</p>
-            </div>
+        <div class="category">
+          <div class="image">
+            <img src="{{ category.image.url }}" alt="Category" />
+          </div>
+          <p>{{ category.title }}</p>
+        </div>
         {% endfor %}
+      </div>
     </div>
   </section>
 
-  <section class="Categories">
+  <section class="Products">
     <div class="container">
-        <h1>Most Popular</h1>
-        {% for product in products %}
-            <div class="category">
-                <div class="image">
-                    <img src="{{ product.image.url }}" alt="Product">
-                </div>
+      <h1>Most Popular</h1>
 
-                <p>{{ product.title }}</p>
-                <p>{{ product.price }}</p>
-                <button>Add to Cart</button>
+      <div class="products_wrapper">
+        {% for product in products %}
+        <div class="product">
+          <div class="image">
+            <img src="{{ product.image.url }}" alt="Product" />
+          </div>
+
+          <div class="text">
+            <div class="details">
+              <p class="title">{{ product.title }}</p>
+              <p class="price">Ksh. {{ product.price }}</p>
             </div>
+            <div class="cart">
+              <span class="add_to_cart">
+                <i class="fas fa-shopping-bag"></i>
+              </span>
+            </div>
+          </div>
+        </div>
         {% endfor %}
+      </div>
     </div>
   </section>
+
+  {% include 'partials/footer.html' %}
 </main>
 {% endblock body_content %}
