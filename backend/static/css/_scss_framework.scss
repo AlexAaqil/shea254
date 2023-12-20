@@ -1,0 +1,38 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial;
+}
+html {
+  scroll-behavior: smooth;
+}
+
+
+.center {
+  text-align: center;
+}
+.grid_center {
+  display: grid;
+  align-content: center;
+}
+
+
+.container {
+  padding: 0 $container_sides_padding;
+}
+.container_fluid {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  transform: translateX(-50%);
+  z-index: -1;
+  padding: 0 calc($container_sides_padding + 1.2%);
+}
+
+@media screen and (width >= $desktop_width) {
+  .container_fluid {
+    width: calc(100vw - 15px);
+  }
+}
