@@ -1,13 +1,29 @@
 .About {
-  section {
-    padding: 2em 0;
-  }
+  padding: 2em 0;
 
-  h1 {
-    margin: 0 0 0.5em;
-  }
+  .container {
+    .map_location {
+        margin: 1em 0;
 
-  p {
-    margin: 0.4em 0;
+        p {
+            line-height: 1.5;
+        }
+
+        iframe {
+            width: 100%;
+        }
+    }
   }
+}
+
+@media screen and (width >= $desktop_width) {
+    .About {
+        .container {
+            .map_location {
+                display: grid;
+                grid-template-columns: 1fr 2fr;
+                align-items: center;
+            }
+        }
+    }
 }

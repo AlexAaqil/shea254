@@ -154,16 +154,26 @@ nav .container ul li a {
        object-position: center;
   }
 }
-.About section {
+.About {
   padding: 2em 0;
 }
-.About h1 {
-  margin: 0 0 0.5em;
+.About .container .map_location {
+  margin: 1em 0;
 }
-.About p {
-  margin: 0.4em 0;
+.About .container .map_location p {
+  line-height: 1.5;
+}
+.About .container .map_location iframe {
+  width: 100%;
 }
 
+@media screen and (width >= 726px) {
+  .About .container .map_location {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    align-items: center;
+  }
+}
 .Contact {
   padding: 2em 0;
 }
