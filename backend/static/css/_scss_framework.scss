@@ -13,6 +13,7 @@ html {
 }
 .grid_center {
   display: grid;
+  justify-items: center;
   align-content: center;
 }
 .flex_center {
