@@ -3,7 +3,7 @@
   {% include 'partials/navbar.html' %}
 
   <section class="Hero">
-    <div class="container">
+    <div class="container flex_center">
       <div class="text">
         <h1>Shea.254</h1>
         <p>
@@ -23,11 +23,11 @@
 
   <section class="Categories">
     <div class="container">
-      <h1>Categories</h1>
+      <h1 class="center">Categories</h1>
 
       <div class="categories_wrapper">
         {% for category in categories %}
-        <div class="category">
+        <div class="category center">
           <div class="image">
             <img src="{{ category.image.url }}" alt="Category" />
           </div>
@@ -40,7 +40,7 @@
 
   <section class="Products">
     <div class="container">
-      <h1>Most Popular</h1>
+      <h1 class="center">Most Popular</h1>
 
       <div class="products_wrapper">
         {% for product in products %}
@@ -54,7 +54,7 @@
               <p class="title">{{ product.title }}</p>
               <p class="price">Ksh. {{ product.price }}</p>
             </div>
-            <div class="cart">
+            <div class="cart center">
               <span class="add_to_cart">
                 <i class="fas fa-shopping-bag"></i>
               </span>
@@ -68,8 +68,8 @@
 
   <section class="Instagram">
     <div class="container">
-        <h1>Instagram</h1>
-        <p>Skin Care Experts</p>
+        <h1 class="center">Instagram</h1>
+        <p class="center">Skin Care Experts</p>
 
         <div class="posts">
             <div class="post">

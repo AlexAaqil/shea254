@@ -24,6 +24,11 @@ html {
   align-content: center;
 }
 
+.flex_center {
+  display: flex;
+  align-items: center;
+}
+
 .container {
   padding: 0 5%;
 }
@@ -36,6 +41,25 @@ html {
   transform: translateX(-50%);
   z-index: -1;
   padding: 0 6.2%;
+}
+
+form input,
+form textarea {
+  width: 100%;
+  font-size: 1em;
+  margin: 0.3em 0;
+  padding: 0.5em 1em;
+  border: 1px solid #969696;
+  border-radius: 4px;
+}
+form button {
+  background: #000;
+  color: #fff;
+  padding: 12px 16px;
+  border: none;
+  border-radius: 4px;
+  font-size: 1.1em;
+  font-weight: bold;
 }
 
 @media screen and (width >= 726px) {
@@ -79,9 +103,6 @@ nav .container ul li a {
 }
 .Homepage .Hero .container {
   height: 40vh;
-  display: flex;
-  align-items: center;
-  text-align: center;
 }
 .Homepage .Hero .container .text h1 {
   font-size: max(3em, 6vw);
@@ -105,7 +126,6 @@ nav .container ul li a {
 }
 .Homepage .Categories .container h1,
 .Homepage .Products .container h1 {
-  text-align: center;
   font-size: 1.5em;
   margin: 0 0 1em;
 }
@@ -113,9 +133,6 @@ nav .container ul li a {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1em;
-}
-.Homepage .Categories .categories_wrapper .category {
-  text-align: center;
 }
 .Homepage .Categories .categories_wrapper .category img {
   height: 150px;
@@ -144,15 +161,8 @@ nav .container ul li a {
 .Homepage .Products .container .products_wrapper .product .text .details .price {
   font-weight: bold;
 }
-.Homepage .Products .container .products_wrapper .product .text .cart {
-  text-align: center;
-}
 .Homepage .Products .container .products_wrapper .product .text .cart i {
   font-size: 2.2em;
-}
-.Homepage .Instagram h1,
-.Homepage .Instagram p {
-  text-align: center;
 }
 
 @media screen and (width >= 726px) {
@@ -260,24 +270,6 @@ nav .container ul li a {
 .Contact .container {
   display: grid;
   gap: 1em 0;
-}
-.Contact .container .contact_form form input,
-.Contact .container .contact_form form textarea {
-  width: 100%;
-  font-size: 1em;
-  margin: 0.3em 0;
-  padding: 0.5em 1em;
-  border: 1px solid #969696;
-  border-radius: 4px;
-}
-.Contact .container .contact_form form button {
-  background: #000;
-  color: #fff;
-  padding: 12px 16px;
-  border: none;
-  border-radius: 4px;
-  font-size: 1.1em;
-  font-weight: bold;
 }
 
 @media screen and (width >= 726px) {
