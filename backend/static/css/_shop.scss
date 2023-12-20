@@ -1,0 +1,30 @@
+.Shop {
+  .container {
+    .hero {
+      background: $theme_background;
+      height: 20vh;
+
+      .breadcrumb {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        gap: 0 1.2em;
+        margin: 0 0 0.5em;
+      }
+
+      h1 {
+        font-size: max(2em, 3vw);
+      }
+    }
+  }
+}
+
+@media screen and (width >= $desktop_width) {
+    .Shop {
+        .container {
+            .hero {
+                height: 25vh;
+            }
+        }
+    }
+}

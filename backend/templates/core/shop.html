@@ -1,0 +1,32 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+{% block body_content %}
+{% include 'partials/navbar.html' %}
+
+<section class="Shop">
+    <div class="container">
+        <div class="hero container_fluid grid_center">
+            <div aria-label="breadcrumb">
+                <ul class="breadcrumb">
+                    <li class="active" aria-current="page"><a href="">Home</a></li>
+                    <li><a href="">Shop</a></li>
+                </ul>
+            </div>
+
+            <h1>Products</h1>
+        </div>
+
+        <div class="main_content">
+            <div class="sidenav">
+                <a href="">Categories</a>
+            </div>
+
+            <div class="products">
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+{% include 'partials/footer.html' %}
+{% endblock body_content %}
