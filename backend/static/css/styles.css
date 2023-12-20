@@ -164,6 +164,42 @@ nav .container ul li a {
   margin: 0.4em 0;
 }
 
+.Contact {
+  padding: 2em 0;
+}
+.Contact .container {
+  display: grid;
+  gap: 1em 0;
+}
+.Contact .container .contact_form form input,
+.Contact .container .contact_form form textarea {
+  width: 100%;
+  font-size: 1em;
+  margin: 0.3em 0;
+  padding: 0.5em 1em;
+  border: 1px solid #969696;
+  border-radius: 4px;
+}
+.Contact .container .contact_form form button {
+  background: #000;
+  color: #fff;
+  padding: 12px 16px;
+  border: none;
+  border-radius: 4px;
+  font-size: 1.1em;
+  font-weight: bold;
+}
+
+@media screen and (width >= 726px) {
+  .Contact .container {
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+  }
+  .Contact .container .contact_details p {
+    font-size: 2.8em;
+    margin: 0 0 1em;
+  }
+}
 footer {
   background: #000;
   color: #fff;

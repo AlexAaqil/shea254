@@ -1,3 +1,5 @@
+$desktop_width: 726px;
+
 $container_sides_padding: 5%;
 
 
@@ -26,4 +28,5 @@ a {
 @import 'navbar';
 @import 'homepage';
 @import 'about';
+@import 'contact';
 @import 'footer';
