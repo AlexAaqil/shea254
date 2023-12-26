@@ -66,7 +66,7 @@
       .products {
         .products_wrapper {
           display: grid;
-          gap: 1em;
+          gap: 1.5em;
 
           .product {
             @include product;
@@ -83,7 +83,7 @@
       .main_content {
         .products {
           .products_wrapper {
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(4, 1fr);
           }
         }
       }
