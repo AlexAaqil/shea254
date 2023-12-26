@@ -26,9 +26,9 @@
   }
 
   .container {
-    padding: 0.5em;
-
     $sidenav_width: 13%;
+
+    padding: 1em 0.5em;
 
     .sidenav {
       width: $sidenav_width;

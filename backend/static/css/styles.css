@@ -75,7 +75,7 @@ nav {
   background: #fff;
   position: sticky;
   top: 0;
-  padding: 1em 0;
+  padding: 0.5em 0;
 }
 nav a {
   text-decoration: none;
@@ -88,6 +88,28 @@ nav .container {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+nav .container .search {
+  width: 30%;
+}
+nav .container .search form {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+nav .container .search form input {
+  border-radius: 32px;
+  height: 35px;
+}
+nav .container .search form button {
+  width: 35px;
+  height: 35px;
+  position: absolute;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0 32px 32px 0;
 }
 nav .container ul {
   list-style: none;
@@ -319,7 +341,7 @@ nav .container ul li a {
   font-size: max(2em, 3vw);
 }
 .Shop .container {
-  padding: 0.5em;
+  padding: 1em 0.5em;
 }
 .Shop .container .sidenav {
   width: 13%;

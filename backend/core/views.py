@@ -13,6 +13,14 @@ def index(request):
     return render(request, 'core/index.html', context)
 
 
+def about(request):
+    return render(request, 'core/about.html')
+
+
+def contact(request):
+    return render(request, 'core/contact.html')
+
+
 def shop(request):
     categories = Category.objects.all
     products = Product.objects.all
@@ -24,9 +32,16 @@ def shop(request):
     return render(request, 'core/shop.html', context)
 
 
-def about(request):
-    return render(request, 'core/about.html')
+def search(request):
+    query = request.GET.get("q")
 
+    categories = Category.objects.all
+    products = Product.objects.filter(title__icontains=query).order_by("-date")
 
-def contact(request):
-    return render(request, 'core/contact.html')
+    context = {
+        "categories" : categories,
+        "products" : products,
+        "query" : query,
+    }
+
+    return render(request, 'core/categorised_products.html', context)

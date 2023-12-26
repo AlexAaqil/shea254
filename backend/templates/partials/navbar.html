@@ -4,6 +4,13 @@
       <a href="{% url 'core:index' %}">SHEA.254</a>
     </div>
 
+    <div class="search">
+        <form action="{% url 'core:search' %}" method="get">
+            <input type="text" name="q" id="q" placeholder="Search">
+            <button type="submit"><i class="fas fa-search"></i></button>
+        </form>
+    </div>
+
     <ul>
       <li><a href="{% url 'core:shop' %}">Shop</a></li>
       <li><a href="{% url 'core:about' %}">About</a></li>
