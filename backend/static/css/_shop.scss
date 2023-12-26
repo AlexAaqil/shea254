@@ -1,30 +1,92 @@
 .Shop {
-  .container {
-    .hero {
-      background: $theme_background;
-      height: 20vh;
+  .hero {
+    background: $theme_background;
+    height: 20vh;
 
-      .breadcrumb {
-        list-style: none;
-        display: flex;
-        justify-content: center;
-        gap: 0 1.2em;
-        margin: 0 0 0.5em;
+    .breadcrumb {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      gap: 0 0.5em;
+      margin: 0 0 0.5em;
+
+      li {
+        &:not(:first-child) {
+          &::before {
+            content: " > ";
+            font-weight: bold;
+          }
+        }
       }
+    }
+
+    h1 {
+      font-size: max(2em, 3vw);
+    }
+  }
+
+  .container {
+    padding: 0.5em;
+
+    $sidenav_width: 13%;
+
+    .sidenav {
+      width: $sidenav_width;
+      position: fixed;
+      z-index: 1;
+      padding: 0 0.5em;
+      background: #fff;
+      $border-color: #adadad;
+      border: 1px solid $border-color;
 
       h1 {
-        font-size: max(2em, 3vw);
+        border-bottom: 1px solid $border-color;
+        padding: 0.2em 0;
+        text-transform: uppercase;
+        font-size: 1.2em;
+      }
+
+      h2 {
+        font-size: 1.1em;
+        margin: 1.2em 0 0.5em;
+      }
+
+      a {
+        display: block;
+        text-transform: capitalize;
+        margin: 0 0 0.4em;
+      }
+    }
+
+    .main_content {
+      display: grid;
+      gap: 0 1em;
+      margin-left: calc($sidenav_width + 1.6em);
+
+      .products {
+        .products_wrapper {
+          display: grid;
+          gap: 1em;
+
+          .product {
+            @include product;
+          }
+        }
       }
     }
   }
 }
 
 @media screen and (width >= $desktop_width) {
-    .Shop {
-        .container {
-            .hero {
-                height: 25vh;
-            }
+  .Shop {
+    .container {
+      .main_content {
+        .products {
+          .products_wrapper {
+            grid-template-columns: repeat(3, 1fr);
+          }
         }
+      }
     }
+  }
 }

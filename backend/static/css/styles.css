@@ -288,24 +288,90 @@ nav .container ul li a {
     margin: 0 0 1em;
   }
 }
-.Shop .container .hero {
+.Shop .hero {
   background: hsl(31, 96%, 89%);
   height: 20vh;
 }
-.Shop .container .hero .breadcrumb {
+.Shop .hero .breadcrumb {
   list-style: none;
   display: flex;
   justify-content: center;
-  gap: 0 1.2em;
+  gap: 0 0.5em;
   margin: 0 0 0.5em;
 }
-.Shop .container .hero h1 {
+.Shop .hero .breadcrumb li:not(:first-child)::before {
+  content: " > ";
+  font-weight: bold;
+}
+.Shop .hero h1 {
   font-size: max(2em, 3vw);
+}
+.Shop .container {
+  padding: 0.5em;
+}
+.Shop .container .sidenav {
+  width: 13%;
+  position: fixed;
+  z-index: 1;
+  padding: 0 0.5em;
+  background: #fff;
+  border: 1px solid #adadad;
+}
+.Shop .container .sidenav h1 {
+  border-bottom: 1px solid #adadad;
+  padding: 0.2em 0;
+  text-transform: uppercase;
+  font-size: 1.2em;
+}
+.Shop .container .sidenav h2 {
+  font-size: 1.1em;
+  margin: 1.2em 0 0.5em;
+}
+.Shop .container .sidenav a {
+  display: block;
+  text-transform: capitalize;
+  margin: 0 0 0.4em;
+}
+.Shop .container .main_content {
+  display: grid;
+  gap: 0 1em;
+  margin-left: calc(13% + 1.6em);
+}
+.Shop .container .main_content .products .products_wrapper {
+  display: grid;
+  gap: 1em;
+}
+.Shop .container .main_content .products .products_wrapper .product .image {
+  height: 300px;
+}
+.Shop .container .main_content .products .products_wrapper .product .image img {
+  width: 100%;
+  height: 100%;
+  border-radius: 32px 32px 0 0;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+}
+.Shop .container .main_content .products .products_wrapper .product .text {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  align-items: center;
+  text-align: left;
+}
+.Shop .container .main_content .products .products_wrapper .product .text .details {
+  padding: 1em 0;
+}
+.Shop .container .main_content .products .products_wrapper .product .text .details .price {
+  font-weight: bold;
+}
+.Shop .container .main_content .products .products_wrapper .product .text .cart i {
+  font-size: 2.2em;
 }
 
 @media screen and (width >= 726px) {
-  .Shop .container .hero {
-    height: 25vh;
+  .Shop .container .main_content .products .products_wrapper {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 footer {

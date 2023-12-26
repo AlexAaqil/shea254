@@ -1,0 +1,22 @@
+<div class="products_wrapper">
+    {% for product in products %}
+    <div class="product">
+        <div class="image">
+            <img src="{{ product.image.url }}" alt="Product" />
+        </div>
+
+        <div class="text">
+            <div class="details">
+                <p class="title">{{ product.title }}</p>
+                <p class="price">Ksh. {{ product.price }}</p>
+            </div>
+            
+            <div class="cart center">
+                <span class="add_to_cart">
+                    <i class="fas fa-shopping-bag"></i>
+                </span>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>

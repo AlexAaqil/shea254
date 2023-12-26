@@ -14,7 +14,14 @@ def index(request):
 
 
 def shop(request):
-    return render(request, 'core/shop.html')
+    categories = Category.objects.all
+    products = Product.objects.all
+
+    context = {
+        "categories" : categories,
+        "products" : products,
+    }
+    return render(request, 'core/shop.html', context)
 
 
 def about(request):

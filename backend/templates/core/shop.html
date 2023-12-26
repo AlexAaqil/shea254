@@ -4,29 +4,32 @@
 {% include 'partials/navbar.html' %}
 
 <section class="Shop">
-    <div class="container">
-        <div class="hero container_fluid grid_center">
-            <div aria-label="breadcrumb">
-                <ul class="breadcrumb">
-                    <li class="active" aria-current="page"><a href="">Home</a></li>
-                    <li><a href="">Shop</a></li>
-                </ul>
-            </div>
+    <div class="hero grid_center">
+        <div aria-label="breadcrumb">
+            <ul class="breadcrumb">
+                <li class="active" aria-current="page"><a href="{% url 'core:index' %}">Home</a></li>
+                <li><a href="{% url 'core:shop' %}">Shop</a></li>
+            </ul>
+        </div>
 
-            <h1>Products</h1>
+        <h1>Products</h1>
+    </div>
+
+    <div class="container">
+        <div class="sidenav">
+            <h1>Filter by</h1>
+            <h2>Category</h2>
+            {% for category in categories %}
+                <a href="">{{ category }}</a>
+            {% endfor %}
         </div>
 
         <div class="main_content">
-            <div class="sidenav">
-                <a href="">Categories</a>
-            </div>
-
             <div class="products">
-                
+                {% include 'partials/products.html' %}
             </div>
         </div>
     </div>
 </section>
 
-{% include 'partials/footer.html' %}
 {% endblock body_content %}

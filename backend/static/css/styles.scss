@@ -2,15 +2,48 @@
 $desktop_width: 726px;
 $container_sides_padding: 5%;
 
-
 // Colors
 $theme_background: hsl(31, 96%, 89%);
-
 
 a {
   text-decoration: none;
   color: #000;
   font-size: 1em;
+}
+
+@mixin product {
+  .image {
+    height: 300px;
+
+    img {
+      width: 100%;
+      height: 100%;
+      border-radius: 32px 32px 0 0;
+      object-fit: cover;
+      object-position: center;
+    }
+  }
+
+  .text {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    align-items: center;
+    text-align: left;
+
+    .details {
+      padding: 1em 0;
+
+      .price {
+        font-weight: bold;
+      }
+    }
+
+    .cart {
+      i {
+        font-size: 2.2em;
+      }
+    }
+  }
 }
 
 @import "scss_framework";
