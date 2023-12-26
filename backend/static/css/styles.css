@@ -107,7 +107,8 @@ nav .container ul li a {
 }
 .Homepage .Hero .container .text h1 {
   font-size: max(3em, 6vw);
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
 }
 .Homepage .Hero .container .text p {
   font-size: max(1em, 1.5vw);
