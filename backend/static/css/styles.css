@@ -104,17 +104,13 @@ nav .container ul li a {
 }
 .Homepage .Hero .container {
   height: 40vh;
-}
-.Homepage .Hero .container .text h1 {
-  font-size: max(3em, 6vw);
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
+  text-align: center;
 }
 .Homepage .Hero .container .text p {
-  font-size: max(1em, 1.5vw);
+  font-size: max(2em, 2vw);
 }
 .Homepage .Hero .container .text .hero_btn {
-  margin: 1.5em 0 0;
+  margin: 2.5em 0 0;
 }
 .Homepage .Hero .container .text .hero_btn a {
   font-weight: bold;
@@ -171,6 +167,14 @@ nav .container ul li a {
   .Homepage .Hero .container {
     height: 85vh;
     text-align: left;
+  }
+  .Homepage .Hero .container p {
+    text-transform: uppercase;
+    font-size: 3em !important;
+    font-weight: bold;
+  }
+  .Homepage .Hero .container .hero_btn a {
+    font-size: 1.2em;
   }
   .Homepage .Hero .container img {
     display: unset;

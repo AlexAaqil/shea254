@@ -6,20 +6,15 @@
   .Hero {
     .container {
       height: 40vh;
+      text-align: center;
 
       .text {
-        h1 {
-          font-size: max(3em, 6vw);
-          letter-spacing: 0.5px;
-          text-transform: uppercase;
-        }
-
         p {
-          font-size: max(1em, 1.5vw);
+          font-size: max(2em, 2vw);
         }
 
         .hero_btn {
-          margin: 1.5em 0 0;
+          margin: 2.5em 0 0;
 
           a {
             font-weight: bold;
@@ -108,6 +103,18 @@
       .container {
         height: 85vh;
         text-align: left;
+
+        p {
+            text-transform: uppercase;
+            font-size: 3em !important;
+            font-weight: bold;
+        }
+
+        .hero_btn {
+            a {
+                font-size: 1.2em;
+            }
+        }
 
         img {
           display: unset;
