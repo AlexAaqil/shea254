@@ -3,4 +3,5 @@ backend/.env
 
 backend/db.sqlite3
 backend/staticfiles
-backend/media/uploads
+backend/media/uploads/categories
+backend/media/uploads/product_images
