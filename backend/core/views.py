@@ -1,5 +1,8 @@
 from django.shortcuts import render
+from django.template.loader import render_to_string
+from django.http import JsonResponse
 from .models import Product, Category
+
 
 def index(request):
     categories = Category.objects.all
@@ -45,3 +48,16 @@ def search(request):
     }
 
     return render(request, 'core/categorised_products.html', context)
+
+
+def filter_products(request):
+    categories = request.GET.getlist("category[]")
+
+    products = Product.objects.filter(product_status="published").order_by("-id").distinct()
+
+    if len(categories) > 0:
+        products = products.filter(category__id__in=categories).distinct()
+
+    data = render_to_string("core/async/filtered_products.html", {"products" : products})
+
+    return JsonResponse({"data" : data})

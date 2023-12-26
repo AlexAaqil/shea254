@@ -344,7 +344,7 @@ nav .container ul li a {
   padding: 1em 0.5em;
 }
 .Shop .container .sidenav {
-  width: 13%;
+  width: 14%;
   position: fixed;
   z-index: 1;
   padding: 0 0.5em;
@@ -356,20 +356,27 @@ nav .container ul li a {
   padding: 0.2em 0;
   text-transform: uppercase;
   font-size: 1.2em;
+  letter-spacing: 0.25px;
+}
+.Shop .container .sidenav h1 i {
+  font-size: 0.8em;
 }
 .Shop .container .sidenav h2 {
-  font-size: 1.1em;
+  letter-spacing: 0.25px;
+  font-size: 1em;
   margin: 1.2em 0 0.5em;
+  text-transform: uppercase;
 }
-.Shop .container .sidenav a {
-  display: block;
+.Shop .container .sidenav ul {
+  list-style: none;
+}
+.Shop .container .sidenav ul li label {
   text-transform: capitalize;
-  margin: 0 0 0.4em;
 }
 .Shop .container .main_content {
   display: grid;
   gap: 0 1em;
-  margin-left: calc(13% + 1.6em);
+  margin-left: calc(14% + 1.6em);
 }
 .Shop .container .main_content .products .products_wrapper {
   display: grid;

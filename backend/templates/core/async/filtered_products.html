@@ -1,5 +1,4 @@
-<div class="products_wrapper" id="filtered_products">
-    {% for product in products %}
+{% for product in products %}
     <div class="product">
         <div class="image">
             <img src="{{ product.image.url }}" alt="Product" />
@@ -18,5 +17,4 @@
             </div>
         </div>
     </div>
-    {% endfor %}
-</div>
+{% endfor %}

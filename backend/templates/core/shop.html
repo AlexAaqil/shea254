@@ -5,13 +5,7 @@
 
 <section class="Shop">
     <div class="container">
-        <div class="sidenav">
-            <h1>Filter by</h1>
-            <h2>Category</h2>
-            {% for category in categories %}
-                <a href="">{{ category }}</a>
-            {% endfor %}
-        </div>
+        {% include 'partials/products_sidenav.html' %}
 
         <div class="main_content">
             <div class="products">
@@ -20,5 +14,7 @@
         </div>
     </div>
 </section>
+
+{% include 'partials/javascripts.html' %}
 
 {% endblock body_content %}
