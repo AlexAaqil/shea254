@@ -36,6 +36,9 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    # Installed apps
+    'jazzmin',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -43,7 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    # installed apps
+    # Other installed apps
     'ckeditor',
 
     # Custom apps
@@ -153,4 +156,37 @@ CKEDITOR_CONFIGS = {
         ],
         'removePlugins': 'flash,tabletools,scayt,menubutton,contextmenu',
     },
+}
+
+
+
+JAZZMIN_SETTINGS = {
+    "site_title": "Shea.254",
+    "site_header": "Shea.254",
+    "site_brand": "Shea.254",
+    "site_logo": "images/logo.jpg",
+    "welcome_sign": "Shea.254 (Admins Only)",
+    "copyright": "Shea.254",
+
+    # List of apps (and/or models)
+    "order_with_respect_to": ["auth", "core", "core.Category", "core.Product"],
+
+    # icons
+    "icons": {
+        "auth": "fas fa-users-cog",
+        "auth.user": "fas fa-user",
+        "auth.Group": "fas fa-users",
+        "core.Category" : "fas fa-tags",
+        "core.Product" : "fas fa-sitemap",
+    },
+
+    "show_ui_builder": True,
+}
+
+JAZZMIN_UI_TWEAKS = {
+    "body_small_text": True,
+    "accent": "accent-primary",
+    "navbar": "navbar-white navbar-light",
+    "sidebar_fixed": True,
+    "sidebar_nav_compact_style": True,
 }

@@ -6,10 +6,7 @@ from django.core.exceptions import ValidationError
 
 
 STATUS = (
-    ("draft", "Draft"),
     ("disabled", "Disabled"),
-    ("in_review", "In Review"),
-    ("rejected", "Rejected"),
     ("published", "Published"),
 )
 
@@ -37,7 +34,7 @@ class Product(models.Model):
     description = RichTextUploadingField(null=True, blank=True, default="Product Description")
     price = models.DecimalField(max_digits=999999999999, decimal_places=2, default="0.00")
     new_price = models.DecimalField(max_digits=999999999999, decimal_places=2, default="0.00")
-    product_status = models.CharField(choices=STATUS, max_length=10, default="in_review")
+    product_status = models.CharField(choices=STATUS, max_length=10, default="published")
     image = models.ImageField(upload_to="uploads/product_images", default="product.jpg")
     in_stock = models.BooleanField(default=True)
     featured = models.BooleanField(default=False)
