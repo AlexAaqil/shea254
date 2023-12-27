@@ -70,11 +70,13 @@ $("#add_to_cart_btn").on("click", function() {
 
 
 // Product Details Images Slider
-const mainImage = document.querySelector(".main_product_image");
-const otherImagesContainer = document.querySelector(".other_product_images");
+function ProductImageSlider() {
+    const mainImage = document.querySelector(".main_product_image");
+    const otherImagesContainer = document.querySelector(".other_product_images");
 
-otherImagesContainer.querySelectorAll("img").forEach((image) => {
-  image.addEventListener("click", (event) => {
-    mainImage.src = event.target.src;
-  });
-});
+    otherImagesContainer.querySelectorAll("img").forEach((image) => {
+    image.addEventListener("click", (event) => {
+        mainImage.src = event.target.src;
+    });
+    });
+}
