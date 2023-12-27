@@ -215,7 +215,12 @@ nav .container ul .cart span {
 .Homepage .Products .container .products_wrapper .product .text .details .price {
   font-weight: bold;
 }
-.Homepage .Products .container .products_wrapper .product .text .cart i {
+.Homepage .Products .container .products_wrapper .product .text .cart button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.Homepage .Products .container .products_wrapper .product .text .cart button i {
   font-size: 2.2em;
 }
 
@@ -432,7 +437,12 @@ nav .container ul .cart span {
 .Shop .container .main_content .products .products_wrapper .product .text .details .price {
   font-weight: bold;
 }
-.Shop .container .main_content .products .products_wrapper .product .text .cart i {
+.Shop .container .main_content .products .products_wrapper .product .text .cart button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.Shop .container .main_content .products .products_wrapper .product .text .cart button i {
   font-size: 2.2em;
 }
 
@@ -544,7 +554,12 @@ nav .container ul .cart span {
 .Product_details .related_products .products_wrapper .product .text .details .price {
   font-weight: bold;
 }
-.Product_details .related_products .products_wrapper .product .text .cart i {
+.Product_details .related_products .products_wrapper .product .text .cart button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.Product_details .related_products .products_wrapper .product .text .cart button i {
   font-size: 2.2em;
 }
 
