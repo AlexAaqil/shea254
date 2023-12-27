@@ -75,3 +75,28 @@ def filter_products(request):
     data = render_to_string("core/async/filtered_products.html", {"products" : products})
 
     return JsonResponse({"data" : data})
+
+
+def add_to_cart(request):
+    cart_products = {}
+
+    cart_products[str(request.GET['id'])] = {
+        'title' : request.GET['title'],
+        'quantity' : request.GET['quantity'],
+        'price' : request.GET['price'],
+    }
+
+    if 'cart_data_object' in request.session:
+        if str(request.GET['id']) in request.session['cart_data_object']:
+            cart_data = request.session['cart_data_object']
+            cart_data[str(request.GET['id'])]['quantity'] = int(cart_products[str(request.GET['id'])]['quantity'])
+            cart_data.update(cart_data)
+            request.session['cart_data_object'] = cart_data
+        else:
+            cart_data = request.session['cart_data_object']
+            cart_data.update(cart_products)
+            request.session['cart_data_object'] = cart_data
+    else:
+        request.session['cart_data_object'] = cart_products
+
+    return JsonResponse({"data":request.session['cart_data_object'], "total_cart_items":len(request.session['cart_data_object'])})

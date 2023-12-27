@@ -19,11 +19,13 @@
 
         <div class="info">
             <h1>{{ product.title }}</h1>
-            <p class="price">Ksh. {{ product.price }}</p>
+            <p class="price">Ksh. <span class="product_price">{{ product.price }}</span></p>
             <div class="description">{{ product.description|truncatechars:150|safe }}</div>
             <div class="actions">
-                <input type="number" name="quantity" id="quantity" min="1" />
-                <button><i class="fas fa-shopping-bag"></i> Add to Bag</button>
+                <input type="number" name="product_quantity" id="product_quantity" min="1" value="1" />
+                <input type="hidden" name="id" value="{{ product.id }}" class="product_id" />
+                <input type="hidden" name="title" value="{{ product.title }}" class="product_title" />
+                <button type="submit" id="add_to_cart_btn"><i class="fas fa-shopping-bag"></i> Add to Bag</button>
             </div>
             <div class="extra_details">
                 <p>Category: {{ product.category.title }}</p>

@@ -58,6 +58,31 @@ nav {
           text-decoration: none;
         }
       }
+
+      .cart {
+        position: relative;
+
+        i {
+          font-size: 1.2em;
+        }
+
+        span {
+          width: 18px;
+          height: 18px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 0.7em;
+          font-weight: bold;
+          position: absolute;
+          right: -12px;
+          top: -7px;
+          background: green;
+          color: #fff;
+          padding: 8px;
+          border-radius: 50%;
+        }
+      }
     }
   }
 }
