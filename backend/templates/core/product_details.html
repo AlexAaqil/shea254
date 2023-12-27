@@ -12,7 +12,7 @@
             <div class="other_product_images">
                 <img src="{{ product.image.url }}" alt="{{ product.title }}">
                 {% for product_image in product_images %}
-                    <img src="{{ product_image.images.url }}" alt="{{ product.title }}">
+                    <img src="{{ product_image.images.url }}" alt="{{ product.title }}" onclick="ProductImageSlider()">
                 {% endfor %}
             </div>
         </div>
