@@ -1,0 +1,36 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+{% block body_content %}
+
+<section class="Product_details">
+    {% include 'partials/navbar.html' %}
+
+    <div class="container details_container">
+        <div class="image">
+            <img src="{{ product.image.url }}" alt="{{ product.title }}" class="main_product_image">
+
+            <div class="other_product_images">
+                <img src="{{ product.image.url }}" alt="{{ product.title }}">
+                {% for product_image in product_images %}
+                    <img src="{{ product_image.images.url }}" alt="{{ product.title }}">
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="info">
+            <h1>{{ product.title }}</h1>
+            <p class="price">Ksh. {{ product.price }}</p>
+            <div class="description">{{ product.description|truncatechars:150|safe }}</div>
+            <div class="actions">
+                <input type="number" name="quantity" id="quantity" min="1" />
+                <button><i class="fas fa-shopping-bag"></i> Add to Bag</button>
+            </div>
+            <div class="extra_details">
+                <p>Category: {{ product.category.title }}</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% include 'partials/javascripts.html' %}
+{% endblock body_content %}

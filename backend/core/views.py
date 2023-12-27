@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.template.loader import render_to_string
 from django.http import JsonResponse
 from .models import Product, Category
@@ -33,6 +33,18 @@ def shop(request):
         "products" : products,
     }
     return render(request, 'core/shop.html', context)
+
+
+def product_details(request, pid):
+    product = get_object_or_404(Product, pid=pid)
+    product_images = product.product_images.all()
+
+    context = {
+        "product" : product,
+        "product_images" : product_images,
+    }
+
+    return render(request, 'core/product_details.html', context)
 
 
 def search(request):

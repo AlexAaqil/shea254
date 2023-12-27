@@ -1,3 +1,4 @@
+// Products Filter function
 $(document).ready(function() {
   $(".filter_checkbox").on("click", function() {
     let filter_object = {};
@@ -26,5 +27,17 @@ $(document).ready(function() {
         $("#filtered_products").html(response.data)
       },
     });
+  });
+});
+
+
+
+// Product Details Images Slider
+const mainImage = document.querySelector(".main_product_image");
+const otherImagesContainer = document.querySelector(".other_product_images");
+
+otherImagesContainer.querySelectorAll("img").forEach((image) => {
+  image.addEventListener("click", (event) => {
+    mainImage.src = event.target.src;
   });
 });

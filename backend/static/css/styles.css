@@ -414,6 +414,76 @@ nav .container ul li a {
   font-size: 2.2em;
 }
 
+.Product_details .details_container {
+  display: grid;
+  grid-template-columns: 45% auto;
+  gap: 1em 3em;
+  padding: 1em 5%;
+}
+.Product_details .details_container .image {
+  text-align: center;
+}
+.Product_details .details_container .image .main_product_image {
+  width: 400px;
+  height: 400px;
+  -o-object-fit: contain;
+     object-fit: contain;
+  -o-object-position: center;
+     object-position: center;
+  border: 1px solid rgb(223, 223, 223);
+  border-radius: 8px;
+}
+.Product_details .details_container .image .other_product_images {
+  margin: 1em 0 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  justify-items: center;
+  gap: 0;
+}
+.Product_details .details_container .image .other_product_images img {
+  width: 85px;
+  height: 85px;
+}
+.Product_details .details_container .info {
+  display: grid;
+  align-content: start;
+  gap: 1em;
+}
+.Product_details .details_container .info .price {
+  font-size: 1.5em;
+  color: green;
+  font-weight: bold;
+}
+.Product_details .details_container .info .description {
+  margin: 1em 0;
+}
+.Product_details .details_container .info .actions input {
+  padding: 0.5em;
+  font-size: 1em;
+  width: 80px;
+  height: 40px;
+}
+.Product_details .details_container .info .actions button {
+  height: 40px;
+  border: none;
+  border-radius: 4px;
+  padding: 12px 16px;
+  font-size: 1em;
+  background: green;
+  color: white;
+  font-weight: bold;
+}
+.Product_details .details_container .info .actions button:hover {
+  opacity: 0.9;
+  cursor: pointer;
+}
+.Product_details .details_container .info .extra_details {
+  margin: 5em 0;
+}
+.Product_details .details_container .info .extra_details p {
+  font-size: 0.85em;
+}
+
 @media screen and (width >= 726px) {
   .Shop .container .main_content .products .products_wrapper {
     grid-template-columns: repeat(4, 1fr);

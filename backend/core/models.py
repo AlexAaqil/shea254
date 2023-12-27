@@ -1,6 +1,8 @@
 from django.db import models
+from shortuuid.django_fields import ShortUUIDField
 from ckeditor_uploader.fields import RichTextUploadingField
 from django.utils.html import mark_safe
+from django.core.exceptions import ValidationError
 
 
 STATUS = (
@@ -13,6 +15,7 @@ STATUS = (
 
 
 class Category(models.Model):
+    cid = ShortUUIDField(unique=True, length=10, max_length=20, prefix="cat", alphabet="abcdefg12345")
     title = models.CharField(max_length=255, unique=True)
     slug = models.SlugField(unique=True)
     image = models.ImageField(upload_to="uploads/categories", default="category.jpg")
@@ -28,6 +31,7 @@ class Category(models.Model):
 
 
 class Product(models.Model):
+    pid = ShortUUIDField(unique=True, length=10, max_length=20, alphabet="abcdefg12345")
     title = models.CharField(max_length=100, default="Product Title")
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
     description = RichTextUploadingField(null=True, blank=True, default="Product Description")
@@ -38,8 +42,8 @@ class Product(models.Model):
     in_stock = models.BooleanField(default=True)
     featured = models.BooleanField(default=False)
 
-    date = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(null=True, blank=True)
 
     class Meta:
         verbose_name_plural = "Products"
@@ -55,7 +59,18 @@ class ProductImages(models.Model):
     images = models.ImageField(upload_to="uploads/product_images", default="Product.jpg")
 
     product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True, related_name="product_images")
-    date = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def clean(self):
+        if self.product.product_images.count() >= 3:
+            raise ValidationError("Maximum of 3 images allowed per product.")
+
+    def delete(self, *args, **kwargs):
+        # Call the original delete() method first
+        super().delete(*args, **kwargs)
+
+        # Delete the associated image file from the storage
+        self.images.storage.delete(self.images.name)
 
     class Meta:
         verbose_name_plural = "Product Images"
