@@ -414,11 +414,14 @@ nav .container ul li a {
   font-size: 2.2em;
 }
 
+.Product_details .details_container,
+.Product_details .related_products {
+  padding: 1em 5%;
+}
 .Product_details .details_container {
   display: grid;
   grid-template-columns: 45% auto;
   gap: 1em 3em;
-  padding: 1em 5%;
 }
 .Product_details .details_container .image {
   text-align: center;
@@ -482,6 +485,45 @@ nav .container ul li a {
 }
 .Product_details .details_container .info .extra_details p {
   font-size: 0.85em;
+}
+.Product_details .related_products h1 {
+  margin: 0 0 1em;
+}
+.Product_details .related_products .products_wrapper {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5em;
+}
+.Product_details .related_products .products_wrapper .product {
+  box-shadow: 1px 2px 6px rgb(117, 117, 117);
+}
+.Product_details .related_products .products_wrapper .product .image {
+  height: 250px;
+}
+.Product_details .related_products .products_wrapper .product .image img {
+  width: 100%;
+  height: 100%;
+  border-radius: 32px 32px 0 0;
+  -o-object-fit: contain;
+     object-fit: contain;
+  -o-object-position: center;
+     object-position: center;
+}
+.Product_details .related_products .products_wrapper .product .text {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  align-items: center;
+  text-align: left;
+  padding: 0.5em;
+}
+.Product_details .related_products .products_wrapper .product .text .details {
+  padding: 1em 0;
+}
+.Product_details .related_products .products_wrapper .product .text .details .price {
+  font-weight: bold;
+}
+.Product_details .related_products .products_wrapper .product .text .cart i {
+  font-size: 2.2em;
 }
 
 @media screen and (width >= 726px) {

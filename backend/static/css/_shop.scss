@@ -89,11 +89,15 @@
 }
 
 .Product_details {
+  .details_container,
+  .related_products {
+    padding: 1em $container_sides_padding;
+  }
+
   .details_container {
     display: grid;
     grid-template-columns: 45% auto;
     gap: 1em 3em;
-    padding: 1em $container_sides_padding;
 
     .image {
       text-align: center;
@@ -168,6 +172,22 @@
         p {
           font-size: 0.85em;
         }
+      }
+    }
+  }
+
+  .related_products {
+    h1 {
+      margin: 0 0 1em;
+    }
+
+    .products_wrapper {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5em;
+
+      .product {
+        @include product;
       }
     }
   }

@@ -5,8 +5,8 @@ from .models import Product, Category
 
 
 def index(request):
-    categories = Category.objects.all
-    products = Product.objects.all
+    categories = Category.objects.all()[:5]
+    products = Product.objects.all().order_by('-created_at')[:4]
 
     context = {
         "categories" : categories,
@@ -38,10 +38,12 @@ def shop(request):
 def product_details(request, pid):
     product = get_object_or_404(Product, pid=pid)
     product_images = product.product_images.all()
+    products = Product.objects.filter(category=product.category).exclude(pid=product.pid).order_by('-created_at')[:5]
 
     context = {
         "product" : product,
         "product_images" : product_images,
+        "products" : products,
     }
 
     return render(request, 'core/product_details.html', context)

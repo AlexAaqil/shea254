@@ -30,6 +30,14 @@
             </div>
         </div>
     </div>
+
+    <div class="container related_products">
+        {% if products%}
+            <h1>Related Products</h1>
+        {% endif %}
+
+        {% include 'partials/products.html' %}
+    </div>
 </section>
 
 {% include 'partials/javascripts.html' %}
