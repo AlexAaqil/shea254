@@ -4,10 +4,10 @@
 
 <section class="Cart">
     {% include 'partials/navbar.html' %}
-    <div class="container">
+    <div class="container" id="async_cart_list">
         <div class="hero">
             <h1>Shopping Bag</h1>
-            <p>You have {{ total_cart_items }} products in your cart</p>
+            <p>You have {{ total_cart_items }} products in your bag.</p>
         </div>
 
         <div class="cart_items">
@@ -35,10 +35,12 @@
                                     </div>
                                 </td>
                                 <td class="price">{{ item.price }}</td>
-                                <td class="quantity"><input type="number" name="" id="" value="{{ item.quantity }}" min="1"></td>
+                                <td class="quantity">
+                                    <input type="number" name="" id="" value="{{ item.quantity }}" min="1">
+                                </td>
                                 <td class="subtotal">{% widthratio item.price 1 item.quantity %}</td>
-                                <td class="action">
-                                    <button type="submit">
+                                <td class="action" data-item="{{ product_id }}">
+                                    <button type="submit" class="delete_product" data-product="{{ product_id }}">
                                         <i class="fas fa-trash"></i>
                                     </button>
                                 </td>
@@ -58,15 +60,18 @@
                     <span>Kshs. {{ cart_total_amount|floatformat:2 }}</span>
                 </p>
 
+                {% if total_cart_items %}
                 <div class="checkout_redirect">
                     <button>
                         Proceed to Checkout
                     </button>
                 </div>
+                {% endif %}
             </div>
         </div>
     </div>
 </section>
 
 {% include 'partials/footer.html' %}
+{% include 'partials/javascripts.html' %}
 {% endblock body_content %}

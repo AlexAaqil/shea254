@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.template.loader import render_to_string
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from django.contrib import messages
 from .models import Product, Category
 
@@ -125,3 +125,30 @@ def add_to_cart(request):
         request.session['cart_data_object'] = cart_products
 
     return JsonResponse({"data":request.session['cart_data_object'], "total_cart_items":len(request.session['cart_data_object'])})
+
+
+def delete_from_cart(request):
+    product_id = str(request.GET['id'])
+
+    if 'cart_data_object' in request.session:
+        if product_id in request.session['cart_data_object']:
+            cart_data = request.session['cart_data_object']
+            del request.session['cart_data_object'][product_id]
+            request.session['cart_data_object'] = cart_data
+
+    cart_total_amount = 0
+    for product_id, item in request.session['cart_data_object'].items():
+        cart_total_amount = sum(int(item['quantity']) * float(item['price']) for item in cart_data.values())
+
+    data = request.session['cart_data_object']
+    total_cart_items = len(data)
+
+    context = {
+        "data": data,
+        'total_cart_items': total_cart_items,
+        'cart_total_amount': cart_total_amount,
+    }
+    rendered_html = render_to_string("core/async/cart_list.html", context)
+
+    # Return rendered HTML as JSON response
+    return JsonResponse({"data": rendered_html, "total_cart_items": total_cart_items})

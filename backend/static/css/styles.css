@@ -629,6 +629,7 @@ nav .nav_container ul .cart span {
 .Cart .container .cart_items .table table tbody .action button {
   border: none;
   background: none;
+  cursor: pointer;
 }
 .Cart .container .cart_items .table table tbody .action button i {
   color: red;
