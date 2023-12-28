@@ -5,7 +5,7 @@ nav {
   background: #fff;
   position: sticky;
   top: 0;
-  padding: 0.5em 0;
+  padding: 0.5em $container_sides_padding;
 
   a {
     text-decoration: none;
@@ -14,7 +14,7 @@ nav {
     color: #000;
   }
 
-  .container {
+  .nav_container {
     width: 100%;
     display: flex;
     justify-content: space-between;

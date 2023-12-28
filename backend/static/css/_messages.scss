@@ -1,0 +1,21 @@
+.alert {
+    padding: 8px 15px;
+    margin: 0.5em;
+    border-radius: 4px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.alert-success {
+    background: green;
+    color: #fff;
+}
+
+.alert-warning {
+    background: orange;
+}
+
+.alert-danger {
+    background: red;
+    color: #fff;
+}

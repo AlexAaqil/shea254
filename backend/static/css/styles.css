@@ -75,7 +75,7 @@ nav {
   background: #fff;
   position: sticky;
   top: 0;
-  padding: 0.5em 0;
+  padding: 0.5em 5%;
 }
 nav a {
   text-decoration: none;
@@ -83,25 +83,25 @@ nav a {
   font-size: 1em;
   color: #000;
 }
-nav .container {
+nav .nav_container {
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-nav .container .search {
+nav .nav_container .search {
   width: 30%;
 }
-nav .container .search form {
+nav .nav_container .search form {
   display: flex;
   align-items: center;
   position: relative;
 }
-nav .container .search form input {
+nav .nav_container .search form input {
   border-radius: 32px;
   height: 35px;
 }
-nav .container .search form button {
+nav .nav_container .search form button {
   width: 35px;
   height: 35px;
   position: absolute;
@@ -111,22 +111,22 @@ nav .container .search form button {
   align-items: center;
   border-radius: 0 32px 32px 0;
 }
-nav .container ul {
+nav .nav_container ul {
   list-style: none;
   display: flex;
   justify-content: space-evenly;
   gap: 0 1.5em;
 }
-nav .container ul li a {
+nav .nav_container ul li a {
   text-decoration: none;
 }
-nav .container ul .cart {
+nav .nav_container ul .cart {
   position: relative;
 }
-nav .container ul .cart i {
+nav .nav_container ul .cart i {
   font-size: 1.2em;
 }
-nav .container ul .cart span {
+nav .nav_container ul .cart span {
   width: 18px;
   height: 18px;
   display: flex;
@@ -568,6 +568,123 @@ nav .container ul .cart span {
     grid-template-columns: repeat(4, 1fr);
   }
 }
+.Cart .container {
+  padding: 1em 5%;
+}
+.Cart .container .hero h1 {
+  margin: 0 0 0.2em;
+}
+.Cart .container .cart_items {
+  display: grid;
+  grid-template-columns: 75% auto;
+  gap: 0 1em;
+  justify-items: stretch;
+  align-items: start;
+  margin: 1em 0 0;
+}
+.Cart .container .cart_items .table table {
+  border-collapse: collapse;
+}
+.Cart .container .cart_items .table table thead {
+  background: #000;
+  color: #fff;
+}
+.Cart .container .cart_items .table table thead th {
+  padding: 0.8em 0.8em;
+}
+.Cart .container .cart_items .table table thead th:first-of-type {
+  text-align: left;
+}
+.Cart .container .cart_items .table table tbody td {
+  padding: 0.4em 0.8em;
+  text-align: center;
+  border-bottom: 1px solid grey;
+}
+.Cart .container .cart_items .table table tbody .product_details {
+  display: flex;
+  align-items: center;
+  gap: 0 0.2em;
+}
+.Cart .container .cart_items .table table tbody .product_details img {
+  width: 60px;
+  height: 60px;
+  -o-object-fit: contain;
+     object-fit: contain;
+  -o-object-position: center;
+     object-position: center;
+}
+.Cart .container .cart_items .table table tbody .quantity {
+  text-align: center;
+}
+.Cart .container .cart_items .table table tbody .quantity input {
+  padding: 0.5em;
+  font-size: 1em;
+  width: 65px;
+  height: 35px;
+}
+.Cart .container .cart_items .table table tbody .subtotal {
+  color: green;
+  font-weight: bold;
+}
+.Cart .container .cart_items .table table tbody .action button {
+  border: none;
+  background: none;
+}
+.Cart .container .cart_items .table table tbody .action button i {
+  color: red;
+  font-size: 1.1em;
+}
+.Cart .container .cart_items .totals {
+  background: rgb(230, 230, 230);
+  padding: 1em 1em 1.5em;
+  border-radius: 16px;
+}
+.Cart .container .cart_items .totals p {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin: 0 0 2em;
+}
+.Cart .container .cart_items .totals p span:first-of-type {
+  font-weight: bold;
+}
+.Cart .container .cart_items .totals p span:last-of-type {
+  color: green;
+  font-weight: bold;
+}
+.Cart .container .cart_items .totals .checkout_redirect {
+  text-align: center;
+}
+.Cart .container .cart_items .totals .checkout_redirect button {
+  background: #000;
+  color: #fff;
+  font-weight: bold;
+  border: none;
+  padding: 12px 16px;
+  width: 100%;
+}
+
+.alert {
+  padding: 8px 15px;
+  margin: 0.5em;
+  border-radius: 4px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.alert-success {
+  background: green;
+  color: #fff;
+}
+
+.alert-warning {
+  background: orange;
+}
+
+.alert-danger {
+  background: red;
+  color: #fff;
+}
+
 footer {
   background: #000;
   color: #fff;

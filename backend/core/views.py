@@ -1,6 +1,7 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from django.template.loader import render_to_string
 from django.http import JsonResponse
+from django.contrib import messages
 from .models import Product, Category
 
 
@@ -77,13 +78,37 @@ def filter_products(request):
     return JsonResponse({"data" : data})
 
 
+def cart(request):
+    cart_total_amount = 0
+    if 'cart_data_object' in request.session:
+        for product_id, item in request.session['cart_data_object'].items():
+            cart_total_amount += int(item['quantity']) * float(item['price'])
+
+        data = request.session['cart_data_object']
+        total_cart_items = len(data)
+
+        context = {
+            "data" : data,
+            "total_cart_items" : total_cart_items,
+            "cart_total_amount" : cart_total_amount,
+        }
+
+        return render(request, 'core/cart.html', context)
+
+    else:
+        messages.warning(request, "Your Cart is Empty")
+        return redirect("core:index")
+
+
 def add_to_cart(request):
     cart_products = {}
 
     cart_products[str(request.GET['id'])] = {
+        'pid' : request.GET['pid'],
         'title' : request.GET['title'],
         'quantity' : request.GET['quantity'],
         'price' : request.GET['price'],
+        'image' : request.GET['image'],
     }
 
     if 'cart_data_object' in request.session:
