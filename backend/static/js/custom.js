@@ -89,7 +89,7 @@ $(document).ready(function () {
                     "click",
                     ".delete_product",
                     function () {
-                        // ... your deletion logic (already defined above)
+                        // ... deletion logic (already defined above)
                     }
                 );
 
