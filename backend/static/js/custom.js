@@ -67,6 +67,41 @@ $(document).ready(function () {
         });
     });
 
+    // Update quantity in cart page
+    $(document).delegate(
+        "#async_cart_list tbody input[type='number']",
+        "change",
+        function () {
+            let product_id = $(this)
+                .closest("tr")
+                .find(".delete_product")
+                .data("product");
+            let quantity = $(this).val();
+
+            $.ajax({
+                url: "/cart/update/quantity/",
+                data: {
+                    "id": product_id,
+                    "quantity": quantity,
+                },
+                dataType: "json",
+                beforeSend: function () {
+                    // Optional: Display a loading indicator
+                    console.log("Updating the quantity...");
+                },
+                success: function (response) {
+                    $("#async_cart_list").html(response.data);
+                    $(".total_cart_items").text(response.total_cart_items);
+
+                    // No need to reattach event handlers here, delegate handles it!
+
+                    console.log("Item Updated!");
+                },
+            });
+        }
+    );
+
+
     // Use event delegation for dynamically added elements
     $("#async_cart_list").on("click", ".delete_product", function () {
         let product_id = $(this).attr("data-product");
@@ -89,7 +124,7 @@ $(document).ready(function () {
                     "click",
                     ".delete_product",
                     function () {
-                        // ... deletion logic (already defined above)
+                        // ... logic (already defined above)
                     }
                 );
 
