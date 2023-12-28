@@ -12,7 +12,8 @@ class ProductImagesAdmin(admin.TabularInline):
 
 class ProductAdmin(admin.ModelAdmin):
     inlines = [ProductImagesAdmin]
-    list_display = ['pid', 'title', 'product_image', 'category', 'price', 'featured', 'product_status']
+    list_editable = ['featured', 'in_stock']
+    list_display = ['pid', 'product_image', 'title', 'category', 'price', 'featured', 'in_stock']
 
 
 admin.site.register(Category, CategoryAdmin)

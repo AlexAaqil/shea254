@@ -8,7 +8,7 @@ from .models import Product, Category
 
 def index(request):
     categories = Category.objects.all()[:5]
-    products = Product.objects.all().order_by('-created_at')[:4]
+    products = Product.objects.filter(in_stock=True, featured=True).order_by('-created_at')[:4]
 
     context = {
         "categories" : categories,
