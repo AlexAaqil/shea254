@@ -92,9 +92,6 @@ $(document).ready(function () {
                 success: function (response) {
                     $("#async_cart_list").html(response.data);
                     $(".total_cart_items").text(response.total_cart_items);
-
-                    // No need to reattach event handlers here, delegate handles it!
-
                     console.log("Item Updated!");
                 },
             });
@@ -103,35 +100,30 @@ $(document).ready(function () {
 
 
     // Use event delegation for dynamically added elements
-    $("#async_cart_list").on("click", ".delete_product", function () {
-        let product_id = $(this).attr("data-product");
+   $(document).delegate(
+       "#async_cart_list .delete_product",
+       "click",
+       function () {
+           let product_id = $(this).data("product");
 
-        $.ajax({
-            url: "/cart/delete/",
-            data: {
-                "id": product_id,
-            },
-            dataType: "json",
-            beforeSend: function () {
-                console.log("Deleting the item...");
-            },
-            success: function (response) {
-                $("#async_cart_list").html(response.data);
-                $(".total_cart_items").text(response.total_cart_items);
+           $.ajax({
+               url: "/cart/delete/",
+               data: {
+                   "id": product_id,
+               },
+               dataType: "json",
+               beforeSend: function () {
+                   console.log("Deleting the item...");
+               },
+               success: function (response) {
+                   $("#async_cart_list").html(response.data);
+                   $(".total_cart_items").text(response.total_cart_items);
+                   console.log("Item Deleted!");
+               },
+           });
+       }
+   );
 
-                // Reattach event handlers to newly added buttons (ensures functionality after content replacement)
-                $("#async_cart_list").on(
-                    "click",
-                    ".delete_product",
-                    function () {
-                        // ... logic (already defined above)
-                    }
-                );
-
-                console.log("Item Deleted!");
-            },
-        });
-    });
 });
 
 // Product Details Images Slider
