@@ -56,7 +56,7 @@ def search(request):
     query = request.GET.get("q")
 
     categories = Category.objects.all
-    products = Product.objects.filter(title__icontains=query).order_by("-date")
+    products = Product.objects.filter(title__icontains=query).order_by("-created_at")
 
     context = {
         "categories" : categories,
