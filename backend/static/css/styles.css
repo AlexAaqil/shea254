@@ -4,6 +4,21 @@ a {
   font-size: 1em;
 }
 
+.row_input_group {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 1em;
+}
+
+.input_group {
+  margin: 0 0 0.7em;
+}
+
+label.required:after {
+  content: "*";
+  color: red;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -568,6 +583,60 @@ nav .nav_container ul .cart span {
     grid-template-columns: repeat(4, 1fr);
   }
 }
+.Checkout .container {
+  padding: 1em 5%;
+}
+.Checkout .container h1 {
+  margin: 0 0 1em;
+}
+.Checkout .container .checkout_items {
+  display: grid;
+  grid-template-columns: 65% auto;
+  gap: 1em 2em;
+}
+.Checkout .container .checkout_items .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 0 1em;
+}
+.Checkout .container .checkout_items .header p {
+  color: green;
+  font-weight: bold;
+}
+.Checkout .container .checkout_items .cart_items .items .item {
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr 1fr 1fr;
+  gap: 0.5em;
+  align-items: center;
+  border-bottom: 1px solid rgb(202, 202, 202);
+  padding: 0.5em 0;
+}
+.Checkout .container .checkout_items .cart_items .items .item p:not(:first-of-type) {
+  text-align: right;
+}
+.Checkout .container .checkout_items .cart_items .items .item img {
+  width: 50px;
+  height: 50px;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+.Checkout .container .checkout_items .cart_items .items .item .subtotal {
+  color: green;
+  font-weight: bold;
+  text-align: right;
+}
+
+.Order_success .container {
+  height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.Order_success .container .message {
+  text-align: center;
+}
+
 .Cart .container {
   padding: 1em 5%;
 }
@@ -657,11 +726,14 @@ nav .nav_container ul .cart span {
 }
 .Cart .container .cart_items .totals .checkout_redirect button {
   background: #000;
-  color: #fff;
-  font-weight: bold;
   border: none;
   padding: 12px 16px;
   width: 100%;
+}
+.Cart .container .cart_items .totals .checkout_redirect button a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
 }
 
 .alert {
@@ -670,6 +742,11 @@ nav .nav_container ul .cart span {
   border-radius: 4px;
   font-weight: bold;
   text-align: center;
+}
+
+.form_error {
+  margin: 0 0 1px;
+  color: red;
 }
 
 .alert-success {

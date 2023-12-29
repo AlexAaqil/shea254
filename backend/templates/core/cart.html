@@ -62,8 +62,8 @@
 
                 {% if total_cart_items %}
                 <div class="checkout_redirect">
-                    <button>
-                        Proceed to Checkout
+                    <button type="button">
+                        <a href="{% url 'core:checkout' %}">Proceed to Checkout</a>
                     </button>
                 </div>
                 {% endif %}

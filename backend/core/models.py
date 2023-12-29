@@ -71,3 +71,24 @@ class ProductImages(models.Model):
 
     class Meta:
         verbose_name_plural = "Product Images"
+
+
+class Order(models.Model):
+    oid = ShortUUIDField(unique=True, length=10, max_length=20, prefix="ord", alphabet="abcdefg12345")
+    first_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=80)
+    email_address = models.EmailField()
+    phone_number = models.CharField(max_length=20)
+    address = models.CharField(max_length=255)
+    additional_information = models.TextField(blank=True)
+    items = models.JSONField()
+    total_amount = models.DecimalField(max_digits=10, decimal_places=2)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        item_strings = []
+        for product_id, item in self.items.items():
+            item_strings.append(f"{item['title']} ({item['quantity']} x {item['price']})")
+
+        items_representation = ", ".join(item_strings)
+        return f"Order #{self.oid} - {self.first_name} {self.last_name} - Items: {items_representation}"

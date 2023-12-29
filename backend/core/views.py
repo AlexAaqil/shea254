@@ -3,7 +3,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.template.loader import render_to_string
 from django.http import JsonResponse
 from django.contrib import messages
-from .models import Product, Category
+from .models import Product, Category, Order
+from .forms import BillingInformationForm
 
 
 def index(request):
@@ -181,3 +182,49 @@ def delete_from_cart(request):
 
     # Return rendered HTML as JSON response
     return JsonResponse({"data": rendered_html, "total_cart_items": total_cart_items})
+
+
+def checkout(request):
+    cart_data = request.session.get('cart_data_object', {})
+    total_amount = sum(float(item['price']) * int(item['quantity']) for item in cart_data.values())
+
+    if request.method == 'POST':
+        billing_information_form = BillingInformationForm(request.POST)
+        if billing_information_form.is_valid():
+            first_name = billing_information_form.cleaned_data['first_name']
+            last_name = billing_information_form.cleaned_data['last_name']
+            email_address = billing_information_form.cleaned_data['email_address']
+            phone_number = billing_information_form.cleaned_data['phone_number']
+            address = billing_information_form.cleaned_data['address']
+            additional_information = billing_information_form.cleaned_data.get('additional_information')
+
+            order = Order.objects.create(
+                first_name=first_name,
+                last_name=last_name,
+                email_address=email_address,
+                phone_number=phone_number,
+                address=address,
+                additional_information=additional_information,
+                items=cart_data,
+                total_amount=total_amount
+            )
+
+            del request.session['cart_data_object']
+            return redirect('core:order_confirmation', order_id=order.oid)
+    else:
+        billing_information_form = BillingInformationForm()
+
+    context = {
+        "cart_data" : cart_data,
+        "total_amount" : total_amount,
+        "form" : billing_information_form,
+    }
+
+    return render(request, 'core/checkout.html', context)
+
+
+def order_confirmation(request, order_id):
+    context = {
+        "order_id": order_id,
+    }
+    return render(request, "core/order_confirmation.html", context)

@@ -1,0 +1,110 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+
+{% block body_content %}
+
+<section class="Checkout">
+  {% include 'partials/navbar.html' %}
+  <div class="container">
+    <h1>Checkout</h1>
+    <div class="checkout_items">
+      <div class="billing_info">
+        <div class="header">
+          <h2>Billing Information</h2>
+        </div>
+        <form method="post">
+          {% csrf_token %}
+
+          <div class="row_input_group">
+            <div class="input_group">
+              <label for="{{ form.first_name.id_for_label }}" class="required">{{ form.first_name.label_tag }}</label>
+              {{ form.first_name }}
+              {% if form.first_name.errors %}
+                {% for error in form.first_name.errors %}
+                  <div class="form_error">{{ error }}</div>
+                {% endfor %}
+              {% endif %}
+            </div>
+
+            <div class="input_group">
+              <label for="{{ form.last_name.id_for_label }}" class="required">{{ form.last_name.label_tag }}</label>  {{ form.last_name }}
+              {% if form.last_name.errors %}
+                {% for error in form.last_name.errors %}
+                  <div class="form_error">{{ error }}</div>
+                {% endfor %}
+              {% endif %}
+            </div>
+          </div>
+
+          <div class="row_input_group">
+            <div class="input_group">
+                <label for="{{ form.email_address.id_for_label }}" class="required">{{ form.email_address.label_tag }}</label>
+                {{ form.email_address }}
+                {% if form.email_address.errors %}
+                {% for error in form.email_address.errors %}
+                    <div class="form_error">{{ error }}</div>
+                {% endfor %}
+                {% endif %}
+            </div>
+
+            <div class="input_group">
+                <label for="{{ form.phone_number.id_for_label }}" class="required">{{ form.phone_number.label_tag }}</label>
+                {{ form.phone_number }}
+                {% if form.phone_number.errors %}
+                {% for error in form.phone_number.errors %}
+                    <div class="form_error">{{ error }}</div>
+                {% endfor %}
+                {% endif %}
+            </div>
+          </div>
+
+          <div class="input_group">
+            {{ form.address.label_tag }}
+            {{ form.address }}
+            {% if form.address.errors %}
+              {% for error in form.address.errors %}
+                <div class="form_error">{{ error }}</div>
+              {% endfor %}
+            {% endif %}
+          </div>
+
+          <div class="input_group">
+            {{ form.additional_information.label_tag }}
+            {{ form.additional_information }}
+            {% if form.additional_information.errors %}
+              {% for error in form.additional_information.errors %}
+                <div class="form_error">{{ error }}</div>
+              {% endfor %}
+            {% endif %}
+          </div>
+
+          <div class="action_btn">
+            <button type="submit">Complete Order</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="cart_items">
+        <div class="header">
+            <h2>Your Order</h2>
+            <p>Kshs. {{ total_amount|floatformat:2 }}</p>
+        </div>
+
+        <div class="items">
+            {% for product_id, item in cart_data.items %}
+            <div class="item">
+                <img src="{{ item.image }}" alt="">
+                <p class="title">{{ item.title }}</p>
+                <p class="quantity">{{ item.price }}</p>
+                <p class="price">x {{ item.quantity }}</p>
+                <p class="subtotal">{% widthratio item.price 1 item.quantity %}</p>
+            </div>
+            {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% include 'partials/footer.html' %}
+{% endblock body_content %}
