@@ -1,0 +1,39 @@
+{% extends 'admin/index.html' %}
+{% load i18n %}
+{% load static %}
+
+{% load custom_tags %}
+
+{% block extrastyle %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/custom_admin_dashboard.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="custom_admin_dashboard">
+    <div class="statistics">
+        {% if app_list %}
+            {% for app in app_list %}
+                {% for model in app.models %}
+                    {% if model.admin_url %}
+                        <div class="statistic">
+                            <a href="{{ model.admin_url }}">
+                                {% if app.name == 'Authentication and Authorization' %}
+                                <h2>{{ get_user_model }} {% get_model_count 'auth' 'User' %}</h2>
+                                {% else %}
+                                <h2>{% get_model_count app.name.lower model.object_name %}</h2>
+                                {% endif %}
+                                <p>{{ model.name }}</p>
+                            </a>
+                        </div>
+                    {% else %}
+                        {{ model.name }}
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+        {% else %}
+            <p>{% trans 'You don’t have permission to view or edit anything.' %}</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
