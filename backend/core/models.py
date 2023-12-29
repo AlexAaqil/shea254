@@ -10,6 +10,11 @@ STATUS = (
     ("published", "Published"),
 )
 
+ORDER_STATUS = (
+    ("pending", "Pending"),
+    ("processed", "Processed"),
+)
+
 
 class Category(models.Model):
     cid = ShortUUIDField(unique=True, length=10, max_length=20, prefix="cat", alphabet="abcdefg12345")
@@ -83,12 +88,9 @@ class Order(models.Model):
     additional_information = models.TextField(blank=True)
     items = models.JSONField()
     total_amount = models.DecimalField(max_digits=10, decimal_places=2)
+    order_status = models.CharField(choices=ORDER_STATUS, max_length=10, default="pending")
+    payment_status = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        item_strings = []
-        for product_id, item in self.items.items():
-            item_strings.append(f"{item['title']} ({item['quantity']} x {item['price']})")
-
-        items_representation = ", ".join(item_strings)
-        return f"Order #{self.oid} - {self.first_name} {self.last_name} - Items: {items_representation}"
+        return f"Order #{self.oid} - {self.first_name} {self.last_name}"
