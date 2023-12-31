@@ -53,6 +53,14 @@ class Product(models.Model):
     def product_image(self):
         return mark_safe('<img src="%s" width=50 height=50>' % (self.image.url))
 
+    @property
+    def imageURL(self):
+        try:
+            url = self.image.url
+        except:
+            url = ''
+        return url
+
     def __str__(self):
         return self.title
 
