@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.template.loader import render_to_string
 from django.http import JsonResponse
 from django.contrib import messages
-from .models import Product, Category, Order
+from .models import Product, Category, CartOrder
 from .forms import BillingInformationForm
 
 
@@ -198,7 +198,7 @@ def checkout(request):
             address = billing_information_form.cleaned_data['address']
             additional_information = billing_information_form.cleaned_data.get('additional_information')
 
-            order = Order.objects.create(
+            order = CartOrder.objects.create(
                 first_name=first_name,
                 last_name=last_name,
                 email_address=email_address,

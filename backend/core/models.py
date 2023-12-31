@@ -78,19 +78,34 @@ class ProductImages(models.Model):
         verbose_name_plural = "Product Images"
 
 
-class Order(models.Model):
-    oid = ShortUUIDField(unique=True, length=10, max_length=20, prefix="ord", alphabet="abcdefg12345")
+class CustomerInformation(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=80)
     email_address = models.EmailField()
     phone_number = models.CharField(max_length=20)
     address = models.CharField(max_length=255)
     additional_information = models.TextField(blank=True)
-    items = models.JSONField()
-    total_amount = models.DecimalField(max_digits=10, decimal_places=2)
+
+    def __str__(self):
+        return f"{self.first_name} {self.last_name}"
+
+
+class CartOrder(models.Model):
+    oid = ShortUUIDField(unique=True, length=10, max_length=20, prefix="order", alphabet="abcdefg12345")
+    customer = models.ForeignKey(CustomerInformation, on_delete=models.SET_NULL, null=True)
     order_status = models.CharField(choices=ORDER_STATUS, max_length=10, default="pending")
     payment_status = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"Order #{self.oid} - {self.first_name} {self.last_name}"
+        return f"Order #{self.oid}"
+
+
+class CartOrderItem(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.SET_NULL, blank=True, null=True)
+    order = models.ForeignKey(CartOrder, on_delete=models.SET_NULL, blank=True, null=True)
+    quantity = models.IntegerField(default=1)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Order #{self.product.title}"
