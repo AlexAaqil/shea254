@@ -8,8 +8,18 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/custom_admin_dashboard.css' %}">
 {% endblock %}
 
-{% block content %}
+{% block title %}
 
+{% endblock %}
+{% block branding %}
+<h1 id="site-name">
+    <a href="{% url 'admin:index' %}">
+        Shea.254
+    </a>
+</h1>
+{% endblock branding %}
+
+{% block content %}
 <div class="custom_admin_dashboard">
     <div class="statistics">
         {% if app_list %}
@@ -36,4 +46,4 @@
         {% endif %}
     </div>
 </div>
-{% endblock %}
+{% endblock content %}
