@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.template.loader import render_to_string
 from django.http import JsonResponse
 from django.contrib import messages
-from .models import Product, Category, CartOrder
+from .models import Product, Category, CartOrder, CartOrderItem, CustomerInformation
 from .forms import BillingInformationForm
 
 
@@ -191,23 +191,29 @@ def checkout(request):
     if request.method == 'POST':
         billing_information_form = BillingInformationForm(request.POST)
         if billing_information_form.is_valid():
-            first_name = billing_information_form.cleaned_data['first_name']
-            last_name = billing_information_form.cleaned_data['last_name']
-            email_address = billing_information_form.cleaned_data['email_address']
-            phone_number = billing_information_form.cleaned_data['phone_number']
-            address = billing_information_form.cleaned_data['address']
-            additional_information = billing_information_form.cleaned_data.get('additional_information')
+            customer = CustomerInformation.objects.create(
+                first_name = billing_information_form.cleaned_data['first_name'],
+                last_name = billing_information_form.cleaned_data['last_name'],
+                email_address = billing_information_form.cleaned_data['email_address'],
+                phone_number = billing_information_form.cleaned_data['phone_number'],
+                address = billing_information_form.cleaned_data['address'],
+                additional_information = billing_information_form.cleaned_data.get('additional_information'),
+            )
 
             order = CartOrder.objects.create(
-                first_name=first_name,
-                last_name=last_name,
-                email_address=email_address,
-                phone_number=phone_number,
-                address=address,
-                additional_information=additional_information,
-                items=cart_data,
-                total_amount=total_amount
+                customer = customer,
+                order_status = "pending",
+                payment_status = False,
             )
+
+            for product_id, item_data in cart_data.items():
+                product = get_object_or_404(Product, pk=product_id)
+                quantity = item_data['quantity']
+                CartOrderItem.objects.create(
+                    order=order,
+                    product=product,
+                    quantity=quantity,
+                )
 
             del request.session['cart_data_object']
             return redirect('core:order_confirmation', order_id=order.oid)
