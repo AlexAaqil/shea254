@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.utils.html import format_html
-from .models import Category, Product, ProductImages, CartOrder, CartOrderItem
+from .models import Category, Product, ProductImages, CartOrder, CartOrderItem, CustomerInformation
 
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ['title', 'slug', 'category_image']
@@ -19,5 +19,6 @@ class ProductAdmin(admin.ModelAdmin):
 
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Product, ProductAdmin)
+admin.site.register(CustomerInformation)
 admin.site.register(CartOrder)
 admin.site.register(CartOrderItem)

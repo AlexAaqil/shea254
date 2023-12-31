@@ -94,6 +94,9 @@ class CustomerInformation(models.Model):
     address = models.CharField(max_length=255)
     additional_information = models.TextField(blank=True)
 
+    class Meta:
+        verbose_name_plural = "Customers Information"
+
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
 
