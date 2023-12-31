@@ -4,71 +4,8 @@
 
 <section class="Cart">
     {% include 'partials/navbar.html' %}
-    <div class="container" id="async_cart_list">
-        <div class="hero">
-            <h1>Shopping Bag</h1>
-            <p>You have {{ total_cart_items }} products in your bag.</p>
-        </div>
-
-        <div class="cart_items">
-            <div class="table">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Product</th>
-                            <th>Price</th>
-                            <th>Quantity</th>
-                            <th>Subtotal (Kshs.)</th>
-                            <th>Remove</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        {% for product_id, item in data.items %}
-                            <tr>
-                                <td class="product_details">
-                                    <img src="{{ item.image }}" alt="{{ item.title }}">
-                                    <div class="details">
-                                        <p class="title">
-                                            <a href="{% url 'core:product_details' item.pid %}">{{ item.title }}</a>
-                                        </p>
-                                    </div>
-                                </td>
-                                <td class="price">{{ item.price }}</td>
-                                <td class="quantity">
-                                    <input type="number" name="" id="" value="{{ item.quantity }}" min="1">
-                                </td>
-                                <td class="subtotal">{% widthratio item.price 1 item.quantity %}</td>
-                                <td class="action" data-item="{{ product_id }}">
-                                    <button type="submit" class="delete_product" data-product="{{ product_id }}">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="totals">
-                <p>
-                    <span>Subtotal</span>
-                    <span>Kshs. {{ cart_total_amount|floatformat:2 }}</span>
-                </p>
-                <p>
-                    <span>Total</span>
-                    <span>Kshs. {{ cart_total_amount|floatformat:2 }}</span>
-                </p>
-
-                {% if total_cart_items %}
-                <div class="checkout_redirect">
-                    <button type="button">
-                        <a href="{% url 'core:checkout' %}">Proceed to Checkout</a>
-                    </button>
-                </div>
-                {% endif %}
-            </div>
-        </div>
+    <div class="container"  id="async_cart_list">
+        {% include 'partials/cart_order_summary.html' %}
     </div>
 </section>
 
