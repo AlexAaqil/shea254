@@ -3,6 +3,8 @@ from shortuuid.django_fields import ShortUUIDField
 from ckeditor_uploader.fields import RichTextUploadingField
 from django.utils.html import mark_safe
 from django.core.exceptions import ValidationError
+from decimal import Decimal
+import os
 
 
 STATUS = (
@@ -15,12 +17,15 @@ ORDER_STATUS = (
     ("processed", "Processed"),
 )
 
+def get_default_product_image_path(instance, filename):
+    return os.path.join('static', 'images', 'default_product.jpg')
+
 
 class Category(models.Model):
     cid = ShortUUIDField(unique=True, length=10, max_length=20, prefix="cat", alphabet="abcdefg12345")
     title = models.CharField(max_length=255, unique=True)
     slug = models.SlugField(unique=True)
-    image = models.ImageField(upload_to="uploads/categories", default="category.jpg")
+    image = models.ImageField(upload_to="uploads/categories", default=get_default_product_image_path)
 
     class Meta:
         verbose_name_plural = "Categories"
@@ -31,18 +36,26 @@ class Category(models.Model):
     def __str__(self):
         return self.title
 
+class Size(models.Model):
+    title = models.CharField(unique=True, max_length=15)
+
 
 class Product(models.Model):
     pid = ShortUUIDField(unique=True, length=10, max_length=20, alphabet="abcdefg12345")
-    title = models.CharField(max_length=100, default="Product Title")
+
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
+    title = models.CharField(unique=True, max_length=100, default="Product Title")
     description = RichTextUploadingField(null=True, blank=True, default="Product Description")
-    price = models.DecimalField(max_digits=999999999999, decimal_places=2, default="0.00")
-    new_price = models.DecimalField(max_digits=999999999999, decimal_places=2, default="0.00")
+    size = models.ForeignKey(Size, on_delete=models.SET_NULL, null=True, blank=True)
+
+    price = models.DecimalField(max_digits=999999999999, decimal_places=2, default=Decimal('0.00'))
+    discount_price = models.DecimalField(max_digits=999999999999, decimal_places=2, default=Decimal('0.00'))
+
     product_status = models.CharField(choices=STATUS, max_length=10, default="published")
-    image = models.ImageField(upload_to="uploads/product_images", default="product.jpg")
     in_stock = models.BooleanField(default=True)
     featured = models.BooleanField(default=False)
+
+    image = models.ImageField(upload_to="uploads/product_images", default=get_default_product_image_path)
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(null=True, blank=True)
