@@ -4,6 +4,7 @@ from .models import Category, Product, ProductImages, CartOrder, CartOrderItem, 
 
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ['title', 'slug', 'category_image']
+    readonly_fields = ['cid', 'slug']
 
 
 class ProductSizeAdmin(admin.ModelAdmin):
@@ -18,7 +19,8 @@ class ProductImagesAdmin(admin.TabularInline):
 class ProductAdmin(admin.ModelAdmin):
     inlines = [ProductImagesAdmin]
     list_editable = ['featured', 'in_stock']
-    list_display = ['pid', 'product_image', 'title', 'size', 'category', 'price', 'featured', 'in_stock']
+    list_display = ['pid', 'product_image', 'title', 'slug', 'size', 'category', 'price', 'featured', 'in_stock']
+    readonly_fields = ['pid', 'slug']
 
 
 class CartOrderItemAdmin(admin.ModelAdmin):
