@@ -3,7 +3,7 @@ from django.utils.html import format_html
 from .models import Category, Product, ProductImages, CartOrder, CartOrderItem, CustomerInformation, ProductSize
 
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ['title', 'slug', 'category_image']
+    list_display = ['title', 'slug', 'admin_panel_image']
     readonly_fields = ['cid', 'slug']
 
 
@@ -19,7 +19,7 @@ class ProductImagesAdmin(admin.TabularInline):
 class ProductAdmin(admin.ModelAdmin):
     inlines = [ProductImagesAdmin]
     list_editable = ['featured', 'in_stock']
-    list_display = ['pid', 'product_image', 'title', 'slug', 'size', 'category', 'price', 'featured', 'in_stock']
+    list_display = ['pid', 'admin_panel_image', 'title', 'slug', 'size', 'category', 'price', 'featured', 'in_stock']
     readonly_fields = ['pid', 'slug']
 
 

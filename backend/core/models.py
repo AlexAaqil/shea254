@@ -20,7 +20,7 @@ ORDER_STATUS = (
 )
 
 
-class SlugBase(models.Model):
+class CategoryAndProduct(models.Model):
     slug = models.SlugField(unique=True, blank=True)
 
     def save(self, *args, **kwargs):
@@ -28,19 +28,7 @@ class SlugBase(models.Model):
             self.slug = slugify(self.title)
         super().save(*args, **kwargs)
 
-    class Meta:
-        abstract = True
-
-
-class Category(SlugBase):
-    cid = ShortUUIDField(unique=True, length=10, max_length=20, prefix="cat", alphabet="abcdefg12345")
-    title = models.CharField(max_length=255, unique=True)
-    image = models.ImageField(upload_to="uploads/categories", blank=True, null=True)
-
-    class Meta:
-        verbose_name_plural = "Categories"
-
-    def category_image(self):
+    def admin_panel_image(self):
         if self.image:
             return mark_safe('<img src="%s" width=50 height=50>' % (self.image.url))
         return mark_safe('<img src="%s" width=50 height=50>' % '/static/images/default_product.jpg')
@@ -52,8 +40,8 @@ class Category(SlugBase):
             url = '/static/images/default_product.jpg'
         return url
 
-    def __str__(self):
-        return self.title
+    class Meta:
+        abstract = True
 
 
 class ProductSize(models.Model):
@@ -63,7 +51,19 @@ class ProductSize(models.Model):
         return self.title
 
 
-class Product(SlugBase):
+class Category(CategoryAndProduct):
+    cid = ShortUUIDField(unique=True, length=10, max_length=20, prefix="cat", alphabet="abcdefg12345")
+    title = models.CharField(max_length=255, unique=True)
+    image = models.ImageField(upload_to="uploads/categories", blank=True, null=True)
+
+    class Meta:
+        verbose_name_plural = "Categories"
+
+    def __str__(self):
+        return self.title
+
+
+class Product(CategoryAndProduct):
     pid = ShortUUIDField(unique=True, length=10, max_length=20, alphabet="abcdefg12345")
 
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
@@ -85,19 +85,6 @@ class Product(SlugBase):
 
     class Meta:
         verbose_name_plural = "Products"
-
-    def product_image(self):
-        if self.image:
-            return mark_safe('<img src="%s" width=50 height=50>' % (self.image.url))
-        return mark_safe('<img src="%s" width=50 height=50>' % '/static/images/default_product.jpg')
-
-    @property
-    def imageURL(self):
-        try:
-            url = self.image.url
-        except:
-            url = '/static/images/default_product.jpg'
-        return url
 
     def __str__(self):
         return self.title
