@@ -40,8 +40,9 @@ class CartOrderAdmin(admin.ModelAdmin):
 
     def view_cart_order_items(self, obj):
         items = obj.order_items.all()
+        print(items)
         items_string = [
-            f"<li><img src='{item.product.imageURL}' width='40' height='40'> {item.product.title} ( {item.quantity} x {item.product.price} )</li>"
+            f"<li><img src='{item.product.image.url}' width='40' height='40'> {item.product.title} ( {item.quantity} x {item.product.price} )</li>"
             for item in items
         ]
         return format_html('<br>'.join(items_string))
