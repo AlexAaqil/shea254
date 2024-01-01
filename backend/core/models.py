@@ -1,10 +1,12 @@
+import os
 from django.db import models
-from shortuuid.django_fields import ShortUUIDField
-from ckeditor_uploader.fields import RichTextUploadingField
 from django.utils.html import mark_safe
 from django.core.exceptions import ValidationError
+from django.utils.text import slugify
+
 from decimal import Decimal
-import os
+from shortuuid.django_fields import ShortUUIDField
+from ckeditor_uploader.fields import RichTextUploadingField
 
 
 STATUS = (
@@ -17,24 +19,42 @@ ORDER_STATUS = (
     ("processed", "Processed"),
 )
 
-def get_default_product_image_path(instance, filename):
-    return os.path.join('static', 'images', 'default_product.jpg')
+
+class SlugBase(models.Model):
+    slug = models.SlugField(unique=True, blank=True)
+
+    def save(self, *args, **kwargs):
+        if not self.slug or self.title != self._meta.model.objects.get(pk=self.pk).title:
+            self.slug = slugify(self.title)
+        super().save(*args, **kwargs)
+
+    class Meta:
+        abstract = True
 
 
-class Category(models.Model):
+class Category(SlugBase):
     cid = ShortUUIDField(unique=True, length=10, max_length=20, prefix="cat", alphabet="abcdefg12345")
     title = models.CharField(max_length=255, unique=True)
-    slug = models.SlugField(unique=True)
-    image = models.ImageField(upload_to="uploads/categories", default=get_default_product_image_path)
+    image = models.ImageField(upload_to="uploads/categories", blank=True, null=True)
 
     class Meta:
         verbose_name_plural = "Categories"
 
     def category_image(self):
-        return mark_safe('<img src="%s" width=50 height=50>' % (self.image.url))
+        if self.image:
+            return mark_safe('<img src="%s" width=50 height=50>' % (self.image.url))
+        return mark_safe('<img src="%s" width=50 height=50>' % '/static/images/default_product.jpg')
+
+    def imageURL(self):
+        try:
+            url = self.image.url
+        except:
+            url = '/static/images/default_product.jpg'
+        return url
 
     def __str__(self):
         return self.title
+
 
 class ProductSize(models.Model):
     title = models.CharField(unique=True, max_length=15)
@@ -43,7 +63,7 @@ class ProductSize(models.Model):
         return self.title
 
 
-class Product(models.Model):
+class Product(SlugBase):
     pid = ShortUUIDField(unique=True, length=10, max_length=20, alphabet="abcdefg12345")
 
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
@@ -58,7 +78,7 @@ class Product(models.Model):
     in_stock = models.BooleanField(default=True)
     featured = models.BooleanField(default=False)
 
-    image = models.ImageField(upload_to="uploads/product_images", default=get_default_product_image_path)
+    image = models.ImageField(upload_to="uploads/product_images", blank=True, null=True)
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(null=True, blank=True)
@@ -67,14 +87,16 @@ class Product(models.Model):
         verbose_name_plural = "Products"
 
     def product_image(self):
-        return mark_safe('<img src="%s" width=50 height=50>' % (self.image.url))
+        if self.image:
+            return mark_safe('<img src="%s" width=50 height=50>' % (self.image.url))
+        return mark_safe('<img src="%s" width=50 height=50>' % '/static/images/default_product.jpg')
 
     @property
     def imageURL(self):
         try:
             url = self.image.url
         except:
-            url = ''
+            url = '/static/images/default_product.jpg'
         return url
 
     def __str__(self):
