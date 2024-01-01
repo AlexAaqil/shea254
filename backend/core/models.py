@@ -8,9 +8,6 @@ from django.utils import timezone
 from decimal import Decimal
 from shortuuid.django_fields import ShortUUIDField
 from ckeditor_uploader.fields import RichTextUploadingField
-from PIL import Image
-from django.core.files.base import ContentFile
-from io import BytesIO
 
 
 STATUS = (
