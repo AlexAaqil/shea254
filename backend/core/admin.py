@@ -1,9 +1,13 @@
 from django.contrib import admin
 from django.utils.html import format_html
-from .models import Category, Product, ProductImages, CartOrder, CartOrderItem, CustomerInformation
+from .models import Category, Product, ProductImages, CartOrder, CartOrderItem, CustomerInformation, ProductSize
 
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ['title', 'slug', 'category_image']
+
+
+class ProductSizeAdmin(admin.ModelAdmin):
+    list_display = ['title']
 
 
 class ProductImagesAdmin(admin.TabularInline):
@@ -14,7 +18,7 @@ class ProductImagesAdmin(admin.TabularInline):
 class ProductAdmin(admin.ModelAdmin):
     inlines = [ProductImagesAdmin]
     list_editable = ['featured', 'in_stock']
-    list_display = ['pid', 'product_image', 'title', 'category', 'price', 'featured', 'in_stock']
+    list_display = ['pid', 'product_image', 'title', 'size', 'category', 'price', 'featured', 'in_stock']
 
 
 class CartOrderItemAdmin(admin.ModelAdmin):
@@ -44,6 +48,7 @@ class CartOrderAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Category, CategoryAdmin)
+admin.site.register(ProductSize, ProductSizeAdmin)
 admin.site.register(Product, ProductAdmin)
 admin.site.register(CustomerInformation)
 admin.site.register(CartOrder, CartOrderAdmin)

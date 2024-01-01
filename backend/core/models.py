@@ -36,8 +36,11 @@ class Category(models.Model):
     def __str__(self):
         return self.title
 
-class Size(models.Model):
+class ProductSize(models.Model):
     title = models.CharField(unique=True, max_length=15)
+
+    def __str__(self):
+        return self.title
 
 
 class Product(models.Model):
@@ -46,7 +49,7 @@ class Product(models.Model):
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
     title = models.CharField(unique=True, max_length=100, default="Product Title")
     description = RichTextUploadingField(null=True, blank=True, default="Product Description")
-    size = models.ForeignKey(Size, on_delete=models.SET_NULL, null=True, blank=True)
+    size = models.ForeignKey(ProductSize, on_delete=models.SET_NULL, null=True, blank=True)
 
     price = models.DecimalField(max_digits=999999999999, decimal_places=2, default=Decimal('0.00'))
     discount_price = models.DecimalField(max_digits=999999999999, decimal_places=2, default=Decimal('0.00'))
