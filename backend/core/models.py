@@ -31,25 +31,13 @@ class CategoryAndProduct(models.Model):
         if not self.slug or self.title != self._meta.model.objects.get(pk=self.pk).title:
             self.slug = slugify(self.title)
 
-        # Open the original image
-        image = Image.open(self.image)
-        # Convert the image to RGB mode
-        image = image.convert('RGB')
+        if self.image:
+            # Get the original file extension
+            original_extension = os.path.splitext(self.image.name)[1]
 
-        if 'A' in image.getbands():
-            r, g, b, a = image.split()
-            image = Image.merge('RGB', (r, g, b))
-
-        # Resize the image
-        image.thumbnail(self.get_resize_dimensions())
-        # Create a BytesIO buffer to store the compressed image
-        image_buffer = BytesIO()
-        # Save the resized image to the buffer
-        image.save(image_buffer, format='JPEG', quality=80)
-        # Create a new ContentFile using the buffer content
-        compressed_image = ContentFile(image_buffer.getvalue())
-        # Update the image field with the compressed image
-        self.image.save(f"{self.get_image_prefix()}_{self.id}_{timezone.now().strftime('%m%d%Y')}.jpg", compressed_image, save=False)
+            # Update the image filename with the original file extension
+            image = f"{self.get_image_prefix()}_{self.id}_{timezone.now().strftime('%m%d%Y')}{original_extension}"
+            self.image.name = image
 
         super().save(*args, **kwargs)
 
@@ -58,7 +46,8 @@ class CategoryAndProduct(models.Model):
         super().delete(*args, **kwargs)
 
         # Delete the associated image file from the storage
-        self.image.storage.delete(self.image.name)
+        if self.image:
+            self.image.storage.delete(self.image.name)
 
     def admin_panel_image(self):
         if self.image:
@@ -86,10 +75,8 @@ class ProductSize(models.Model):
 class Category(CategoryAndProduct):
     cid = ShortUUIDField(unique=True, length=10, max_length=20, prefix="cat", alphabet="abcdefg12345")
     title = models.CharField(max_length=255, unique=True)
+    category_order = models.IntegerField(default=0)
     image = models.ImageField(upload_to="uploads/categories", blank=True, null=True)
-
-    def get_resize_dimensions(self):
-        return(350, 350)
 
     def get_image_prefix(self):
         return "category"
@@ -120,6 +107,9 @@ class Product(CategoryAndProduct):
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(null=True, blank=True)
+
+    def get_image_prefix(self):
+        return "product"
 
     class Meta:
         verbose_name_plural = "Products"
