@@ -8,6 +8,9 @@ from django.utils import timezone
 from decimal import Decimal
 from shortuuid.django_fields import ShortUUIDField
 from ckeditor_uploader.fields import RichTextUploadingField
+from PIL import Image
+from django.core.files.base import ContentFile
+from io import BytesIO
 
 
 STATUS = (
@@ -27,7 +30,35 @@ class CategoryAndProduct(models.Model):
     def save(self, *args, **kwargs):
         if not self.slug or self.title != self._meta.model.objects.get(pk=self.pk).title:
             self.slug = slugify(self.title)
+
+        # Open the original image
+        image = Image.open(self.image)
+        # Convert the image to RGB mode
+        image = image.convert('RGB')
+
+        if 'A' in image.getbands():
+            r, g, b, a = image.split()
+            image = Image.merge('RGB', (r, g, b))
+
+        # Resize the image
+        image.thumbnail(self.get_resize_dimensions())
+        # Create a BytesIO buffer to store the compressed image
+        image_buffer = BytesIO()
+        # Save the resized image to the buffer
+        image.save(image_buffer, format='JPEG', quality=80)
+        # Create a new ContentFile using the buffer content
+        compressed_image = ContentFile(image_buffer.getvalue())
+        # Update the image field with the compressed image
+        self.image.save(f"{self.get_image_prefix()}_{self.id}_{timezone.now().strftime('%m%d%Y')}.jpg", compressed_image, save=False)
+
         super().save(*args, **kwargs)
+
+    def delete(self, *args, **kwargs):
+        # Call the original delete() method first
+        super().delete(*args, **kwargs)
+
+        # Delete the associated image file from the storage
+        self.image.storage.delete(self.image.name)
 
     def admin_panel_image(self):
         if self.image:
@@ -57,15 +88,14 @@ class Category(CategoryAndProduct):
     title = models.CharField(max_length=255, unique=True)
     image = models.ImageField(upload_to="uploads/categories", blank=True, null=True)
 
+    def get_resize_dimensions(self):
+        return(350, 350)
+
+    def get_image_prefix(self):
+        return "category"
+
     class Meta:
         verbose_name_plural = "Categories"
-
-    def save(self, *args, **kwargs):
-        image_filename = f"category_{self.id}_{timezone.now().strftime('%m%d%Y')}.jpg"
-        self.image.name = image_filename
-
-        super().save(*args, **kwargs)
-
 
     def __str__(self):
         return self.title

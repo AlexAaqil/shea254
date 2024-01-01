@@ -1,124 +1,138 @@
 .Homepage {
-  section {
-    padding: 2em 0;
-  }
-
-  .Hero {
-    .container {
-      height: 40vh;
-      text-align: center;
-
-      .text {
-        p {
-          font-size: max(2em, 2vw);
-        }
-
-        .hero_btn {
-          margin: 2.5em 0 0;
-
-          a {
-            font-weight: bold;
-            background: #000;
-            color: #fff;
-            padding: 12px 24px;
-            border-radius: 32px;
-          }
-        }
-      }
-
-      img {
-        display: none;
-      }
+    section {
+        padding: 2em 0;
     }
-  }
 
-  .Categories,
-  .Products {
-    .container {
-      h1 {
-        font-size: 1.5em;
-        margin: 0 0 1em;
-      }
-    }
-  }
-
-  .Categories {
-    .categories_wrapper {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1em;
-
-      .category {
-        img {
-          height: 150px;
-          width: 150px;
-          border-radius: 50%;
-          object-fit: contain;
-        }
-      }
-    }
-  }
-
-  .Products {
-    .container {
-      .products_wrapper {
-        display: grid;
-        gap: 1em 0;
-
-        .product {
-          @include product;
-        }
-      }
-    }
-  }
-}
-
-@media screen and (width >= 726px) {
-  .Homepage {
     .Hero {
-      .container {
-        height: 85vh;
-        text-align: left;
+        .container {
+            height: 40vh;
+            text-align: center;
 
-        p {
-            text-transform: uppercase;
-            font-size: 3em !important;
-            font-weight: bold;
-        }
+            .text {
+                p {
+                    font-size: max(2em, 2vw);
+                }
 
-        .hero_btn {
-            a {
-                font-size: 1.2em;
+                .hero_btn {
+                    margin: 2.5em 0 0;
+
+                    a {
+                        font-weight: bold;
+                        background: #000;
+                        color: #fff;
+                        padding: 12px 24px;
+                        border-radius: 32px;
+                    }
+                }
+            }
+
+            img {
+                display: none;
             }
         }
+    }
 
-        img {
-          display: unset;
+    .Categories,
+    .Products {
+        .container {
+            h1 {
+                font-size: 1.5em;
+                margin: 0 0 1em;
+            }
         }
-      }
     }
 
     .Categories {
-      .categories_wrapper {
-        grid-template-columns: repeat(5, 1fr);
-      }
+        .categories_wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1em;
+
+            .category {
+                .image {
+                    height: 150px;
+                    width: 150px;
+                    border-radius: 50%;
+                    margin: auto;
+
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        border-radius: 50%;
+                        object-fit: cover;
+                        object-position: center;
+                    }
+                }
+
+                p {
+                    margin: 0.5em;
+                    font-weight: bold;
+                    text-transform: capitalize;
+                }
+            }
+        }
     }
 
     .Products {
-      .container {
-        .products_wrapper {
-          grid-template-columns: repeat(4, 1fr);
-          gap: 1em 2em;
+        .container {
+            .products_wrapper {
+                display: grid;
+                gap: 1em 0;
 
-          .product {
-            img {
-              height: 300px;
-              object-fit: cover;
-              object-position: center;
+                .product {
+                    @include product;
+                }
             }
-          }
         }
-      }
     }
-  }
+}
+
+@media screen and (width >= 726px) {
+    .Homepage {
+        .Hero {
+            .container {
+                height: 85vh;
+                text-align: left;
+
+                p {
+                    text-transform: uppercase;
+                    font-size: 3em !important;
+                    font-weight: bold;
+                }
+
+                .hero_btn {
+                    a {
+                        font-size: 1.2em;
+                    }
+                }
+
+                img {
+                    display: unset;
+                }
+            }
+        }
+
+        .Categories {
+            .categories_wrapper {
+                grid-template-columns: repeat(5, 1fr);
+            }
+        }
+
+        .Products {
+            .container {
+                .products_wrapper {
+                    grid-template-columns: repeat(4, 1fr);
+                    gap: 1em 2em;
+
+                    .product {
+                        img {
+                            height: 300px;
+                            object-fit: cover;
+                            object-position: center;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
