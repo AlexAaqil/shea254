@@ -3,6 +3,7 @@ from django.db import models
 from django.utils.html import mark_safe
 from django.core.exceptions import ValidationError
 from django.utils.text import slugify
+from django.utils import timezone
 
 from decimal import Decimal
 from shortuuid.django_fields import ShortUUIDField
@@ -58,6 +59,13 @@ class Category(CategoryAndProduct):
 
     class Meta:
         verbose_name_plural = "Categories"
+
+    def save(self, *args, **kwargs):
+        image_filename = f"category_{self.id}_{timezone.now().strftime('%m%d%Y')}.jpg"
+        self.image.name = image_filename
+
+        super().save(*args, **kwargs)
+
 
     def __str__(self):
         return self.title
