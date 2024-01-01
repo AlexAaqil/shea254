@@ -169,7 +169,7 @@ JAZZMIN_SETTINGS = {
     "copyright": "Shea.254",
 
     # List of apps (and/or models)
-    "order_with_respect_to": ["auth", "core", "core.Category", "core.Product"],
+    "order_with_respect_to": ["auth", "core", "core.Category", "core.ProductSize", "core.Product", "core.CartOrder"],
 
     # icons
     "icons": {
