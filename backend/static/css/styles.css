@@ -225,10 +225,24 @@ nav .nav_container ul .cart span {
   padding: 0.5em;
 }
 .Homepage .Products .container .products_wrapper .product .text .details {
-  padding: 1em 0;
+  padding: 0.8em 0 0.5em;
+  display: grid;
+  gap: 0.2em 0;
+}
+.Homepage .Products .container .products_wrapper .product .text .details .category {
+  font-size: 0.8em;
+  font-weight: 400;
+}
+.Homepage .Products .container .products_wrapper .product .text .details .title {
+  font-weight: bold;
+}
+.Homepage .Products .container .products_wrapper .product .text .details .title span {
+  font-weight: 500;
+  font-style: italic;
 }
 .Homepage .Products .container .products_wrapper .product .text .details .price {
   font-weight: bold;
+  color: green;
 }
 .Homepage .Products .container .products_wrapper .product .text .cart button {
   background: none;
@@ -447,10 +461,24 @@ nav .nav_container ul .cart span {
   padding: 0.5em;
 }
 .Shop .container .main_content .products .products_wrapper .product .text .details {
-  padding: 1em 0;
+  padding: 0.8em 0 0.5em;
+  display: grid;
+  gap: 0.2em 0;
+}
+.Shop .container .main_content .products .products_wrapper .product .text .details .category {
+  font-size: 0.8em;
+  font-weight: 400;
+}
+.Shop .container .main_content .products .products_wrapper .product .text .details .title {
+  font-weight: bold;
+}
+.Shop .container .main_content .products .products_wrapper .product .text .details .title span {
+  font-weight: 500;
+  font-style: italic;
 }
 .Shop .container .main_content .products .products_wrapper .product .text .details .price {
   font-weight: bold;
+  color: green;
 }
 .Shop .container .main_content .products .products_wrapper .product .text .cart button {
   background: none;
@@ -564,10 +592,24 @@ nav .nav_container ul .cart span {
   padding: 0.5em;
 }
 .Product_details .related_products .products_wrapper .product .text .details {
-  padding: 1em 0;
+  padding: 0.8em 0 0.5em;
+  display: grid;
+  gap: 0.2em 0;
+}
+.Product_details .related_products .products_wrapper .product .text .details .category {
+  font-size: 0.8em;
+  font-weight: 400;
+}
+.Product_details .related_products .products_wrapper .product .text .details .title {
+  font-weight: bold;
+}
+.Product_details .related_products .products_wrapper .product .text .details .title span {
+  font-weight: 500;
+  font-style: italic;
 }
 .Product_details .related_products .products_wrapper .product .text .details .price {
   font-weight: bold;
+  color: green;
 }
 .Product_details .related_products .products_wrapper .product .text .cart button {
   background: none;
