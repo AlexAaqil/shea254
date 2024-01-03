@@ -7,20 +7,6 @@ app_name = 'core'
 
 urlpatterns = [
     path('', views.index, name='index'),
-
-    path('shop/', views.shop, name='shop'),
-    path('product/<pid>', views.product_details, name='product_details'),
-    path('search/', views.search, name='search'),
-    path('filter_products/', views.filter_products, name='filter_products'),
-
-    path('cart/', views.cart, name='cart'),
-    path('cart/add/', views.add_to_cart, name='add_to_cart'),
-    path('cart/update/quantity/', views.update_cart_quantity, name='update_cart_quantity'),
-    path('cart/delete/', views.delete_from_cart, name='delete_from_cart'),
-
-    path('checkout/', views.checkout, name='checkout'),
-    path('checkout/success/<str:order_id>', views.order_confirmation, name='order_confirmation'),
-
     path('about/', views.about, name='about'),
     path('contact/', views.contact, name='contact'),
 ]

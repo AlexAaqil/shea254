@@ -8,7 +8,7 @@
         <div aria-label="breadcrumb">
             <ul class="breadcrumb">
                 <li class="active" aria-current="page"><a href="{% url 'core:index' %}">Home</a></li>
-                <li><a href="{% url 'core:shop' %}">Shop</a></li>
+                <li><a href="{% url 'product:shop' %}">Shop</a></li>
             </ul>
         </div>
 
@@ -21,8 +21,6 @@
     </div>
 
     <div class="container">
-        {% include 'partials/products_sidenav.html' %}
-
         <div class="main_content">
             <div class="products">
                 {% include 'partials/products.html' %}

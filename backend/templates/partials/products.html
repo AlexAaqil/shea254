@@ -2,8 +2,8 @@
     {% for product in products %}
     <div class="product">
         <div class="image">
-            <a href="{% url 'core:product_details' product.pid %}">
-                <img src="{{ product.imageURL }}" alt="Product" />
+            <a href="{% url 'product:product_details' product.pid %}">
+                <img src="{{ product.get_image_url }}" alt="Product" />
             </a>
         </div>
 
@@ -11,7 +11,7 @@
             <div class="details">
                 <p class="category">{{ product.category.title }}</p>
                 <p class="title">
-                    <a href="{% url 'core:product_details' product.pid %}">{{ product.title }} <span class="size">{{ product.size.title|default:'' }}</span></a>
+                    <a href="{{ product.get_absolute_url }}">{{ product.title }} <span class="size">{{ product.size.title|default:'' }}</span></a>
                 </p>
                 <p class="price">Ksh. <span class="product_price_{{ product.id }}">{{ product.price }}</span></p>
             </div>

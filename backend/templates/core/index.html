@@ -23,23 +23,6 @@
     </div>
   </section>
 
-  <section class="Categories">
-    <div class="container">
-      <h1 class="center">Categories</h1>
-
-      <div class="categories_wrapper">
-        {% for category in categories %}
-        <div class="category center">
-          <div class="image">
-            <img src="{{ category.imageURL }}" alt="Category" />
-          </div>
-          <p>{{ category.title }}</p>
-        </div>
-        {% endfor %}
-      </div>
-    </div>
-  </section>
-
   <section class="Products">
     <div class="container">
       <h1 class="center">Most Popular</h1>

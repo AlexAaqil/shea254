@@ -51,6 +51,8 @@ INSTALLED_APPS = [
 
     # Custom apps
     'core',
+    'product',
+    'order',
 ]
 
 MIDDLEWARE = [
@@ -169,7 +171,7 @@ JAZZMIN_SETTINGS = {
     "copyright": "Shea.254",
 
     # List of apps (and/or models)
-    "order_with_respect_to": ["auth", "core", "core.Category", "core.ProductSize", "core.Product", "core.CartOrder"],
+    "order_with_respect_to": ["auth", "product", "order", "order.CartOrder", "core"],
 
     # icons
     "icons": {

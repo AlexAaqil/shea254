@@ -7,10 +7,10 @@
 
     <div class="container details_container">
         <div class="image">
-            <img src="{{ product.image.url }}" alt="{{ product.title }}" class="main_product_image">
+            <img src="{{ product.get_image_url }}" alt="{{ product.title }}" class="main_product_image">
 
             <div class="other_product_images">
-                <img src="{{ product.image.url }}" alt="{{ product.title }}">
+                <img src="{{ product.get_image_url }}" alt="{{ product.title }}">
                 {% for product_image in product_images %}
                     <img src="{{ product_image.images.url }}" alt="{{ product.title }}" onclick="ProductImageSlider()">
                 {% endfor %}
