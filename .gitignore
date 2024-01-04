@@ -1,9 +1,0 @@
-*__pycache__
-
-backend/Pipfile
-backend/.env
-
-backend/db.sqlite3
-backend/staticfiles
-backend/media/uploads/categories
-backend/media/uploads/product_images
