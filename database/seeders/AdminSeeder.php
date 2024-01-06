@@ -14,16 +14,17 @@ class AdminSeeder extends Seeder
      */
     public function run(): void
     {
-        $password = 'admin12345';
+        $password = Hash::make('admin12345');
 
         $admin_records = [
-            'first_name' => 'Admin',
-            'last_name' => 'Administrator',
-            'email' => 'admin@gmail.com',
-            'phone_number' => '+254 746 055 487',
-            'password' => $password,
-            'profile_picture' => '',
-            'user_level' => 1,
+            [
+                'first_name' => 'Admin',
+                'last_name' => 'Administrator',
+                'email' => 'admin@gmail.com',
+                'phone_number' => '+254 746 055 487',
+                'password' => $password,
+                'user_level' => 1,
+            ]
         ];
 
         foreach($admin_records as $admin_record) {
