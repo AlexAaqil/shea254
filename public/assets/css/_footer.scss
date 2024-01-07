@@ -1,0 +1,51 @@
+footer {
+    background: #000;
+    color: #fff;
+
+    .container {
+        @include grid(3);
+
+        div {
+            &:not(:first-of-type) {
+                h1 {
+                    font-size: max(1.5em, 1.5vw);
+                    margin: 0 0 0.7em;
+                }
+            }
+        }
+
+        a {
+            text-decoration: none;
+            color: #fff;
+        }
+
+        p,
+        .links ul li {
+            margin: 0 0 0.5em;
+        }
+
+        .contacts {
+            .socials {
+                margin: 1em 0 0;
+                a {
+                    margin: 0 1em 0 0;
+                    font-size: 1.2em;
+                }
+            }
+        }
+    }
+
+    .copyright {
+        border-top: 1px solid rgb(161, 161, 161);
+        padding: 1em;
+        text-align: center;
+    }
+}
+
+@media screen and (width >= 726px) {
+    footer {
+        .container {
+            justify-items: center;
+        }
+    }
+}

@@ -1,0 +1,80 @@
+.Homepage {
+    section {
+        margin: 0 0 5em;
+    }
+    .Hero {
+        height: 50vh;
+
+        .container {
+            @include grid(2);
+            align-items: center;
+
+            .text {
+                img {
+                    width: 150px;
+                    aspect-ratio: 1;
+                }
+                h1 {
+                    font-size: max(3em, 5vw);
+                    text-transform: uppercase;
+                }
+
+                .hero_btn {
+                    margin: 2em 0;
+
+                    a {
+                        text-decoration: none;
+                        background: #000;
+                        color: #fff;
+                        font-weight: bold;
+                        font-size: max(1.3em, 1em);
+                        padding: 12px 32px;
+                        border-radius: 32px;
+                    }
+                }
+            }
+
+            .image {
+                @include desktop_only;
+            }
+        }
+    }
+
+    .Products {
+        .header {
+            @include flex_center;
+            justify-content: space-between;
+
+            h1 {
+                text-transform: uppercase;
+            }
+
+            a {
+                color: #000;
+                font-weight: bold;
+            }
+        }
+    }
+}
+
+@media screen and (width >= 726px) {
+    .Homepage {
+        .Hero {
+            height: 90vh;
+
+            .text {
+                img {
+                    width: 100px!important;
+                }
+            }
+
+            .image {
+                img {
+                    height: 500px;
+                    width: 100%;
+                    object-fit: contain;
+                }
+            }
+        }
+    }
+}
