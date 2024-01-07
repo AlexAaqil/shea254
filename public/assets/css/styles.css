@@ -108,6 +108,174 @@ nav .nav_container ul .authentication a {
   color: #fff;
 }
 
+.admin_sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 15%;
+  border-right: 1px solid grey;
+  padding: 0.5em 0;
+}
+.admin_sidebar .header {
+  position: relative;
+  text-align: center;
+}
+.admin_sidebar .header h1 {
+  display: none;
+}
+@media screen and (width >= 726px) {
+  .admin_sidebar .header h1 {
+    display: unset;
+  }
+}
+.admin_sidebar .header .toggle {
+  display: none;
+}
+@media screen and (width >= 726px) {
+  .admin_sidebar .header .toggle {
+    display: unset;
+  }
+}
+.admin_sidebar ul li {
+  margin: 0 0 0.5em;
+  padding: 0.7em 1em;
+}
+.admin_sidebar ul li a {
+  text-decoration: none;
+  color: #000;
+}
+.admin_sidebar ul li i {
+  font-size: 1.4em;
+  color: #000;
+}
+.admin_sidebar ul li .text {
+  display: none;
+}
+@media screen and (width >= 726px) {
+  .admin_sidebar ul li .text {
+    display: unset;
+  }
+}
+.admin_sidebar .profile {
+  padding: 0;
+  text-align: center;
+}
+.admin_sidebar .logout i {
+  color: red;
+}
+
+@media screen and (width >= 726px) {
+  .admin_sidebar .header,
+  .admin_sidebar .profile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .admin_sidebar .header {
+    gap: 0 0.3em;
+    margin: 0 0 2em;
+  }
+  .admin_sidebar .header h1 {
+    font-size: 1.2em;
+  }
+  .admin_sidebar .header .toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    right: -12px;
+    transform: translateY(-50%) rotate(180deg);
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    background: #000;
+    color: #fff;
+  }
+  .admin_sidebar ul li {
+    padding: 0.2em 0.7em;
+  }
+  .admin_sidebar ul li a {
+    display: flex;
+    align-items: center;
+    gap: 0 0.4em;
+    padding: 0.8em 0;
+    transition: all 0.2s ease;
+  }
+  .admin_sidebar ul li a:hover {
+    background: #f2f2f2;
+    font-weight: bold;
+  }
+  .admin_sidebar ul li a i {
+    font-size: 1em;
+    width: 20px;
+  }
+  .admin_sidebar .profile {
+    flex-direction: column;
+    gap: 0.5em 0;
+    margin: 2em 0 0;
+  }
+  .admin_sidebar .logout {
+    background: red;
+    padding: 8px 16px;
+    border-radius: 6px;
+    width: 92%;
+    margin: 0.5em auto;
+  }
+  .admin_sidebar .logout a,
+  .admin_sidebar .logout i {
+    color: #fff;
+    font-weight: bold;
+  }
+  .admin_sidebar .logout a {
+    width: 100%;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .admin_sidebar .logout a:hover {
+    background: red;
+    opacity: 0.8;
+  }
+  .close {
+    width: 5%;
+  }
+  .close .header h1 {
+    display: none;
+  }
+  .close .header .toggle {
+    transform: translateY(-50%) rotate(0deg);
+  }
+  .close ul li {
+    margin: 0 0 0.5em;
+  }
+  .close ul li a {
+    text-decoration: none;
+    color: #000;
+  }
+  .close ul li i {
+    font-size: 1.4em;
+    color: #000;
+  }
+  .close ul li .text {
+    display: none;
+  }
+  .close .logout {
+    background: unset;
+  }
+  .close .logout a {
+    transition: all 0.2s ease;
+  }
+  .close .logout a i {
+    color: red;
+  }
+  .close .logout a:hover {
+    font-size: 1.4em;
+    background: unset;
+  }
+}
 footer {
   background: #000;
   color: #fff;
@@ -340,4 +508,11 @@ footer .copyright {
 }
 .Contact .container .contact_details p {
   font-size: max(2em, 2vw);
+}
+
+.Admin {
+  display: flex;
+}
+.Admin .Main {
+  margin-left: 16%;
 }/*# sourceMappingURL=styles.css.map */

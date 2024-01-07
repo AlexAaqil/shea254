@@ -1,0 +1,7 @@
+.Admin {
+    display: flex;
+
+    .Main {
+        margin-left: calc($sidenav_width + 1%);
+    }
+}
