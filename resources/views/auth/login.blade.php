@@ -25,7 +25,7 @@
         </div>
 
         <!-- Remember Me -->
-        <div class="block mt-4">
+        {{-- <div class="block mt-4">
             <label for="remember_me" class="inline-flex items-center">
                 <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">
                 <span class="ms-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
@@ -38,10 +38,12 @@
                     {{ __('Forgot your password?') }}
                 </a>
             @endif
+        </div> --}}
 
-            <x-primary-button class="ms-3">
-                {{ __('Log in') }}
-            </x-primary-button>
-        </div>
+        <x-primary-button class="mt-3">
+            {{ __('Log in') }}
+        </x-primary-button>
     </form>
+
+    <p class="mt-3">Don't have an account? <a href="{{ route('register') }}" class="text-indigo-700 underline">Signup</a></p>
 </x-guest-layout>
