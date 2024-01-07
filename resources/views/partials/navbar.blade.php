@@ -8,7 +8,7 @@
         <ul class="list_style_none">
             <li><a href="#">Shop</a></li>
             <li><a href="{{ route('aboutpage') }}">About</a></li>
-            <li><a href="#">Contact</a></li>
+            <li><a href="{{ route('contactpage') }}">Contact</a></li>
             <li class="cart">
                 <i class="fas fa-shopping-bag"></i>
                 <span>0</span>

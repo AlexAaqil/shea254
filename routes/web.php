@@ -19,6 +19,8 @@ Route::get('/', [HomeController::class, 'homepage'])->name('homepage');
 
 Route::get('/about', [HomeController::class, 'aboutpage'])->name('aboutpage');
 
+Route::get('/contact', [HomeController::class, 'contactpage'])->name('contactpage');
+
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
