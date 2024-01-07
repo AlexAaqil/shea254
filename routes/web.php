@@ -15,9 +15,9 @@ use App\Http\Controllers\HomeController;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', [HomeController::class, 'homepage'])->name('homepage');
+
+Route::get('/about', [HomeController::class, 'aboutpage'])->name('aboutpage');
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');

@@ -28,4 +28,14 @@ class HomeController extends Controller
             }
         }
     }
+
+    public function homepage()
+    {
+        return view('index');
+    }
+
+    public function aboutpage()
+    {
+        return view('about');
+    }
 }
