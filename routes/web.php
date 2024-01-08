@@ -45,8 +45,10 @@ Route::middleware(['auth', 'admin'])->group(function() {
     Route::get('/admin/users/list', [UserController::class, 'list_users'])->name('list_users');
     Route::patch('/admin/admins/update', [UserController::class, 'update_user'])->name('update_user');
 
-    Route::get('/admin/categories/list', [CategoryController::class, 'list_categories'])->name('list_categories');
-    Route::post('/admin/categories/add', [CategoryController::class, 'add_category'])->name('add_category');
-    Route::patch('/admin/categories/update', [CategoryController::class, 'update_category'])->name('update_category');
-    Route::delete('/admin/categories/delete', [CategoryController::class, 'delete_category'])->name('delete_category');
+    Route::get('/admin/categories/list', [CategoryController::class, 'list'])->name('list_categories');
+    Route::get('/admin/categories/add', [CategoryController::class, 'get_add_category'])->name('get_add_category');
+    Route::post('/admin/categories/add', [CategoryController::class, 'post_add_category'])->name('post_add_category');
+    Route::get('/admin/categories/update/{id}', [CategoryController::class, 'get_update_category'])->name('get_update_category');
+    Route::post('/admin/categories/update/{id}', [CategoryController::class, 'post_update_category'])->name('post_update_category');
+    Route::delete('/admin/categories/delete/{id}', [CategoryController::class, 'delete_category'])->name('delete_category');
 });
