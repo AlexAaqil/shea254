@@ -2,6 +2,14 @@
     display: flex;
 
     .Main {
-        margin-left: calc($sidenav_width + 1%);
+        margin-left: 1%;
     }
 }
+
+// @media screen and (width >= 726px) {
+//     .Admin {
+//         .Main {
+
+//         }
+//     }
+// }

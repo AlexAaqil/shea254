@@ -1,4 +1,4 @@
-<div class="admin_sidebar close">
+<div class="admin_sidebar">
     <div class="header">
         <img src="{{ asset('assets/images/logo.jpg') }}" alt="Logo" width=30 height=30 class="rounded">
         <h1>Shea254</h1>

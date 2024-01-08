@@ -20,24 +20,11 @@ toggle.addEventListener("click", () => {
     const sidebarWidth = sidebar.offsetWidth;
 
     // Calculate the desired margin-left value (width of the sidebar + 1%)
-    const marginLeftValue = `calc(${sidebarWidth}px + 1%)`;
+    const marginLeftValue = `1%`;
 
-    // Set the margin-left of .Main to the width of the sidebar
+    if (sidebar.classList.contains("close")) {
+        // Set the margin-left of .Main to the width of the sidebar
+        main.style.marginLeft = marginLeftValue;
+    }
     main.style.marginLeft = marginLeftValue;
 });
-
-
-// toggle.addEventListener("click", () => {
-//     sidebar.classList.toggle("close");
-
-//     // Get the current width of the sidebar dynamically
-//     const sidebarWidth = sidebar.offsetWidth;
-
-//     // Calculate the desired margin-left value (width of the sidebar + 1%)
-//     const marginLeftValue = `calc(${sidebarWidth}px + 1%)`;
-
-//     // Set the margin-left of .Main based on the sidebar state
-//     main.style.marginLeft = sidebar.classList.contains("close")
-//         ? marginLeftValue
-//         : marginLeftValue;
-// });

@@ -109,7 +109,7 @@ nav .nav_container ul .authentication a {
 }
 
 .admin_sidebar {
-  position: fixed;
+  position: sticky;
   top: 0;
   left: 0;
   height: 100%;
@@ -138,7 +138,7 @@ nav .nav_container ul .authentication a {
   }
 }
 .admin_sidebar ul li {
-  margin: 0 0 0.5em;
+  margin: 0 0 0.3em;
   padding: 0.7em 1em;
 }
 .admin_sidebar ul li a {
@@ -174,7 +174,7 @@ nav .nav_container ul .authentication a {
   }
   .admin_sidebar .header {
     gap: 0 0.3em;
-    margin: 0 0 2em;
+    margin: 0 0 1.5em;
   }
   .admin_sidebar .header h1 {
     font-size: 1.2em;
@@ -193,8 +193,11 @@ nav .nav_container ul .authentication a {
     background: #000;
     color: #fff;
   }
+  .admin_sidebar ul {
+    padding: 0 0.5em;
+  }
   .admin_sidebar ul li {
-    padding: 0.2em 0.7em;
+    padding: 0.2em 0.3em;
   }
   .admin_sidebar ul li a {
     display: flex;
@@ -214,7 +217,7 @@ nav .nav_container ul .authentication a {
   .admin_sidebar .profile {
     flex-direction: column;
     gap: 0.5em 0;
-    margin: 2em 0 0;
+    margin: 1.2em 0 0;
   }
   .admin_sidebar .logout {
     background: red;
@@ -514,5 +517,5 @@ footer .copyright {
   display: flex;
 }
 .Admin .Main {
-  margin-left: 16%;
+  margin-left: 1%;
 }/*# sourceMappingURL=styles.css.map */
