@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,3 +37,10 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+
+Route::middleware(['auth', 'admin'])->group(function() {
+    Route::get('/admin/admins/list', [UserController::class, 'list_admins'])->name('list_admins');
+    Route::get('/admin/users/list', [UserController::class, 'list_users'])->name('list_users');
+    Route::patch('/admin/admins/update', [UserController::class, 'update_user'])->name('update_user');
+});
