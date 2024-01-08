@@ -32,7 +32,7 @@
                 </a>
             </li>
             <li class="nav-link">
-                <a href="#">
+                <a href="{{ route('list_product_sizes') }}">
                     <i class="fas fa-ruler-combined"></i>
                     <span class="text">Product Sizes</span>
                 </a>

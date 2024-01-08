@@ -3,16 +3,16 @@
 @section('content')
 <main class="Admin">
     @include('admin.sidenav')
-    <section class="Main Categories">
+    <section class="Main ProductSizes">
         <div class="container">
             <div class="custom_form">
-                <h1>Update Category</h1>
+                <h1>Update Product Size</h1>
                 <form action="" method="post">
                     @csrf
                     <div class="input_group">
-                        <label for="title">Title</label>
-                        <input type="text" name="title" id="title" value="{{ old('title', $category->title) }}" required />
-                        <span class="inline_alert">{{ $errors->first('title') }}</span>
+                        <label for="product_size">Product Size</label>
+                        <input type="text" name="product_size" id="product_size" value="{{ old('product_size', $product_size->product_size) }}" required />
+                        <span class="inline_alert">{{ $errors->first('product_size') }}</span>
                     </div>
 
                     <button type="submit">Save</button>

@@ -5,6 +5,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProductSizeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,4 +52,11 @@ Route::middleware(['auth', 'admin'])->group(function() {
     Route::get('/admin/categories/update/{id}', [CategoryController::class, 'get_update_category'])->name('get_update_category');
     Route::post('/admin/categories/update/{id}', [CategoryController::class, 'post_update_category'])->name('post_update_category');
     Route::delete('/admin/categories/delete/{id}', [CategoryController::class, 'delete_category'])->name('delete_category');
+
+    Route::get('/admin/productsizes/list', [ProductSizeController::class, 'list'])->name('list_product_sizes');
+    Route::get('/admin/productsize/add', [ProductSizeController::class, 'get_add_product_size'])->name('get_add_product_size');
+    Route::post('/admin/productsize/add', [ProductSizeController::class, 'post_add_product_size'])->name('post_add_product_size');
+    Route::get('/admin/productsize/update/{id}', [ProductSizeController::class, 'get_update_product_size'])->name('get_update_product_size');
+    Route::post('/admin/productsize/update/{id}', [ProductSizeController::class, 'post_update_product_size'])->name('post_update_product_size');
+    Route::delete('/admin/productsize/delete/{id}', [ProductSizeController::class, 'delete_product_size'])->name('delete_product_size');
 });
