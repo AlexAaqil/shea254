@@ -34,12 +34,14 @@ class CategoryController extends Controller
         return redirect()->route('list_categories');
     }
 
-    public function get_update_category($id) {
+    public function get_update_category($id)
+    {
         $category = Category::find($id);
         return view("admin/update_category", compact('category'));
     }
 
-    public function post_update_category($id, Request $request) {
+    public function post_update_category($id, Request $request)
+    {
         $validated = $request->validate([
             'title' => 'required|unique:categories,title,'.$id,
         ]);
@@ -53,7 +55,8 @@ class CategoryController extends Controller
         return redirect()->route('list_categories')->with('success', "Category was updated successfully");
     }
 
-    public function delete_category($id) {
+    public function delete_category($id)
+    {
         $category = Category::findOrFail($id);
         $category->delete();
 

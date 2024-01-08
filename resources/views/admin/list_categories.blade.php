@@ -29,7 +29,7 @@
                             <td>{{ $value->slug }}</td>
                             <td class="actions">
                                  <div class="action">
-                                    <a href="{{ url('/admin/categories/update/'.$value->id) }}">
+                                    <a href="{{ route('get_update_category', ['id'=>$value->id]) }}">
                                         <i class="fas fa-pencil-alt update"></i>
                                     </a>
                                 </div>
