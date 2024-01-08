@@ -42,8 +42,12 @@ require __DIR__.'/auth.php';
 
 Route::middleware(['auth', 'admin'])->group(function() {
     Route::get('/admin/admins/list', [UserController::class, 'list_admins'])->name('list_admins');
+    Route::get('/admin/admins/update/{id}', [UserController::class, 'get_update_admin'])->name('get_update_admin');
+    Route::post('/admin/admins/update/{id}', [UserController::class, 'post_update_admin'])->name('post_update_admin');
+
     Route::get('/admin/users/list', [UserController::class, 'list_users'])->name('list_users');
-    Route::patch('/admin/admins/update', [UserController::class, 'update_user'])->name('update_user');
+    Route::get('/admin/users/update/{id}', [UserController::class, 'get_update_user'])->name('get_update_user');
+    Route::post('/admin/users/update/{id}', [UserController::class, 'post_update_user'])->name('post_update_user');
 
     Route::get('/admin/categories/list', [CategoryController::class, 'list_categories'])->name('list_categories');
     Route::post('/admin/categories/add', [CategoryController::class, 'add_category'])->name('add_category');

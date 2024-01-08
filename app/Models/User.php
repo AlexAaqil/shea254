@@ -46,4 +46,22 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    static public function getAdmins(){
+        return self::select('users.*')
+        ->where('user_level', '=' , 1)
+        ->where('status','=', 1)
+        ->orderBy('$id', 'desc')
+        ->get();
+    }
+
+    static public function getUsers()
+    {
+        return self::select('users.*')
+        ->where('user_level', '=', 2)
+        ->where('status', '=' , 1)
+        ->orderBy('$id', 'desc')
+        ->get();
+    }
+
 }
