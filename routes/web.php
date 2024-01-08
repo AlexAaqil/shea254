@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -43,4 +44,9 @@ Route::middleware(['auth', 'admin'])->group(function() {
     Route::get('/admin/admins/list', [UserController::class, 'list_admins'])->name('list_admins');
     Route::get('/admin/users/list', [UserController::class, 'list_users'])->name('list_users');
     Route::patch('/admin/admins/update', [UserController::class, 'update_user'])->name('update_user');
+
+    Route::get('/admin/categories/list', [CategoryController::class, 'list_categories'])->name('list_categories');
+    Route::post('/admin/categories/add', [CategoryController::class, 'add_category'])->name('add_category');
+    Route::patch('/admin/categories/update', [CategoryController::class, 'update_category'])->name('update_category');
+    Route::delete('/admin/categories/delete', [CategoryController::class, 'delete_category'])->name('delete_category');
 });
