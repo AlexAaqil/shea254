@@ -7,9 +7,9 @@
         <div class="container">
             <div class="header">
                 <h1>Categories</h1>
-                <input type="text" name="search" id="search" placeholder="Search">
+                <input type="text" name="search" id="myInput" placeholder="Search" onkeyup="searchFunction()" />
                 <div class="header_btn">
-                    <a href="{{ route('add_category') }}">New</a>
+                    <a href="{{ route('get_add_category') }}">New</a>
                 </div>
             </div>
 
@@ -23,22 +23,29 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Category Title</td>
-                            <td>Slug</td>
+                        @foreach($categories as $value)
+                        <tr class="searchable">
+                            <td>{{ $value->title }}</td>
+                            <td>{{ $value->slug }}</td>
                             <td class="actions">
-                                <div class="action">
-                                    <a href="#">
+                                 <div class="action">
+                                    <a href="{{ route('get_update_category', ['id'=>$value->id]) }}">
                                         <i class="fas fa-pencil-alt update"></i>
                                     </a>
                                 </div>
                                 <div class="action">
-                                    <a href="#">
-                                        <i class="fas fa-trash delete"></i>
-                                    </a>
+                                    <form id="deleteForm_{{ $value->id }}" action="{{ route('delete_category', ['id' => $value->id]) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+
+                                        <a href="javascript:void(0);" onclick="deleteItem({{ $value->id }}, 'category');">
+                                            <i class="fas fa-trash-alt delete"></i>
+                                        </a>
+                                    </form>
                                 </div>
                             </td>
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
