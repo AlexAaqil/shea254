@@ -14,13 +14,13 @@
                 </a>
             </li>
             <li class="nav-link">
-                <a href="#">
+                <a href="{{ route('list_admins') }}">
                     <i class="fas fa-users-cog"></i>
                     <span class="text">Admins</span>
                 </a>
             </li>
             <li class="nav-link">
-                <a href="#">
+                <a href="{{ route('list_users') }}">
                     <i class="fas fa-users"></i>
                     <span class="text">Users</span>
                 </a>
