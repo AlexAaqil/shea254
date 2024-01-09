@@ -39,7 +39,20 @@ class HomeController extends Controller
 
     public function homepage()
     {
-        return view('index');
+        $featured_products = Product::where([
+                ['featured', 1],
+                ['in_stock', 1]
+            ])
+            ->latest()
+            ->take(4)
+            ->get();
+        return view('index', compact('featured_products'));
+    }
+
+    public function shop()
+    {
+        $products = Product::where('in_stock', 1)->get();
+        return view('shop', compact('products'));
     }
 
     public function aboutpage()

@@ -6,7 +6,7 @@
         </a>
 
         <ul class="list_style_none">
-            <li><a href="#">Shop</a></li>
+            <li><a href="{{ route('shop') }}">Shop</a></li>
             <li><a href="{{ route('aboutpage') }}">About</a></li>
             <li><a href="{{ route('contactpage') }}">Contact</a></li>
             <li class="cart">
@@ -16,7 +16,7 @@
             <li class="authentication">
                 @if(Route::has('login'))
                     @auth
-                        <a href="{{ url('/home') }}">Dashboard</a>
+                        <a href="{{ url('/home') }}">{{ Auth::user()->first_name }}</a>
                     @else
                         <a href="{{ route('login') }}">Login</a>
                     @endauth
