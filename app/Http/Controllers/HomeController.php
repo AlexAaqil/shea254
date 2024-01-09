@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Category;
+// use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
@@ -20,7 +22,13 @@ class HomeController extends Controller
             }
             else if($user_level==1)
             {
-                return view('admin.dashboard');
+                $count_users = User::getUsers()->count();
+                $count_admins = User::getAdmins()->count();
+                // $product_count = Product::all()->count();
+                $count_categories = Category::all()->count();
+                // $order_count = Order::count();
+                // $sales_count = Sales::count();    
+                return view('admin.dashboard', compact('count_users', 'count_admins', 'count_categories'));
             }
             else
             {
@@ -42,5 +50,5 @@ class HomeController extends Controller
     public function contactpage()
     {
         return view('contact');
-    }
+    }  
 }

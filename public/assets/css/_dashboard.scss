@@ -1,0 +1,43 @@
+.container{
+    .statistics{
+        display:grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 0.5em;
+
+
+        .static{
+            display:grid;
+            grid-template-columns: 15% auto;
+            align-items: center;
+            gap: 0 1.5em;
+            background: #d5e0f8;
+            padding: 0.5em 0.6em;
+            border-radius: 12px;
+
+            .icon {
+                @include flex_center;
+                justify-content: center;
+                $dimensions: 20px;
+                background: #899fcf;
+                width: $dimensions;
+                height: $dimensions;
+                padding: 16px;
+                border-radius: 50%;
+                i{
+                    font-size: 1em;
+                }
+            }
+            .text{
+                p {
+                    &:first-of-type {
+                        font-size: 0.85em;
+                    }
+                    &:last-of-type {
+                        font-weight: bold;
+                        font-size: 1.3em;
+                    }
+                }
+           }
+        }
+    }
+}
