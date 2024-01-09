@@ -15,27 +15,16 @@ class UserController extends Controller
 
     public function get_update_admin($id)
     {
-        $admin = User::find($id);
+        $admin = User::findOrFail($id);
         return view('admin.update_admin', compact('admin'));
     }
 
 
     public function post_update_admin($id, Request $request)
     {
-        request()->validate([
-            'email' => 'required|email|unique:users,email,'.$id,
-        ]);
-
-        $admin = User::find($id);
-        $admin->first_name = $request->first_name;
-        $admin->last_name = $request->last_name;
-        $admin->email = $request->email;
-        $admin->phone_number = $request->phone_number;
+        $admin = User::findOrFail($id);
         $admin->user_level = $request->user_level;
         $admin->status = $request->status;
-        if(!empty($request->password)){
-            $admin->password = Hash::make($request->password);
-        }
 
         $admin->save();
 
@@ -50,31 +39,19 @@ class UserController extends Controller
 
     public function get_update_user($id)
     {
-        $admin = User::find($id);
-        return view('admin.update_user', compact('admin'));
+        $user = User::find($id);
+        return view('admin.update_user', compact('user'));
     }
 
     public function post_update_user($id, Request $request)
     {
-        request()->validate([
-            'email' => 'required|email|unique:users,email,'.$id,
-        ]);
+        $user = User::findOrFail($id);
 
-        $user = user::find($id);
-        $user->first_name = $request->first_name;
-        $user->last_name = $request->last_name;
-        $user->email = $request->email;
-        $user->phone_number = $request->phone_number;
         $user->user_level = $request->user_level;
         $user->status = $request->status;
-        if(!empty($request->password)){
-            $admin->password = Hash::make($request->password);
-        }
 
         $user->save();
 
         return redirect()->route('list_users')->with('success',"User updated successfully");
-
-
     }
 }

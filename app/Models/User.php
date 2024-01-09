@@ -59,7 +59,6 @@ class User extends Authenticatable
     {
         return self::select('users.*')
         ->where('user_level', '=', 2)
-        ->where('status', '=' , 1)
         ->orderBy('$id', 'desc')
         ->get();
     }

@@ -59,10 +59,13 @@
                 <span class="text">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</span>
             </li>
             <li class="logout">
-                <a href="#">
-                    <i class="fas fa-sign-out-alt icons"></i>
-                    <span class="text">Log Out</span>
-                </a>
+                <form action="{{ route('logout') }}" method="post">
+                    @csrf
+                    <button type="submit">
+                        <i class="fas fa-sign-out-alt icons"></i>
+                        <span class="text">Log Out</span>
+                    </button>
+                </form>
             </li>
         </ul>
     </div>

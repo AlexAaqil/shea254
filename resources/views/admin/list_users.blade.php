@@ -5,7 +5,7 @@
     @include('admin.sidenav')
     <section class="Main Users">
         <div class="container">
-            <div class="header"> 
+            <div class="header">
                 <h1>Users</h1>
                 <input type="text" name="search" id="search" placeholder="Search">
             </div>
@@ -29,7 +29,7 @@
                             <td>{{ $user->email }}</td>
                             <td>{{ $user->phone_number }}</td>
                             <td>{{ $user->User_level === 1 ? 'Admin':'User' }}</td>
-                            <td>{{ $user->status === 1 ? 'Active' : 'Inactive'}} </td>
+                            <td class="{{ $user->status === 1 ? '' : 'text-danger bold' }}">{{ $user->status === 1 ? 'Active' : 'Inactive'}} </td>
                             <td class="actions">
                                 <div class="action">
                                     <a href="{{ route('get_update_user', ['id' => $user->id]) }}">

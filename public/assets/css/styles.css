@@ -5,6 +5,14 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 
+.text-danger {
+  color: red;
+}
+
+.bold {
+  font-weight: bold;
+}
+
 .container {
   padding: 10px 5%;
 }
@@ -17,6 +25,120 @@
   border-radius: 50%;
 }
 
+form input,
+form select,
+form textarea {
+  width: 100%;
+  padding: 0.4em 0.6em;
+  font-size: 1em;
+  border: 1px solid grey;
+  border-radius: 4px;
+}
+form button {
+  padding: 10px 32px;
+  font-weight: bold;
+  font-size: 1em;
+  border: none;
+  border-radius: 4px;
+  background: #000;
+  color: #fff;
+}
+
+.custom_form h1 {
+  font-size: 1.1em;
+  text-align: center;
+  margin: 0 0 0.5em;
+  padding: 0.5em 0;
+  background: #000;
+  color: #fff;
+  border-radius: 6px 6px 0 0;
+}
+.custom_form form {
+  padding: 0 0.5em;
+}
+.custom_form form .input_group {
+  padding: 0.3em 0;
+  width: 100%;
+}
+.custom_form form .input_group label {
+  font-weight: 550;
+}
+.custom_form form .input_group .custom_radio_buttons {
+  display: flex;
+}
+.custom_form form .input_group .custom_radio_buttons label {
+  padding: 0.3em 0.2em;
+  position: relative;
+  cursor: pointer;
+  width: 30%;
+  display: flex;
+  align-items: center;
+}
+.custom_form form .input_group .custom_radio_buttons label .option_radio {
+  position: relative;
+  margin: 0 0.1em 0 0;
+  cursor: pointer;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  width: auto;
+  border: unset;
+}
+.custom_form form .input_group .custom_radio_buttons label .option_radio:before {
+  transition: transform 0.4s cubic-bezier(0.45, 1.8, 0.5, 0.75);
+  transform: scale(0, 0);
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0.125rem;
+  z-index: 1;
+  width: 0.75rem;
+  height: 0.75rem;
+  background: #16a085;
+  border-radius: 50%;
+}
+.custom_form form .input_group .custom_radio_buttons label .option_radio:checked:before {
+  transform: scale(1, 1);
+}
+.custom_form form .input_group .custom_radio_buttons label .option_radio:after {
+  content: "";
+  position: absolute;
+  top: -0.25rem;
+  left: -0.125rem;
+  width: 1rem;
+  height: 1rem;
+  background: #fff;
+  border: 2px solid #d6d6d6;
+  border-radius: 50%;
+}
+.custom_form p {
+  margin: 0.8em 0 0.5em;
+}
+
+.Auth {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+}
+.Auth .container {
+  box-shadow: 2px 4px 8px black;
+  width: 90%;
+  padding: 1em 2em;
+}
+
+@media screen and (width >= 726px) {
+  .customized_form .row_input_group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 1em;
+  }
+  .Auth .Login {
+    width: 35%;
+  }
+  .Auth .Signup {
+    width: 60%;
+  }
+}
 nav {
   height: 10vh;
   position: sticky;
@@ -141,8 +263,19 @@ nav .nav_container ul .authentication a {
   padding: 0;
   text-align: center;
 }
-.admin_sidebar .logout i {
+.admin_sidebar .logout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+.admin_sidebar .logout form button {
+  background: none;
+  cursor: pointer;
+}
+.admin_sidebar .logout form button i {
   color: red;
+  font-size: 1.5em;
 }
 
 @media screen and (width >= 726px) {
@@ -201,26 +334,15 @@ nav .nav_container ul .authentication a {
   }
   .admin_sidebar .logout {
     background: red;
-    padding: 8px 16px;
     border-radius: 6px;
-    width: 92%;
     margin: 0.5em auto;
   }
-  .admin_sidebar .logout a,
-  .admin_sidebar .logout i {
-    color: #fff;
-    font-weight: bold;
+  .admin_sidebar .logout button {
+    padding: 0.5em 1em;
   }
-  .admin_sidebar .logout a {
-    width: 100%;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .admin_sidebar .logout a:hover {
-    background: red;
-    opacity: 0.8;
+  .admin_sidebar .logout button i {
+    color: #fff !important;
+    font-size: 1.1em !important;
   }
   .close {
     width: 5%;
@@ -248,13 +370,13 @@ nav .nav_container ul .authentication a {
   .close .logout {
     background: unset;
   }
-  .close .logout a {
+  .close .logout button {
     transition: all 0.2s ease;
   }
-  .close .logout a i {
+  .close .logout button i {
     color: red;
   }
-  .close .logout a:hover {
+  .close .logout button:hover {
     font-size: 1.4em;
     background: unset;
   }
@@ -365,120 +487,6 @@ footer .copyright {
   font-size: 2em;
 }
 
-form input,
-form select,
-form textarea {
-  width: 100%;
-  padding: 0.4em 0.6em;
-  font-size: 1em;
-  border: 1px solid grey;
-  border-radius: 4px;
-}
-form button {
-  padding: 10px 32px;
-  font-weight: bold;
-  font-size: 1em;
-  border: none;
-  border-radius: 4px;
-  background: #000;
-  color: #fff;
-}
-
-.custom_form h1 {
-  font-size: 1.1em;
-  text-align: center;
-  margin: 0 0 0.5em;
-  padding: 0.5em 0;
-  background: #000;
-  color: #fff;
-  border-radius: 6px 6px 0 0;
-}
-.custom_form form {
-  padding: 0 0.5em;
-}
-.custom_form form .input_group {
-  padding: 0.3em 0;
-  width: 100%;
-}
-.custom_form form .input_group label {
-  font-weight: 550;
-}
-.custom_form form .input_group .custom_radio_buttons {
-  display: flex;
-}
-.custom_form form .input_group .custom_radio_buttons label {
-  padding: 0.3em 0.2em;
-  position: relative;
-  cursor: pointer;
-  width: 30%;
-  display: flex;
-  align-items: center;
-}
-.custom_form form .input_group .custom_radio_buttons label .option_radio {
-  position: relative;
-  margin: 0 0.1em 0 0;
-  cursor: pointer;
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
-  width: auto;
-  border: unset;
-}
-.custom_form form .input_group .custom_radio_buttons label .option_radio:before {
-  transition: transform 0.4s cubic-bezier(0.45, 1.8, 0.5, 0.75);
-  transform: scale(0, 0);
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0.125rem;
-  z-index: 1;
-  width: 0.75rem;
-  height: 0.75rem;
-  background: #16a085;
-  border-radius: 50%;
-}
-.custom_form form .input_group .custom_radio_buttons label .option_radio:checked:before {
-  transform: scale(1, 1);
-}
-.custom_form form .input_group .custom_radio_buttons label .option_radio:after {
-  content: "";
-  position: absolute;
-  top: -0.25rem;
-  left: -0.125rem;
-  width: 1rem;
-  height: 1rem;
-  background: #fff;
-  border: 2px solid #d6d6d6;
-  border-radius: 50%;
-}
-.custom_form p {
-  margin: 0.8em 0 0.5em;
-}
-
-.Auth {
-  height: 100vh;
-  display: flex;
-  align-items: center;
-}
-.Auth .container {
-  box-shadow: 2px 4px 8px black;
-  width: 90%;
-  padding: 1em 2em;
-}
-
-@media screen and (width >= 726px) {
-  .customized_form .row_input_group {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0 1em;
-  }
-  .Auth .Login {
-    width: 35%;
-  }
-  .Auth .Signup {
-    width: 60%;
-  }
-}
 .alert {
   padding: 0.5em 0;
   margin: 0.1em 0;
@@ -702,6 +710,17 @@ form button {
 }
 .Admin .Main .container .body table tbody .actions .action .delete {
   color: red;
+}
+.Admin .Main .container .users_form form .row_input_group {
+  margin: 2em 0;
+}
+.Admin .Main .container .users_form p {
+  display: grid;
+  grid-template-columns: 15% auto;
+  padding: 0 0.5em;
+}
+.Admin .Main .container .users_form p span:first-child {
+  font-weight: bold;
 }
 
 @media screen and (width >= 726px) {

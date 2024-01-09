@@ -69,6 +69,25 @@
                     }
                 }
             }
+
+            .users_form {
+                form {
+                    .row_input_group {
+                        margin: 2em 0;
+                    }
+                }
+                p {
+                    display: grid;
+                    grid-template-columns: 15% auto;
+                    padding: 0 0.5em;
+
+                    span {
+                        &:first-child {
+                            font-weight: bold;
+                        }
+                    }
+                }
+            }
         }
     }
 }
