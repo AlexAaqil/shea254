@@ -170,4 +170,11 @@ class ProductController extends Controller
 
         return redirect()->route('list_products')->with('success', "Product deleted successfully!");
     }
+
+    public function product_details($slug)
+    {
+        $product = Product::where('slug', $slug)->firstOrFail();
+        $product_images = $product->getProductImages;
+        return view('product_details', compact('product', 'product_images'));
+    }
 }
