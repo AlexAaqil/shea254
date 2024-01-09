@@ -10,6 +10,8 @@
                 <input type="text" name="search" id="search" placeholder="Search">
             </div>
 
+            @include('partials.messages')
+
             <div class="body">
                 <table>
                     <thead>

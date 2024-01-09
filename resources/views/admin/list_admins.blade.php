@@ -5,10 +5,11 @@
     @include('admin.sidenav')
     <section class="Main Admins">
         <div class="container">
-            <div class="header"> 
+            <div class="header">
                 <h1>Admins</h1>
                 <input type="text" name="search" id="search" placeholder="Search">
             </div>
+            @include('partials.messages')
 
             <div class="body">
                 <table>

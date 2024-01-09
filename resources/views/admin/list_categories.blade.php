@@ -13,6 +13,8 @@
                 </div>
             </div>
 
+            @include('partials.messages')
+
             <div class="body">
                 <table>
                     <thead>
