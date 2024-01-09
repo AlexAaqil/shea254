@@ -16,7 +16,7 @@
             <li class="authentication">
                 @if(Route::has('login'))
                     @auth
-                        <a href="{{ url('/dashboard') }}">Dashboard</a>
+                        <a href="{{ url('/home') }}">Dashboard</a>
                     @else
                         <a href="{{ route('login') }}">Login</a>
                     @endauth
