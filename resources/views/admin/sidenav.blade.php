@@ -56,7 +56,11 @@
         <ul class="list_style_none">
             <li class="profile">
                 <img src="{{ asset('assets/images/default_profile.jpg') }}" alt="Logo" width=40 height=40 class="rounded">
-                <span class="text">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</span>
+                <span class="text">
+                    <a href="{{ route('profile.edit') }}">
+                        {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}
+                    </a>
+                </span>
             </li>
             <li class="logout">
                 <form action="{{ route('logout') }}" method="post">
