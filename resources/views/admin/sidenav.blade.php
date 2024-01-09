@@ -38,7 +38,7 @@
                 </a>
             </li>
             <li class="nav-link">
-                <a href="#">
+                <a href="{{ route('list_products') }}">
                     <i class="fas fa-store-alt"></i>
                     <span class="text">Products</span>
                 </a>

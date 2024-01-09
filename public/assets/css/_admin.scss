@@ -7,6 +7,7 @@
 
         .container {
             width: 100%;
+            padding: 0.5em 3%;
             .header {
                 input {
                     @include desktop_only;

@@ -38,7 +38,7 @@
                         </div>
 
                         <div class="input_group">
-                            <label for="status">User Level</label>
+                            <label for="user_level">User Level</label>
                             <div class="custom_radio_buttons">
                                 <label>
                                     <input class="option_radio" type="radio" name="user_level" id="user_level_1" value="1" {{ ($user->user_level == 1) ? 'checked' : '' }}>

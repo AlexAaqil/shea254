@@ -127,7 +127,7 @@ form button {
 }
 
 @media screen and (width >= 726px) {
-  .customized_form .row_input_group {
+  .custom_form .row_input_group {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 0 1em;
@@ -214,7 +214,7 @@ nav .nav_container ul .authentication a {
   position: sticky;
   top: 0;
   left: 0;
-  height: 100%;
+  height: 100vh;
   width: 15%;
   border-right: 1px solid grey;
   padding: 0.5em 0;
@@ -316,7 +316,7 @@ nav .nav_container ul .authentication a {
     display: flex;
     align-items: center;
     gap: 0 0.4em;
-    padding: 0.8em 0;
+    padding: 0.4em 0;
     transition: all 0.2s ease;
   }
   .admin_sidebar ul li a:hover {
@@ -381,7 +381,7 @@ nav .nav_container ul .authentication a {
     transition: all 0.2s ease;
   }
   .close .logout button i {
-    color: red;
+    color: red !important;
   }
   .close .logout button:hover {
     font-size: 1.4em;
@@ -492,6 +492,41 @@ footer .copyright {
 }
 .products_wrapper .product .text .cart i {
   font-size: 2em;
+}
+
+.product_images {
+  display: flex;
+  gap: 0 1em;
+  margin: 0.5em 0;
+}
+.product_images .product_image {
+  position: relative;
+}
+.product_images .product_image img {
+  width: 120px;
+  height: 120px;
+  -o-object-fit: contain;
+     object-fit: contain;
+  -o-object-position: center;
+     object-position: center;
+  background: rgb(221, 221, 221);
+}
+.product_images .product_image a {
+  text-decoration: none;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: red;
+  color: white;
+  font-weight: bold;
+  padding: 8px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
 }
 
 .alert {
@@ -664,6 +699,7 @@ footer .copyright {
 }
 .Admin .Main .container {
   width: 100%;
+  padding: 0.5em 3%;
 }
 .Admin .Main .container .header input {
   display: none;
