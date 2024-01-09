@@ -3,16 +3,17 @@
 @section('content')
 @include('partials.navbar')
 <main class="Homepage">
+    @include('partials.messages')
     <section class="Hero">
         <div class="container">
             <div class="text">
                 <img src="{{ asset('/assets/images/hero_logo.png') }}" alt="Logo">
                 <h1>Shea254</h1>
                 <div class="hero_btn">
-                    <a href="#">Retail Shopping</a>
+                    <a href="{{ route('shop') }}">Retail Shopping</a>
                 </div>
                 <div class="hero_btn">
-                    <a href="#">Wholesale Shopping</a>
+                    <a href="{{ route('shop') }}">Wholesale Shopping</a>
                 </div>
             </div>
 
@@ -26,7 +27,7 @@
         <div class="container">
             <div class="header">
                 <h1>Most Popular</h1>
-                <a href="">View all</a>
+                <a href="{{ route('shop') }}">View all</a>
             </div>
 
             <div class="products_wrapper">
