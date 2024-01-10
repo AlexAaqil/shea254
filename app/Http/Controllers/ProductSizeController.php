@@ -44,7 +44,10 @@ class ProductSizeController extends Controller
         // If not, insert the record with the normalized product size
         ProductSize::create(['product_size' => $normalizedProductSize]);
 
-        return redirect()->route('list_product_sizes');
+        return redirect()->route('list_product_sizes')->with('success', [
+            'message' => "Product Size has been added.",
+            'duration' => $this->alert_message_duration,
+        ]);
     }
 
     public function get_update_product_size($id)
@@ -64,7 +67,10 @@ class ProductSizeController extends Controller
         $product_size = ProductSize::findOrFail($id);
         $product_size->update($validated);
 
-        return redirect()->route('list_product_sizes')->with('success', "Product size was updated successfully");
+        return redirect()->route('list_product_sizes')->with('success', [
+            'message' => "Product size was updated successfully",
+            'duration' => $this->alert_message_duration,
+        ]);
     }
 
     public function delete_product_size($id)
@@ -72,6 +78,9 @@ class ProductSizeController extends Controller
         $product_size = ProductSize::findOrFail($id);
         $product_size->delete();
 
-        return redirect()->route('list_product_sizes')->with('success', "Product size deleted successfully!");
+        return redirect()->route('list_product_sizes')->with('success', [
+            'message' => "Product size deleted successfully!",
+            'duration' => $this->alert_message_duration,
+        ]);
     }
 }

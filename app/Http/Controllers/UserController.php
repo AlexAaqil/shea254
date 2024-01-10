@@ -28,7 +28,10 @@ class UserController extends Controller
 
         $admin->save();
 
-        return redirect()->route('list_admins')->with('success',"Admin updated Successfully");
+        return redirect()->route('list_admins')->with('success', [
+            'message' => "Admin updated Successfully",
+            'duration' => $this->alert_message_duration,
+        ]);
     }
 
     public function list_users()
@@ -52,6 +55,9 @@ class UserController extends Controller
 
         $user->save();
 
-        return redirect()->route('list_users')->with('success',"User updated successfully");
+        return redirect()->route('list_users')->with('success', [
+            'message' => "User updated successfully",
+            'duration' => $this->alert_message_duration,
+        ]);
     }
 }
