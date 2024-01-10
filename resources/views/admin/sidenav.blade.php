@@ -44,6 +44,12 @@
                 </a>
             </li>
             <li class="nav-link">
+                <a href="{{ route('list_locations') }}">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span class="text">Locations</span>
+                </a>
+            </li>
+            <li class="nav-link">
                 <a href="#">
                     <i class="fas fa-truck"></i>
                     <span class="text">Orders</span>

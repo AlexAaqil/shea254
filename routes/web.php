@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\LocationController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -75,4 +76,11 @@ Route::middleware(['auth', 'admin'])->group(function() {
     Route::delete('/admin/products/delete/{id}', [ProductController::class, 'delete_product'])->name('delete_product');
     Route::get('/admin/product/delete_product_image/{id}', [ProductController::class, 'delete_product_image'])->name('delete_product_image');
     Route::post('/admin/product/product_images_sort', [ProductController::class, 'product_images_sort'])->name('product_images_sort');
+
+    Route::get('/admin/locations/list', [LocationController::class, 'list'])->name('list_locations');
+    Route::get('/admin/location/city/add', [LocationController::class, 'get_add_city'])->name('get_add_city');
+    Route::post('/admin/location/city/add', [LocationController::class, 'post_add_city'])->name('post_add_city');
+
+    Route::get('/admin/location/town/add', [LocationController::class, 'get_add_town'])->name('get_add_town');
+    Route::post('/admin/location/town/add', [LocationController::class, 'post_add_town'])->name('post_add_town');
 });

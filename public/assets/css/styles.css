@@ -1005,4 +1005,15 @@ footer .copyright {
 .container .statistics .static .text p:last-of-type {
   font-weight: bold;
   font-size: 1.3em;
+}
+
+.Locations {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1em;
+}
+@media screen and (width >= 726px) {
+  .Locations {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }/*# sourceMappingURL=styles.css.map */
