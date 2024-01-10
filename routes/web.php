@@ -23,6 +23,7 @@ use App\Http\Controllers\ProductController;
 Route::get('/', [HomeController::class, 'homepage'])->name('homepage');
 
 Route::get('/shop', [HomeController::class, 'shop'])->name('shop');
+Route::get('/product/{slug}', [ProductController::class, 'product_details'])->name('product_details');
 
 Route::get('/about', [HomeController::class, 'aboutpage'])->name('aboutpage');
 
@@ -30,15 +31,11 @@ Route::get('/contact', [HomeController::class, 'contactpage'])->name('contactpag
 
 Route::get('/cart', [OrderController::class, 'view_cart'])->name('cart');
 Route::post('/cart/add/{id}', [OrderController::class, 'add_to_cart'])->name('add_to_cart');
-
-Route::get('/product/{slug}', [ProductController::class, 'product_details'])->name('product_details');
-
-
-Route::get('/home', [HomeController::class, 'index'])
-->middleware('auth')
-->name('home');
+Route::get('/checkout', [OrderController::class, 'get_checkout'])->name('get_checkout');
+Route::post('/checkout', [OrderController::class, 'post_checkout'])->name('post_checkout');
 
 Route::middleware('auth')->group(function () {
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
