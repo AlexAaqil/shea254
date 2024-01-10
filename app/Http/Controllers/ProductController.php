@@ -28,6 +28,7 @@ class ProductController extends Controller
             'title'=> 'required|unique:products',
             'price' => 'required',
             'category_id' => 'required',
+            'product_size_id' => 'required',
         ]);
 
         $product = new Product;
@@ -61,7 +62,10 @@ class ProductController extends Controller
             }
         }
 
-        return redirect()->route('list_products')->with('success', "Product was added successfully");
+        return redirect()->route('list_products')->with('success', [
+            'message' => "Product was added successfully.",
+            'duration' => $this->alert_message_duration,
+        ]);
     }
 
     public function get_update_product($id) {
@@ -119,7 +123,10 @@ class ProductController extends Controller
             }
         }
 
-        return redirect()->route('list_products')->with('success', 'Product was updated successfully');
+        return redirect()->route('list_products')->with('success', [
+            'message' => 'Product was updated successfully',
+            'duration' => $this->alert_message_duration,
+        ]);
     }
 
     public function product_images_sort(Request $request) {
@@ -148,7 +155,10 @@ class ProductController extends Controller
         // Delete the file from storage
         Storage::disk('public')->delete($image->image_name);
 
-        return redirect()->route('get_update_product', $image->product_id)->with('success','Image deleted Successfully');
+        return redirect()->route('get_update_product', $image->product_id)->with('success',[
+            'message' => 'Image deleted Successfully',
+            'duration' => $this->alert_message_duration,
+        ]);
     }
 
     public function delete_product($id) {
@@ -168,7 +178,10 @@ class ProductController extends Controller
             Storage::disk('public')->delete($image_path);
         }
 
-        return redirect()->route('list_products')->with('success', "Product deleted successfully!");
+        return redirect()->route('list_products')->with('success', [
+            'message' => 'Product deleted successfully!',
+            'duration' => $this->alert_message_duration,
+        ]);
     }
 
     public function product_details($slug)

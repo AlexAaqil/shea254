@@ -629,12 +629,16 @@ footer .copyright {
 }
 
 .alert {
-  padding: 0.5em 0;
-  margin: 0.1em 0;
-  text-align: center;
+  padding: 1em;
   border-radius: 4px;
   color: #fff;
   font-weight: bold;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 30%;
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
 }
 
 .alert-danger {
