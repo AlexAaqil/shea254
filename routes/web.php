@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -27,9 +28,11 @@ Route::get('/about', [HomeController::class, 'aboutpage'])->name('aboutpage');
 
 Route::get('/contact', [HomeController::class, 'contactpage'])->name('contactpage');
 
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/cart', [OrderController::class, 'view_cart'])->name('cart');
+Route::post('/cart/add/{id}', [OrderController::class, 'add_to_cart'])->name('add_to_cart');
+
+Route::get('/product/{slug}', [ProductController::class, 'product_details'])->name('product_details');
+
 
 Route::get('/home', [HomeController::class, 'index'])
 ->middleware('auth')

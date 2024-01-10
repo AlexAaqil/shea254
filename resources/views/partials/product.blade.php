@@ -1,6 +1,6 @@
 <div class="product">
     <div class="image">
-        <a href="">
+        <a href="{{ route('product_details', $product->slug) }}">
             <img src="{{ $product->getFirstImage() }}" alt="Product">
         </a>
     </div>
@@ -13,7 +13,9 @@
 
             <div class="info">
                 <p class="title">
-                    <a href="">{{ $product->title }}</a>
+                    <a href="{{ route('product_details', $product->slug) }}">
+                        {{ $product->title }}
+                    </a>
                 </p>
                 <p class="price_details">
                     <span class="currency">Ksh.</span>
@@ -23,7 +25,12 @@
         </div>
 
         <div class="cart">
-            <i class="fas fa-shopping-bag add_to_cart_btn"></i>
+            <form action="{{ route('add_to_cart', $product->id) }}" method="post">
+                @csrf
+                <button type="submit">
+                    <i class="fas fa-shopping-bag add_to_cart_btn"></i>
+                </button>
+            </form>
         </div>
     </div>
 </div>

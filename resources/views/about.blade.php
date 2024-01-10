@@ -31,15 +31,7 @@
                 <p>Nairobi CBD <br />Sasa Mall, Moi Avenue <br />Shop G20</p>
                 <p>Business Hours: 08:00 A.M - 05:00 P.M</p>
             </div>
-            <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d249.30116336649832!2d36.82289723358633!3d-1.2826447627655024!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f11115fa70ed9%3A0x6e15dff148906f82!2ssasa%20mall!5e0!3m2!1sen!2ske!4v1703092238613!5m2!1sen!2ske"
-                width="400"
-                height="300"
-                style="border: 0"
-                allowfullscreen=""
-                loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"
-            ></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!4v1704873969482!6m8!1m7!1shKQQXmmhUyA217YG-i6CVQ!2m2!1d--1.282568713790881!2d36.823056679483564!3f27.684283364789728!4f0.9439519594547505!5f0.7820865974627469" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
     </section>
 </main>

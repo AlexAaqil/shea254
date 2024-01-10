@@ -10,8 +10,10 @@
             <li><a href="{{ route('aboutpage') }}">About</a></li>
             <li><a href="{{ route('contactpage') }}">Contact</a></li>
             <li class="cart">
-                <i class="fas fa-shopping-bag"></i>
-                <span>0</span>
+                <a href="{{ route('cart') }}">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span>{{ Session::get('cart_count', 0) }}</span>
+                </a>
             </li>
             <li class="authentication">
                 @if(Route::has('login'))

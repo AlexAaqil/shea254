@@ -86,3 +86,19 @@ function deleteItem(itemId, itemName, url = null) {
 
     showConfirmationDialog(message, confirmAction);
 }
+
+
+
+// Product Details Images Slider
+function ProductImageSlider() {
+    const mainImage = document.querySelector(".main_product_image");
+    const otherImagesContainer = document.querySelector(
+        ".other_images"
+    );
+
+    otherImagesContainer.querySelectorAll("img").forEach((image) => {
+        image.addEventListener("click", (event) => {
+            mainImage.src = event.target.src;
+        });
+    });
+}

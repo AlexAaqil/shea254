@@ -6,12 +6,10 @@
     <div class="container">
         <div class="wrapper">
             <div class="images">
-                {{-- @php dd($product_images) @endphp --}}
-                <img src="{{ $product->getFirstImage() }}" alt="{{ $product->title }}">
+                <img src="{{ $product->getFirstImage() }}" alt="{{ $product->title }}" class="main_product_image">
                 <div class="other_images">
-                    {{-- <img src="{{ $product->getFirstImage() }}" alt="{{ $product->title }}"> --}}
                     @foreach($product_images as $image)
-                        <img src={{ $image->getProductImageURL() }} alt="Other Image">
+                        <img src={{ $image->getProductImageURL() }} alt="Other Image" onclick="ProductImageSlider()">
                     @endforeach
                 </div>
             </div>
@@ -48,4 +46,5 @@
         </div>
     </div>
 </main>
+@include('partials.javascripts')
 @endsection

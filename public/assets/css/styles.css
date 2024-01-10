@@ -139,6 +139,39 @@ form button {
     width: 60%;
   }
 }
+table {
+  width: 100%;
+}
+table thead {
+  background: #000;
+  color: #fff;
+}
+table thead th {
+  padding: 0.5em 0.2em;
+  text-align: left;
+}
+table thead th:last-of-type {
+  text-align: center;
+}
+table tbody td {
+  padding: 0.5em 0.2em;
+}
+table tbody .actions {
+  display: flex;
+  justify-content: center;
+  gap: 0 2em;
+}
+table tbody .actions .action i {
+  font-size: 1em;
+  font-weight: bold;
+}
+table tbody .actions .action .update {
+  color: green;
+}
+table tbody .actions .action .delete {
+  color: red;
+}
+
 nav {
   height: 10vh;
   position: sticky;
@@ -447,13 +480,13 @@ footer .copyright {
   box-shadow: 2px 2px 8px rgb(201, 201, 201);
 }
 .products_wrapper .product .image {
-  height: 200px;
+  height: 250px;
 }
 .products_wrapper .product .image img {
   width: 100%;
   height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
+  -o-object-fit: contain;
+     object-fit: contain;
   -o-object-position: center;
      object-position: center;
 }
@@ -492,7 +525,12 @@ footer .copyright {
   align-items: center;
   justify-content: center;
 }
-.products_wrapper .product .text .cart i {
+.products_wrapper .product .text .cart button {
+  background: none;
+  color: #000;
+  cursor: pointer;
+}
+.products_wrapper .product .text .cart button i {
   font-size: 2em;
 }
 
@@ -529,6 +567,65 @@ footer .copyright {
   justify-content: center;
   width: 30px;
   height: 30px;
+}
+
+.Product_details .container {
+  padding: 1em 5%;
+}
+.Product_details .container .wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2em;
+}
+.Product_details .container .wrapper .images {
+  height: 350px;
+}
+.Product_details .container .wrapper .images img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+.Product_details .container .wrapper .images .other_images {
+  margin: 2em 0;
+}
+.Product_details .container .wrapper .images .other_images img {
+  height: 70px;
+  width: 70px;
+  cursor: pointer;
+}
+.Product_details .container .wrapper .details h1,
+.Product_details .container .wrapper .details .price,
+.Product_details .container .wrapper .details .action,
+.Product_details .container .wrapper .details .description {
+  margin: 0 0 1em;
+}
+.Product_details .container .wrapper .details h1 {
+  font-size: 1.6em;
+}
+.Product_details .container .wrapper .details .price {
+  color: green;
+  font-size: 1.4em;
+  font-weight: bold;
+}
+.Product_details .container .wrapper .details .description {
+  margin: 2em 0 0;
+}
+.Product_details .container .wrapper .details .action button {
+  border-radius: 32px;
+  padding: 8px 12px;
+}
+.Product_details .container .wrapper .details .extras {
+  margin: 5em 0;
+}
+.Product_details .container .wrapper .details .extras p {
+  font-size: 0.8em;
+  display: grid;
+  grid-template-columns: 20% auto;
+  margin: 0 0 0.5em;
+}
+.Product_details .container .wrapper .details .extras p span:last-of-type {
+  font-weight: bold;
 }
 
 .alert {
@@ -783,6 +880,81 @@ footer .copyright {
     margin: unset;
   }
 }
+.Cart .container .header h1 {
+  font-size: 1.4em;
+  margin: 0 0 0.3em;
+}
+.Cart .container .body {
+  display: grid;
+  grid-template-columns: 70% auto;
+  gap: 0 2em;
+  margin: 1.5em 0;
+}
+.Cart .container .body ul li {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1em;
+  padding: 0.8em 0;
+  border-bottom: 1px solid grey;
+}
+.Cart .container .body ul li:first-of-type {
+  border-top: 1px solid grey;
+}
+.Cart .container .body ul li span:not(first-of-type) {
+  text-align: center;
+}
+.Cart .container .body ul li .title a {
+  text-decoration: none;
+  color: #000;
+}
+.Cart .container .body ul li .quantity i {
+  font-size: 0.8em;
+  font-weight: bold;
+  cursor: pointer;
+  border: 1px solid rgb(196, 196, 196);
+  border-radius: 50%;
+  padding: 2px;
+  text-align: center;
+}
+.Cart .container .body ul li .quantity .increment {
+  color: green;
+}
+.Cart .container .body ul li .quantity .decrement {
+  color: red;
+}
+.Cart .container .body .summary {
+  background: #f2f2f2;
+  border-radius: 16px;
+  padding: 0.5em 1em;
+}
+.Cart .container .body .summary h1 {
+  font-size: 1.4em;
+  text-align: center;
+  margin: 0 0 1.5em;
+}
+.Cart .container .body .summary p {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5em;
+}
+.Cart .container .body .summary p span:last-of-type {
+  text-align: right;
+  font-weight: bold;
+}
+.Cart .container .body .summary .action {
+  margin: 2em 0 1.5em;
+  background: #000;
+  text-align: center;
+  border-radius: 8px;
+}
+.Cart .container .body .summary .action a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 550;
+  display: block;
+  padding: 12px 16px;
+}
+
 .container .statistics {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
