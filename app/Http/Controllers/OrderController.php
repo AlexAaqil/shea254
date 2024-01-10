@@ -48,10 +48,10 @@ class OrderController extends Controller
         return view('cart', compact('cart'));
     }
 
-    public function checkout()
+    public function get_checkout()
     {
-        // Implement the checkout logic, e.g., redirect to login if the user is not authenticated
-        return view('cart.checkout');
+        $cart = $this->calculateCartTotals();
+        return view('checkout', compact('cart'));
     }
 
     // New method to get and update the cart count

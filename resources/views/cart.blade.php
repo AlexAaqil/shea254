@@ -24,9 +24,9 @@
                     </span>
 
                     <span class="quantity">
-                        <i class="fas fa-plus increment"></i>
+                        <span class="increment"><i class="fas fa-plus"></i></span>
                         <span class="quantity_count">{{ $item['quantity'] }}</span>
-                        <i class="fas fa-minus decrement"></i>
+                        <span class="decrement"><i class="fas fa-minus"></i></span>
                     </span>
 
                     <span class="subtotal">
@@ -49,7 +49,7 @@
                 </p>
 
                 <div class="action">
-                    <a href="#">Proceed to Checkout</a>
+                    <a href="{{ route('get_checkout') }}">Proceed to Checkout</a>
                 </div>
             </div>
         </div>

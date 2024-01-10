@@ -887,6 +887,7 @@ footer .copyright {
 .Cart .container .body {
   display: grid;
   grid-template-columns: 70% auto;
+  align-items: start;
   gap: 0 2em;
   margin: 1.5em 0;
 }
@@ -900,21 +901,36 @@ footer .copyright {
 .Cart .container .body ul li:first-of-type {
   border-top: 1px solid grey;
 }
-.Cart .container .body ul li span:not(first-of-type) {
+.Cart .container .body ul li span {
   text-align: center;
+}
+.Cart .container .body ul li .title {
+  text-align: left;
 }
 .Cart .container .body ul li .title a {
   text-decoration: none;
   color: #000;
 }
+.Cart .container .body ul li .quantity {
+  display: flex;
+  justify-content: center;
+  gap: 0 0.7em;
+}
+.Cart .container .body ul li .quantity .decrement,
+.Cart .container .body ul li .quantity .increment {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgb(209, 209, 209);
+  border-radius: 50%;
+  width: 17px;
+  height: 17px;
+  padding: 8px;
+}
 .Cart .container .body ul li .quantity i {
   font-size: 0.8em;
   font-weight: bold;
   cursor: pointer;
-  border: 1px solid rgb(196, 196, 196);
-  border-radius: 50%;
-  padding: 2px;
-  text-align: center;
 }
 .Cart .container .body ul li .quantity .increment {
   color: green;
@@ -925,7 +941,7 @@ footer .copyright {
 .Cart .container .body .summary {
   background: #f2f2f2;
   border-radius: 16px;
-  padding: 0.5em 1em;
+  padding: 0.5em 1em 1em;
 }
 .Cart .container .body .summary h1 {
   font-size: 1.4em;
@@ -936,6 +952,7 @@ footer .copyright {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0.5em;
+  margin: 0.5em 0;
 }
 .Cart .container .body .summary p span:last-of-type {
   text-align: right;
