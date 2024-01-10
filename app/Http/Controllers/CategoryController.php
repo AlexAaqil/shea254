@@ -52,7 +52,10 @@ class CategoryController extends Controller
         $category = Category::findOrFail($id);
         $category->update($validated);
 
-        return redirect()->route('list_categories')->with('success', "Category was updated successfully");
+        return redirect()->route('list_categories')->with('success', [
+            'message' => "Category was updated successfully",
+            'duration' => $this->alert_message_duration,
+        ]);
     }
 
     public function delete_category($id)
@@ -60,6 +63,9 @@ class CategoryController extends Controller
         $category = Category::findOrFail($id);
         $category->delete();
 
-        return redirect()->route('list_categories')->with('success', "Category deleted successfully!");
+        return redirect()->route('list_categories')->with('success', [
+            'message' =>"Category deleted successfully!",
+            'duration' => $this->alert_message_duration,
+        ]);
     }
 }

@@ -30,7 +30,10 @@ class LocationController extends Controller
             'city_name' => $validated['city_name'],
         ]);
 
-        return redirect()->route('list_locations')->with('success', 'City has been added!');
+        return redirect()->route('list_locations')->with('success', [
+            'message' => 'City has been added!',
+            'duration' => $this->alert_message_duration,
+        ]);
     }
 
     public function get_add_town()
@@ -52,6 +55,9 @@ class LocationController extends Controller
             'price' => $request->price,
         ]);
 
-        return redirect()->route('list_locations')->with('success', 'Town has been added!');
+        return redirect()->route('list_locations')->with('success', [
+            'message' => 'Town has been added!',
+            'duration' => $this->alert_message_duration,
+        ]);
     }
 }
