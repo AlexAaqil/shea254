@@ -4,6 +4,7 @@
 <main class="Admin">
     @include('admin.sidenav')
     <section class="Main Locations">
+         @include('partials.messages')
         <div class="container">
             <div class="header">
                 <h1>Cities</h1>
@@ -13,7 +14,7 @@
                 </div>
             </div>
 
-            @include('partials.messages')
+
 
             <div class="body">
                 <table>
@@ -29,18 +30,18 @@
                             <td>{{ $city->city_name }}</td>
                             <td class="actions">
                                  <div class="action">
-                                    <a href="{{ route('get_update_category', ['id'=>$city->id]) }}">
+                                    <a href="{{ route('get_update_city', ['id'=>$city->id]) }}">
                                         <i class="fas fa-pencil-alt update"></i>
                                     </a>
                                 </div>
                                 <div class="action">
-                                    <form id="deleteForm_{{ $city->id }}" action="{{ route('delete_category', ['id' => $city->id]) }}" method="POST">
+                                    <form id="deleteForm_{{ $city->id }}" action="{{ route('delete_city', ['id' => $city->id]) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
 
-                                        <a href="javascript:void(0);" onclick="deleteItem({{ $city->id }}, 'city');">
+                                        <button type="button" onclick="deleteItem({{ $city->id }}, 'city');">
                                             <i class="fas fa-trash-alt delete"></i>
-                                        </a>
+                                        </button>
                                     </form>
                                 </div>
                             </td>
@@ -60,8 +61,6 @@
                 </div>
             </div>
 
-            @include('partials.messages')
-
             <div class="body">
                 <table>
                     <thead>
@@ -78,18 +77,18 @@
                             <td>{{ $town->price }}</td>
                             <td class="actions">
                                  <div class="action">
-                                    <a href="{{ route('get_update_category', ['id'=>$town->id]) }}">
+                                    <a href="{{ route('get_update_town', ['id'=>$town->id]) }}">
                                         <i class="fas fa-pencil-alt update"></i>
                                     </a>
                                 </div>
                                 <div class="action">
-                                    <form id="deleteForm_{{ $town->id }}" action="{{ route('delete_category', ['id' => $town->id]) }}" method="POST">
+                                    <form id="deleteForm_{{ $town->id }}" action="{{ route('delete_town', ['id' => $town->id]) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
 
-                                        <a href="javascript:void(0);" onclick="deleteItem({{ $town->id }}, 'town');">
+                                        <button type="button" onclick="deleteItem({{ $town->id }}, 'town');">
                                             <i class="fas fa-trash-alt delete"></i>
-                                        </a>
+                                        </button>
                                     </form>
                                 </div>
                             </td>

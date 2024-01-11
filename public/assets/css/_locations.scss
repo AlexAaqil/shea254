@@ -1,3 +1,21 @@
 .Locations {
     @include grid(2);
+
+    .container {
+        table {
+            .actions {
+                .action {
+                    button {
+                        background: none;
+                        padding: unset;
+                        cursor: pointer;
+                        i {
+                            font-size: 1em;
+                            font-weight: bold;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

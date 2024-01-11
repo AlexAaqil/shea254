@@ -76,15 +76,15 @@ function showConfirmationDialog(message, onConfirm) {
 function deleteItem(itemId, itemName, url = null) {
     const message = `This ${itemName} will be deleted permanently!`;
 
-    // Choose the appropriate confirmation action based on the presence of a URL
-    const confirmAction = url
-        ? () => (window.location.href = url)
-        : () => {
-              const formId = `deleteForm_${itemId}`;
-              document.getElementById(formId).submit();
-          };
+    // Show a confirmation dialog
+    showConfirmationDialog(message, () => {
+        const formId = `deleteForm_${itemId}`;
+        const form = document.getElementById(formId);
 
-    showConfirmationDialog(message, confirmAction);
+        if(form) {
+            form.submit();
+        }
+    });
 }
 
 
