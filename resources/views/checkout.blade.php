@@ -44,7 +44,9 @@
                             <label for="city">City</label>
                             <select name="city" id="city">
                                 <option value="">Select City</option>
-                                <option value="Nairobi">Nairobi</option>
+                                @foreach($cities as $city)
+                                    <option value="{{ $city->id }}">{{ $city->city_name }}</option>
+                                @endforeach
                             </select>
                         </div>
 
@@ -52,7 +54,9 @@
                             <label for="town">Town</label>
                             <select name="town" id="town">
                                 <option value="">Select Town</option>
-                                <option value="Moi Avenue">Moi Avenue</option>
+                                @foreach($towns as $town)
+                                    <option value="{{ $town->id }}">{{ $town->town_name }}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
@@ -80,4 +84,27 @@
         </div>
     </div>
 </main>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const citySelect = document.getElementById("city");
+    const townSelect = document.getElementById("town");
+
+    citySelect.addEventListener("change", function () {
+        const selectedCityId = this.value;
+
+        // Make an Ajax request to fetch towns based on the selected city
+        fetch(`/towns/fetch/${selectedCityId}`)
+            .then(response => response.json())
+            .then(data => {
+                // Clear and update the towns select box
+                townSelect.innerHTML = "";
+                townSelect.add(new Option("Select Town", ""));
+
+                data.forEach(town => {
+                    townSelect.add(new Option(town.town_name, town.id));
+                });
+            });
+    });
+});
+</script>
 @endsection

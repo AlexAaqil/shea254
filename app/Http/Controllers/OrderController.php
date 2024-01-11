@@ -6,6 +6,8 @@ use App\Models\Order;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use Illuminate\Support\Facades\Session;
+use App\Models\City;
+use App\Models\Town;
 
 class OrderController extends Controller
 {
@@ -56,8 +58,10 @@ class OrderController extends Controller
 
     public function get_checkout()
     {
+        $cities = City::all();
+        $towns = Town::all();
         $cart = $this->calculateCartTotals();
-        return view('checkout', compact('cart'));
+        return view('checkout', compact('cart', 'cities', 'towns'));
     }
 
     // New method to get and update the cart count

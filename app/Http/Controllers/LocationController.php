@@ -134,4 +134,10 @@ class LocationController extends Controller
             'duration' => $this->alert_message_duration,
         ]);
     }
+
+    public function get_towns($cityId)
+    {
+        $towns = Town::where('city_id', $cityId)->get();
+        return response()->json($towns);
+    }
 }
