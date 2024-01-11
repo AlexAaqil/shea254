@@ -36,6 +36,40 @@ class LocationController extends Controller
         ]);
     }
 
+    public function get_update_city($id)
+    {
+        $city = City::findOrFail($id);
+        return view('admin.update_city', compact('city'));
+    }
+
+    public function post_update_city(Request $request, $id)
+    {
+        $validated = $request->validate([
+            'city_name' => 'required|unique:cities, city_name,'.$id,
+        ]);
+
+        $city = City::findOrFail($id);
+        $city->update([
+            'city_name'=>$validated['city_name'],
+        ]);
+
+        return redirect()->route('list_locations')->with('success', [
+            'message' => 'City has been updated.',
+            'duration' => $this->alert_message_duration,
+        ]);
+    }
+
+    public function delete_city($id)
+    {
+        $city = City::findOrFail($id);
+        $city->delete();
+
+        return redirect()->route('list_locations')->with('success', [
+            'message' => 'City and associated towns have been deleted.',
+            'duration' => $this->alert_message_duration,
+        ]);
+    }
+
     public function get_add_town()
     {
         $cities = City::all();
@@ -57,6 +91,44 @@ class LocationController extends Controller
 
         return redirect()->route('list_locations')->with('success', [
             'message' => 'Town has been added!',
+            'duration' => $this->alert_message_duration,
+        ]);
+    }
+
+    public function get_update_town($id)
+    {
+        $cities = City::all();
+        $town = Town::findOrFail($id);
+        return view('admin.update_town', compact('cities', 'town'));
+    }
+
+    public function post_update_town(Request $request, $id)
+    {
+        $validated = $request->validate([
+            'town_name' => 'required|unique:towns, town_name,'.$id,
+            'city_id' => 'required',
+        ]);
+
+        $town = Town::findOrFail($id);
+        $town->update([
+            'town_name' => $validated['town_name'],
+            'city_id' => $validated['city_id'],
+            'price' => $request['price'],
+        ]);
+
+        return redirect()->route('list_locations')->with('success', [
+            'message' => 'Town has been updated.',
+            'duration' => $this->alert_message_duration,
+        ]);
+    }
+
+    public function delete_town($id)
+    {
+        $town = Town::findOrFail($id);
+        $town->delete();
+
+        return redirect()->route('list_locations')->with('success', [
+            'message' => 'Town has been deleted.',
             'duration' => $this->alert_message_duration,
         ]);
     }

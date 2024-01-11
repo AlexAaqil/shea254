@@ -80,7 +80,13 @@ Route::middleware(['auth', 'admin'])->group(function() {
     Route::get('/admin/locations/list', [LocationController::class, 'list'])->name('list_locations');
     Route::get('/admin/location/city/add', [LocationController::class, 'get_add_city'])->name('get_add_city');
     Route::post('/admin/location/city/add', [LocationController::class, 'post_add_city'])->name('post_add_city');
+    Route::get('/admin/location/city/update/{id}', [LocationController::class, 'get_update_city'])->name('get_update_city');
+    Route::post('/admin/location/city/update/{id}', [LocationController::class, 'post_update_city'])->name('post_update_city');
+    Route::delete('/admin/location/city/delete/{id}', [LocationController::class, 'delete_city'])->name('delete_city');
 
     Route::get('/admin/location/town/add', [LocationController::class, 'get_add_town'])->name('get_add_town');
     Route::post('/admin/location/town/add', [LocationController::class, 'post_add_town'])->name('post_add_town');
+    Route::get('/admin/location/town/update/{id}', [LocationController::class, 'get_update_town'])->name('get_update_town');
+    Route::post('/admin/location/town/update/{id}', [LocationController::class, 'post_update_town'])->name('post_update_town');
+    Route::delete('/admin/location/town/delete/{id}', [LocationController::class, 'delete_town'])->name('delete_town');
 });

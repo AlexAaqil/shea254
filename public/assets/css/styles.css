@@ -1020,4 +1020,13 @@ footer .copyright {
   .Locations {
     grid-template-columns: repeat(2, 1fr);
   }
+}
+.Locations .container table .actions .action button {
+  background: none;
+  padding: unset;
+  cursor: pointer;
+}
+.Locations .container table .actions .action button i {
+  font-size: 1em;
+  font-weight: bold;
 }/*# sourceMappingURL=styles.css.map */
