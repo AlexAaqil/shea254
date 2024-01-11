@@ -962,6 +962,11 @@ footer .copyright {
   text-align: right;
   font-weight: bold;
 }
+.Cart .container .body .summary .total {
+  margin: 2em 0 0;
+  font-weight: bold;
+  font-size: 1.2em;
+}
 .Cart .container .body .summary .action {
   margin: 2em 0 1.5em;
   background: #000;

@@ -90,4 +90,5 @@ Route::middleware(['auth', 'admin'])->group(function() {
     Route::post('/admin/location/town/update/{id}', [LocationController::class, 'post_update_town'])->name('post_update_town');
     Route::delete('/admin/location/town/delete/{id}', [LocationController::class, 'delete_town'])->name('delete_town');
     Route::get('/towns/fetch/{cityId}', [LocationController::class, 'get_towns'])->name('get_towns');
+    Route::get('/town/fetch/shipping-price/{townId}', [LocationController::class, 'get_shipping_price'])->name('get_shipping_price');
 });

@@ -39,6 +39,11 @@
                         <input type="text" name="address" id="address" value="{{ old('address') }}" required>
                     </div>
 
+                    <div class="input_group">
+                        <label for="additional_information">Additional Information</label>
+                        <input type="text" name="additional_information" id="additional_information" placeholder="Extra Information... (e.g) Specific Location" required>
+                    </div>
+
                     <div class="row_input_group">
                         <div class="input_group">
                             <label for="city">City</label>
@@ -61,11 +66,6 @@
                         </div>
                     </div>
 
-                    <div class="input_group">
-                        <label for="additional_information">Additional Information</label>
-                        <textarea name="additional_information" id="additional_information" cols="30" rows="7" placeholder="Extra Information... (e.g) Specific Location"></textarea>
-                    </div>
-
                     <button type="submit">Confirm Order</button>
                 </form>
             </div>
@@ -77,34 +77,64 @@
                     <span>{{ Session::get('cart_count', 0) }}</span>
                 </p>
                 <p>
-                    <span>Cart Total</span>
-                    <span>Ksh. {{ $cart['subtotal'] }}</span>
+                    <span>Shipping Cost</span>
+                    <span id="shipping_cost_amount">0</span>
+                </p>
+                <p class="total">
+                    <span>Total</span>
+                    <span id="total_amount">Ksh. {{ $cart['subtotal'] }}</span>
                 </p>
             </div>
         </div>
     </div>
 </main>
 <script>
-document.addEventListener("DOMContentLoaded", function () {
-    const citySelect = document.getElementById("city");
-    const townSelect = document.getElementById("town");
+    document.addEventListener("DOMContentLoaded", function () {
+        const citySelect = document.getElementById("city");
+        const townSelect = document.getElementById("town");
+        const shippingCostElement = document.getElementById("shipping_cost_amount");
+        const totalElement = document.getElementById("total_amount");
 
-    citySelect.addEventListener("change", function () {
-        const selectedCityId = this.value;
+        // Function to update shipping cost and total
+        function updateShippingAndTotal(townPrice) {
+            const shippingCost = townPrice; // Use town's price as shipping cost
+            const cartSubtotal = {{ $cart['subtotal'] }}; // Get cart subtotal from PHP
 
-        // Make an Ajax request to fetch towns based on the selected city
-        fetch(`/towns/fetch/${selectedCityId}`)
-            .then(response => response.json())
-            .then(data => {
-                // Clear and update the towns select box
-                townSelect.innerHTML = "";
-                townSelect.add(new Option("Select Town", ""));
+            // Update the DOM
+            shippingCostElement.textContent = `Ksh. ${shippingCost.toFixed(2)}`;
+            totalElement.textContent = `Ksh. ${(shippingCost + cartSubtotal).toFixed(2)}`;
+        }
 
-                data.forEach(town => {
-                    townSelect.add(new Option(town.town_name, town.id));
+        citySelect.addEventListener("change", function () {
+            const selectedCityId = this.value;
+
+            // Make an Ajax request to fetch towns based on the selected city
+            fetch(`/towns/fetch/${selectedCityId}`)
+                .then(response => response.json())
+                .then(data => {
+                    // Clear and update the towns select box
+                    townSelect.innerHTML = "";
+                    townSelect.add(new Option("Select Town", ""));
+
+                    data.forEach(town => {
+                        townSelect.add(new Option(town.town_name, town.id));
+                    });
                 });
-            });
+        });
+
+        townSelect.addEventListener("change", function () {
+            const selectedTownId = this.value;
+
+            // Make an Ajax request to fetch the selected town's price
+            fetch(`/town/fetch/shipping-price/${selectedTownId}`)
+                .then(response => response.json())
+                .then(data => {
+                    const townPrice = data.price;
+
+                    // Trigger update with the town's price
+                    updateShippingAndTotal(townPrice);
+                });
+        });
     });
-});
 </script>
 @endsection

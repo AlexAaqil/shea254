@@ -140,4 +140,12 @@ class LocationController extends Controller
         $towns = Town::where('city_id', $cityId)->get();
         return response()->json($towns);
     }
+
+    public function get_shipping_price($townId)
+    {
+        $town = Town::findOrFail($townId);
+        $price = $town->price;
+
+        return response()->json(['price' => $price]);
+    }
 }
