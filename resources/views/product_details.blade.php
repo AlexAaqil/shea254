@@ -30,7 +30,7 @@
                     </form>
                 </div>
 
-                <p class="description">{{ $product->description }}</p>
+                <p class="description">{{ Illuminate\Support\Str::limit($product->description, 150) }}</p>
 
                 <div class="extras">
                     <p>

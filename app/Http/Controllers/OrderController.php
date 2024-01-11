@@ -14,7 +14,10 @@ class OrderController extends Controller
         $product = Product::find($productId);
 
         if (!$product) {
-            return redirect()->route('shop')->with('error', 'Product not found.');
+            return redirect()->route('shop')->with('error', [
+                'message' => 'Product not found.',
+                'duration' => $this->alert_message_duration,
+            ]);
         }
 
         $cart = Session::get('cart', []);
@@ -38,7 +41,10 @@ class OrderController extends Controller
         // Call the method to update cart count
         $this->updateCartCount();
 
-        return redirect()->back()->with('success', 'Product added to cart successfully.');
+        return redirect()->back()->with('success', [
+            'message' => 'Product added to cart successfully.',
+            'duration' => $this->alert_message_duration,
+        ]);
     }
 
     public function view_cart()
