@@ -79,6 +79,8 @@ class ProductController extends Controller
     public function post_update_product($id, Request $request) {
         request()->validate([
             'title' => 'required|unique:products,title,'.$id,
+            'product_size_id' => 'required',
+            'category_id' => 'required',
         ]);
 
         $product = Product::find($id);

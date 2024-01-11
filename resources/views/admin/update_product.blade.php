@@ -63,11 +63,11 @@
 
                     <div class="row_input_group">
                         <div class="input_group">
-                            <label for="category_id">Category<span>*</span></label>
-                            <select name="category_id" id="category_id" value="{{ old('category_id') }}">
+                            <label for="category_id">Category<span class="text-danger">*</span></label>
+                            <select name="category_id" id="category_id">
                                 <option value="">select</option>
                                 @foreach($categories as $category)
-                                    <option value="{{ $category->id }}" {{ $product->category_id == $category->id ? 'selected' : '' }}>
+                                    <option value="{{ $category->id }}" {{ (old('category_id', $product->category_id) == $category->id) ? 'selected' : '' }}>
                                         {{ $category->title }}
                                     </option>
                                 @endforeach
@@ -76,11 +76,11 @@
                         </div>
 
                         <div class="input_group">
-                            <label for="product_size_id">Size<span>*</span></label>
-                            <select name="product_size_id" id="product_size_id" value="{{ old('product_size_id') }}">
+                            <label for="product_size_id">Size<span class="text-danger">*</span></label>
+                            <select name="product_size_id" id="product_size_id">
                                 <option value="">select</option>
                                 @foreach($product_sizes as $size)
-                                    <option value="{{ $size->id }}" {{ $product->product_size_id == $size->id ? 'selected' : '' }}>
+                                    <option value="{{ $size->id }}" {{ (old('product_size_id', $product->product_size_id) == $size->id) ? 'selected' : '' }}>
                                         {{ $size->product_size }}
                                     </option>
                                 @endforeach
