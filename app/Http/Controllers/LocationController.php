@@ -81,12 +81,13 @@ class LocationController extends Controller
         $validated = $request->validate([
             'town_name' => 'required|string|max:100|unique:towns',
             'city_id' => 'required',
+            'price' => 'required|numeric',
         ]);
 
         Town::create([
             'city_id' => $validated['city_id'],
             'town_name' => $validated['town_name'],
-            'price' => $request->price,
+            'price' => $validated['price'],
         ]);
 
         return redirect()->route('list_locations')->with('success', [
@@ -105,15 +106,16 @@ class LocationController extends Controller
     public function post_update_town(Request $request, $id)
     {
         $validated = $request->validate([
-            'town_name' => 'required|unique:towns, town_name,'.$id,
+            'town_name' => 'required|unique:towns,town_name,'.$id,
             'city_id' => 'required',
+            'price' => 'required|numeric',
         ]);
 
         $town = Town::findOrFail($id);
         $town->update([
             'town_name' => $validated['town_name'],
             'city_id' => $validated['city_id'],
-            'price' => $request['price'],
+            'price' => $validated['price'],
         ]);
 
         return redirect()->route('list_locations')->with('success', [

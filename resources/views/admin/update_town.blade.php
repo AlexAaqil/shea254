@@ -14,7 +14,7 @@
                         <select name="city_id" id="city_id">
                             <option value="">Select City</option>
                             @foreach ($cities as $city)
-                                <option value="{{$city->id}}" {{ $city->id == $town->city_id ? 'selected' : '' }}>{{$city->city_name}}</option>
+                                <option value="{{$city->id}}" {{ (old('city_id', $town->city_id) == $city->id) ? 'selected' : '' }}>{{$city->city_name}}</option>
                             @endforeach
                         </select>
                         <span class="inline_alert">{{ $errors->first('city_id') }}</span>
