@@ -52,7 +52,7 @@
                 </a>
             </li>
             <li class="nav-link">
-                <a href="#">
+                <a href="{{ route('list_orders') }}">
                     <i class="fas fa-truck"></i>
                     <span class="text">Orders</span>
                 </a>

@@ -57,7 +57,7 @@
                             <select name="city" id="city">
                                 <option value="">Select City</option>
                                 @foreach($cities as $city)
-                                    <option value="{{ $city->id }}" {{ (old('city', $city->id)) ? 'selected' : '' }}>
+                                    <option value="{{ $city->id }}">
                                         {{ $city->city_name }}
                                     </option>
                                 @endforeach
@@ -70,7 +70,7 @@
                             <select name="town" id="town">
                                 <option value="">Select Town</option>
                                 @foreach($towns as $town)
-                                    <option value="{{ $town->id }}" {{ (old('town_id', $town->town_id) == $town->id) ? 'selected' : '' }}>
+                                    <option value="{{ $town->id }}">
                                         {{ $town->town_name }}
                                     </option>
                                 @endforeach

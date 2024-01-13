@@ -26,6 +26,8 @@ return new class extends Migration
             $table->json('cart_items');
             $table->decimal('shipping_cost');
             $table->decimal('total_amount');
+            $table->string('status')->default('pending');
+            $table->boolean('paid')->default(false);
             $table->timestamps();
         });
     }

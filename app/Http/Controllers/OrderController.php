@@ -13,6 +13,12 @@ use Illuminate\Support\Str;
 
 class OrderController extends Controller
 {
+    public function list_orders()
+    {
+        $orders = Order::latest()->get();
+        return view('admin.list_orders', compact('orders'));
+    }
+
     public function add_to_cart($productId)
     {
         $product = Product::find($productId);
@@ -118,32 +124,47 @@ class OrderController extends Controller
             'phone_number' => 'required|string',
             'address' => 'required|string',
             'additional_information' => 'nullable|string',
-            'city' => 'required|string',
-            'town' => 'required|string',
+            'city' => 'required|exists:cities,id',
+            'town' => 'required|exists:towns,id',
         ]);
 
         // Retrieve cart items from the session
         $validated_data['cart_items'] = json_encode(Session::get('cart', []));
 
-        // Calculate shipping cost and total amount based on the selected town
-        $townId = $request->input('town');
-        $town = Town::find($townId);
+        // Retrieve city and town names
+        $city = City::find($validated_data['city']);
+        $town = Town::find($validated_data['town']);
 
-        if ($town) {
-            $shipping_cost = $town->price;
-            $cart = $this->calculateCartTotals();
-
-            $validated_data['shipping_cost'] = $shipping_cost;
-            $validated_data['total_amount'] = $shipping_cost + $cart['subtotal'];
+        if (!$city || !$town) {
+            // Handle if city or town is not found
+            return redirect()->route('checkout')->with('error', [
+                'message' => 'Invalid city or town selected.',
+                'duration' => $this->alert_message_duration,
+            ]);
         }
+
+        // Add city and town names to the validated data
+        $validated_data['city'] = $city->city_name;
+        $validated_data['town'] = $town->town_name;
+
+        // Calculate shipping cost and total amount based on the selected town
+        $shipping_cost = $town->price;
+        $cart = $this->calculateCartTotals();
+
+        $validated_data['shipping_cost'] = $shipping_cost;
+        $validated_data['total_amount'] = $shipping_cost + $cart['subtotal'];
 
         // Generate order number and set user ID
         $validated_data['order_number'] = 'order_' . Str::random(5);
         $validated_data['user_id'] = Auth::user()->id;
 
+        // Create the order
         $order = Order::create($validated_data);
 
+        // Store order number in session
         Session::put('order_number', $order->order_number);
+
+        // Clear the cart and cart count
         Session::forget(['cart', 'cart_count']);
 
         return redirect()->route('order_success');

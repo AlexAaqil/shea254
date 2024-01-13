@@ -23,5 +23,7 @@ class Order extends Model
         'cart_items',
         'shipping_cost',
         'total_amount',
+        'status',
+        'paid',
     ];
 }

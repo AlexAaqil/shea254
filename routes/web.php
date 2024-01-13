@@ -95,4 +95,6 @@ Route::middleware(['auth', 'admin'])->group(function() {
     Route::get('/admin/location/town/update/{id}', [LocationController::class, 'get_update_town'])->name('get_update_town');
     Route::post('/admin/location/town/update/{id}', [LocationController::class, 'post_update_town'])->name('post_update_town');
     Route::delete('/admin/location/town/delete/{id}', [LocationController::class, 'delete_town'])->name('delete_town');
+
+    Route::get('/admin/orders/list', [OrderController::class, 'list_orders'])->name('list_orders');
 });
