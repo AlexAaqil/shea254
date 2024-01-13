@@ -32,8 +32,14 @@ Route::get('/contact', [HomeController::class, 'contactpage'])->name('contactpag
 
 Route::get('/cart', [OrderController::class, 'view_cart'])->name('cart');
 Route::post('/cart/add/{id}', [OrderController::class, 'add_to_cart'])->name('add_to_cart');
-Route::get('/checkout', [OrderController::class, 'get_checkout'])->name('get_checkout');
-Route::post('/checkout', [OrderController::class, 'post_checkout'])->name('post_checkout');
+Route::get('/checkout', [OrderController::class, 'get_checkout'])
+->name('get_checkout')
+->middleware('auth');
+Route::post('/checkout', [OrderController::class, 'create_order'])->name('create_order');
+Route::get('/towns/fetch/{cityId}', [LocationController::class, 'get_towns'])->name('get_towns');
+Route::get('/town/fetch/shipping-price/{townId}', [LocationController::class, 'get_shipping_price'])->name('get_shipping_price');
+
+Route::get('/order/success', [OrderController::class, 'order_success'])->name('order_success');
 
 Route::middleware('auth')->group(function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
@@ -89,6 +95,4 @@ Route::middleware(['auth', 'admin'])->group(function() {
     Route::get('/admin/location/town/update/{id}', [LocationController::class, 'get_update_town'])->name('get_update_town');
     Route::post('/admin/location/town/update/{id}', [LocationController::class, 'post_update_town'])->name('post_update_town');
     Route::delete('/admin/location/town/delete/{id}', [LocationController::class, 'delete_town'])->name('delete_town');
-    Route::get('/towns/fetch/{cityId}', [LocationController::class, 'get_towns'])->name('get_towns');
-    Route::get('/town/fetch/shipping-price/{townId}', [LocationController::class, 'get_shipping_price'])->name('get_shipping_price');
 });

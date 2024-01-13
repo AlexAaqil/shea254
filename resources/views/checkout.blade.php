@@ -10,38 +10,45 @@
         <div class="body">
             <div class="custom_form">
                 <form action="" method="post">
+                    @csrf
                     <div class="row_input_group">
                         <div class="input_group">
                             <label for="first_name">First Name</label>
-                            <input type="text" name="first_name" id="first_name" value="{{ old('first_name') }}" required>
+                            <input type="text" name="first_name" id="first_name" value="{{ $user ? $user->first_name : old('first_name') }}">
+                            <span class="inline_alert">{{ $errors->first('first_name') }}</span>
                         </div>
 
                         <div class="input_group">
                             <label for="last_name">Last Name</label>
-                            <input type="text" name="last_name" id="last_name" value="{{ old('last_name') }}" required>
+                            <input type="text" name="last_name" id="last_name" value="{{ $user ? $user->last_name : old('last_name') }}">
+                            <span class="inline_alert">{{ $errors->first('last_name') }}</span>
                         </div>
                     </div>
 
                     <div class="row_input_group">
                         <div class="input_group">
                             <label for="email">Email Address</label>
-                            <input type="email" name="email" id="email" value="{{ old('email') }}" required>
+                            <input type="email" name="email" id="email" value="{{ $user ? $user->email : old('email') }}">
+                            <span class="inline_alert">{{ $errors->first('email') }}</span>
                         </div>
 
                         <div class="input_group">
                             <label for="phone_number">Phone Number</label>
-                            <input type="text" name="phone_number" id="phone_number" value="{{ old('phone_number') }}" required>
+                            <input type="text" name="phone_number" id="phone_number" value="{{ $user ? $user->phone_number : old('phone_number') }}">
+                            <span class="inline_alert">{{ $errors->first('phone_number') }}</span>
                         </div>
                     </div>
 
                     <div class="input_group">
                         <label for="address">Address</label>
-                        <input type="text" name="address" id="address" value="{{ old('address') }}" required>
+                        <input type="text" name="address" id="address" value="{{ $user ? $user->address : old('address') }}">
+                        <span class="inline_alert">{{ $errors->first('address') }}</span>
                     </div>
 
                     <div class="input_group">
                         <label for="additional_information">Additional Information</label>
-                        <input type="text" name="additional_information" id="additional_information" placeholder="Extra Information... (e.g) Specific Location" required>
+                        <input type="text" name="additional_information" id="additional_information" placeholder="Extra Information... (e.g) Specific Location" value="{{ $user ? $user->additional_information : old('additional_information') }}">
+                        <span class="inline_alert">{{ $errors->first('additional_information') }}</span>
                     </div>
 
                     <div class="row_input_group">
@@ -50,9 +57,12 @@
                             <select name="city" id="city">
                                 <option value="">Select City</option>
                                 @foreach($cities as $city)
-                                    <option value="{{ $city->id }}">{{ $city->city_name }}</option>
+                                    <option value="{{ $city->id }}" {{ (old('city', $city->id)) ? 'selected' : '' }}>
+                                        {{ $city->city_name }}
+                                    </option>
                                 @endforeach
                             </select>
+                            <span class="inline_alert">{{ $errors->first('city') }}</span>
                         </div>
 
                         <div class="input_group">
@@ -60,9 +70,12 @@
                             <select name="town" id="town">
                                 <option value="">Select Town</option>
                                 @foreach($towns as $town)
-                                    <option value="{{ $town->id }}">{{ $town->town_name }}</option>
+                                    <option value="{{ $town->id }}" {{ (old('town_id', $town->town_id) == $town->id) ? 'selected' : '' }}>
+                                        {{ $town->town_name }}
+                                    </option>
                                 @endforeach
                             </select>
+                            <span class="inline_alert">{{ $errors->first('town') }}</span>
                         </div>
                     </div>
 

@@ -6,8 +6,10 @@ use App\Models\Order;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
 use App\Models\City;
 use App\Models\Town;
+use Illuminate\Support\Str;
 
 class OrderController extends Controller
 {
@@ -60,8 +62,17 @@ class OrderController extends Controller
     {
         $cities = City::all();
         $towns = Town::all();
+        $user = Auth::user();
         $cart = $this->calculateCartTotals();
-        return view('checkout', compact('cart', 'cities', 'towns'));
+
+        if(empty($cart['items'])) {
+            return redirect()->route('shop')->with('error', [
+                'message' => 'You don\'t have any items in your cart to checkout.',
+                'duration' => $this->alert_message_duration,
+            ]);
+        }
+
+        return view('checkout', compact('cart', 'cities', 'towns', 'user'));
     }
 
     // New method to get and update the cart count
@@ -96,5 +107,51 @@ class OrderController extends Controller
         $cart['subtotal'] = $subtotal;
 
         return $cart;
+    }
+
+    public function create_order(Request $request)
+    {
+        $validated_data = $request->validate([
+            'first_name' => 'required|string',
+            'last_name' => 'required|string',
+            'email' => 'required|email',
+            'phone_number' => 'required|string',
+            'address' => 'required|string',
+            'additional_information' => 'nullable|string',
+            'city' => 'required|string',
+            'town' => 'required|string',
+        ]);
+
+        // Retrieve cart items from the session
+        $validated_data['cart_items'] = json_encode(Session::get('cart', []));
+
+        // Calculate shipping cost and total amount based on the selected town
+        $townId = $request->input('town');
+        $town = Town::find($townId);
+
+        if ($town) {
+            $shipping_cost = $town->price;
+            $cart = $this->calculateCartTotals();
+
+            $validated_data['shipping_cost'] = $shipping_cost;
+            $validated_data['total_amount'] = $shipping_cost + $cart['subtotal'];
+        }
+
+        // Generate order number and set user ID
+        $validated_data['order_number'] = 'order_' . Str::random(5);
+        $validated_data['user_id'] = Auth::user()->id;
+
+        $order = Order::create($validated_data);
+
+        Session::put('order_number', $order->order_number);
+        Session::forget(['cart', 'cart_count']);
+
+        return redirect()->route('order_success');
+    }
+
+    public function order_success()
+    {
+        $order_number = session('order_number');
+        return view('order_success', compact('order_number'));
     }
 }
