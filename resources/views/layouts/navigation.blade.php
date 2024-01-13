@@ -16,6 +16,16 @@
                         {{ __('Home') }}
                     </x-nav-link>
                 </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('shop')" :active="request()->routeIs('shop')">
+                        {{ __('shop') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('get_checkout')" :active="request()->routeIs('get_checkout')">
+                        {{ __('Checkout') }}
+                    </x-nav-link>
+                </div>
             </div>
 
             <!-- Settings Dropdown -->
