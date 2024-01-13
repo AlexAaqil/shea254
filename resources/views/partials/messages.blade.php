@@ -1,30 +1,31 @@
 @if(!empty(session('error')))
-    <div class="alert alert-danger">
+    <div class="alert alert-danger" data-duration="{{ session('error.duration') }}">
         {{ session('error.message') }}
     </div>
 @endif
 
 @if(!empty(session('success')))
-    <div class="alert alert-success">
+    <div class="alert alert-success" data-duration="{{ session('success.duration') }}">
         {{ session('success.message') }}
     </div>
 @endif
 
 @if(!empty(session('warning')))
-    <div class="alert alert-warning">
+    <div class="alert alert-warning" data-duration="{{ session('warning.duration') }}">
         {{ session('warning.message') }}
     </div>
 @endif
 
 <script>
-    // Get all elements with the 'alert' class
-    var alerts = document.getElementsByClassName('alert');
+const alertElements = document.getElementsByClassName("alert");
 
-    // Loop through each element and hide it after the specified duration
-    for (var i = 0; i < alerts.length; i++) {
-        setTimeout(function(element) {
-            element.style.opacity = '0';
-            element.style.display = 'none';
-        }, {{ session('success.duration') }}, alerts[i]);
-    }
+for (let alertIndex = 0; alertIndex < alertElements.length; alertIndex++) {
+    const currentAlert = alertElements[alertIndex];
+    const duration = parseInt(currentAlert.dataset.duration);
+
+    setTimeout(function () {
+        currentAlert.style.opacity = "0";
+        currentAlert.style.display = "none";
+    }, duration);
+}
 </script>
