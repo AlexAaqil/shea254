@@ -18,7 +18,8 @@ class HomeController extends Controller
 
             if($user_level==2)
             {
-                return view('dashboard');
+                $user_orders = Auth::user()->orders;
+                return view('dashboard', compact('user_orders'));
             }
             else if($user_level==1)
             {

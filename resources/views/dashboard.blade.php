@@ -1,17 +1,27 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
-
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
-                    {{ __("You're logged in!") }}
-                </div>
-            </div>
-        </div>
+@extends('partials.base')
+@section('content')
+@include('partials.navbar')
+<main class="Orders">
+    <div class="container">
+        <h1>Orders</h1>
+        <ul>
+            @foreach($user_orders as $order)
+            <li>
+                <span>{{ $order->order_number }}</span>
+                <span>Ksh. {{ $order->total_amount }}</span>
+                <span class="{{ ($order->status == "processed") ? 'text-success' : '' }}">{{ $order->status }}
+                    @if ($order->status == "processed")
+                        <i class="fas fa-check"></i>
+                    @endif
+                </span>
+                <span class="{{ ($order->paid == 0) ? 'text-danger' : 'text-success' }}">
+                    {{ ($order->paid == 0) ? 'Not Paid' : 'Paid' }}
+                </span>
+                <span>{{ $order->created_at->format('F j, Y h:i A') }}</span>
+            </li>
+            @endforeach
+        </ul>
     </div>
-</x-app-layout>
+</main>
+@include('partials.footer')
+@endsection

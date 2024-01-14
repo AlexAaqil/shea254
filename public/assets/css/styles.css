@@ -676,12 +676,18 @@ footer .copyright {
 }
 .Orders ul li {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: 1fr;
+  gap: 1em;
   border-bottom: 1px solid grey;
   padding: 0.5em;
 }
 .Orders ul li:first-child {
   border-top: 1px solid grey;
+}
+@media screen and (width >= 726px) {
+  .Orders ul li {
+    grid-template-columns: repeat(5, 1fr);
+  }
 }
 
 .Order_success {

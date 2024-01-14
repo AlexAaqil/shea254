@@ -10,7 +10,7 @@
                 <span>{{ $order->order_number }}</span>
                 <span>{{ $order->status }}
                     @if ($order->status == "processed")
-                        <i class="fas fa-checkmark"></i>
+                        <i class="fas fa-check text-success"></i>
                     @endif
                 </span>
                 <span>Ksh. {{ $order->total_amount }}</span>
