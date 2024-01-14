@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use Illuminate\Http\Request;
-use App\Models\Product;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 use App\Models\City;
@@ -19,57 +18,12 @@ class OrderController extends Controller
         return view('admin.list_orders', compact('orders'));
     }
 
-    public function add_to_cart($productId)
-    {
-        $product = Product::find($productId);
-
-        if (!$product) {
-            return redirect()->route('shop')->with('error', [
-                'message' => 'Product not found.',
-                'duration' => $this->alert_message_duration,
-            ]);
-        }
-
-        $cart = Session::get('cart', []);
-
-        if (array_key_exists($product->id, $cart)) {
-            // Increment quantity if product is already in the cart
-            $cart[$product->id]['quantity']++;
-        } else {
-            // Add the product to the cart
-            $cart[$product->id] = [
-                'id' => $product->id,
-                'title' => $product->title,
-                'slug' => $product->slug,
-                'price' => $product->price,
-                'quantity' => 1,
-            ];
-        }
-
-        Session::put('cart', $cart);
-
-        // Call the method to update cart count
-        $this->updateCartCount();
-
-        return redirect()->back()->with('success', [
-            'message' => 'Product added to cart successfully.',
-            'duration' => $this->alert_message_duration,
-        ]);
-    }
-
-    public function view_cart()
-    {
-        $cart = $this->calculateCartTotals();
-
-        return view('cart', compact('cart'));
-    }
-
     public function get_checkout()
     {
         $cities = City::all();
         $towns = Town::all();
         $user = Auth::user();
-        $cart = $this->calculateCartTotals();
+        $cart = app(CartController::class)->cartItemsWithCalculatedTotals();
 
         if(empty($cart['items'])) {
             return redirect()->route('shop')->with('error', [
@@ -81,41 +35,7 @@ class OrderController extends Controller
         return view('checkout', compact('cart', 'cities', 'towns', 'user'));
     }
 
-    // New method to get and update the cart count
-    private function updateCartCount()
-    {
-        //  $cartCount = count(Session::get('cart', []));
-        // Session::put('cart_count', $cartCount);
-
-
-        $cart = Session::get('cart', []);
-        $cart_count = 0;
-
-        foreach($cart as $item)
-        {
-            $cart_count += $item['quantity'];
-        }
-
-        Session::put('cart_count', $cart_count);
-    }
-
-    private function calculateCartTotals()
-    {
-        $cart = ['items' => []];
-        $subtotal = 0;
-
-        foreach (Session::get('cart', []) as $productId => $item) {
-            $item['total'] = $item['price'] * $item['quantity'];
-            $subtotal += $item['total'];
-            $cart['items'][$productId] = $item;
-        }
-
-        $cart['subtotal'] = $subtotal;
-
-        return $cart;
-    }
-
-    public function create_order(Request $request)
+    public function post_checkout(Request $request)
     {
         $validated_data = $request->validate([
             'first_name' => 'required|string',
@@ -149,7 +69,7 @@ class OrderController extends Controller
 
         // Calculate shipping cost and total amount based on the selected town
         $shipping_cost = $town->price;
-        $cart = $this->calculateCartTotals();
+        $cart = app(CartController::class)->cartItemsWithCalculatedTotals();
 
         $validated_data['shipping_cost'] = $shipping_cost;
         $validated_data['total_amount'] = $shipping_cost + $cart['subtotal'];

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\OrderController;
@@ -22,30 +23,27 @@ use App\Http\Controllers\ProductController;
 */
 
 Route::get('/', [HomeController::class, 'homepage'])->name('homepage');
-
 Route::get('/shop', [HomeController::class, 'shop'])->name('shop');
-Route::get('/product/{slug}', [ProductController::class, 'product_details'])->name('product_details');
-
 Route::get('/about', [HomeController::class, 'aboutpage'])->name('aboutpage');
-
 Route::get('/contact', [HomeController::class, 'contactpage'])->name('contactpage');
 
-Route::get('/cart', [OrderController::class, 'view_cart'])->name('cart');
-Route::post('/cart/add/{id}', [OrderController::class, 'add_to_cart'])->name('add_to_cart');
-Route::get('/checkout', [OrderController::class, 'get_checkout'])
-->name('get_checkout')
-->middleware('auth');
-Route::post('/checkout', [OrderController::class, 'create_order'])->name('create_order');
+Route::get('/cart', [CartController::class, 'view_cart'])->name('cart');
+Route::post('/cart/add/{id}', [CartController::class, 'add_to_cart'])->name('add_to_cart');
+
 Route::get('/towns/fetch/{cityId}', [LocationController::class, 'get_towns'])->name('get_towns');
 Route::get('/town/fetch/shipping-price/{townId}', [LocationController::class, 'get_shipping_price'])->name('get_shipping_price');
 
-Route::get('/order/success', [OrderController::class, 'order_success'])->name('order_success');
+Route::get('/product/{slug}', [ProductController::class, 'product_details'])->name('product_details');
 
 Route::middleware('auth')->group(function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::get('/checkout', [OrderController::class, 'get_checkout'])->name('get_checkout');
+    Route::post('/checkout', [OrderController::class, 'post_checkout'])->name('post_checkout');
+    Route::get('/order/success', [OrderController::class, 'order_success'])->name('order_success');
 });
 
 require __DIR__.'/auth.php';
