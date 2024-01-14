@@ -18,6 +18,14 @@ class OrderController extends Controller
         return view('admin.list_orders', compact('orders'));
     }
 
+    public function list_user_orders()
+    {
+        $user = Auth::user();
+        $user_orders = $user->orders;
+
+        return view('list_user_orders', compact('user_orders'));
+    }
+
     public function get_checkout()
     {
         $cities = City::all();
