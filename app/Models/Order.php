@@ -32,7 +32,7 @@ class Order extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function getPendingOrders()
+    public static function getPendingOrders()
     {
         return self::select('orders.*')
         ->where('status', '=', 'pending')

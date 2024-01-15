@@ -12,12 +12,6 @@ use Illuminate\Support\Str;
 
 class OrderController extends Controller
 {
-    public function pending_orders()
-    {
-        $pending_orders = Order::getPendingOrders();
-        view()->share('pending_orders', $pending_orders);
-    }
-
     public function list_orders()
     {
         $orders = Order::latest()->get();
