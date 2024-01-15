@@ -15,17 +15,3 @@
         {{ session('warning.message') }}
     </div>
 @endif
-
-<script>
-const alertElements = document.getElementsByClassName("alert");
-
-for (let alertIndex = 0; alertIndex < alertElements.length; alertIndex++) {
-    const currentAlert = alertElements[alertIndex];
-    const duration = parseInt(currentAlert.dataset.duration);
-
-    setTimeout(function () {
-        currentAlert.style.opacity = "0";
-        currentAlert.style.display = "none";
-    }, duration);
-}
-</script>

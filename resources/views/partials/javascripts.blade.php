@@ -9,5 +9,5 @@
     <script src="{{ asset('/assets/js/jquery.js') }}"></script>
     <script src="{{ asset('/assets/js/jquery_ui.js') }}"></script>
     <script src="{{ asset('/assets/js/sweetalert.js') }}"></script>
-    <script src="{{ asset('assets/js/custom_js.js') }}"></script>
+    <script src="{{ asset('/assets/js/custom.js') }}"></script>
 @endif

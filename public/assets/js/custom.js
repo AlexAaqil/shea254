@@ -13,21 +13,38 @@ const body = document.querySelector("body"),
 //     } else modeText.innerText = " Dark Mode ";
 // });
 
-toggle.addEventListener("click", () => {
-    sidebar.classList.toggle("close");
+// Main navbar and admin sidenav toggle
+$(document).ready(function () {
+    $("#burgerIcon, #toggle").click(function () {
+        $("#navLinks").toggleClass("show");
 
-    // Get the current width of the sidebar dynamically
-    const sidebarWidth = sidebar.offsetWidth;
 
-    // Calculate the desired margin-left value (width of the sidebar + 1%)
-    const marginLeftValue = `1%`;
-
-    if (sidebar.classList.contains("close")) {
-        // Set the margin-left of .Main to the width of the sidebar
-        main.style.marginLeft = marginLeftValue;
-    }
-    main.style.marginLeft = marginLeftValue;
+        // Toggle the sidebar
+        $("#sidebar").toggleClass("close");
+        // Get the current width of the sidebar dynamically
+        const sidebarWidth = $("#sidebar").width();
+        // Calculate the desired margin-left value (width of the sidebar + 1%)
+        const marginLeftValue = `${sidebarWidth + 0.01 * window.innerWidth}px`;
+        // Set the margin-left of .Main based on sidebar state
+        $("#main").css(
+            "margin-left",
+            $("#sidebar").hasClass("close") ? marginLeftValue : "1%"
+        );
+    });
 });
+
+
+const alertElements = document.getElementsByClassName("alert");
+
+for (let alertIndex = 0; alertIndex < alertElements.length; alertIndex++) {
+    const currentAlert = alertElements[alertIndex];
+    const duration = parseInt(currentAlert.dataset.duration);
+
+    setTimeout(function () {
+        currentAlert.style.opacity = "0";
+        currentAlert.style.display = "none";
+    }, duration);
+}
 
 
 

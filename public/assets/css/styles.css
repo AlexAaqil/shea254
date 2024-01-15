@@ -176,41 +176,48 @@ table tbody .actions .action .delete {
   color: red;
 }
 
-nav {
-  height: 10vh;
-  position: sticky;
-  top: 0;
-  background: #fff;
-  box-shadow: 2px 3px 6px black;
-  padding: 1em 5%;
-  z-index: 100;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-nav .nav_container,
-nav .branding,
-nav ul {
+
+nav,
+.nav_container,
+.nav_container a,
+.nav_container ul {
   display: flex;
   align-items: center;
 }
-nav .nav_container {
-  justify-content: space-between;
+
+nav {
+  background: #fff;
+  height: 10vh;
+  box-shadow: 4px 4px 8px #000;
+  position: sticky;
+  top: 0;
+  padding: 0.5em 3%;
 }
-nav .nav_container a {
+nav a {
   text-decoration: none;
   color: #000;
   font-weight: bold;
-  font-size: 1em;
 }
-nav .nav_container .branding {
+nav .nav_container {
+  width: 100%;
+  justify-content: space-between;
+}
+nav .nav_container a {
   gap: 0 0.3em;
 }
-nav .nav_container .branding img {
-  width: 35px;
-  height: 35px;
+nav .nav_container a img {
+  border-radius: 50%;
 }
-nav .nav_container .branding h1 {
+nav .nav_container h1 {
   font-size: 1.2em;
 }
 nav .nav_container ul {
+  list-style: none;
   gap: 0 1em;
 }
 nav .nav_container ul .cart {
@@ -232,22 +239,70 @@ nav .nav_container ul .cart span {
   font-weight: bold;
   font-size: 0.75em;
 }
-nav .nav_container ul .authentication {
-  margin: 0 0 0 2em;
-  display: none;
-}
-@media screen and (width >= 726px) {
-  nav .nav_container ul .authentication {
-    display: unset;
-  }
-}
 nav .nav_container ul .authentication a {
-  padding: 6px 12px;
-  border-radius: 32px;
   background: #000;
   color: #fff;
+  padding: 8px 16px;
+  border-radius: 32px;
+}
+nav .nav_container ul .authentication ul {
+  display: none;
+}
+nav .nav_container ul .authentication ul:hover {
+  display: block;
+  background: blue;
+}
+nav .nav_container .burger_menu {
+  display: none;
 }
 
+@media screen and (width <= 726px) {
+  nav {
+    position: relative;
+  }
+  nav .burger_menu {
+    display: block !important;
+    cursor: pointer;
+  }
+  nav .burger_menu .burger_icon {
+    width: 30px;
+    height: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  nav .burger_menu .burger_icon span {
+    width: 100%;
+    height: 3px;
+    background: #000;
+  }
+  nav .nav_links {
+    display: none;
+  }
+  nav .nav_links ul {
+    display: none;
+    width: 40%;
+    height: 50vh;
+    background: #fff;
+    position: absolute;
+    flex-direction: column;
+    align-items: flex-end;
+    padding: 0.5em 1em;
+    gap: 2em 0;
+    top: 10vh;
+    right: 0.1em;
+  }
+  nav .nav_links ul li {
+    width: 80%;
+    margin: auto;
+  }
+  nav .show {
+    display: block;
+  }
+  nav .show ul {
+    display: flex;
+  }
+}
 .admin_sidebar {
   position: sticky;
   top: 0;
