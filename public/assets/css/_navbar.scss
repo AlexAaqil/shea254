@@ -1,8 +1,3 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
 nav,
 .nav_container,
 .nav_container a,
@@ -73,11 +68,6 @@ nav {
 
                 ul {
                     display: none;
-
-                    &:hover {
-                        display: block;
-                        background: blue;
-                    }
                 }
             }
         }
@@ -91,6 +81,8 @@ nav {
 @media screen and (width <= 726px) {
     nav {
         position: relative;
+        position: sticky;
+        top: 0;
         .burger_menu {
             display: block !important;
             cursor: pointer;
@@ -115,7 +107,7 @@ nav {
 
             ul {
                 display: none;
-                width: 40%;
+                width: 60%;
                 height: 50vh;
                 background: #fff;
                 position: absolute;
@@ -129,6 +121,12 @@ nav {
                 li {
                     width: 80%;
                     margin: auto;
+                }
+
+                .cart {
+                    span {
+                        position: unset;
+                    }
                 }
             }
         }

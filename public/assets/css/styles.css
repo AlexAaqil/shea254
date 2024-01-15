@@ -176,12 +176,6 @@ table tbody .actions .action .delete {
   color: red;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 nav,
 .nav_container,
 .nav_container a,
@@ -248,10 +242,6 @@ nav .nav_container ul .authentication a {
 nav .nav_container ul .authentication ul {
   display: none;
 }
-nav .nav_container ul .authentication ul:hover {
-  display: block;
-  background: blue;
-}
 nav .nav_container .burger_menu {
   display: none;
 }
@@ -259,6 +249,8 @@ nav .nav_container .burger_menu {
 @media screen and (width <= 726px) {
   nav {
     position: relative;
+    position: sticky;
+    top: 0;
   }
   nav .burger_menu {
     display: block !important;
@@ -281,7 +273,7 @@ nav .nav_container .burger_menu {
   }
   nav .nav_links ul {
     display: none;
-    width: 40%;
+    width: 60%;
     height: 50vh;
     background: #fff;
     position: absolute;
@@ -295,6 +287,9 @@ nav .nav_container .burger_menu {
   nav .nav_links ul li {
     width: 80%;
     margin: auto;
+  }
+  nav .nav_links ul .cart span {
+    position: unset;
   }
   nav .show {
     display: block;

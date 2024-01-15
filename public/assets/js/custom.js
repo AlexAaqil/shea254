@@ -1,9 +1,3 @@
-const body = document.querySelector("body"),
-    main = document.querySelector(".Main"),
-    sidebar = document.querySelector(".admin_sidebar"),
-    toggle = document.querySelector(".toggle"),
-    modeSwitch = document.querySelector(".toggle-switch");
-
 // modeSwitch.addEventListener("click", () => {
 //     body.classList.toggle("dark");
 //     //   document.querySelector(".mode-text").innertext=""
@@ -17,19 +11,20 @@ const body = document.querySelector("body"),
 $(document).ready(function () {
     $("#burgerIcon, #toggle").click(function () {
         $("#navLinks").toggleClass("show");
+    });
 
-
-        // Toggle the sidebar
-        $("#sidebar").toggleClass("close");
-        // Get the current width of the sidebar dynamically
-        const sidebarWidth = $("#sidebar").width();
-        // Calculate the desired margin-left value (width of the sidebar + 1%)
-        const marginLeftValue = `${sidebarWidth + 0.01 * window.innerWidth}px`;
-        // Set the margin-left of .Main based on sidebar state
-        $("#main").css(
-            "margin-left",
-            $("#sidebar").hasClass("close") ? marginLeftValue : "1%"
-        );
+    // Toggle the sidebar
+    $(".admin_sidebar .toggle").click(function() {
+        $(".admin_sidebar").toggleClass("close");
+    // Get the current width of the sidebar dynamically
+    const sidebarWidth = $(".admin_sidebar").width();
+    // Calculate the desired margin-left value (width of the sidebar + 1%)
+    const marginLeftValue = `${sidebarWidth + 0.01 * window.innerWidth}px`;
+    // Set the margin-left of .Main based on sidebar state
+    $("#main").css(
+        "margin-left",
+        $(".admin_sidebar").hasClass("close") ? marginLeftValue : "1%"
+    );
     });
 });
 
