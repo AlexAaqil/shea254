@@ -12,10 +12,22 @@ use Illuminate\Support\Str;
 
 class OrderController extends Controller
 {
+    public function pending_orders()
+    {
+        $pending_orders = Order::getPendingOrders();
+        view()->share('pending_orders', $pending_orders);
+    }
+
     public function list_orders()
     {
         $orders = Order::latest()->get();
         return view('admin.list_orders', compact('orders'));
+    }
+
+    public function list_orders_table()
+    {
+        $orders = Order::latest()->get();
+        return view('partials.orders_table_body', compact('orders'));
     }
 
     public function list_user_orders()
@@ -96,6 +108,32 @@ class OrderController extends Controller
         Session::forget(['cart', 'cart_count']);
 
         return redirect()->route('order_success');
+    }
+
+    public function get_update_order($id)
+    {
+        $order = Order::findOrFail($id);
+        return view('admin.update_order', compact('order'));
+    }
+
+    public function post_update_order(Request $request, $id)
+    {
+        $validated_data = $request->validate([
+            'additional_information' => 'nullable|string',
+            'status' => 'required',
+            'paid' => 'required',
+        ]);
+
+        $order = Order::findOrFail($id);
+        // Update the order fields with the validated data
+        $order->fill($validated_data);
+        // Save the updated order
+        $order->save();
+
+        return redirect()->route('list_orders')->with('success', [
+            'message' => 'Order has been updated.',
+            'duration' => $this->alert_message_duration,
+        ]);
     }
 
     public function order_success()

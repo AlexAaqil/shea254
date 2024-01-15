@@ -54,7 +54,7 @@
                     </div>
                     <div class="text">
                         <p>Orders</p>
-                        <p>xxx</p>
+                        <p>{{ $count_orders }}</p>
                     </div>
                 </div>
 
@@ -67,7 +67,6 @@
                         <p>xxx</p>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>

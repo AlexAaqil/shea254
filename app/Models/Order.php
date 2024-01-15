@@ -31,4 +31,11 @@ class Order extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function getPendingOrders()
+    {
+        return self::select('orders.*')
+        ->where('status', '=', 'pending')
+        ->get();
+    }
 }

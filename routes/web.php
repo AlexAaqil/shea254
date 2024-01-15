@@ -97,4 +97,7 @@ Route::middleware(['auth', 'admin'])->group(function() {
     Route::delete('/admin/location/town/delete/{id}', [LocationController::class, 'delete_town'])->name('delete_town');
 
     Route::get('/admin/orders/list', [OrderController::class, 'list_orders'])->name('list_orders');
+    Route::get('/admin/orders/list_orders_table', [OrderController::class, 'list_orders_table'])->name('list_orders_table');
+    Route::get('/admin/order/update/{id}', [OrderController::class, 'get_update_order'])->name('get_update_order');
+    Route::post('/admin/order/update/{id}', [OrderController::class, 'post_update_order'])->name('post_update_order');
 });

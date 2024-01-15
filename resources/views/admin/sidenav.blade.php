@@ -54,7 +54,7 @@
             <li class="nav-link">
                 <a href="{{ route('list_orders') }}">
                     <i class="fas fa-truck"></i>
-                    <span class="text">Orders</span>
+                    <span class="text">Orders <i class="orders_count">{{ $pending_orders->count() }}</i></span>
                 </a>
             </li>
         </ul>

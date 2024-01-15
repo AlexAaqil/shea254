@@ -12,6 +12,35 @@
             padding: 0.5em;
         }
     }
+
+    .custom_form {
+        .order_details {
+            padding: 0 0.5em;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1em;
+            p {
+                display: grid;
+                grid-template-columns: 30% auto;
+
+                span {
+                    &:first-of-type {
+                        font-weight: bold;
+                    }
+                }
+            }
+
+            ul {
+                li {
+                    grid-template-columns: 30% auto auto auto;
+                }
+            }
+        }
+
+        form {
+            margin: 2em 0;
+        }
+    }
 }
 .Order_success {
     display: flex;

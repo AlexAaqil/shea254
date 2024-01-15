@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
@@ -27,9 +28,9 @@ class HomeController extends Controller
                 $count_admins = User::getAdmins()->count();
                 $count_products = Product::all()->count();
                 $count_categories = Category::all()->count();
-                // $order_count = Order::count();
+                $count_orders = Order::all()->count();
                 // $sales_count = Sales::count();
-                return view('admin.dashboard', compact('count_users', 'count_admins', 'count_categories', 'count_products'));
+                return view('admin.dashboard', compact('count_users', 'count_admins', 'count_categories', 'count_products', 'count_orders'));
             }
             else
             {
