@@ -191,6 +191,7 @@ nav {
   position: sticky;
   top: 0;
   padding: 0.5em 3%;
+  z-index: 100;
 }
 nav a {
   text-decoration: none;
@@ -296,6 +297,18 @@ nav .nav_container .burger_menu {
   }
   nav .show ul {
     display: flex;
+  }
+  nav .active_burger span {
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+  nav .active_burger span:nth-child(1) {
+    transform: rotate(-45deg) translate(-5px, 6px);
+  }
+  nav .active_burger span:nth-child(2) {
+    opacity: 0;
+  }
+  nav .active_burger span:nth-child(3) {
+    transform: rotate(45deg) translate(-5px, -6px);
   }
 }
 .admin_sidebar {
@@ -508,6 +521,9 @@ footer .container .contacts .socials {
 footer .container .contacts .socials a {
   margin: 0 1em 0 0;
   font-size: 1.2em;
+}
+footer .container .contacts .socials a img {
+  width: 20px;
 }
 footer .copyright {
   border-top: 1px solid rgb(161, 161, 161);
@@ -955,22 +971,25 @@ footer .copyright {
 .Homepage .Hero .container .text img {
   width: 150px;
   aspect-ratio: 1;
+  animation: rotate 50s infinite linear;
 }
 .Homepage .Hero .container .text h1 {
   font-size: max(3em, 5vw);
   text-transform: uppercase;
 }
 .Homepage .Hero .container .text .hero_btn {
-  margin: 2em 0;
+  margin: 2em 0 3em;
 }
 .Homepage .Hero .container .text .hero_btn a {
   text-decoration: none;
+  box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.1019607843);
   background: #000;
   color: #fff;
   font-weight: bold;
   font-size: 1.3em;
   padding: 12px 32px;
   border-radius: 32px;
+  animation: pulse 2s infinite linear;
 }
 .Homepage .Hero .container .image {
   display: none;
@@ -1005,6 +1024,22 @@ footer .copyright {
     width: 100%;
     -o-object-fit: contain;
        object-fit: contain;
+  }
+}
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0px rgba(0, 0, 0, 0.2);
+  }
+  100% {
+    box-shadow: 0 0 0 20px rgba(0, 0, 0, 0);
   }
 }
 .About section {

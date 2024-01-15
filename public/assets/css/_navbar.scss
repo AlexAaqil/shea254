@@ -12,6 +12,7 @@ nav {
     position: sticky;
     top: 0;
     padding: 0.5em 3%;
+    z-index: 100;
 
     a {
         text-decoration: none;
@@ -135,6 +136,23 @@ nav {
             display: block;
             ul {
                 display: flex;
+            }
+        }
+
+        .active_burger {
+            span {
+                transition: transform 0.3s ease, opacity 0.3s ease;
+                &:nth-child(1) {
+                    transform: rotate(-45deg) translate(-5px, 6px);
+                }
+
+                &:nth-child(2) {
+                    opacity: 0;
+                }
+
+                &:nth-child(3) {
+                    transform: rotate(45deg) translate(-5px, -6px);
+                }
             }
         }
     }

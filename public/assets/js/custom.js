@@ -11,6 +11,10 @@
 $(document).ready(function () {
     $("#burgerIcon, #toggle").click(function () {
         $("#navLinks").toggleClass("show");
+        $("#burgerIcon").toggleClass(
+            "active_burger",
+            $("#navLinks").hasClass("show")
+        );
     });
 
     // Toggle the sidebar
