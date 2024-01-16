@@ -190,7 +190,11 @@ class ProductController extends Controller
     {
         $product = Product::where('slug', $slug)->firstOrFail();
         $product_images = $product->getProductImages;
-        return view('product_details', compact('product', 'product_images'));
+        $related_products = Product::where('category_id', $product->category_id)
+        ->where('id', '!=', $product->id)
+        ->take(5)
+        ->get();
+        return view('product_details', compact('product', 'product_images', 'related_products'));
     }
 
     public function list_products_by_category($category_slug)

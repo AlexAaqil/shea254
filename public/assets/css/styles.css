@@ -663,7 +663,7 @@ footer .copyright {
      object-fit: contain;
 }
 .Product_details .container .wrapper .images .other_images {
-  margin: 2em 0;
+  margin: 0.5em 0;
 }
 .Product_details .container .wrapper .images .other_images img {
   height: 70px;
@@ -702,6 +702,9 @@ footer .copyright {
 }
 .Product_details .container .wrapper .details .extras p span:last-of-type {
   font-weight: bold;
+}
+.Product_details .related_products {
+  margin: 5em 0 0;
 }
 
 .Categorised_Products .hero {

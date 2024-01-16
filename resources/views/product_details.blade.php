@@ -39,12 +39,25 @@
                     </p>
                     <p>
                         <span>Category</span>
-                        <span>{{ $product->category->title }}</span>
+                        <a href="{{ route('list_products_by_category', $product->category->slug) }}">
+                            <span>{{ $product->category->title }}</span>
+                        </a>
                     </p>
                 </div>
             </div>
         </div>
     </div>
+
+    @if($related_products->count() > 0)
+    <div class="container related_products">
+        <h2>Related Products</h2>
+        <div class="products_wrapper">
+            @foreach($related_products as $product)
+                @include('partials.product')
+            @endforeach
+        </div>
+    </div>
+    @endif
 </main>
 @include('partials.javascripts')
 @endsection
