@@ -1,7 +1,7 @@
 <nav>
     <div class="nav_container">
         <a href="{{ route('homepage') }}" class="branding">
-            <img src="{{ asset('/assets/images/logo.jpg') }}" width=40 height=40 alt="Logo" class="rounded">
+            <img src="{{ asset('/assets/images/logo.jpg') }}" width=30 height=30 alt="Logo" class="rounded">
             <h1>Shea254</h1>
         </a>
 
