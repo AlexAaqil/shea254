@@ -4,10 +4,12 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 @else
     {{-- Load offline scripts --}}
     <script src="{{ asset('/assets/js/jquery.js') }}"></script>
     <script src="{{ asset('/assets/js/jquery_ui.js') }}"></script>
     <script src="{{ asset('/assets/js/sweetalert.js') }}"></script>
+    <script src="{{ asset('/assets/js/chart.js') }}"></script>
     <script src="{{ asset('/assets/js/custom.js') }}"></script>
 @endif

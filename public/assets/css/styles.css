@@ -1351,6 +1351,15 @@ footer .copyright {
   font-weight: bold;
   font-size: 1.3em;
 }
+.container .analytics {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 2em;
+  height: 40vh;
+}
+.container .analytics .info {
+  padding: 0.5em 1em;
+}
 
 .Locations {
   display: grid;

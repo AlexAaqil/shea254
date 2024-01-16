@@ -68,7 +68,114 @@
                     </div>
                 </div>
             </div>
+
+            <div class="analytics">
+                <div class="chart">
+                    <h2>Sales</h2>
+                    <canvas id="salesChart"></canvas>
+                </div>
+                <div class="chart">
+                    <h2>Cities</h2>
+                    <canvas id="citiesChart"></canvas>
+                </div>
+            </div>
+
+            <div class="analytics">
+<div class="info sales_analytics">
+                    <h3>Sales Analytics</h3>
+                    <ul class="list_style_none">
+                        <li>
+                            <span>Today</span>
+                            <span>Ksh. 10, 000</span>
+                        </li>
+
+                        <li>
+                            <span>This Week</span>
+                            <span>Ksh. 10, 000</span>
+                        </li>
+
+                        <li>
+                            <span>This Month</span>
+                            <span>Ksh. 10, 000</span>
+                        </li>
+
+                        <li>
+                            <span>This Year</span>
+                            <span>Ksh. 10, 000</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="info recent_orders">
+                    <ul class="list_style_none">
+                        <li>
+                            <span>Mint Essential Oil</span>
+                            <span>Ksh. 10000</span>
+                        </li>
+                        <li>
+                            <span>Mint Essential Oil</span>
+                            <span>Ksh. 10000</span>
+                        </li>
+                        <li>
+                            <span>Mint Essential Oil</span>
+                            <span>Ksh. 10000</span>
+                        </li>
+                        <li>
+                            <span>Mint Essential Oil</span>
+                            <span>Ksh. 10000</span>
+                        </li>
+                        <li>
+                            <span>Mint Essential Oil</span>
+                            <span>Ksh. 10000</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </section>
 </main>
+<script src="{{ asset('assets/js/chart.js') }}"></script>
+<script>
+  const ctx = document.getElementById('salesChart');
+
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['january', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+      datasets: [{
+        label: 'Amount',
+        data: [1000, 1900, 3, 5, 2, 3],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+  const cities = document.getElementById('citiesChart');
+
+  new Chart(cities, {
+    type: 'doughnut',
+    data: {
+      labels: ['Nairobi', 'Kiambu', 'Nakuru'],
+      datasets: [{
+        label: 'Orders',
+        data: [100, 19, 3],
+      }]
+    },
+    options: {
+      plugins: {
+        legend: {
+          display: true,
+          position: 'right',
+        }
+      }
+    }
+  });
+</script>
 @endsection

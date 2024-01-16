@@ -40,4 +40,15 @@
            }
         }
     }
+
+    .analytics {
+        display: grid;
+        grid-template-columns: 3fr 2fr;
+        gap: 2em;
+        height: 40vh;
+
+        .info {
+            padding: 0.5em 1em;
+        }
+    }
 }
