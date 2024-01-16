@@ -23,10 +23,14 @@
                         <span class="price_amount">{{ $product['price'] }}</span>
                     </span>
 
-                    <span class="quantity">
-                        <span class="increment"><i class="fas fa-plus"></i></span>
-                        <span class="quantity_count">{{ $product['quantity'] }}</span>
-                        <span class="decrement"><i class="fas fa-minus"></i></span>
+                    <span class="product_quantity">
+                        <form action="{{ route('change_quantity', $product['id']) }}" method="post">
+                            @csrf
+                            <input type="number" name="quantity" id="quantity" min="1" value="{{ $product['quantity'] }}">
+                            <button type="submit">
+                                <i class="fas fa-sync-alt"></i>
+                            </button>
+                        </form>
                     </span>
 
                     <span class="subtotal">
@@ -34,8 +38,15 @@
                         <span class="subtotal_amount">{{ $product['quantity'] * $product['price'] }}</span>
                     </span>
 
-                    <span>
-                        <i class="fas fa-trash text-danger"></i>
+                    <span class="delete_from_cart">
+                        <form id="deleteForm_{{ $product['id'] }}" action="{{ route('delete_from_cart', $product['id']) }}" method="post">
+                            @csrf
+                            @method('DELETE')
+
+                            <button type="button" onclick="deleteItem({{ $product['id'] }}, 'product');">
+                                <i class="fas fa-trash text-danger"></i>
+                            </button>
+                        </form>
                     </span>
                 </li>
                 @endforeach
@@ -55,4 +66,5 @@
         </div>
     </div>
 </main>
+@include('partials.javascripts')
 @endsection

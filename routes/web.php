@@ -29,6 +29,8 @@ Route::get('/contact', [HomeController::class, 'contactpage'])->name('contactpag
 
 Route::get('/cart', [CartController::class, 'view_cart'])->name('cart');
 Route::post('/cart/add/{id}', [CartController::class, 'add_to_cart'])->name('add_to_cart');
+Route::post('/cart/quantity/{product_id}', [CartController::class, 'change_quantity'])->name('change_quantity');
+Route::delete('/cart/remove/{productId}', [CartController::class, 'delete_from_cart'])->name('delete_from_cart');
 
 Route::get('/towns/fetch/{cityId}', [LocationController::class, 'get_towns'])->name('get_towns');
 Route::get('/town/fetch/shipping-price/{townId}', [LocationController::class, 'get_shipping_price'])->name('get_shipping_price');

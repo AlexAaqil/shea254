@@ -18,6 +18,7 @@
                 li {
                     display: grid;
                     grid-template-columns: repeat(5, 1fr);
+                    align-items: center;
                     gap: 1em;
                     padding: 0.8em 0;
                     border-bottom: 1px solid grey;
@@ -37,30 +38,26 @@
                         }
                     }
 
-                    .quantity {
-                        display: flex;
-                        justify-content: center;
-                        gap: 0 0.7em;
-                        .decrement,
-                        .increment {
-                            @include flex_center;
-                            justify-content: center;
-                            border: 1px solid rgb(209, 209, 209);
-                            border-radius: 50%;
-                            width: 17px;
-                            height: 17px;
-                            padding: 8px;
-                        }
-                        i {
-                            font-size: 0.8em;
-                            font-weight: bold;
+                    form {
+                        button {
                             cursor: pointer;
+                            padding: unset;
                         }
-                        .increment {
-                            color: green;
+                    }
+
+                    .product_quantity {
+                        form {
+                            display: grid;
+                            grid-template-columns: auto 20%;
+                            gap: 0 0.4em;
                         }
-                        .decrement {
-                            color: red;
+                    }
+
+                    .delete_from_cart {
+                        form {
+                            button {
+                                background: unset;
+                            }
                         }
                     }
                 }

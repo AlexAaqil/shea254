@@ -1248,6 +1248,7 @@ footer .copyright {
 .Cart .container .body ul li {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
+  align-items: center;
   gap: 1em;
   padding: 0.8em 0;
   border-bottom: 1px solid grey;
@@ -1265,32 +1266,17 @@ footer .copyright {
   text-decoration: none;
   color: #000;
 }
-.Cart .container .body ul li .quantity {
-  display: flex;
-  justify-content: center;
-  gap: 0 0.7em;
-}
-.Cart .container .body ul li .quantity .decrement,
-.Cart .container .body ul li .quantity .increment {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid rgb(209, 209, 209);
-  border-radius: 50%;
-  width: 17px;
-  height: 17px;
-  padding: 8px;
-}
-.Cart .container .body ul li .quantity i {
-  font-size: 0.8em;
-  font-weight: bold;
+.Cart .container .body ul li form button {
   cursor: pointer;
+  padding: unset;
 }
-.Cart .container .body ul li .quantity .increment {
-  color: green;
+.Cart .container .body ul li .product_quantity form {
+  display: grid;
+  grid-template-columns: auto 20%;
+  gap: 0 0.4em;
 }
-.Cart .container .body ul li .quantity .decrement {
-  color: red;
+.Cart .container .body ul li .delete_from_cart form button {
+  background: unset;
 }
 .Cart .container .body .summary {
   background: #f2f2f2;

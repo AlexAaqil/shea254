@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Session;
 use App\Models\Product;
+use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
@@ -47,6 +48,60 @@ class CartController extends Controller
 
         return redirect()->back()->with('success', [
             'message' => 'Product added to cart successfully.',
+            'duration' => $this->alert_message_duration,
+        ]);
+    }
+
+    public function change_quantity(Request $request, $product_id)
+    {
+        $request->validate([
+            'quantity' => ['required', 'numeric', 'min:1'],
+        ]);
+
+        $cart = Session::get('cart', []);
+
+        foreach($cart as &$product){
+            if($product['id'] == $product_id){
+                // Update quantity of the matching product
+                $product['quantity'] = $request->input('quantity');
+                // Update the total price of the product
+                $product['total'] = $product['price'] * $product['quantity'];
+                break;
+            }
+        }
+
+        Session::put('cart', $cart);
+        $this->updateCartCount();
+
+        return redirect()->route('cart')->with('success', [
+            'message' => 'Quantity has been updated',
+            'duration' => $this->alert_message_duration,
+        ]);
+    }
+
+    public function delete_from_cart($product_id)
+    {
+        $cart = Session::get('cart', []);
+
+        // Check if the product is in the cart
+        if (array_key_exists($product_id, $cart)) {
+            // Remove the product from the cart
+            unset($cart[$product_id]);
+
+            // Update the session with the modified cart
+            Session::put('cart', $cart);
+
+            // Recalculate cart count
+            $this->updateCartCount();
+
+            return redirect()->route('cart')->with('success', [
+                'message' => 'Product removed from cart successfully.',
+                'duration' => $this->alert_message_duration,
+            ]);
+        }
+
+        return redirect()->route('cart')->with('error', [
+            'message' => 'Product not found in the cart.',
             'duration' => $this->alert_message_duration,
         ]);
     }
