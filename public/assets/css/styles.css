@@ -570,6 +570,10 @@ footer .copyright {
 .products_wrapper .product .text .product_details .extra {
   margin: 0 0 1em;
 }
+.products_wrapper .product .text .product_details .extra a {
+  text-decoration: none;
+  color: #000;
+}
 .products_wrapper .product .text .product_details .extra span {
   font-size: 0.7em;
   letter-spacing: 0.3px;
@@ -698,6 +702,44 @@ footer .copyright {
 }
 .Product_details .container .wrapper .details .extras p span:last-of-type {
   font-weight: bold;
+}
+
+.Categorised_Products .hero {
+  height: 18vh;
+  background: rgb(240, 240, 240);
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1em 0;
+}
+.Categorised_Products .hero .breadcrumb,
+.Categorised_Products .hero h1 {
+  text-transform: capitalize;
+}
+.Categorised_Products .hero .breadcrumb {
+  font-weight: bold;
+}
+.Categorised_Products .hero .breadcrumb a {
+  text-decoration: none;
+  color: blue;
+}
+.Categorised_Products .category_list {
+  display: flex;
+  justify-content: center;
+  gap: 0 1em;
+  padding: 0.2em 0 0;
+}
+.Categorised_Products .category_list a {
+  text-decoration: none;
+  color: #000;
+  border: 1px solid rgb(207, 207, 207);
+  border-radius: 32px;
+  padding: 0.1em 0.4em;
+  font-size: 0.8em;
+}
+.Categorised_Products .container {
+  padding-top: 0;
 }
 
 .alert {

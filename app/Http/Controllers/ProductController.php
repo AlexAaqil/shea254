@@ -192,4 +192,12 @@ class ProductController extends Controller
         $product_images = $product->getProductImages;
         return view('product_details', compact('product', 'product_images'));
     }
+
+    public function list_products_by_category($category_slug)
+    {
+        $categories = Category::all();
+        $category = Category::where('slug', $category_slug)->firstOrFail();
+        $products = $category->products;
+        return view('list_products_by_category', compact('products', 'category', 'categories'));
+    }
 }

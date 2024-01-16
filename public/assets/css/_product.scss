@@ -24,6 +24,10 @@
             .product_details {
                 .extra {
                     margin: 0 0 1em;
+                    a {
+                        text-decoration: none;
+                        color: #000;
+                    }
                     span {
                         font-size: 0.7em;
                         letter-spacing: 0.3px;
@@ -175,5 +179,50 @@
                 }
             }
         }
+    }
+}
+
+.Categorised_Products {
+    .hero {
+        height: 18vh;
+        background: rgb(240, 240, 240);
+        display: grid;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 1em 0;
+
+        .breadcrumb,
+        h1 {
+            text-transform: capitalize;
+        }
+
+        .breadcrumb {
+            font-weight: bold;
+            a {
+                text-decoration: none;
+                color: blue;
+            }
+        }
+    }
+
+    .category_list {
+        display: flex;
+        justify-content: center;
+        gap: 0 1em;
+        padding: 0.2em 0 0;
+
+        a {
+            text-decoration: none;
+            color: #000;
+            border: 1px solid rgb(207, 207, 207);
+            border-radius: 32px;
+            padding: 0.1em 0.4em;
+            font-size: 0.8em;
+        }
+    }
+
+    .container {
+        padding-top: 0;
     }
 }

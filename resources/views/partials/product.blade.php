@@ -7,7 +7,9 @@
     <div class="text">
         <div class="product_details">
             <div class="extra">
-                <span>{{ $product->category->title }}</span>
+                <a href="{{ route('list_products_by_category', $product->category->slug) }}">
+                    <span>{{ $product->category->title }}</span>
+                </a>
                 <span>{{ $product->product_size->product_size }}</span>
             </div>
 

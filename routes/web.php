@@ -34,6 +34,7 @@ Route::get('/towns/fetch/{cityId}', [LocationController::class, 'get_towns'])->n
 Route::get('/town/fetch/shipping-price/{townId}', [LocationController::class, 'get_shipping_price'])->name('get_shipping_price');
 
 Route::get('/product/{slug}', [ProductController::class, 'product_details'])->name('product_details');
+Route::get('/category/{category_slug}', [ProductController::class, 'list_products_by_category'])->name('list_products_by_category');
 
 Route::middleware('auth')->group(function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
