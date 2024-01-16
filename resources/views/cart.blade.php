@@ -2,6 +2,7 @@
 @section('content')
 @include('partials.navbar')
 <main class="Cart">
+    @include('partials.messages')
     <div class="container">
         <div class="header">
             <h1>Your Bag</h1>
