@@ -204,4 +204,16 @@ class ProductController extends Controller
         $products = $category->products;
         return view('list_products_by_category', compact('products', 'category', 'categories'));
     }
+
+    public function search_products(Request $request)
+    {
+        $query = $request->input('query');
+
+        $products = Product::with('category')
+        ->where('title', 'like', "%$query%")
+        ->orWhere('description', 'like', "%$query%")
+        ->get();
+
+        return view('search_results', compact('products', 'query'));
+    }
 }

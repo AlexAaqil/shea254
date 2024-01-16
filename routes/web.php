@@ -35,6 +35,7 @@ Route::delete('/cart/remove/{productId}', [CartController::class, 'delete_from_c
 Route::get('/towns/fetch/{cityId}', [LocationController::class, 'get_towns'])->name('get_towns');
 Route::get('/town/fetch/shipping-price/{townId}', [LocationController::class, 'get_shipping_price'])->name('get_shipping_price');
 
+Route::get('/product/search', [ProductController::class, 'search_products'])->name('search_products');
 Route::get('/product/{slug}', [ProductController::class, 'product_details'])->name('product_details');
 Route::get('/category/{category_slug}', [ProductController::class, 'list_products_by_category'])->name('list_products_by_category');
 

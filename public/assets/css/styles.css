@@ -1370,4 +1370,29 @@ footer .copyright {
 .Locations .container table .actions .action button i {
   font-size: 1em;
   font-weight: bold;
+}
+
+.Shop .search {
+  padding: 1.2em 0 0;
+  display: flex;
+  justify-content: center;
+}
+.Shop .search form {
+  position: relative;
+  width: 30%;
+  margin: auto;
+}
+.Shop .search form input,
+.Shop .search form button {
+  height: 35px;
+}
+.Shop .search form input {
+  border-radius: 32px;
+}
+.Shop .search form button {
+  position: absolute;
+  right: 0;
+  border-radius: 0 32px 32px 0;
+  padding: 0.5em 0.7em;
+  cursor: pointer;
 }/*# sourceMappingURL=styles.css.map */
