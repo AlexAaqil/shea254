@@ -752,7 +752,7 @@ footer .copyright {
   font-weight: bold;
   position: absolute;
   right: 0;
-  top: 0;
+  top: 10vh;
   width: 30%;
   opacity: 1;
   transition: opacity 0.5s ease-in-out;
