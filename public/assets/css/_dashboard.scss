@@ -1,54 +1,126 @@
-.container{
-    .statistics{
-        display:grid;
-        grid-template-columns: repeat(6, 1fr);
-        gap: 0.5em;
+.Admin_Dashboard {
+    .container {
+        h2 {
+            font-size: 1.2em;
 
+            a {
+                text-decoration: none;
+                color: #000;
+            }
+        }
 
-        .static{
-            display:grid;
-            grid-template-columns: 15% auto;
-            align-items: center;
-            gap: 0 1.5em;
-            background: #d5e0f8;
-            padding: 0.5em 0.6em;
-            border-radius: 12px;
+        .statistics,
+        .analytics {
+            margin: 0 0 4em;
+        }
 
-            .icon {
-                @include flex_center;
-                justify-content: center;
-                $dimensions: 20px;
-                background: #adc5f7;
-                width: $dimensions;
-                height: $dimensions;
-                padding: 16px;
-                border-radius: 50%;
-                i{
-                    font-size: 1em;
+        .statistics {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5em;
+
+            .static {
+                display: grid;
+                grid-template-columns: 15% auto;
+                align-items: center;
+                gap: 0 1.5em;
+                background: #d5e0f8;
+                padding: 0.5em 0.6em;
+                border-radius: 12px;
+
+                .icon {
+                    @include flex_center;
+                    justify-content: center;
+                    $dimensions: 20px;
+                    background: #adc5f7;
+                    width: $dimensions;
+                    height: $dimensions;
+                    padding: 16px;
+                    border-radius: 50%;
+                    i {
+                        font-size: 1em;
+                    }
+                }
+                .text {
+                    p {
+                        &:first-of-type {
+                            font-size: 0.85em;
+                        }
+                        &:last-of-type {
+                            font-weight: bold;
+                            font-size: 1.1em;
+                        }
+                    }
                 }
             }
-            .text{
-                p {
-                    &:first-of-type {
-                        font-size: 0.85em;
-                    }
-                    &:last-of-type {
-                        font-weight: bold;
-                        font-size: 1.3em;
+        }
+
+        .analytics {
+            display: grid;
+            gap: 1em;
+
+            .info {
+                ul {
+                    li {
+                        margin: 0.5em 0;
+                        display: grid;
+                        align-items: center;
+                        border-bottom: 1px solid grey;
+                        padding: 0.1em;
+
+                        &:first-of-type {
+                            border-top: 1px solid grey;
+                        }
+
+                        span {
+                            &:nth-of-type(2) {
+                                font-size: 1.1em;
+                                font-weight: bold;
+                            }
+                        }
                     }
                 }
-           }
+
+                .sales_analytics {
+                    li {
+                        gap: 0.5em;
+
+
+                    }
+                }
+            }
         }
     }
+}
 
-    .analytics {
-        display: grid;
-        grid-template-columns: 3fr 2fr;
-        gap: 2em;
-        height: 40vh;
 
-        .info {
-            padding: 0.5em 1em;
+@media screen and (width >= 726px) {
+    .Admin_Dashboard {
+        .container {
+            .statistics {
+                grid-template-columns: repeat(6, 1fr);
+            }
+
+            .analytics {
+                grid-template-columns: 1fr 1fr;
+                gap: 1em;
+
+                ul {
+                    li {
+                        grid-template-columns: 1fr 1fr;
+                    }
+                }
+            }
+
+            .charts {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 1em;
+
+                .chart {
+                    height: 40vh;
+                }
+            }
         }
     }
 }

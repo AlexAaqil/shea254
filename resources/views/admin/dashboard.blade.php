@@ -3,7 +3,7 @@
 @section('content')
 <main class="Admin">
     @include('admin.sidenav')
-    <section class="Main Dashboard">
+    <section class="Main Admin_Dashboard">
         <div class="container">
             <h1>Dashboard</h1>
 
@@ -64,26 +64,15 @@
                     </div>
                     <div class="text">
                         <p>Sales</p>
-                        <p>xxx</p>
+                        <p>1,000,000</p>
                     </div>
                 </div>
             </div>
 
             <div class="analytics">
-                <div class="chart">
-                    <h2>Sales</h2>
-                    <canvas id="salesChart"></canvas>
-                </div>
-                <div class="chart">
-                    <h2>Cities</h2>
-                    <canvas id="citiesChart"></canvas>
-                </div>
-            </div>
-
-            <div class="analytics">
-<div class="info sales_analytics">
-                    <h3>Sales Analytics</h3>
-                    <ul class="list_style_none">
+                <div class="info">
+                    <h2>Sales Analytics</h2>
+                    <ul class="list_style_none sales_analytics">
                         <li>
                             <span>Today</span>
                             <span>Ksh. 10, 000</span>
@@ -106,8 +95,11 @@
                     </ul>
                 </div>
 
-                <div class="info recent_orders">
-                    <ul class="list_style_none">
+                <div class="info">
+                    <h2>
+                        <a href="{{ route('list_orders') }}">Recent Orders</a>
+                    </h2>
+                    <ul class="list_style_none recent_orders">
                         <li>
                             <span>Mint Essential Oil</span>
                             <span>Ksh. 10000</span>
@@ -131,6 +123,17 @@
                     </ul>
                 </div>
             </div>
+
+            <div class="charts">
+                <div class="chart">
+                    <h2>2024 Sales</h2>
+                    <canvas id="salesChart"></canvas>
+                </div>
+                <div class="chart">
+                    <h2>Cities</h2>
+                    <canvas id="citiesChart"></canvas>
+                </div>
+            </div>
         </div>
     </section>
 </main>
@@ -149,11 +152,7 @@
       }]
     },
     options: {
-      scales: {
-        y: {
-          beginAtZero: true
-        }
-      }
+        responsive: true,
     }
   });
 
@@ -169,12 +168,12 @@
       }]
     },
     options: {
-      plugins: {
-        legend: {
-          display: true,
-          position: 'right',
+        responsive: true,
+        plugins: {
+            legend: {
+                position: 'right',
+            }
         }
-      }
     }
   });
 </script>
