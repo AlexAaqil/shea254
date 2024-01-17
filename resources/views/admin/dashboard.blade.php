@@ -116,10 +116,6 @@
                             <span>Mint Essential Oil</span>
                             <span>Ksh. 10000</span>
                         </li>
-                        <li>
-                            <span>Mint Essential Oil</span>
-                            <span>Ksh. 10000</span>
-                        </li>
                     </ul>
                 </div>
             </div>
