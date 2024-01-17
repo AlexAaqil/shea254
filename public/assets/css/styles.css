@@ -1387,14 +1387,13 @@ footer .copyright {
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
-  border-bottom: 1px solid grey;
+  border-bottom: 1px solid rgb(218, 218, 218);
   padding: 0.1em;
 }
 .Admin_Dashboard .container .analytics .info ul li:first-of-type {
-  border-top: 1px solid grey;
+  border-top: 1px solid rgb(218, 218, 218);
 }
 .Admin_Dashboard .container .analytics .info ul li span:nth-of-type(2) {
-  font-size: 1.1em;
   font-weight: bold;
   text-align: right;
 }
