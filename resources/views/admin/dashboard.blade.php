@@ -64,7 +64,7 @@
                     </div>
                     <div class="text">
                         <p>Sales</p>
-                        <p>1,000,000</p>
+                        <p>{{ number_format($total_sales) }}</p>
                     </div>
                 </div>
             </div>
@@ -75,22 +75,22 @@
                     <ul class="list_style_none sales_analytics">
                         <li>
                             <span>Today</span>
-                            <span>Ksh. 10, 000</span>
+                            <span>Ksh. {{ number_format($sales_today) }}</span>
                         </li>
 
                         <li>
                             <span>This Week</span>
-                            <span>Ksh. 10, 000</span>
+                            <span>Ksh. {{ number_format($sales_this_week) }}</span>
                         </li>
 
                         <li>
                             <span>This Month</span>
-                            <span>Ksh. 10, 000</span>
+                            <span>Ksh. {{ number_format($sales_this_month) }}</span>
                         </li>
 
                         <li>
                             <span>This Year</span>
-                            <span>Ksh. 10, 000</span>
+                            <span>Ksh. {{ number_format($sales_this_year) }}</span>
                         </li>
                     </ul>
                 </div>
@@ -100,29 +100,19 @@
                         <a href="{{ route('list_orders') }}">Recent Orders</a>
                     </h2>
                     <ul class="list_style_none recent_orders">
+                        @foreach($recent_orders as $order)
                         <li>
-                            <span>Mint Essential Oil</span>
-                            <span>Ksh. 10000</span>
+                            <span>{{ $order->order_number }}</span>
+                            <span>Kshs. {{ number_format($order->total_amount) }}</span>
                         </li>
-                        <li>
-                            <span>Mint Essential Oil</span>
-                            <span>Ksh. 10000</span>
-                        </li>
-                        <li>
-                            <span>Mint Essential Oil</span>
-                            <span>Ksh. 10000</span>
-                        </li>
-                        <li>
-                            <span>Mint Essential Oil</span>
-                            <span>Ksh. 10000</span>
-                        </li>
+                        @endforeach
                     </ul>
                 </div>
             </div>
 
             <div class="charts">
                 <div class="chart">
-                    <h2>2024 Sales</h2>
+                    <h2>{{ $this_year }} Sales</h2>
                     <canvas id="salesChart"></canvas>
                 </div>
                 <div class="chart">
@@ -140,10 +130,10 @@
   new Chart(ctx, {
     type: 'bar',
     data: {
-      labels: ['january', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+      labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
       datasets: [{
         label: 'Amount',
-        data: [1000, 1900, 3, 5, 2, 3],
+        data: {!! json_encode($sales_data) !!},
         borderWidth: 1
       }]
     },
@@ -154,22 +144,22 @@
 
   const cities = document.getElementById('citiesChart');
 
-  new Chart(cities, {
-    type: 'doughnut',
-    data: {
-      labels: ['Nairobi', 'Kiambu', 'Nakuru'],
-      datasets: [{
-        label: 'Orders',
-        data: [100, 19, 3],
-      }]
-    },
-    options: {
-        responsive: true,
-        plugins: {
-            legend: {
-                position: 'right',
+    new Chart(cities, {
+        type: 'doughnut',
+        data: {
+            labels: {!! json_encode($cities_labels) !!},
+            datasets: [{
+                label: 'Orders',
+                data: {!! json_encode($cities_orders) !!},
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'right',
+                }
             }
-        }
     }
   });
 </script>
