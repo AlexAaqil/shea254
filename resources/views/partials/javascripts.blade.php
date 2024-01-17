@@ -12,4 +12,5 @@
     <script src="{{ asset('/assets/js/sweetalert.js') }}"></script>
     <script src="{{ asset('/assets/js/chart.js') }}"></script>
     <script src="{{ asset('/assets/js/custom.js') }}"></script>
+    @yield('additional_javascript')
 @endif

@@ -14,13 +14,14 @@ class OrderController extends Controller
 {
     public function list_orders()
     {
-        $orders = Order::latest()->get();
-        return view('admin.list_orders', compact('orders'));
+        return view('admin.list_orders');
     }
 
     public function list_orders_table()
     {
-        $orders = Order::latest()->get();
+        $orders = Order::orderBy('status')
+        ->orderBy('created_at', 'desc')
+        ->get();
         return view('partials.orders_table_body', compact('orders'));
     }
 

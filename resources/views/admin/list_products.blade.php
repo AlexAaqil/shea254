@@ -65,5 +65,4 @@
         </div>
     </section>
 </main>
-@include('partials.javascripts')
 @endsection

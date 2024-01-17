@@ -35,7 +35,7 @@
         </div>
     </section>
 </main>
-@include('partials.javascripts')
+@section('additional_javascript')
 <script>
     $(document).ready(function () {
         // Function to update the table content
@@ -61,4 +61,6 @@
         setInterval(updateTable, updateInterval);
     });
 </script>
+@endsection
+
 @endsection
