@@ -4,8 +4,8 @@
     <td>{{ $value->first_name }} {{ $value->last_name }}</td>
     <td>{{ $value->phone_number }}</td>
     <td>{{ $value->address }}</td>
-    <td>{{ $value->shipping_cost }}</td>
-    <td>{{ $value->total_amount }}</td>
+    <td>{{ number_format($value->shipping_cost) }}</td>
+    <td>{{ number_format($value->total_amount) }}</td>
     <td class="{{ $value->status == 'pending' ? 'text-danger' : 'text-success'  }}">{{ $value->status }}</td>
     <td>{{ $value->paid == 0 ? 'No' : 'Yes' }}</td>
     <td class="actions">

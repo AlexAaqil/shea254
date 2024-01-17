@@ -8,7 +8,7 @@
             @foreach($user_orders as $order)
             <li>
                 <span>{{ $order->order_number }}</span>
-                <span>Ksh. {{ $order->total_amount }}</span>
+                <span>Ksh. {{ number_format($order->total_amount) }}</span>
                 <span class="{{ ($order->status == "processed") ? 'text-success' : '' }}">{{ $order->status }}
                     @if ($order->status == "processed")
                         <i class="fas fa-check"></i>
