@@ -5,6 +5,7 @@
     @include('admin.sidenav')
     <section class="Main Products">
         <div class="container">
+            @include('partials.navbar_admin_products')
             <div class="header">
                 <h1>Products</h1>
                 <input type="text" name="search" id="myInput" placeholder="Search" onkeyup="searchFunction()" />

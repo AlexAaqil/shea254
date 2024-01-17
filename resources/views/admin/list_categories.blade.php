@@ -5,6 +5,8 @@
     @include('admin.sidenav')
     <section class="Main Categories">
         <div class="container">
+            @include('partials.messages')
+            @include('partials.navbar_admin_products')
             <div class="header">
                 <h1>Categories</h1>
                 <input type="text" name="search" id="myInput" placeholder="Search" onkeyup="searchFunction()" />
@@ -12,8 +14,6 @@
                     <a href="{{ route('get_add_category') }}">New</a>
                 </div>
             </div>
-
-            @include('partials.messages')
 
             <div class="body">
                 <table>

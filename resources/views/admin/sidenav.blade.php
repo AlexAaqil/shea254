@@ -28,18 +28,6 @@
                 </a>
             </li>
             <li class="nav-link">
-                <a href="{{ route('list_categories') }}">
-                    <i class="fas fa-tags"></i>
-                    <span class="text">Categories</span>
-                </a>
-            </li>
-            <li class="nav-link">
-                <a href="{{ route('list_product_sizes') }}">
-                    <i class="fas fa-ruler-combined"></i>
-                    <span class="text">Product Sizes</span>
-                </a>
-            </li>
-            <li class="nav-link">
                 <a href="{{ route('list_products') }}">
                     <i class="fas fa-store-alt"></i>
                     <span class="text">Products</span>
