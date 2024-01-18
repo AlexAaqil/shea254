@@ -76,7 +76,7 @@ class HomeController extends Controller
             'message' => 'required|string',
         ]);
 
-        message::create($validatedData);
+        Message::create($validatedData);
 
         return redirect()->back()->with('success',[
             'message' => 'Message sent succefully',
