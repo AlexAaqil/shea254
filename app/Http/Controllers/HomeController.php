@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Message;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
@@ -63,5 +65,22 @@ class HomeController extends Controller
     public function contactpage()
     {
         return view('contact');
+    }
+
+    public function add_message(Request $request)
+    {
+        $validatedData = $request->validate([
+            'full_name' => 'required|string|max:200',
+            'email_address' => 'required|string|max:255',
+            'phone_number' => 'required|string|max:20',
+            'message' => 'required|string',
+        ]);
+
+        message::create($validatedData);
+
+        return redirect()->back()->with('success',[
+            'message' => 'Message sent succefully',
+            'duration' => $this->alert_message_duration
+        ]);
     }
 }
