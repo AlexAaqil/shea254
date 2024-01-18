@@ -37,7 +37,7 @@ class HomeController extends Controller
                 ['featured', 1],
                 ['in_stock', 1]
             ])
-            ->latest()
+            ->orderBy('order')
             ->take(4)
             ->get();
         foreach($featured_products as $product) {
