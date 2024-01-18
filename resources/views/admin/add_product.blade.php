@@ -63,7 +63,7 @@
                         <span class="inline_alert">{{ $errors->first('discount_price') }}</span>
                     </div>
 
-                    <div class="row_input_group">
+                    <div class="row_input_group_3">
                         <div class="input_group">
                             <label for="category_id">Category<span class="text-danger">*</span></label>
                             <select name="category_id" id="category_id" value="{{ old('category_id') }}">
@@ -84,6 +84,11 @@
                                 @endforeach
                             </select>
                             <span class="inline_alert">{{ $errors->first('product_size_id') }}</span>
+                        </div>
+
+                        <div class="input_group">
+                            <label for="order">Order</label>
+                            <input type="number" name="order" id="order" min="1">
                         </div>
                     </div>
 

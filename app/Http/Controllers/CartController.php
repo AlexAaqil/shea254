@@ -31,12 +31,15 @@ class CartController extends Controller
             // Increment quantity if product is already in the cart
             $cart[$product->id]['quantity']++;
         } else {
+            // Use discount price if available, otherwise use regular price
+            $price = $product->discount_price ?? $product->price;
+
             // Add the product to the cart
             $cart[$product->id] = [
                 'id' => $product->id,
                 'title' => $product->title,
                 'slug' => $product->slug,
-                'price' => $product->price,
+                'price' => $price,
                 'quantity' => 1,
             ];
         }

@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Storage;
 class ProductController extends Controller
 {
     public function list() {
-        $products = Product::with('category', 'product_size', 'getProductImages')->get();
+        $products = Product::with('category', 'product_size', 'getProductImages')->orderBy('order', 'asc')->get();
         return view("admin.list_products", compact("products"));
     }
 
@@ -42,6 +42,7 @@ class ProductController extends Controller
         $product->discount_price = $request->discount_price;
         $product->category_id = $request->category_id;
         $product->product_size_id = $request->product_size_id;
+        $product->order = $request->order;
 
         $product->save();
 
@@ -94,6 +95,7 @@ class ProductController extends Controller
         $product->discount_price = $request->discount_price;
         $product->category_id = $request->category_id;
         $product->product_size_id = $request->product_size_id;
+        $product->order = $request->order;
 
         $product->save();
 

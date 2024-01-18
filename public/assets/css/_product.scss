@@ -4,6 +4,7 @@
 
     .product {
         box-shadow: 2px 2px 8px rgb(201, 201, 201);
+        position: relative;
         .image {
             height: 250px;
 
@@ -52,6 +53,17 @@
                     color: $price_color;
                     font-weight: bold;
                     font-size: 1.1em;
+
+                    .discount_percentage {
+                        position: absolute;
+                        top: 0;
+                        right: 0;
+                        background: green;
+                        color: #fff;
+                        font-size: 0.8em;
+                        padding: 0.2em 0.6em;
+                        border-radius: 16px;
+                    }
                 }
             }
 

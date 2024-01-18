@@ -132,6 +132,11 @@ form {
             grid-template-columns: 1fr 1fr;
             gap: 0 1em;
         }
+        .row_input_group_3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 0 1em;
+        }
     }
 
     .Auth {

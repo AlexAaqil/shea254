@@ -20,8 +20,19 @@
                     </a>
                 </p>
                 <p class="price_details">
-                    <span class="currency">Ksh.</span>
-                    <span class="price_amount">{{ $product->price }}</span>
+                    @if($product->discount_price && $product->discount_price < $product->price)
+                        <span class="currency">Ksh.</span>
+                        <span class="price_amount discount">{{ $product->discount_price }}</span>
+                        <span class="original_price text-danger">
+                            <del>{{ $product->price }}</del>
+                        </span>
+                        <span class="discount_percentage">
+                            save {{ round($product->discount_percentage) }}%
+                        </span>
+                    @else
+                        <span class="currency">Ksh.</span>
+                        <span class="price_amount">{{ $product->price }}</span>
+                    @endif
                 </p>
             </div>
         </div>

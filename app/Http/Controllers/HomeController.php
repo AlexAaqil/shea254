@@ -38,12 +38,20 @@ class HomeController extends Controller
             ->latest()
             ->take(4)
             ->get();
+        foreach($featured_products as $product) {
+            $product->calculateDiscount();
+        }
         return view('index', compact('featured_products'));
     }
 
     public function shop()
     {
-        $products = Product::where('in_stock', 1)->get();
+        $products = Product::where('in_stock', 1)->orderBy('order', 'asc')->get();
+
+        foreach ($products as $product) {
+            $product->calculateDiscount();
+        }
+
         return view('shop', compact('products'));
     }
 

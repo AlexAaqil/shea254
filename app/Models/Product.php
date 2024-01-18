@@ -20,6 +20,7 @@ class Product extends Model
         'discount_price',
         'product_size_id',
         'category_id',
+        'order',
     ];
 
     public function category()
@@ -53,5 +54,23 @@ class Product extends Model
             : '/assets/images/default_product.jpg';
 
         return url('storage/' . $imagePath); // Include url() generation here
+    }
+
+    public function calculateDiscount()
+    {
+        if ($this->discount_price && $this->discount_price < $this->price) {
+            // Calculate the discount percentage
+            $discountPercentage = (($this->price - $this->discount_price) / $this->price) * 100;
+
+            // Set the new price and percentage in the model
+            $this->new_price = $this->discount_price;
+            $this->discount_percentage = round($discountPercentage, 0);
+        } else {
+            // If no discount, set the new price as the regular price
+            $this->new_price = $this->price;
+            $this->discount_percentage = 0;
+        }
+
+        return $this;
     }
 }
