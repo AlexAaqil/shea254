@@ -86,8 +86,8 @@
             <div class="summary">
                 <h1>Order Summary</h1>
                 <p>
-                    <span>Cart Items</span>
-                    <span>{{ Session::get('cart_count', 0) }}</span>
+                    <span>Cart Total</span>
+                    <span>{{ $cart['subtotal'] }}</span>
                 </p>
                 <p>
                     <span>Shipping Cost</span>
