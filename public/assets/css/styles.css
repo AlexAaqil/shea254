@@ -248,11 +248,27 @@ nav .nav_container ul .cart span {
   font-weight: bold;
   font-size: 0.75em;
 }
+nav .nav_container ul .authentication {
+  display: flex;
+  gap: 1em;
+}
 nav .nav_container ul .authentication a {
   background: #000;
   color: #fff;
   padding: 8px 16px;
   border-radius: 32px;
+}
+nav .nav_container ul .authentication .profile {
+  width: 100%;
+  height: 100%;
+  padding: 8px;
+  border-radius: 50%;
+}
+nav .nav_container ul .authentication form button {
+  padding: 8px 16px;
+  background: red;
+  border-radius: 32px;
+  cursor: pointer;
 }
 nav .nav_container ul .authentication ul {
   display: none;
