@@ -40,7 +40,7 @@
 
                 <div class="static">
                     <div class="icon">
-                        <i class="fas fa-store-alt"></i>
+                        <i class="fas fa-barcode"></i>
                     </div>
                     <div class="text">
                         <p>Products</p>
@@ -50,7 +50,7 @@
 
                 <div class="static">
                     <div class="icon">
-                        <i class="fas fa-truck"></i>
+                        <i class="fas fa-truck-loading"></i>
                     </div>
                     <div class="text">
                         <p>Orders</p>
@@ -60,7 +60,7 @@
 
                 <div class="static">
                     <div class="icon">
-                        <i class="fas fa-balance-scale-left"></i>
+                        <i class="fas fa-dollar-sign"></i>
                     </div>
                     <div class="text">
                         <p>Sales</p>

@@ -6,7 +6,7 @@
 
         form {
             position: relative;
-            width: 30%;
+
             margin: auto;
 
             input,
@@ -24,12 +24,16 @@
                 border-radius: 0 32px 32px 0;
                 padding: 0.5em 0.7em;
                 cursor: pointer;
+            }
+        }
+    }
+}
 
-                .icon {
-                    path {
-                        fill: white;
-                    }
-                }
+@media screen and (width >= 726px) {
+    .Shop {
+        .search {
+            form {
+                width: 30%;
             }
         }
     }

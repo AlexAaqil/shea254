@@ -34,8 +34,8 @@
   width: 20px;
   height: 20px;
 }
-.icon use {
-  fill: red;
+.icon img {
+  background: blue;
 }
 
 form input,
@@ -631,9 +631,8 @@ footer .copyright {
   color: #000;
   cursor: pointer;
 }
-.products_wrapper .product .text .cart button .icon {
-  height: 40px;
-  width: 40px;
+.products_wrapper .product .text .cart button i {
+  font-size: 2.4em;
 }
 
 .product_images {
@@ -1471,7 +1470,6 @@ footer .copyright {
 }
 .Shop .search form {
   position: relative;
-  width: 30%;
   margin: auto;
 }
 .Shop .search form input,
@@ -1488,6 +1486,9 @@ footer .copyright {
   padding: 0.5em 0.7em;
   cursor: pointer;
 }
-.Shop .search form button .icon path {
-  fill: white;
+
+@media screen and (width >= 726px) {
+  .Shop .search form {
+    width: 30%;
+  }
 }/*# sourceMappingURL=styles.css.map */
