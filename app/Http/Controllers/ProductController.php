@@ -204,6 +204,11 @@ class ProductController extends Controller
         $categories = Category::all();
         $category = Category::where('slug', $category_slug)->firstOrFail();
         $products = $category->products;
+
+        foreach ($products as $product) {
+            $product->calculateDiscount();
+        }
+        
         return view('list_products_by_category', compact('products', 'category', 'categories'));
     }
 
@@ -215,6 +220,10 @@ class ProductController extends Controller
         ->where('title', 'like', "%$query%")
         ->orWhere('description', 'like', "%$query%")
         ->get();
+
+        foreach ($products as $product) {
+            $product->calculateDiscount();
+        }
 
         return view('search_results', compact('products', 'query'));
     }
