@@ -19,8 +19,8 @@
         <div class="contacts">
             <h1>Contacts</h1>
             <div class="enquiries">
-                <p><i class="fas fa-phone-alt"></i> +254 711 894 267</p>
-                <p><i class="far fa-envelope"></i> shea254@gmail.com</p>
+                <p>+254 711 894 267</p>
+                <p>shea254@gmail.com</p>
             </div>
             <div class="socials">
                     <a href="https://www.instagram.com/shea.254" target="_blank"

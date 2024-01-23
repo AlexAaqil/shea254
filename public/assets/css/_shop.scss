@@ -24,6 +24,12 @@
                 border-radius: 0 32px 32px 0;
                 padding: 0.5em 0.7em;
                 cursor: pointer;
+
+                .icon {
+                    path {
+                        fill: white;
+                    }
+                }
             }
         }
     }

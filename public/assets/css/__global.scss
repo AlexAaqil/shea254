@@ -29,3 +29,14 @@
 .rounded {
     border-radius: 50%;
 }
+
+
+.icon {
+    background: transparent;
+    width: 20px;
+    height: 20px;
+
+    use {
+        fill:red;
+    }
+}

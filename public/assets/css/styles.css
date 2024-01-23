@@ -29,6 +29,15 @@
   border-radius: 50%;
 }
 
+.icon {
+  background: transparent;
+  width: 20px;
+  height: 20px;
+}
+.icon use {
+  fill: red;
+}
+
 form input,
 form select,
 form textarea {
@@ -622,8 +631,9 @@ footer .copyright {
   color: #000;
   cursor: pointer;
 }
-.products_wrapper .product .text .cart button i {
-  font-size: 2em;
+.products_wrapper .product .text .cart button .icon {
+  height: 40px;
+  width: 40px;
 }
 
 .product_images {
@@ -1477,4 +1487,7 @@ footer .copyright {
   border-radius: 0 32px 32px 0;
   padding: 0.5em 0.7em;
   cursor: pointer;
+}
+.Shop .search form button .icon path {
+  fill: white;
 }/*# sourceMappingURL=styles.css.map */
