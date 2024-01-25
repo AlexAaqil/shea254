@@ -25,6 +25,9 @@ Ecommerce website made using Laravel 10
     composer install
     ```
     ```bash
+    npm install
+    ```
+    ```bash
     php artisan key:generate
     ```
      ```bash
