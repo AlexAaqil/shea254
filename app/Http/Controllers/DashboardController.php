@@ -55,13 +55,13 @@ class DashboardController extends Controller
                                 ->sum('total_amount');
 
         // Sales for each month of the current year
-        $monthly_sales = Order::selectRaw("strftime('%m', created_at) as month, SUM(total_amount) as total_sales")
-        ->where('status', 'processed')
-        ->where('paid', true)
-        ->whereYear('created_at', Carbon::now()->year)
-        ->groupBy('month')
-        ->orderBy('month')
-        ->get();
+        $monthly_sales = Order::selectRaw("MONTH(created_at) as month, SUM(total_amount) as total_sales")
+            ->where('status', 'processed')
+            ->where('paid', true)
+            ->whereYear('created_at', Carbon::now()->year)
+            ->groupBy('month')
+            ->orderBy('month')
+            ->get();
 
         // Map the sales data for each month
         $sales_data = $monthly_sales->pluck('total_sales')->toArray();
