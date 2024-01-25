@@ -20,7 +20,6 @@ COPY . .
 RUN composer install
 
 RUN npm install
-RUN npm run production
 
 ENV APACHE_DOCUMENT_ROOT /var/www/html/shea254/public
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
