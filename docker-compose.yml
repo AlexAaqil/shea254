@@ -7,7 +7,7 @@ services:
         build: .
         volumes:
             - ./:/var/www/html/shea254
-        port:
+        ports:
             - "8000:80"
         depends_on:
             - mysql_db
