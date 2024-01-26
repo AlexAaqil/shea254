@@ -61,13 +61,6 @@ Route::middleware(['auth', 'admin'])->group(function() {
     Route::get('/admin/users/update/{id}', [UserController::class, 'get_update_user'])->name('get_update_user');
     Route::post('/admin/users/update/{id}', [UserController::class, 'post_update_user'])->name('post_update_user');
 
-    Route::get('/admin/productsizes/list', [ProductSizeController::class, 'list'])->name('list_product_sizes');
-    Route::get('/admin/productsize/add', [ProductSizeController::class, 'get_add_product_size'])->name('get_add_product_size');
-    Route::post('/admin/productsize/add', [ProductSizeController::class, 'post_add_product_size'])->name('post_add_product_size');
-    Route::get('/admin/productsize/update/{id}', [ProductSizeController::class, 'get_update_product_size'])->name('get_update_product_size');
-    Route::post('/admin/productsize/update/{id}', [ProductSizeController::class, 'post_update_product_size'])->name('post_update_product_size');
-    Route::delete('/admin/productsize/delete/{id}', [ProductSizeController::class, 'delete_product_size'])->name('delete_product_size');
-
     Route::get('/admin/products/list', [ProductController::class, 'list'])->name('list_products');
     Route::get('/admin/product/add', [ProductController::class, 'get_add_product'])->name('get_add_product');
     Route::post('/admin/product/add', [ProductController::class, 'post_add_product'])->name('post_add_product');
@@ -79,6 +72,7 @@ Route::middleware(['auth', 'admin'])->group(function() {
 
     Route::prefix('admin')->group(function() {
         Route::resource('categories', CategoryController::class);
+        Route::resource('productsizes', ProductSizeController::class);
 
         Route::resource('/delivery/locations', DeliveryLocationController::class);
         Route::resource('/delivery/areas', DeliveryAreaController::class);

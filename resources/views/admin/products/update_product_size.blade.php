@@ -4,11 +4,13 @@
     <div class="container product_sizes">
         <div class="custom_form">
             <h1>Update Product Size</h1>
-            <form action="" method="post">
+            <form action="{{ route('productsizes.update', ['productsize' => $productsize->id]) }}" method="post">
                 @csrf
+                @method('PATCH')
+
                 <div class="input_group">
                     <label for="product_size">Product Size</label>
-                    <input type="text" name="product_size" id="product_size" value="{{ old('product_size', $product_size->product_size) }}" required />
+                    <input type="text" name="product_size" id="product_size" value="{{ old('product_size', $productsize->product_size) }}" required />
                     <span class="inline_alert">{{ $errors->first('product_size') }}</span>
                 </div>
 
