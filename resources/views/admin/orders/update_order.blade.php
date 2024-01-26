@@ -41,12 +41,9 @@
 
                 <div class="cart_items">
                     <p class="bold">Items Ordered</p>
-                    @php
-                        $cart_items = json_decode($order->cart_items, true);
-                    @endphp
 
                     <ul>
-                    @foreach($cart_items as $product)
+                    @foreach($order->cart_items['items'] as $productId => $product)
                     <li>
                         <span>{{ $product['title'] }}</span>
                         <span>{{ $product['quantity'] }}</span>

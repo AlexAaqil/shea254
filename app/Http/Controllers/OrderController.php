@@ -67,9 +67,16 @@ class OrderController extends Controller
         // Retrieve cart items from the session
         $cart = Session::get('cart', []);
 
-        // Calculate shipping cost and total amount based on the selected delivery area
+        // Get the area and location names
         $area = DeliveryArea::findOrFail($validated_data['area']);
-        $shipping_cost = $area->price;
+        $location = DeliveryLocation::findOrFail($validated_data['location']);
+
+        $area_name = $area->area_name;
+        $location_name = $location->location_name;
+
+        // Calculate shipping cost and total amount based on the selected delivery area
+        $area_price = $area->price;
+        $shipping_cost = $area_price;
 
         $cart = app(CartController::class)->cartItemsWithCalculatedTotals();
         $cart_subtotal = $cart['subtotal'];
@@ -90,8 +97,8 @@ class OrderController extends Controller
             'phone_number' => $validated_data['phone_number'],
             'address' => $validated_data['address'],
             'additional_information' => $validated_data['additional_information'],
-            'location' => $validated_data['location'],
-            'area' => $validated_data['area'],
+            'location' => $location_name,
+            'area' => $area_name,
             'cart_items' => json_encode($cart),
             'shipping_cost' => $shipping_cost,
             'total_amount' => $total_amount,
@@ -109,7 +116,8 @@ class OrderController extends Controller
     public function get_update_order($id)
     {
         $order = Order::findOrFail($id);
-        return view('admin.update_order', compact('order'));
+        $order->cart_items = json_decode($order->cart_items, true);
+        return view('admin.orders.update_order', compact('order'));
     }
 
     public function post_update_order(Request $request, $id)
