@@ -26,7 +26,7 @@
                         <span>{{ Session::get('cart_count', 0) }}</span>
                     </a>
                 </li>
-                <li class="authentication">
+                <li class="nav_authentication">
                     @if(Auth::user())
                         <a href="{{ route('profile.edit') }}" class="profile">
                             <i class="fa fa-user"></i>

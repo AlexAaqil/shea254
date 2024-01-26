@@ -1,124 +1,117 @@
-.Admin_Dashboard {
-    .container {
-        h1 {
-            margin: 0 0 0.5em;
+.admin_dashboard {
+    h1 {
+        margin: 0 0 0.5em;
+    }
+
+    h2 {
+        font-size: 1.2em;
+
+        a {
+            text-decoration: none;
+            color: #000;
         }
+    }
 
-        h2 {
-            font-size: 1.2em;
+    .statistics,
+    .analytics {
+        margin: 0 0 4em;
+    }
 
-            a {
-                text-decoration: none;
-                color: #000;
-            }
-        }
+    .statistics {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.5em;
 
-        .statistics,
-        .analytics {
-            margin: 0 0 4em;
-        }
-
-        .statistics {
+        .static {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0.5em;
+            grid-template-columns: 15% auto;
+            align-items: center;
+            gap: 0 1.5em;
+            background: #d5e0f8;
+            padding: 0.5em 0.6em;
+            border-radius: 12px;
 
-            .static {
-                display: grid;
-                grid-template-columns: 15% auto;
-                align-items: center;
-                gap: 0 1.5em;
-                background: #d5e0f8;
-                padding: 0.5em 0.6em;
-                border-radius: 12px;
-
-                .icon {
-                    @include flex_center;
-                    justify-content: center;
-                    $dimensions: 20px;
-                    background: #adc5f7;
-                    width: $dimensions;
-                    height: $dimensions;
-                    padding: 16px;
-                    border-radius: 50%;
-                    i {
-                        font-size: 1em;
+            .icon {
+                @include flex_center;
+                justify-content: center;
+                $dimensions: 20px;
+                background: #adc5f7;
+                width: $dimensions;
+                height: $dimensions;
+                padding: 16px;
+                border-radius: 50%;
+                i {
+                    font-size: 1em;
+                }
+            }
+            .text {
+                p {
+                    &:first-of-type {
+                        font-size: 0.85em;
+                    }
+                    &:last-of-type {
+                        font-weight: bold;
+                        font-size: 1.1em;
                     }
                 }
-                .text {
-                    p {
-                        &:first-of-type {
-                            font-size: 0.85em;
-                        }
-                        &:last-of-type {
+            }
+        }
+    }
+
+    .analytics {
+        display: grid;
+        gap: 1em;
+
+        .info {
+            ul {
+                li {
+                    margin: 0.5em 0;
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    align-items: center;
+                    border-bottom: 1px solid rgb(218, 218, 218);
+                    padding: 0.1em;
+
+                    &:first-of-type {
+                        border-top: 1px solid rgb(218, 218, 218);
+                    }
+
+                    span {
+                        &:nth-of-type(2) {
                             font-weight: bold;
-                            font-size: 1.1em;
+                            text-align: right;
                         }
                     }
                 }
             }
-        }
 
-        .analytics {
-            display: grid;
-            gap: 1em;
-
-            .info {
-                ul {
-                    li {
-                        margin: 0.5em 0;
-                        display: grid;
-                        grid-template-columns: 1fr 1fr;
-                        align-items: center;
-                        border-bottom: 1px solid rgb(218, 218, 218);
-                        padding: 0.1em;
-
-                        &:first-of-type {
-                            border-top: 1px solid rgb(218, 218, 218);
-                        }
-
-                        span {
-                            &:nth-of-type(2) {
-                                font-weight: bold;
-                                text-align: right;
-                            }
-                        }
-                    }
-                }
-
-                .sales_analytics {
-                    li {
-                        gap: 0.5em;
-
-
-                    }
+            .sales_analytics {
+                li {
+                    gap: 0.5em;
                 }
             }
         }
     }
 }
 
-
 @media screen and (width >= 726px) {
-    .Admin_Dashboard {
-        .container {
-            .statistics {
-                grid-template-columns: repeat(6, 1fr);
-            }
+    .admin_dashboard {
+        .statistics {
+            grid-template-columns: repeat(6, 1fr);
+        }
 
-            .analytics {
-                grid-template-columns: 1fr 1fr;
-                gap: 1em;
-            }
+        .analytics {
+            grid-template-columns: 1fr 1fr;
+            gap: 1em;
+        }
 
-            .charts {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                gap: 1em;
+        .charts {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1em;
 
-                .chart {
-                    height: 40vh;
-                }
+            .chart {
+                height: 40vh;
             }
         }
     }

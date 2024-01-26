@@ -13,7 +13,7 @@ class ProductSizeController extends Controller
     public function list()
     {
         $product_sizes = ProductSize::latest()->get();
-        return view('admin.list_product_sizes', compact('product_sizes'));
+        return view('admin.products.product_sizes', compact('product_sizes'));
     }
 
     public function get_add_product_size()

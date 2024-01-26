@@ -14,7 +14,7 @@ class OrderController extends Controller
 {
     public function list_orders()
     {
-        return view('admin.list_orders');
+        return view('admin.orders.orders');
     }
 
     public function list_orders_table()
@@ -35,7 +35,7 @@ class OrderController extends Controller
 
     public function get_checkout()
     {
-        $cities = City::all();
+        $cities = Town::all();
         $towns = Town::all();
         $user = Auth::user();
         $cart = app(CartController::class)->cartItemsWithCalculatedTotals();
@@ -67,7 +67,7 @@ class OrderController extends Controller
         $validated_data['cart_items'] = json_encode(Session::get('cart', []));
 
         // Retrieve city and town names
-        $city = City::find($validated_data['city']);
+        $city = Town::find($validated_data['city']);
         $town = Town::find($validated_data['town']);
 
         if (!$city || !$town) {

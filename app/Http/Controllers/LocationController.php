@@ -3,14 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\City;
+use App\Models\Area;
 use App\Models\Town;
 
 class LocationController extends Controller
 {
     public function list()
     {
-        $cities = City::latest()->get();
+        $cities = Town::latest()->get();
         $towns = Town::latest()->get();
         return view('admin.list_locations', compact('cities', 'towns'));
     }

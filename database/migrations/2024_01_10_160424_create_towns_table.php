@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('towns', function (Blueprint $table) {
+        Schema::create('area', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('city_id')->constrained('cities')->onDelete('cascade');
-            $table->string('town_name');
+            $table->foreignId('town_id')->constrained('towns')->onDelete('cascade');
+            $table->string('area_name');
             $table->decimal('price', 10, 2)->default(0);
             $table->timestamps();
         });

@@ -10,7 +10,7 @@ class UserController extends Controller
     public function list_admins()
     {
         $list_admins = user::getAdmins();
-        return view ('admin.list_admins', compact('list_admins'));
+        return view ('admin.users.admins', compact('list_admins'));
     }
 
     public function get_update_admin($id)
@@ -37,7 +37,7 @@ class UserController extends Controller
     public function list_users()
     {
         $list_users = user::getUsers();
-        return view('admin.list_users', compact('list_users'));
+        return view('admin.users.users', compact('list_users'));
     }
 
     public function get_update_user($id)

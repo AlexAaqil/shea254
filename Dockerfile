@@ -2,7 +2,9 @@ FROM php:8.3-apache
 
 WORKDIR /var/www/html/shea254
 
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && \
+    apt-get upgrade -y &&\
+    apt-get install -y \
     unzip \
     zip \
     nodejs \

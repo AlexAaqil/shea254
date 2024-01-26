@@ -20,6 +20,7 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->decimal('price', 10, 2)->default(0);
             $table->decimal('discount_price', 10, 2)->default(0)->nullable();
+            $table->integer('order')->default(100);
 
             $table->foreignId('product_size_id')->constrained('product_sizes');
             $table->foreignId('category_id')->constrained('categories');

@@ -12,12 +12,12 @@ class CategoryController extends Controller
     public function list()
     {
         $categories = Category::latest()->get();
-        return view('admin.list_categories', compact('categories'));
+        return view('admin.products.categories', compact('categories'));
     }
 
     public function get_add_category()
     {
-        return view('admin.add_category');
+        return view('admin.products.add_category');
     }
 
     public function post_add_category(Request $request): RedirectResponse

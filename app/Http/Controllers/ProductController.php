@@ -14,7 +14,7 @@ class ProductController extends Controller
 {
     public function list() {
         $products = Product::with('category', 'product_size', 'getProductImages')->orderBy('order', 'asc')->get();
-        return view("admin.list_products", compact("products"));
+        return view("admin.products.products", compact("products"));
     }
 
     public function get_add_product() {
@@ -74,7 +74,7 @@ class ProductController extends Controller
         $categories = Category::all();
         $product_sizes = ProductSize::all();
         $product_images = $product->getProductImages;
-        return view("admin.update_product", compact('product', 'categories', 'product_sizes', 'product_images'));
+        return view("admin.products.update_product", compact('product', 'categories', 'product_sizes', 'product_images'));
     }
 
     public function post_update_product($id, Request $request) {
@@ -208,7 +208,7 @@ class ProductController extends Controller
         foreach ($products as $product) {
             $product->calculateDiscount();
         }
-        
+
         return view('list_products_by_category', compact('products', 'category', 'categories'));
     }
 

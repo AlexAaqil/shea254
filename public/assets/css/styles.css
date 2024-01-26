@@ -66,9 +66,6 @@ form button {
   color: #fff;
   border-radius: 6px 6px 0 0;
 }
-.custom_form form {
-  padding: 0 0.5em;
-}
 .custom_form form .input_group {
   padding: 0.3em 0;
   width: 100%;
@@ -248,29 +245,29 @@ nav .nav_container ul .cart span {
   font-weight: bold;
   font-size: 0.75em;
 }
-nav .nav_container ul .authentication {
+nav .nav_container ul .nav_authentication {
   display: flex;
   gap: 1em;
 }
-nav .nav_container ul .authentication a {
+nav .nav_container ul .nav_authentication a {
   background: #000;
   color: #fff;
   padding: 8px 16px;
   border-radius: 32px;
 }
-nav .nav_container ul .authentication .profile {
+nav .nav_container ul .nav_authentication .profile {
   width: 100%;
   height: 100%;
   padding: 8px;
   border-radius: 50%;
 }
-nav .nav_container ul .authentication form button {
+nav .nav_container ul .nav_authentication form button {
   padding: 8px 16px;
   background: red;
   border-radius: 32px;
   cursor: pointer;
 }
-nav .nav_container ul .authentication ul {
+nav .nav_container ul .nav_authentication ul {
   display: none;
 }
 nav .nav_container .burger_menu {
@@ -1128,6 +1125,27 @@ footer .copyright {
     box-shadow: 0 0 0 20px rgba(0, 0, 0, 0);
   }
 }
+.authentication {
+  margin: 2em auto 0;
+}
+.authentication .header {
+  text-align: center;
+  margin: 0 0 1em;
+}
+.authentication .header img {
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+}
+
+@media screen and (width >= 726px) {
+  .login {
+    width: 40%;
+  }
+  .signup {
+    width: 50%;
+  }
+}
 .About section {
   margin: 0 0 5em;
 }
@@ -1184,6 +1202,118 @@ footer .copyright {
   font-size: max(2em, 2vw);
 }
 
+.Cart .container .header h1 {
+  font-size: 1.4em;
+  margin: 0 0 0.3em;
+}
+.Cart .container .body {
+  display: grid;
+  grid-template-columns: 70% auto;
+  align-items: start;
+  gap: 0 2em;
+  margin: 1.5em 0;
+}
+.Cart .container .body ul li {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  align-items: center;
+  gap: 1em;
+  padding: 0.8em 0;
+  border-bottom: 1px solid grey;
+}
+.Cart .container .body ul li:first-of-type {
+  border-top: 1px solid grey;
+}
+.Cart .container .body ul li span {
+  text-align: center;
+}
+.Cart .container .body ul li .title {
+  text-align: left;
+}
+.Cart .container .body ul li .title a {
+  text-decoration: none;
+  color: #000;
+}
+.Cart .container .body ul li form button {
+  cursor: pointer;
+  padding: unset;
+}
+.Cart .container .body ul li .product_quantity form {
+  display: grid;
+  grid-template-columns: auto 20%;
+  gap: 0 0.4em;
+}
+.Cart .container .body ul li .delete_from_cart form button {
+  background: unset;
+}
+.Cart .container .body .summary {
+  background: #f2f2f2;
+  border-radius: 16px;
+  padding: 0.5em 1em 1em;
+}
+.Cart .container .body .summary h1 {
+  font-size: 1.4em;
+  text-align: center;
+  margin: 0 0 1.5em;
+}
+.Cart .container .body .summary p {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5em;
+  margin: 0.5em 0;
+}
+.Cart .container .body .summary p span:last-of-type {
+  text-align: right;
+  font-weight: bold;
+}
+.Cart .container .body .summary .total {
+  margin: 2em 0 0;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+.Cart .container .body .summary .action {
+  margin: 2em 0 1.5em;
+  background: #000;
+  text-align: center;
+  border-radius: 8px;
+}
+.Cart .container .body .summary .action a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 550;
+  display: block;
+  padding: 12px 16px;
+}
+
+.Shop .search {
+  padding: 1.2em 0 0;
+  display: flex;
+  justify-content: center;
+}
+.Shop .search form {
+  position: relative;
+  margin: auto;
+}
+.Shop .search form input,
+.Shop .search form button {
+  height: 35px;
+}
+.Shop .search form input {
+  border-radius: 32px;
+}
+.Shop .search form button {
+  position: absolute;
+  right: 0;
+  border-radius: 0 32px 32px 0;
+  padding: 0.5em 0.7em;
+  cursor: pointer;
+}
+
+@media screen and (width >= 726px) {
+  .Shop .search form {
+    width: 30%;
+  }
+}
 .Admin {
   display: flex;
 }
@@ -1288,109 +1418,26 @@ footer .copyright {
     margin: unset;
   }
 }
-.Cart .container .header h1 {
-  font-size: 1.4em;
-  margin: 0 0 0.3em;
-}
-.Cart .container .body {
-  display: grid;
-  grid-template-columns: 70% auto;
-  align-items: start;
-  gap: 0 2em;
-  margin: 1.5em 0;
-}
-.Cart .container .body ul li {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  align-items: center;
-  gap: 1em;
-  padding: 0.8em 0;
-  border-bottom: 1px solid grey;
-}
-.Cart .container .body ul li:first-of-type {
-  border-top: 1px solid grey;
-}
-.Cart .container .body ul li span {
-  text-align: center;
-}
-.Cart .container .body ul li .title {
-  text-align: left;
-}
-.Cart .container .body ul li .title a {
-  text-decoration: none;
-  color: #000;
-}
-.Cart .container .body ul li form button {
-  cursor: pointer;
-  padding: unset;
-}
-.Cart .container .body ul li .product_quantity form {
-  display: grid;
-  grid-template-columns: auto 20%;
-  gap: 0 0.4em;
-}
-.Cart .container .body ul li .delete_from_cart form button {
-  background: unset;
-}
-.Cart .container .body .summary {
-  background: #f2f2f2;
-  border-radius: 16px;
-  padding: 0.5em 1em 1em;
-}
-.Cart .container .body .summary h1 {
-  font-size: 1.4em;
-  text-align: center;
-  margin: 0 0 1.5em;
-}
-.Cart .container .body .summary p {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.5em;
-  margin: 0.5em 0;
-}
-.Cart .container .body .summary p span:last-of-type {
-  text-align: right;
-  font-weight: bold;
-}
-.Cart .container .body .summary .total {
-  margin: 2em 0 0;
-  font-weight: bold;
-  font-size: 1.2em;
-}
-.Cart .container .body .summary .action {
-  margin: 2em 0 1.5em;
-  background: #000;
-  text-align: center;
-  border-radius: 8px;
-}
-.Cart .container .body .summary .action a {
-  text-decoration: none;
-  color: #fff;
-  font-weight: 550;
-  display: block;
-  padding: 12px 16px;
-}
-
-.Admin_Dashboard .container h1 {
+.admin_dashboard h1 {
   margin: 0 0 0.5em;
 }
-.Admin_Dashboard .container h2 {
+.admin_dashboard h2 {
   font-size: 1.2em;
 }
-.Admin_Dashboard .container h2 a {
+.admin_dashboard h2 a {
   text-decoration: none;
   color: #000;
 }
-.Admin_Dashboard .container .statistics,
-.Admin_Dashboard .container .analytics {
+.admin_dashboard .statistics,
+.admin_dashboard .analytics {
   margin: 0 0 4em;
 }
-.Admin_Dashboard .container .statistics {
+.admin_dashboard .statistics {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0.5em;
 }
-.Admin_Dashboard .container .statistics .static {
+.admin_dashboard .statistics .static {
   display: grid;
   grid-template-columns: 15% auto;
   align-items: center;
@@ -1399,7 +1446,7 @@ footer .copyright {
   padding: 0.5em 0.6em;
   border-radius: 12px;
 }
-.Admin_Dashboard .container .statistics .static .icon {
+.admin_dashboard .statistics .static .icon {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1409,21 +1456,21 @@ footer .copyright {
   padding: 16px;
   border-radius: 50%;
 }
-.Admin_Dashboard .container .statistics .static .icon i {
+.admin_dashboard .statistics .static .icon i {
   font-size: 1em;
 }
-.Admin_Dashboard .container .statistics .static .text p:first-of-type {
+.admin_dashboard .statistics .static .text p:first-of-type {
   font-size: 0.85em;
 }
-.Admin_Dashboard .container .statistics .static .text p:last-of-type {
+.admin_dashboard .statistics .static .text p:last-of-type {
   font-weight: bold;
   font-size: 1.1em;
 }
-.Admin_Dashboard .container .analytics {
+.admin_dashboard .analytics {
   display: grid;
   gap: 1em;
 }
-.Admin_Dashboard .container .analytics .info ul li {
+.admin_dashboard .analytics .info ul li {
   margin: 0.5em 0;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1431,31 +1478,31 @@ footer .copyright {
   border-bottom: 1px solid rgb(218, 218, 218);
   padding: 0.1em;
 }
-.Admin_Dashboard .container .analytics .info ul li:first-of-type {
+.admin_dashboard .analytics .info ul li:first-of-type {
   border-top: 1px solid rgb(218, 218, 218);
 }
-.Admin_Dashboard .container .analytics .info ul li span:nth-of-type(2) {
+.admin_dashboard .analytics .info ul li span:nth-of-type(2) {
   font-weight: bold;
   text-align: right;
 }
-.Admin_Dashboard .container .analytics .info .sales_analytics li {
+.admin_dashboard .analytics .info .sales_analytics li {
   gap: 0.5em;
 }
 
 @media screen and (width >= 726px) {
-  .Admin_Dashboard .container .statistics {
+  .admin_dashboard .statistics {
     grid-template-columns: repeat(6, 1fr);
   }
-  .Admin_Dashboard .container .analytics {
+  .admin_dashboard .analytics {
     grid-template-columns: 1fr 1fr;
     gap: 1em;
   }
-  .Admin_Dashboard .container .charts {
+  .admin_dashboard .charts {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1em;
   }
-  .Admin_Dashboard .container .charts .chart {
+  .admin_dashboard .charts .chart {
     height: 40vh;
   }
 }
@@ -1477,34 +1524,4 @@ footer .copyright {
 .Locations .container table .actions .action button i {
   font-size: 1em;
   font-weight: bold;
-}
-
-.Shop .search {
-  padding: 1.2em 0 0;
-  display: flex;
-  justify-content: center;
-}
-.Shop .search form {
-  position: relative;
-  margin: auto;
-}
-.Shop .search form input,
-.Shop .search form button {
-  height: 35px;
-}
-.Shop .search form input {
-  border-radius: 32px;
-}
-.Shop .search form button {
-  position: absolute;
-  right: 0;
-  border-radius: 0 32px 32px 0;
-  padding: 0.5em 0.7em;
-  cursor: pointer;
-}
-
-@media screen and (width >= 726px) {
-  .Shop .search form {
-    width: 30%;
-  }
 }/*# sourceMappingURL=styles.css.map */
