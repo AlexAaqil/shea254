@@ -136,4 +136,18 @@ class OrderController extends Controller
         $order_number = session('order_number');
         return view('order_success', compact('order_number'));
     }
+
+        public function get_towns($cityId)
+    {
+        $locations = Town::where('city_id', $cityId)->get();
+        return response()->json($towns);
+    }
+
+    public function get_shipping_price($townId)
+    {
+        $town = Town::findOrFail($townId);
+        $price = $town->price;
+
+        return response()->json(['price' => $price]);
+    }
 }

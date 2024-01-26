@@ -34,7 +34,7 @@
                 </a>
             </li>
             <li class="nav-link">
-                <a href="{{ route('list_locations') }}">
+                <a href="{{ route('locations.index') }}">
                     <i class="fas fa-map-marker-alt"></i>
                     <span class="text">Locations</span>
                 </a>

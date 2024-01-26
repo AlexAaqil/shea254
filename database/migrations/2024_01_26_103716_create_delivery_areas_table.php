@@ -11,9 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('towns', function (Blueprint $table) {
+        Schema::create('delivery_areas', function (Blueprint $table) {
             $table->id();
-            $table->string('town_name');
+            $table->foreignId('location_id')->constrained('delivery_locations')->onDelete('cascade');
+            $table->string('area_name')->unique();
+            $table->decimal('price', 10, 2)->default(0);
             $table->timestamps();
         });
     }
@@ -23,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('cities');
+        Schema::dropIfExists('delivery_areas');
     }
 };

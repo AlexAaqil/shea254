@@ -1325,12 +1325,12 @@ footer .copyright {
   width: 100%;
   padding: 0.5em 3%;
 }
-.Admin .Main .container .products_navbar {
+.Admin .Main .container .related_pages_navbar {
   display: flex;
   gap: 0 0.3em;
   margin: 0 0 0.5em;
 }
-.Admin .Main .container .products_navbar a {
+.Admin .Main .container .related_pages_navbar a {
   text-decoration: none;
   padding: 0.3em 0.6em;
   border-radius: 0 16px 0 0;
@@ -1390,6 +1390,11 @@ footer .copyright {
 }
 .Admin .Main .container .body table tbody .actions .action .delete {
   color: red;
+}
+.Admin .Main .container .body table tbody .actions .action form button {
+  background: none;
+  padding: 0;
+  cursor: pointer;
 }
 .Admin .Main .container .users_form form .row_input_group {
   margin: 2em 0;
@@ -1506,22 +1511,14 @@ footer .copyright {
     height: 40vh;
   }
 }
-.Locations {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1em;
+.delivery_locations .body table tbody tr .area {
+  display: flex;
+  align-items: start;
+  gap: 0.5em;
 }
-@media screen and (width >= 726px) {
-  .Locations {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-.Locations .container table .actions .action button {
-  background: none;
-  padding: unset;
-  cursor: pointer;
-}
-.Locations .container table .actions .action button i {
-  font-size: 1em;
-  font-weight: bold;
+.delivery_locations .body table tbody tr .area .area_extra_info {
+  border: 1px solid #ececec;
+  border-radius: 16px;
+  padding: 0.1em 0.4em;
+  font-size: 0.7em;
 }/*# sourceMappingURL=styles.css.map */

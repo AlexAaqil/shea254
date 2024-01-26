@@ -3,6 +3,8 @@
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DeliveryAreaController;
+use App\Http\Controllers\DeliveryLocationController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
@@ -11,17 +13,6 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductSizeController;
 use App\Http\Controllers\ProductController;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
 Route::get('/', [HomeController::class, 'homepage'])->name('homepage');
 Route::get('/shop', [HomeController::class, 'shop'])->name('shop');
@@ -61,7 +52,7 @@ require __DIR__.'/auth.php';
 
 Route::middleware(['auth', 'admin'])->group(function() {
     Route::get('/admin/dashboard', [DashboardController::class, 'admin_dashboard'])->name('admin_dashboard');
-    
+
     Route::get('/admin/admins/list', [UserController::class, 'list_admins'])->name('list_admins');
     Route::get('/admin/admins/update/{id}', [UserController::class, 'get_update_admin'])->name('get_update_admin');
     Route::post('/admin/admins/update/{id}', [UserController::class, 'post_update_admin'])->name('post_update_admin');
@@ -93,18 +84,10 @@ Route::middleware(['auth', 'admin'])->group(function() {
     Route::get('/admin/product/delete_product_image/{id}', [ProductController::class, 'delete_product_image'])->name('delete_product_image');
     Route::post('/admin/product/product_images_sort', [ProductController::class, 'product_images_sort'])->name('product_images_sort');
 
-    Route::get('/admin/locations/list', [LocationController::class, 'list'])->name('list_locations');
-    Route::get('/admin/location/city/add', [LocationController::class, 'get_add_city'])->name('get_add_city');
-    Route::post('/admin/location/city/add', [LocationController::class, 'post_add_city'])->name('post_add_city');
-    Route::get('/admin/location/city/update/{id}', [LocationController::class, 'get_update_city'])->name('get_update_city');
-    Route::post('/admin/location/city/update/{id}', [LocationController::class, 'post_update_city'])->name('post_update_city');
-    Route::delete('/admin/location/city/delete/{id}', [LocationController::class, 'delete_city'])->name('delete_city');
-
-    Route::get('/admin/location/town/add', [LocationController::class, 'get_add_town'])->name('get_add_town');
-    Route::post('/admin/location/town/add', [LocationController::class, 'post_add_town'])->name('post_add_town');
-    Route::get('/admin/location/town/update/{id}', [LocationController::class, 'get_update_town'])->name('get_update_town');
-    Route::post('/admin/location/town/update/{id}', [LocationController::class, 'post_update_town'])->name('post_update_town');
-    Route::delete('/admin/location/town/delete/{id}', [LocationController::class, 'delete_town'])->name('delete_town');
+    Route::prefix('admin/delivery')->group(function() {
+        Route::resource('locations', DeliveryLocationController::class);
+        Route::resource('areas', DeliveryAreaController::class);
+    });
 
     Route::get('/admin/orders/list', [OrderController::class, 'list_orders'])->name('list_orders');
     Route::get('/admin/orders/list_orders_table', [OrderController::class, 'list_orders_table'])->name('list_orders_table');

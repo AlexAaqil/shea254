@@ -5,18 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Area extends Model
+class DeliveryArea extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'town_id',
+        'location_id',
         'area_name',
         'price',
     ];
 
-    public function city()
+    public function location()
     {
-        return $this->belongsTo(Town::class, 'town_id');
+        return $this->belongsTo(DeliveryLocation::class, 'location_id');
     }
 }
