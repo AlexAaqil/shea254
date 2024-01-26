@@ -7,7 +7,7 @@
             <h1>Categories</h1>
             <input type="text" name="search" id="myInput" placeholder="Search" onkeyup="searchFunction()" />
             <div class="header_btn">
-                <a href="{{ route('get_add_category') }}">New</a>
+                <a href="{{ route('categories.create') }}">New</a>
             </div>
         </div>
 
@@ -27,18 +27,18 @@
                         <td>{{ $value->slug }}</td>
                         <td class="actions">
                                 <div class="action">
-                                <a href="{{ route('get_update_category', ['id'=>$value->id]) }}">
+                                <a href="{{ route('categories.edit', ['category'=>$value->id]) }}">
                                     <i class="fas fa-pencil-alt update"></i>
                                 </a>
                             </div>
                             <div class="action">
-                                <form id="deleteForm_{{ $value->id }}" action="{{ route('delete_category', ['id' => $value->id]) }}" method="POST">
+                                <form id="deleteForm_{{ $value->id }}" action="{{ route('categories.destroy', ['category' => $value->id]) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
 
-                                    <a href="javascript:void(0);" onclick="deleteItem({{ $value->id }}, 'category');">
+                                    <button type="button" onclick="deleteItem({{ $value->id }}, 'category');">
                                         <i class="fas fa-trash-alt delete"></i>
-                                    </a>
+                                    </button>
                                 </form>
                             </div>
                         </td>

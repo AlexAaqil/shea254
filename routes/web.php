@@ -25,8 +25,8 @@ Route::post('/cart/add/{id}', [CartController::class, 'add_to_cart'])->name('add
 Route::post('/cart/quantity/{product_id}', [CartController::class, 'change_quantity'])->name('change_quantity');
 Route::delete('/cart/remove/{productId}', [CartController::class, 'delete_from_cart'])->name('delete_from_cart');
 
-Route::get('/towns/fetch/{cityId}', [LocationController::class, 'get_towns'])->name('get_towns');
-Route::get('/town/fetch/shipping-price/{townId}', [LocationController::class, 'get_shipping_price'])->name('get_shipping_price');
+Route::get('/towns/fetch/{cityId}', [OrderController::class, 'get_towns'])->name('get_towns');
+Route::get('/town/fetch/shipping-price/{townId}', [OrderController::class, 'get_shipping_price'])->name('get_shipping_price');
 
 Route::get('/product/search', [ProductController::class, 'search_products'])->name('search_products');
 Route::get('/product/{slug}', [ProductController::class, 'product_details'])->name('product_details');
@@ -61,12 +61,12 @@ Route::middleware(['auth', 'admin'])->group(function() {
     Route::get('/admin/users/update/{id}', [UserController::class, 'get_update_user'])->name('get_update_user');
     Route::post('/admin/users/update/{id}', [UserController::class, 'post_update_user'])->name('post_update_user');
 
-    Route::get('/admin/categories/list', [CategoryController::class, 'list'])->name('list_categories');
-    Route::get('/admin/categories/add', [CategoryController::class, 'get_add_category'])->name('get_add_category');
-    Route::post('/admin/categories/add', [CategoryController::class, 'post_add_category'])->name('post_add_category');
-    Route::get('/admin/categories/update/{id}', [CategoryController::class, 'get_update_category'])->name('get_update_category');
-    Route::post('/admin/categories/update/{id}', [CategoryController::class, 'post_update_category'])->name('post_update_category');
-    Route::delete('/admin/categories/delete/{id}', [CategoryController::class, 'delete_category'])->name('delete_category');
+    // Route::get('/admin/categories/list', [CategoryController::class, 'list'])->name('list_categories');
+    // Route::get('/admin/categories/add', [CategoryController::class, 'get_add_category'])->name('get_add_category');
+    // Route::post('/admin/categories/add', [CategoryController::class, 'post_add_category'])->name('post_add_category');
+    // Route::get('/admin/categories/update/{id}', [CategoryController::class, 'get_update_category'])->name('get_update_category');
+    // Route::post('/admin/categories/update/{id}', [CategoryController::class, 'post_update_category'])->name('post_update_category');
+    // Route::delete('/admin/categories/delete/{id}', [CategoryController::class, 'delete_category'])->name('delete_category');
 
     Route::get('/admin/productsizes/list', [ProductSizeController::class, 'list'])->name('list_product_sizes');
     Route::get('/admin/productsize/add', [ProductSizeController::class, 'get_add_product_size'])->name('get_add_product_size');
@@ -84,9 +84,11 @@ Route::middleware(['auth', 'admin'])->group(function() {
     Route::get('/admin/product/delete_product_image/{id}', [ProductController::class, 'delete_product_image'])->name('delete_product_image');
     Route::post('/admin/product/product_images_sort', [ProductController::class, 'product_images_sort'])->name('product_images_sort');
 
-    Route::prefix('admin/delivery')->group(function() {
-        Route::resource('locations', DeliveryLocationController::class);
-        Route::resource('areas', DeliveryAreaController::class);
+    Route::prefix('admin')->group(function() {
+        Route::resource('categories', CategoryController::class);
+
+        Route::resource('/delivery/locations', DeliveryLocationController::class);
+        Route::resource('/delivery/areas', DeliveryAreaController::class);
     });
 
     Route::get('/admin/orders/list', [OrderController::class, 'list_orders'])->name('list_orders');

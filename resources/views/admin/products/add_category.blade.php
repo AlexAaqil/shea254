@@ -3,8 +3,9 @@
     <div class="container categories">
         <div class="custom_form">
             <h1>Add Category</h1>
-            <form action="" method="post">
+            <form action="{{ route('categories.store') }}" method="post">
                 @csrf
+
                 <div class="input_group">
                     <label for="title">Title</label>
                     <input type="text" name="title" id="title" value="{{ old('title') }}" required autofocus />
