@@ -66,15 +66,15 @@ class DashboardController extends Controller
         // Map the sales data for each month
         $sales_data = $monthly_sales->pluck('total_sales')->toArray();
 
-        $cities_data = Order::select('city', \DB::raw('COUNT(*) as total_orders'))
-        ->groupBy('city')
+        $locations_data = Order::select('location', \DB::raw('COUNT(*) as total_orders'))
+        ->groupBy('location')
         ->orderBy('total_orders', 'desc')
         ->take(5)
         ->get();
 
         // Map the data for cities and orders
-        $cities_labels = $cities_data->pluck('city')->toArray();
-        $cities_orders = $cities_data->pluck('total_orders')->toArray();
+        $locations_labels = $locations_data->pluck('location')->toArray();
+        $locations_orders = $locations_data->pluck('total_orders')->toArray();
 
 
 
@@ -95,8 +95,8 @@ class DashboardController extends Controller
             'sales_this_year',
 
             'sales_data',
-            'cities_labels',
-            'cities_orders',
+            'locations_labels',
+            'locations_orders',
         ));
     }
 }

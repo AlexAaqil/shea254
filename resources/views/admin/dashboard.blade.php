@@ -111,7 +111,7 @@
                 <canvas id="salesChart"></canvas>
             </div>
             <div class="chart">
-                <h2>Cities</h2>
+                <h2>Location Orders</h2>
                 <canvas id="citiesChart"></canvas>
             </div>
         </div>
@@ -142,10 +142,10 @@
             new Chart(cities, {
                 type: 'doughnut',
                 data: {
-                    labels: {!! json_encode($cities_labels) !!},
+                    labels: {!! json_encode($locations_labels) !!},
                     datasets: [{
                         label: 'Orders',
-                        data: {!! json_encode($cities_orders) !!},
+                        data: {!! json_encode($locations_orders) !!},
                     }]
                 },
                 options: {
