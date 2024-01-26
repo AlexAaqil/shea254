@@ -21,8 +21,8 @@ return new class extends Migration
             $table->string('phone_number');
             $table->string('address');
             $table->string('additional_information')->nullable();
-            $table->string('city');
-            $table->string('town');
+            $table->string('location');
+            $table->string('area');
             $table->json('cart_items');
             $table->decimal('shipping_cost');
             $table->decimal('total_amount');

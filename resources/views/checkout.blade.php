@@ -53,29 +53,29 @@
 
                     <div class="row_input_group">
                         <div class="input_group">
-                            <label for="city">City</label>
-                            <select name="city" id="city">
-                                <option value="">Select City</option>
-                                @foreach($cities as $city)
-                                    <option value="{{ $city->id }}">
-                                        {{ $city->city_name }}
+                            <label for="location">Location</label>
+                            <select name="location" id="location">
+                                <option value="">Select Location</option>
+                                @foreach($locations as $location)
+                                    <option value="{{ $location->id }}">
+                                        {{ $location->location_name }}
                                     </option>
                                 @endforeach
                             </select>
-                            <span class="inline_alert">{{ $errors->first('city') }}</span>
+                            <span class="inline_alert">{{ $errors->first('location') }}</span>
                         </div>
 
                         <div class="input_group">
-                            <label for="town">Town</label>
-                            <select name="town" id="town">
-                                <option value="">Select Town</option>
-                                @foreach($towns as $town)
-                                    <option value="{{ $town->id }}">
-                                        {{ $town->town_name }}
+                            <label for="area">Area</label>
+                            <select name="area" id="area">
+                                <option value="">Select Area</option>
+                                @foreach($areas as $area)
+                                    <option value="{{ $area->id }}">
+                                        {{ $area->area_name }}
                                     </option>
                                 @endforeach
                             </select>
-                            <span class="inline_alert">{{ $errors->first('town') }}</span>
+                            <span class="inline_alert">{{ $errors->first('area') }}</span>
                         </div>
                     </div>
 
@@ -103,49 +103,57 @@
 </main>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-        const citySelect = document.getElementById("city");
-        const townSelect = document.getElementById("town");
+        const locationSelect = document.getElementById("location");
+        const areaSelect = document.getElementById("area");
         const shippingCostElement = document.getElementById("shipping_cost_amount");
         const totalElement = document.getElementById("total_amount");
 
-        // Function to update shipping cost and total
-        function updateShippingAndTotal(townPrice) {
-            const shippingCost = townPrice; // Use town's price as shipping cost
-            const cartSubtotal = {{ $cart['subtotal'] }}; // Get cart subtotal from PHP
+        // Define areaPrice as a global variable
+        let areaPrice = 0;
 
-            // Update the DOM
-            shippingCostElement.textContent = `Ksh. ${shippingCost.toFixed(2)}`;
-            totalElement.textContent = `Ksh. ${(shippingCost + cartSubtotal).toFixed(2)}`;
+        // Function to update shipping cost and total
+        function updateShippingAndTotal() {
+            const shippingCost = parseFloat(areaPrice); // Parse areaPrice as a float
+
+            if (!isNaN(shippingCost)) {
+                const cartSubtotal = {{ $cart['subtotal'] }}; // Get cart subtotal from PHP
+
+                // Update the DOM
+                shippingCostElement.textContent = `Ksh. ${shippingCost.toFixed(2)}`;
+                totalElement.textContent = `Ksh. ${(shippingCost + cartSubtotal).toFixed(2)}`;
+            } else {
+                console.error("Invalid shipping cost:", areaPrice);
+            }
         }
 
-        citySelect.addEventListener("change", function () {
-            const selectedCityId = this.value;
+        locationSelect.addEventListener("change", function () {
+            const selectedLocationId = this.value;
 
-            // Make an Ajax request to fetch towns based on the selected city
-            fetch(`/towns/fetch/${selectedCityId}`)
+            // Make an Ajax request to fetch areas based on the selected location
+            fetch(`/areas/fetch/${selectedLocationId}`)
                 .then(response => response.json())
                 .then(data => {
-                    // Clear and update the towns select box
-                    townSelect.innerHTML = "";
-                    townSelect.add(new Option("Select Town", ""));
+                    // Clear and update the areas select box
+                    areaSelect.innerHTML = "";
+                    areaSelect.add(new Option("Select Area", ""));
 
-                    data.forEach(town => {
-                        townSelect.add(new Option(town.town_name, town.id));
+                    data.forEach(area => {
+                        areaSelect.add(new Option(area.area_name, area.id));
                     });
                 });
         });
 
-        townSelect.addEventListener("change", function () {
-            const selectedTownId = this.value;
+        areaSelect.addEventListener("change", function () {
+            const selectedAreaId = this.value;
 
-            // Make an Ajax request to fetch the selected town's price
-            fetch(`/town/fetch/shipping-price/${selectedTownId}`)
+            // Make an Ajax request to fetch the selected area's price
+            fetch(`/area/fetch/shipping-price/${selectedAreaId}`)
                 .then(response => response.json())
                 .then(data => {
-                    const townPrice = data.price;
+                    areaPrice = data.price; // Update the global areaPrice variable
 
-                    // Trigger update with the town's price
-                    updateShippingAndTotal(townPrice);
+                    // Trigger update with the area's price
+                    updateShippingAndTotal();
                 });
         });
     });

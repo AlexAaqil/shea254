@@ -6,7 +6,8 @@ use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
-use App\Models\City;
+use App\Models\DeliveryArea;
+use App\Models\DeliveryLocation;
 use App\Models\Town;
 use Illuminate\Support\Str;
 
@@ -35,8 +36,8 @@ class OrderController extends Controller
 
     public function get_checkout()
     {
-        $cities = Town::all();
-        $towns = Town::all();
+        $locations = DeliveryLocation::all();
+        $areas = DeliveryArea::all();
         $user = Auth::user();
         $cart = app(CartController::class)->cartItemsWithCalculatedTotals();
 
@@ -47,7 +48,7 @@ class OrderController extends Controller
             ]);
         }
 
-        return view('checkout', compact('cart', 'cities', 'towns', 'user'));
+        return view('checkout', compact('cart', 'locations', 'areas', 'user'));
     }
 
     public function post_checkout(Request $request)
@@ -59,42 +60,42 @@ class OrderController extends Controller
             'phone_number' => 'required|string',
             'address' => 'required|string',
             'additional_information' => 'nullable|string',
-            'city' => 'required|exists:cities,id',
-            'town' => 'required|exists:towns,id',
+            'location' => 'required|exists:delivery_locations,id',
+            'area' => 'required|exists:delivery_areas,id',
         ]);
 
         // Retrieve cart items from the session
-        $validated_data['cart_items'] = json_encode(Session::get('cart', []));
+        $cart = Session::get('cart', []);
 
-        // Retrieve city and town names
-        $city = Town::find($validated_data['city']);
-        $town = Town::find($validated_data['town']);
+        // Calculate shipping cost and total amount based on the selected delivery area
+        $area = DeliveryArea::findOrFail($validated_data['area']);
+        $shipping_cost = $area->price;
 
-        if (!$city || !$town) {
-            // Handle if city or town is not found
-            return redirect()->route('checkout')->with('error', [
-                'message' => 'Invalid city or town selected.',
-                'duration' => $this->alert_message_duration,
-            ]);
-        }
-
-        // Add city and town names to the validated data
-        $validated_data['city'] = $city->city_name;
-        $validated_data['town'] = $town->town_name;
-
-        // Calculate shipping cost and total amount based on the selected town
-        $shipping_cost = $town->price;
         $cart = app(CartController::class)->cartItemsWithCalculatedTotals();
+        $cart_subtotal = $cart['subtotal'];
 
-        $validated_data['shipping_cost'] = $shipping_cost;
-        $validated_data['total_amount'] = $shipping_cost + $cart['subtotal'];
+        $total_amount = $shipping_cost + $cart_subtotal;
 
         // Generate order number and set user ID
-        $validated_data['order_number'] = 'order_' . Str::random(5);
-        $validated_data['user_id'] = Auth::user()->id;
+        $order_number = 'order_' . Str::random(5);
+        $user_id = Auth::user()->id;
 
         // Create the order
-        $order = Order::create($validated_data);
+        $order = Order::create([
+            'order_number' => $order_number,
+            'user_id' => $user_id,
+            'first_name' => $validated_data['first_name'],
+            'last_name' => $validated_data['last_name'],
+            'email' => $validated_data['email'],
+            'phone_number' => $validated_data['phone_number'],
+            'address' => $validated_data['address'],
+            'additional_information' => $validated_data['additional_information'],
+            'location' => $validated_data['location'],
+            'area' => $validated_data['area'],
+            'cart_items' => json_encode($cart),
+            'shipping_cost' => $shipping_cost,
+            'total_amount' => $total_amount,
+        ]);
 
         // Store order number in session
         Session::put('order_number', $order->order_number);
@@ -137,16 +138,16 @@ class OrderController extends Controller
         return view('order_success', compact('order_number'));
     }
 
-        public function get_towns($cityId)
+    public function get_areas($locationId)
     {
-        $locations = Town::where('city_id', $cityId)->get();
-        return response()->json($towns);
+        $areas = DeliveryArea::where('location_id', $locationId)->get();
+        return response()->json($areas);
     }
 
-    public function get_shipping_price($townId)
+    public function get_shipping_price($areaId)
     {
-        $town = Town::findOrFail($townId);
-        $price = $town->price;
+        $area = DeliveryArea::findOrFail($areaId);
+        $price = $area->price;
 
         return response()->json(['price' => $price]);
     }

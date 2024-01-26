@@ -24,8 +24,8 @@ Route::post('/cart/add/{id}', [CartController::class, 'add_to_cart'])->name('add
 Route::post('/cart/quantity/{product_id}', [CartController::class, 'change_quantity'])->name('change_quantity');
 Route::delete('/cart/remove/{productId}', [CartController::class, 'delete_from_cart'])->name('delete_from_cart');
 
-Route::get('/towns/fetch/{cityId}', [OrderController::class, 'get_towns'])->name('get_towns');
-Route::get('/town/fetch/shipping-price/{townId}', [OrderController::class, 'get_shipping_price'])->name('get_shipping_price');
+Route::get('/areas/fetch/{areaId}', [OrderController::class, 'get_areas'])->name('get_areas');
+Route::get('/area/fetch/shipping-price/{areaId}', [OrderController::class, 'get_shipping_price'])->name('get_shipping_price');
 
 Route::get('/product/search', [ProductController::class, 'search_products'])->name('search_products');
 Route::get('/product/{slug}', [ProductController::class, 'product_details'])->name('product_details');
