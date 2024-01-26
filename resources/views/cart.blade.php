@@ -45,7 +45,7 @@
                             @method('DELETE')
 
                             <button type="button" onclick="deleteItem({{ $product['id'] }}, 'product');">
-                                <i class="fas fa-trash text-danger"></i>
+                                <i class="fas fa-trash-alt text-danger"></i>
                             </button>
                         </form>
                     </span>
@@ -67,5 +67,4 @@
         </div>
     </div>
 </main>
-@include('partials.javascripts')
 @endsection
