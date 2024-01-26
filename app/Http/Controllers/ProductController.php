@@ -20,7 +20,7 @@ class ProductController extends Controller
     public function get_add_product() {
         $categories = Category::all();
         $product_sizes = ProductSize::all();
-        return view("admin.add_product", compact('categories', 'product_sizes'));
+        return view("admin.products.add_product", compact('categories', 'product_sizes'));
     }
 
     public function post_add_product(Request $request) {
