@@ -61,13 +61,6 @@ Route::middleware(['auth', 'admin'])->group(function() {
     Route::get('/admin/users/update/{id}', [UserController::class, 'get_update_user'])->name('get_update_user');
     Route::post('/admin/users/update/{id}', [UserController::class, 'post_update_user'])->name('post_update_user');
 
-    // Route::get('/admin/categories/list', [CategoryController::class, 'list'])->name('list_categories');
-    // Route::get('/admin/categories/add', [CategoryController::class, 'get_add_category'])->name('get_add_category');
-    // Route::post('/admin/categories/add', [CategoryController::class, 'post_add_category'])->name('post_add_category');
-    // Route::get('/admin/categories/update/{id}', [CategoryController::class, 'get_update_category'])->name('get_update_category');
-    // Route::post('/admin/categories/update/{id}', [CategoryController::class, 'post_update_category'])->name('post_update_category');
-    // Route::delete('/admin/categories/delete/{id}', [CategoryController::class, 'delete_category'])->name('delete_category');
-
     Route::get('/admin/productsizes/list', [ProductSizeController::class, 'list'])->name('list_product_sizes');
     Route::get('/admin/productsize/add', [ProductSizeController::class, 'get_add_product_size'])->name('get_add_product_size');
     Route::post('/admin/productsize/add', [ProductSizeController::class, 'post_add_product_size'])->name('post_add_product_size');
