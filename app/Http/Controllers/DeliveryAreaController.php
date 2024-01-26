@@ -50,7 +50,7 @@ class DeliveryAreaController extends Controller
     {
         $request->validate([
             'location_id' => 'required',
-            'area_name' => 'required|string|max:100|unique:delivery_areas,area_name,' . $area->id,' ',
+            'area_name' => 'required|string|max:100|unique:delivery_areas,area_name,' . $area->id,
             'price' => 'required|numeric',
         ]);
 

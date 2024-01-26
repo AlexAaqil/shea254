@@ -42,7 +42,7 @@ class DeliveryLocationController extends Controller
     public function update(Request $request, DeliveryLocation $location)
     {
         $request->validate([
-            'location_name' => 'required|string|max:100|unique:delivery_locations,location_name,' . $location->id,' ',
+            'location_name' => 'required|string|max:100|unique:delivery_locations,location_name,' . $location->id,
         ]);
 
         $location->update([
