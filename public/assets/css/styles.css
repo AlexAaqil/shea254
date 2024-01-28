@@ -1052,25 +1052,29 @@ footer .copyright {
   font-size: max(3em, 5vw);
   text-transform: uppercase;
 }
-.Homepage .Hero .container .text .hero_btn {
+.Homepage .Hero .container .text .hero_btns {
   margin: 2em 0 3em;
+  display: flex;
+  gap: 2em;
 }
-.Homepage .Hero .container .text .hero_btn a {
+.Homepage .Hero .container .text .hero_btns a {
   text-decoration: none;
   box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.1019607843);
   background: #000;
   color: #fff;
   font-weight: bold;
-  font-size: 1.3em;
+  font-size: 1em;
   padding: 12px 32px;
   border-radius: 32px;
+}
+.Homepage .Hero .container .text .hero_btns a:hover {
   animation: pulse 2s infinite linear;
 }
-.Homepage .Hero .container .image {
+.Homepage .Hero .container .hero_images {
   display: none;
 }
 @media screen and (width >= 726px) {
-  .Homepage .Hero .container .image {
+  .Homepage .Hero .container .hero_images {
     display: unset;
   }
 }
@@ -1094,11 +1098,27 @@ footer .copyright {
   .Homepage .Hero .text img {
     width: 100px !important;
   }
-  .Homepage .Hero .image img {
+  .Homepage .Hero .hero_images img {
     height: 500px;
     width: 100%;
     -o-object-fit: contain;
        object-fit: contain;
+    animation: fadeInOut 1s ease-in-out infinite;
+    opacity: 0;
+    display: none;
+  }
+  .Homepage .Hero .hero_images .visible {
+    display: block;
+    opacity: 1;
+    animation: none;
+  }
+  @keyframes fadeInOut {
+    0%, 100% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
   }
 }
 @keyframes rotate {
