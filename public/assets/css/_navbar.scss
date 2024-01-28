@@ -6,7 +6,8 @@ nav,
     align-items: center;
 }
 nav {
-    background: #fff;
+    background: transparent;
+    backdrop-filter: blur(5px);
     height: 10vh;
     box-shadow: 4px 4px 8px #000;
     position: sticky;

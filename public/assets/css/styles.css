@@ -188,7 +188,9 @@ nav,
 }
 
 nav {
-  background: #fff;
+  background: transparent;
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
   height: 10vh;
   box-shadow: 4px 4px 8px #000;
   position: sticky;
