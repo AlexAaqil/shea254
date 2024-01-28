@@ -13,6 +13,11 @@
   color: green;
 }
 
+.btn_danger {
+  background: #d80202;
+  color: #fff;
+}
+
 .bold {
   font-weight: bold;
 }
@@ -46,6 +51,7 @@ form textarea {
   font-size: 1em;
   border: 1px solid grey;
   border-radius: 4px;
+  margin: 0.3em 0 0;
 }
 form button {
   padding: 10px 32px;
@@ -55,6 +61,7 @@ form button {
   border-radius: 4px;
   background: #000;
   color: #fff;
+  cursor: pointer;
 }
 
 .custom_form h1 {
@@ -69,9 +76,11 @@ form button {
 .custom_form form .input_group {
   padding: 0.3em 0;
   width: 100%;
+  margin: 0 0 0.3em;
 }
 .custom_form form .input_group label {
-  font-weight: 550;
+  font-weight: 500;
+  font-size: 0.95em;
 }
 .custom_form form .input_group .custom_radio_buttons {
   display: flex;
@@ -125,17 +134,6 @@ form button {
   margin: 0.8em 0 0.5em;
 }
 
-.Auth {
-  height: 100vh;
-  display: flex;
-  align-items: center;
-}
-.Auth .container {
-  box-shadow: 2px 4px 8px black;
-  width: 90%;
-  padding: 1em 2em;
-}
-
 @media screen and (width >= 726px) {
   .custom_form .row_input_group {
     display: grid;
@@ -146,12 +144,6 @@ form button {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 0 1em;
-  }
-  .Auth .Login {
-    width: 35%;
-  }
-  .Auth .Signup {
-    width: 60%;
   }
 }
 table {
@@ -1138,12 +1130,45 @@ footer .copyright {
   height: 60px;
 }
 
+.profile_update {
+  background: #f5f5f5;
+}
+.profile_update .page_header,
+.profile_update .section {
+  background: #fff;
+}
+.profile_update .page_header {
+  margin: 0 0 1em;
+  padding: 1.5em 5%;
+}
+.profile_update h1,
+.profile_update h2 {
+  font-size: 1.2em;
+}
+.profile_update h2 {
+  margin: 0 0 0.3em;
+}
+.profile_update .section {
+  padding: 1.4em 3%;
+  border-radius: 8px;
+  margin: 0 auto 1em;
+}
+.profile_update .section .header {
+  margin: 0 0 1em;
+}
+.profile_update .section .body .custom_form {
+  width: 50%;
+}
+
 @media screen and (width >= 726px) {
   .login {
     width: 40%;
   }
   .signup {
     width: 50%;
+  }
+  .profile_update .section {
+    width: 95%;
   }
 }
 .About section {
