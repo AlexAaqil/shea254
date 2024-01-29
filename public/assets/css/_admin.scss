@@ -1,6 +1,10 @@
 .Admin {
     display: flex;
 
+    .alert {
+        top: 0;
+    }
+
     .Main {
         margin-left: 1%;
         width: calc(100% - $sidenav_width);

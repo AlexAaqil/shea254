@@ -1368,6 +1368,9 @@ footer .copyright {
 .Admin {
   display: flex;
 }
+.Admin .alert {
+  top: 0;
+}
 .Admin .Main {
   margin-left: 1%;
   width: 85%;
