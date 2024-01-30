@@ -2,7 +2,7 @@
     <div class="nav_container">
         <a href="{{ route('homepage') }}" class="branding">
             <img src="{{ asset('/assets/images/logo.jpg') }}" width=30 height=30 alt="Logo" class="rounded">
-            <h1>Shea254</h1>
+            <h1>{{ config('app.name') }}</h1>
         </a>
 
 

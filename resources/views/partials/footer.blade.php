@@ -2,7 +2,7 @@
     <div class="container">
         <div class="branding">
             <img src="{{ asset('assets/images/logo.jpg') }}" alt="Logo" class="rounded">
-            <h1>Shea254</h1>
+            <h1>{{ config('app.name') }}</h1>
             <p class="slogan">Suppliers of Raw Shea, Body butter, Cocoa Butter, Black Soap, Essential & Carrier Oils</p>
             <p class="location">Nairobi CBD <br> Sasa Mall, Moi Avenue <br> Shop G20</p>
         </div>
