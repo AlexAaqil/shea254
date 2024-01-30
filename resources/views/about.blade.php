@@ -8,18 +8,18 @@
             <h1 class="section_heading">Why Shea254?</h1>
             <div class="mission_statements">
                 <div class="statement">
-                    <h1>Naturally Grown</h1>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda, quo ut! Quo blanditiis laboriosam amet reprehenderit nisi quibusdam provident adipisci?</p>
+                    <h1>Natural</h1>
+                    <p>Ingredients are obtained from natural resources and maintain their original chemical shape and structure.</p>
                 </div>
 
                 <div class="statement">
                     <h1>Naturally Delivered</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium quasi inventore soluta nobis dicta explicabo!</p>
+                    <p>Ingredients are harvested or picked and made to undergo some form of chemical reaction e.g. fermentation or distillation.</p>
                 </div>
 
                 <div class="statement">
-                    <h1>Naturally Manufactured</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium quasi inventore soluta nobis dicta explicabo!</p>
+                    <h1>Nature Identical</h1>
+                    <p>Ingredients are synthetically processed but identical in their chemical structure to the ingredients found in nature.</p>
                 </div>
             </div>
         </div>
