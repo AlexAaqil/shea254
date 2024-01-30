@@ -45,6 +45,12 @@
                     <span class="text">Orders</span>
                 </a>
             </li>
+            <li class="nav-link">
+                <a href="{{ route('comments.index') }}">
+                    <i class="fas fa-comment"></i>
+                    <span class="text">Comments</span>
+                </a>
+            </li>
         </ul>
     </div>
 

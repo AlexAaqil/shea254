@@ -66,21 +66,4 @@ class HomeController extends Controller
     {
         return view('contact');
     }
-
-    public function add_message(Request $request)
-    {
-        $validatedData = $request->validate([
-            'full_name' => 'required|string|max:200',
-            'email_address' => 'required|string|email:rfc,dns|max:255',
-            'phone_number' => 'required|string|max:20',
-            'message' => 'required|string',
-        ]);
-
-        Message::create($validatedData);
-
-        return redirect()->back()->with('success',[
-            'message' => 'Message sent succefully',
-            'duration' => $this->alert_message_duration
-        ]);
-    }
 }

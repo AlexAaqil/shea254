@@ -12,12 +12,13 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductSizeController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CommentController;
 
 Route::get('/', [HomeController::class, 'homepage'])->name('homepage');
 Route::get('/shop', [HomeController::class, 'shop'])->name('shop');
 Route::get('/about', [HomeController::class, 'aboutpage'])->name('aboutpage');
 Route::get('/contact', [HomeController::class, 'contactpage'])->name('contactpage');
-Route::post('/contact', [HomeController::class, 'add_message'])->name('add_message');
+Route::post('/contact', [CommentController::class, 'store'])->name('comments.store');
 
 Route::get('/cart', [CartController::class, 'view_cart'])->name('cart');
 Route::post('/cart/add/{id}', [CartController::class, 'add_to_cart'])->name('add_to_cart');
@@ -75,6 +76,9 @@ Route::middleware(['auth', 'admin'])->group(function() {
 
         Route::resource('/delivery/locations', DeliveryLocationController::class);
         Route::resource('/delivery/areas', DeliveryAreaController::class);
+
+        Route::resource('comments', CommentController::class)
+        ->except('create', 'store', 'edit', 'update');
     });
 
     Route::get('/admin/orders/list', [OrderController::class, 'list_orders'])->name('list_orders');

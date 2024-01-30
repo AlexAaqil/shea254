@@ -12,7 +12,7 @@
 
         <div class="contact_form">
             <div class="custom_form">
-                <form action="" method="post">
+                <form action="{{ route('comments.store') }}" method="post">
                     @csrf
 
                     <div class="input_group">
