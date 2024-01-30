@@ -6,10 +6,12 @@
     <div class="container">
         <div class="wrapper">
             <div class="images">
-                <img src="{{ $product->getFirstImage() }}" alt="{{ $product->title }}" class="main_product_image">
+                <div class="main_product_image">
+                    <img src="{{ $product->getFirstImage() }}" alt="{{ $product->title }}" >
+                </div>
                 <div class="other_images">
                     @foreach($product_images as $image)
-                        <img src={{ $image->getProductImageURL() }} alt="Other Image" onclick="ProductImageSlider()">
+                        <img src={{ $image->getProductImageURL() }} alt="Other Image">
                     @endforeach
                 </div>
             </div>
