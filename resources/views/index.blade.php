@@ -8,7 +8,7 @@
         <div class="container">
             <div class="text">
                 <img src="{{ asset('/assets/images/hero_logo.png') }}" alt="Logo">
-                <h1>Shea254</h1>
+                <h1>{{ config('app.name') }}</h1>
                 <div class="hero_btns">
                     <a href="{{ route('shop') }}">Retail</a>
                     <a href="{{ route('shop') }}">Wholesale</a>

@@ -688,11 +688,20 @@ footer .copyright {
 .Product_details .container .wrapper .images {
   height: 350px;
 }
-.Product_details .container .wrapper .images img {
+.Product_details .container .wrapper .images .main_product_image {
+  width: 100%;
+  height: 450px;
+  overflow: hidden;
+  cursor: crosshair;
+  border-radius: 10px;
+}
+.Product_details .container .wrapper .images .main_product_image img {
   width: 100%;
   height: 100%;
-  -o-object-fit: contain;
-     object-fit: contain;
+  -o-object-fit: cover;
+     object-fit: cover;
+  aspect-ratio: 1/1;
+  border-radius: 10px;
 }
 .Product_details .container .wrapper .images .other_images {
   margin: 0.5em 0;
@@ -701,6 +710,12 @@ footer .copyright {
   height: 70px;
   width: 70px;
   cursor: pointer;
+  border: 2px solid transparent;
+  border-radius: 4px;
+  transition: border 0.5s ease;
+}
+.Product_details .container .wrapper .images .other_images .active {
+  border: 2px solid #000;
 }
 .Product_details .container .wrapper .details h1,
 .Product_details .container .wrapper .details .price,

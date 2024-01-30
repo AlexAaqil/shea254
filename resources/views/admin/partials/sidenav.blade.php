@@ -3,7 +3,7 @@
         <a href="{{ route('homepage') }}">
             <img src="{{ asset('assets/images/logo.jpg') }}" alt="Logo" width=30 height=30 class="rounded">
         </a>
-        <h1>Shea254</h1>
+        <h1>{{ config('app.name') }}</h1>
         <i class="fas fa-chevron-right toggle"></i>
     </div>
 
