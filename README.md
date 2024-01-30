@@ -17,10 +17,11 @@ Ecommerce website made using Laravel 10
     ```bash
     docker compose up -d
     ```
-1. **Execute the laravel_backend container in interactive mode to run migrations and clear the cache**\
+1. **Execute the laravel_backend container in interactive mode:**
     ```bash
     docker exec -it laravel_backend bash
     ```
+1. **While inside the interactive mode in the laravel_backend container, run the following commands:**
     ```bash
     composer install
     ```
@@ -36,8 +37,11 @@ Ecommerce website made using Laravel 10
      ```bash
     php artisan migrate --seed
     ```
-     ```bash
+    ```bash
     php artisan cache:clear
+    ```
+    ```bash
+    php artisan storage:link
     ```
 1. **Access the laravel application on your browser:**\
     [http://localhost:8000](http://localhost:8000)
