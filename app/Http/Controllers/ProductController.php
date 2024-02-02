@@ -29,20 +29,21 @@ class ProductController extends Controller
             'price' => 'required',
             'category_id' => 'required',
             'product_size_id' => 'required',
+            'order' => 'nullable|integer',
         ]);
 
         $product = new Product;
 
         $product->title = $request->title;
         $product->slug = Str::slug( $request->title);
-        $product->in_stock = $request->in_stock;
-        $product->featured = $request->featured;
-        $product->description = $request->description;
+        $product->in_stock = $request->input('in_stock', 1);
+        $product->featured = $request->input('featured', 1);
+        $product->description = $request->input('description', null);
         $product->price = $request->price;
-        $product->discount_price = $request->discount_price;
+        $product->discount_price = $request->input('discount_price', null);
         $product->category_id = $request->category_id;
         $product->product_size_id = $request->product_size_id;
-        $product->order = $request->order;
+        $product->order = $request->input('order', 100) ?? 100;
 
         $product->save();
 
@@ -82,6 +83,7 @@ class ProductController extends Controller
             'title' => 'required|unique:products,title,'.$id,
             'product_size_id' => 'required',
             'category_id' => 'required',
+            'order' => 'nullable|integer',
         ]);
 
         $product = Product::find($id);
@@ -95,7 +97,7 @@ class ProductController extends Controller
         $product->discount_price = $request->discount_price;
         $product->category_id = $request->category_id;
         $product->product_size_id = $request->product_size_id;
-        $product->order = $request->order;
+        $product->order = $request->input('order', 100) ?? 100;
 
         $product->save();
 

@@ -85,6 +85,7 @@
                     <div class="input_group">
                         <label for="order">Order</label>
                         <input type="number" name="order" id="order" min="1">
+                        <span class="inline_alert">{{ $errors->first('order') }}</span>
                     </div>
                 </div>
 
