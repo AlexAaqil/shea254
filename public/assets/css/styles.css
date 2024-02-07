@@ -586,8 +586,9 @@ footer .copyright {
 .products_wrapper .product .text {
   padding: 1em;
   display: grid;
-  grid-template-columns: auto 20%;
+  grid-template-columns: auto;
   gap: 0 1em;
+  position: relative;
 }
 .products_wrapper .product .text .product_details .extra {
   margin: 0 0 1em;
@@ -629,9 +630,9 @@ footer .copyright {
   border-radius: 16px;
 }
 .products_wrapper .product .text .cart {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  position: absolute;
+  right: 0;
+  top: -0.5em;
 }
 .products_wrapper .product .text .cart button {
   background: none;

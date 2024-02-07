@@ -19,8 +19,9 @@
         .text {
             padding: 1em;
             display: grid;
-            grid-template-columns: auto 20%;
+            grid-template-columns: auto;
             gap: 0 1em;
+            position: relative;
 
             .product_details {
                 .extra {
@@ -68,8 +69,9 @@
             }
 
             .cart {
-                @include flex_center;
-                justify-content: center;
+                position: absolute;
+                right: 0;
+                top: -0.5em;
 
                 button {
                     background: none;

@@ -22,7 +22,7 @@ class ProductSeeder extends Seeder
                 'product_size' => ''
             ],
             [
-                'title' => 'Liquid Black Soap',
+                'title' => 'Liquid Black Soap 5L',
                 'slug',
                 'price' => 8000,
                 'product_size' => '5 L'
@@ -34,7 +34,7 @@ class ProductSeeder extends Seeder
                 'product_size' => ''
             ],
             [
-                'title' => 'Liquid Black Water',
+                'title' => 'Liquid Black Soap 1L',
                 'slug',
                 'price' => 1400,
                 'product_size' => '1 L'
