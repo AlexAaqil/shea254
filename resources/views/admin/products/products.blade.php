@@ -32,7 +32,7 @@
                         <td>{{ $value->getTranslatedInStock() }}</td>
                         <td>{{ $value->getTranslatedFeatured() }}</td>
                         <td>{{ $value->category->title }}</td>
-                        <td>{{ $value->product_size->product_size }}</td>
+                        <td>{{ $value->product_size }}</td>
                         <td>{{ $value->price }}</td>
                         <td>{{ $value->discount_price ? $value->discount_price : 'No Discount' }}</td>
                         <td class="actions">

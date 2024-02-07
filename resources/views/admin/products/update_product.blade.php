@@ -72,21 +72,14 @@
                     </div>
 
                     <div class="input_group">
-                        <label for="product_size_id">Size<span class="text-danger">*</span></label>
-                        <select name="product_size_id" id="product_size_id">
-                            <option value="">select</option>
-                            @foreach($product_sizes as $size)
-                                <option value="{{ $size->id }}" {{ (old('product_size_id', $product->product_size_id) == $size->id) ? 'selected' : '' }}>
-                                    {{ $size->product_size }}
-                                </option>
-                            @endforeach
-                        </select>
-                        <span class="inline_alert">{{ $errors->first('product_size_id') }}</span>
+                        <label for="product_size">Product Size<span class="text-danger">*</span></label>
+                        <input type="text" name="product_size" id="product_size" value="{{ old('product_size', $product->product_size) }}">
+                        <span class="inline_alert">{{ $errors->first('product_size') }}</span>
                     </div>
 
                     <div class="input_group">
                         <label for="order">Order</label>
-                        <input type="number" name="order" id="order" min="1" value={{ $product->order }}>
+                        <input type="number" name="order" id="order" min="1" value={{ old('order', $product->order) }}>
                     </div>
                 </div>
 

@@ -37,7 +37,7 @@
                 <div class="extras">
                     <p>
                         <span>Size</span>
-                        <span>{{ $product->product_size->product_size }}</span>
+                        <span>{{ $product->product_size }}</span>
                     </p>
                     <p>
                         <span>Category</span>

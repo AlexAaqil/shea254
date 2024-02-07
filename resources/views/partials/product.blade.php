@@ -10,7 +10,9 @@
                 <a href="{{ route('list_products_by_category', $product->category->slug) }}">
                     <span>{{ $product->category->title }}</span>
                 </a>
-                <span>{{ $product->product_size->product_size }}</span>
+                @if($product->product_size != null)
+                <span>{{ $product->product_size }}</span>
+                @endif
             </div>
 
             <div class="info">
@@ -20,7 +22,7 @@
                     </a>
                 </p>
                 <p class="price_details">
-                    @if($product->discount_price && $product->discount_price < $product->price)
+                    @if($product->discount_price != 0.00 && $product->discount_price < $product->price)
                         <span class="currency">Ksh.</span>
                         <span class="price_amount discount">{{ $product->discount_price }}</span>
                         <span class="original_price text-danger">

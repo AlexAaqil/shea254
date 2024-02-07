@@ -10,7 +10,6 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\ProductSizeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CommentController;
 
@@ -72,7 +71,6 @@ Route::middleware(['auth', 'admin'])->group(function() {
 
     Route::prefix('admin')->group(function() {
         Route::resource('categories', CategoryController::class);
-        Route::resource('productsizes', ProductSizeController::class);
 
         Route::resource('/delivery/locations', DeliveryLocationController::class);
         Route::resource('/delivery/areas', DeliveryAreaController::class);

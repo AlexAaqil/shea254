@@ -18,7 +18,6 @@ class Product extends Model
         'size',
         'price',
         'discount_price',
-        'product_size_id',
         'category_id',
         'order',
     ];
@@ -26,11 +25,6 @@ class Product extends Model
     public function category()
     {
         return $this->belongsTo(Category::class, 'category_id');
-    }
-
-    public function product_size()
-    {
-        return $this->belongsTo(ProductSize::class, 'product_size_id');
     }
 
     public function getProductImages() {

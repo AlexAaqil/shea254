@@ -13,14 +13,13 @@ use Illuminate\Support\Facades\Storage;
 class ProductController extends Controller
 {
     public function list() {
-        $products = Product::with('category', 'product_size', 'getProductImages')->orderBy('order', 'asc')->get();
+        $products = Product::with('category', 'getProductImages')->orderBy('order', 'asc')->get();
         return view("admin.products.products", compact("products"));
     }
 
     public function get_add_product() {
         $categories = Category::all();
-        $product_sizes = ProductSize::all();
-        return view("admin.products.add_product", compact('categories', 'product_sizes'));
+        return view("admin.products.add_product", compact('categories'));
     }
 
     public function post_add_product(Request $request) {
@@ -28,7 +27,6 @@ class ProductController extends Controller
             'title'=> 'required|unique:products',
             'price' => 'required',
             'category_id' => 'required',
-            'product_size_id' => 'required',
             'order' => 'nullable|integer',
         ]);
 
@@ -42,7 +40,6 @@ class ProductController extends Controller
         $product->price = $request->price;
         $product->discount_price = $request->input('discount_price', null);
         $product->category_id = $request->category_id;
-        $product->product_size_id = $request->product_size_id;
         $product->order = $request->input('order', 100) ?? 100;
 
         $product->save();
@@ -73,15 +70,13 @@ class ProductController extends Controller
     public function get_update_product($id) {
         $product = Product::find($id);
         $categories = Category::all();
-        $product_sizes = ProductSize::all();
         $product_images = $product->getProductImages;
-        return view("admin.products.update_product", compact('product', 'categories', 'product_sizes', 'product_images'));
+        return view("admin.products.update_product", compact('product', 'categories', 'product_images'));
     }
 
     public function post_update_product($id, Request $request) {
         request()->validate([
             'title' => 'required|unique:products,title,'.$id,
-            'product_size_id' => 'required',
             'category_id' => 'required',
             'order' => 'nullable|integer',
         ]);
@@ -96,7 +91,6 @@ class ProductController extends Controller
         $product->price = $request->price;
         $product->discount_price = $request->discount_price;
         $product->category_id = $request->category_id;
-        $product->product_size_id = $request->product_size_id;
         $product->order = $request->input('order', 100) ?? 100;
 
         $product->save();
