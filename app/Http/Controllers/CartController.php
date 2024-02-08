@@ -31,8 +31,13 @@ class CartController extends Controller
             // Increment quantity if product is already in the cart
             $cart[$product->id]['quantity']++;
         } else {
-            // Use discount price if available, otherwise use regular price
-            $price = $product->discount_price ?? $product->price;
+            // Initialize price with regular price
+            $price = $product->price;
+
+            // Check if discount price is available and valid
+            if ($product->discount_price > 0 && $product->discount_price < $product->price) {
+                $price = $product->discount_price;
+            }
 
             // Add the product to the cart
             $cart[$product->id] = [
@@ -40,9 +45,12 @@ class CartController extends Controller
                 'title' => $product->title,
                 'slug' => $product->slug,
                 'price' => $price,
+                'discount_price' => $product->discount_price,
                 'quantity' => 1,
             ];
         }
+
+        // dd($cart);
 
         Session::put('cart', $cart);
 
@@ -152,9 +160,15 @@ class CartController extends Controller
         * Add the calculated subtotal to the cart
         * Return the updated cart with calculated totals
         */
-        foreach(Session::get('cart', []) as $product_id => $item)
-        {
-            $item['total'] = $item['price'] * $item['quantity'];
+        foreach (Session::get('cart', []) as $product_id => $item) {
+            // Use discount price if available, otherwise use regular price
+            $price = $item['price'];
+
+            if ($item['discount_price'] !== null && $item['discount_price'] > 0) {
+                $price = $item['discount_price'];
+            }
+
+            $item['total'] = $price * $item['quantity'];
             $subtotal += $item['total'];
             $cart['items'][$product_id] = $item;
         }
