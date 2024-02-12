@@ -60,17 +60,12 @@ Route::middleware(['auth', 'admin'])->group(function() {
     Route::get('/admin/users/update/{id}', [UserController::class, 'get_update_user'])->name('get_update_user');
     Route::post('/admin/users/update/{id}', [UserController::class, 'post_update_user'])->name('post_update_user');
 
-    Route::get('/admin/products/list', [ProductController::class, 'list'])->name('list_products');
-    Route::get('/admin/product/add', [ProductController::class, 'get_add_product'])->name('get_add_product');
-    Route::post('/admin/product/add', [ProductController::class, 'post_add_product'])->name('post_add_product');
-    Route::get('/admin/product/update/{id}', [ProductController::class, 'get_update_product'])->name('get_update_product');
-    Route::post('/admin/product/update/{id}', [ProductController::class, 'post_update_product'])->name('post_update_product');
-    Route::delete('/admin/products/delete/{id}', [ProductController::class, 'delete_product'])->name('delete_product');
-    Route::get('/admin/product/delete_product_image/{id}', [ProductController::class, 'delete_product_image'])->name('delete_product_image');
-    Route::post('/admin/product/product_images_sort', [ProductController::class, 'product_images_sort'])->name('product_images_sort');
-
     Route::prefix('admin')->group(function() {
         Route::resource('categories', CategoryController::class);
+
+        Route::resource('products', ProductController::class);
+        Route::get('product/delete_product_image/{id}', [ProductController::class, 'delete_product_image'])->name('delete_product_image');
+        Route::post('product/product_images_sort', [ProductController::class, 'product_images_sort'])->name('product_images_sort');
 
         Route::resource('/delivery/locations', DeliveryLocationController::class);
         Route::resource('/delivery/areas', DeliveryAreaController::class);

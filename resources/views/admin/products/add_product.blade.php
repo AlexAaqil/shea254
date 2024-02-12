@@ -3,11 +3,12 @@
     <div class="container products">
         <div class="custom_form">
             <h1>Add Product</h1>
-            <form action="" method="post" enctype="multipart/form-data">
+            <form action="{{ route('products.store') }}" method="post" enctype="multipart/form-data">
                 @csrf
+
                 <div class="input_group">
                     <label for="title">Title<span class="text-danger">*</span></label>
-                    <input type="text" name="title" id="title" value="{{ old('title') }}" placeholder="Title" required autofocus />
+                    <input type="text" name="title" id="title" value="{{ old('title') }}" placeholder="Title" autofocus />
                     <span class="inline_alert">{{ $errors->first('title') }}</span>
                 </div>
 
@@ -92,10 +93,10 @@
 
                 <div class="input_group">
                     <label for="images">Images (Maximum allowed images is 5)</label>
-                    <input type="file" name="images[]" id="images" accept=".png, .jpg, .jpeg" multiple />
+                    <input type="file" name="images[]" id="images" multiple />
                     <span class="inline_alert">{{ $errors->first('images') }}</span>
                 </div>
-
+ 
                 <button type="submit">Save</button>
             </form>
         </div>

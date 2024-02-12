@@ -3,8 +3,10 @@
     <div class="container products">
         <div class="custom_form">
             <h1> Update Product</h1>
-            <form action="" method="post" enctype="multipart/form-data">
+            <form action="{{ route('products.update', ['product' => $product->id]) }}" method="post" enctype="multipart/form-data">
                 @csrf
+                @method('PATCH')
+
                 <div class="input_group">
                     <label for="title">Title<span class="text-danger">*</span></label>
                     <input type="text" name="title" id="title" value="{{ old('title', $product->title) }}" placeholder="Title" required />
@@ -96,7 +98,7 @@
                 </div>
 
                 @if(!empty(session('success')))
-                    <span class="inline_alert_success">{{ session('success') }}</span>
+                    <span class="inline_alert_success">{{ session('success')['message'] }}</span>
                 @endif
 
                 <div class="product_images" id="sortable">
@@ -105,7 +107,7 @@
                             @if(!empty($image->getProductImageURL()))
                                 <div class="product_image sortable_images" id={{ $image->id }}>
                                     <img src="{{ $image->getProductImageURL() }}" alt="{{ $image->image_name }}" />
-                                    <a href="javascript:void(0);" onclick="deleteItem({{ $image->id }}, 'image', '{{ url('/admin/product/delete_product_image/'.$image->id) }}');">
+                                    <a href="{{ route('delete_product_image', $image->id) }}" >
                                         <i class="fas fa-trash-alt"></i>
                                     </a>
                                 </div>

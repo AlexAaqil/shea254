@@ -620,8 +620,7 @@ footer .copyright {
   font-size: 1em;
 }
 .products_wrapper .product .text .product_details .price_details .discount_percentage {
-  position: absolute;
-  top: 0;
+  top: 5px;
   right: 0;
   background: green;
   color: #fff;
@@ -676,6 +675,10 @@ footer .copyright {
   justify-content: center;
   width: 30px;
   height: 30px;
+}
+
+.product_images_form {
+  margin: 3em 0 0;
 }
 
 .Product_details .container {

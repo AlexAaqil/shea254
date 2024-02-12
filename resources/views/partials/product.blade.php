@@ -29,7 +29,7 @@
                             <del>{{ $product->price }}</del>
                         </span>
                         <span class="discount_percentage">
-                            save {{ round($product->discount_percentage) }}%
+                            {{ round($product->discount_percentage) }}% off
                         </span>
                     @else
                         <span class="currency">Ksh.</span>

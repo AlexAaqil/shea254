@@ -7,7 +7,7 @@
             <h1>Products</h1>
             <input type="text" name="search" id="myInput" placeholder="Search" onkeyup="searchFunction()" />
             <div class="header_btn">
-                <a href="{{ route('get_add_product') }}">New</a>
+                <a href="{{ route('products.create') }}">New</a>
             </div>
         </div>
 
@@ -36,13 +36,13 @@
                         <td>{{ $value->price }}</td>
                         <td>{{ $value->discount_price ? $value->discount_price : 'No Discount' }}</td>
                         <td class="actions">
-                                <div class="action">
-                                <a href="{{ route('get_update_product', ['id'=>$value->id]) }}">
+                            <div class="action">
+                                <a href="{{ route('products.edit', ['product'=>$value->id]) }}">
                                     <i class="fas fa-pencil-alt update"></i>
                                 </a>
                             </div>
                             <div class="action">
-                                <form id="deleteForm_{{ $value->id }}" action="{{ route('delete_product', ['id' => $value->id]) }}" method="POST">
+                                <form id="deleteForm_{{ $value->id }}" action="{{ route('products.destroy', ['product' => $value->id]) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
 

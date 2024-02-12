@@ -5,6 +5,7 @@
     .product {
         box-shadow: 2px 2px 8px rgb(201, 201, 201);
         position: relative;
+
         .image {
             height: 250px;
 
@@ -56,8 +57,8 @@
                     font-size: 1em;
 
                     .discount_percentage {
-                        position: absolute;
-                        top: 0;
+                        // position: absolute;
+                        top: 5px;
                         right: 0;
                         background: green;
                         color: #fff;
@@ -120,6 +121,10 @@
             height: 30px;
         }
     }
+}
+
+.product_images_form {
+    margin: 3em 0 0;
 }
 
 .Product_details {
