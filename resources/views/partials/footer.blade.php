@@ -23,16 +23,22 @@
                 <p>shea254@gmail.com</p>
             </div>
             <div class="socials">
-                    <a href="https://www.instagram.com/shea.254" target="_blank"
+                <a href="https://wa.me/254711894267" target="_blank"
                     >
-                        <img src="{{ asset('assets/images/instagram.png') }}" alt="Instagram">
-                    </a>
-                    <a
+                        <img src="{{ asset('assets/images/whatsapp.png') }}" alt="Whats App">
+                </a>
+
+                <a href="https://www.instagram.com/shea.254" target="_blank"
+                    >
+                    <img src="{{ asset('assets/images/instagram.png') }}" alt="Instagram">
+                </a>
+
+                <a
                     href="https://www.tiktok.com/@shea.254?_t=8gJ9b2q8TP4&_r=1"
                     target="_blank"
                     >
-                        <img src="{{ asset('assets/images/tiktok.png') }}" alt="Tiktok">
-                    </a>
+                    <img src="{{ asset('assets/images/tiktok.png') }}" alt="Tiktok">
+                </a>
             </div>
         </div>
     </div>
