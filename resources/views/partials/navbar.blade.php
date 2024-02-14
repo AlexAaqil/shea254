@@ -22,7 +22,7 @@
                 <li><a href="{{ route('contactpage') }}">Contact</a></li>
                 <li class="cart">
                     <a href="{{ route('cart') }}">
-                        <i class="fa fa-shopping-bag"></i>
+                        <i class="fa fa-shopping-cart"></i>
                         <span>{{ Session::get('cart_count', 0) }}</span>
                     </a>
                 </li>

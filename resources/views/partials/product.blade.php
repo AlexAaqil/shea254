@@ -43,7 +43,7 @@
             <form action="{{ route('add_to_cart', $product->id) }}" method="post">
                 @csrf
                 <button type="submit">
-                    <i class="fa fa-shopping-bag"></i>
+                    <i class="fa fa-shopping-cart"></i>
                 </button>
             </form>
         </div>
