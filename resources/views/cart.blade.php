@@ -5,8 +5,8 @@
     @include('partials.messages')
     <div class="container">
         <div class="header">
-            <h1>Your Bag</h1>
-            <p>You have {{ Session::get('cart_count', 0) }} items in your bag</p>
+            <h1>Your Cart</h1>
+            <p>You have {{ Session::get('cart_count', 0) }} items in your cart</p>
         </div>
 
         <div class="body">
