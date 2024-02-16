@@ -1,6 +1,11 @@
 # Shea.254
 Ecommerce website made using Laravel 10
 
+# TODO
+- MPesa integration
+- Automatically update prices in the cart page when quantity is increased
+- Keep count of stock
+
 ## Installation
 1. **Clone the Repository:**
     ```bash
