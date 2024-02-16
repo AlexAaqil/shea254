@@ -5,6 +5,7 @@ Ecommerce website made using Laravel 10
 - MPesa integration
 - Automatically update prices in the cart page when quantity is increased
 - Keep count of stock
+- update the hero section of the home page
 
 ## Installation
 1. **Clone the Repository:**
