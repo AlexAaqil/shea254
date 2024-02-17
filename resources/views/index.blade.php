@@ -5,22 +5,71 @@
 <main class="Homepage">
     @include('partials.messages')
     <section class="Hero">
-        <div class="container">
-            <div class="text">
-                <img src="{{ asset('/assets/images/hero_logo.png') }}" alt="Logo">
-                <h1>{{ config('app.name') }}</h1>
-                <div class="hero_btns">
-                    <a href="{{ route('shop') }}">Retail</a>
-                    <a href="{{ route('shop') }}">Wholesale</a>
-                </div>
+        <div class="container_fluid">
+            <div class="categories">
+                <a href="{{ route('list_products_by_category', $product='shea-butter') }}">
+                    <div class="category">
+                        <h1>Shea</h1>
+                        <h1>Butter</h1>
+                    </div>
+                </a>
+
+                <a href="{{ route('list_products_by_category', $product='black-soap') }}">
+                    <div class="category">
+                        <h1>Black</h1>
+                        <h1>Soap</h1>
+                    </div>
+                </a>
+
+                <a href="{{ route('list_products_by_category', $product='cocoa-butter') }}">
+                    <div class="category">
+                        <h1>Cocoa</h1>
+                        <h1>Butter</h1>
+                    </div>
+                </a>
+
+                <a href="{{ route('list_products_by_category', $product='essential-oil') }}">
+                    <div class="category">
+                        <h1>Essential</h1>
+                        <h1>Oils</h1>
+                    </div>
+                </a>
+
+                <a href="{{ route('list_products_by_category', $product='carrier-oils') }}">
+                    <div class="category">
+                        <h1>Carrier</h1>
+                        <h1>Oils</h1>
+                    </div>
+                </a>
+
+                <a href="{{ route('list_products_by_category', $product='body-butters') }}">
+                    <div class="category">
+                        <h1>Body</h1>
+                        <h1>Butters</h1>
+                    </div>
+                </a>
             </div>
 
-            <div class="hero_images">
-                <img src="{{ asset('assets/images/hero/hero1.png') }}" alt="Hero" class="hero-image visible">
-                <img src="{{ asset('assets/images/hero/hero2.png') }}" alt="Hero" class="hero-image">
-                <img src="{{ asset('assets/images/hero/hero3.png') }}" alt="Hero" class="hero-image">
-                <img src="{{ asset('assets/images/hero/hero4.png') }}" alt="Hero" class="hero-image">
-                <img src="{{ asset('assets/images/hero/hero5.png') }}" alt="Hero" class="hero-image">
+            <div class="hero_text">
+                <div class="image">
+                    <img src="{{ asset('/assets/images/hero_logo.png') }}" alt="Logo">
+                </div>
+
+                <div class="brand">
+                    <h1>Shea.254</h1>
+                    <p>Skin Care Experts</p>
+                </div>
+
+                <div class="banner">
+                    <h1>Cosmetics</h1>
+                    <h1>Shop</h1>
+                </div>
+
+                <div class="footer">
+                    <p>We Only Sell</p>
+                    <p>100% Natural</p>
+                    <p>Skin Care Products</p>
+                </div>
             </div>
         </div>
     </section>
@@ -41,34 +90,4 @@
     </section>
 </main>
 @include('partials.footer')
-@section('additional_javascript')
-<script>
-            document.addEventListener("DOMContentLoaded", function () {
-                let currentIndex = 0;
-                const images = document.querySelectorAll('.hero_images img');
-                const totalImages = images.length;
-
-                function showImage(index) {
-                    images.forEach((image, i) => {
-                        if (i === index) {
-                            image.classList.add('visible');
-                        } else {
-                            image.classList.remove('visible');
-                        }
-                    });
-                }
-
-                function nextImage() {
-                    currentIndex = (currentIndex + 1) % totalImages;
-                    showImage(currentIndex);
-                }
-
-                // Automatically change the image every 5 seconds
-                setInterval(nextImage, 5000);
-
-                // Initial display
-                showImage(currentIndex);
-            });
-        </script>
-@endsection
 @endsection
