@@ -25,12 +25,9 @@
                     </span>
 
                     <span class="product_quantity">
-                        <form action="{{ route('change_quantity', $product['id']) }}" method="post">
+                        <form class="quantity_form" action="{{ route('change_quantity', $product['id']) }}" method="post">
                             @csrf
-                            <input type="number" name="quantity" id="quantity" min="1" value="{{ $product['quantity'] }}">
-                            <button type="submit">
-                                <i class="fas fa-sync-alt"></i>
-                            </button>
+                            <input type="number" name="quantity" class="quantity_input" min="1" value="{{ $product['quantity'] }}">
                         </form>
                     </span>
 
@@ -57,7 +54,7 @@
                 <h1>Order Summary</h1>
                 <p>
                     <span>Cart Total</span>
-                    <span>Ksh. {{ $cart['subtotal'] }}</span>
+                    <span id="cart_total">Ksh. {{ $cart['subtotal'] }}</span>
                 </p>
 
                 <div class="action">
@@ -67,4 +64,34 @@
         </div>
     </div>
 </main>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        let quantityInputs = document.querySelectorAll('.quantity_input');
+
+        quantityInputs.forEach(function(input) {
+            input.addEventListener('change', function() {
+                let form = this.closest('.quantity_form');
+                let formData = new FormData(form);
+
+                fetch(form.action, {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => {
+                    if (response.ok) {
+                        // If form submission is successful, refresh the page
+                        location.reload();
+                    } else {
+                        console.error('Form submission failed:', response.status);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+            });
+        });
+    });
+</script>
+
 @endsection
