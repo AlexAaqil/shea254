@@ -7,47 +7,48 @@
     <section class="Hero">
         <div class="container_fluid">
             <div class="categories">
-                <a href="{{ route('list_products_by_category', $product='shea-butter') }}">
-                    <div class="category">
+                <div class="category">
+                    <a href="{{ route('list_products_by_category', $product='shea-butter') }}">
                         <h1>Shea</h1>
                         <h1>Butter</h1>
-                    </div>
-                </a>
+                    </a>
+                </div>
 
-                <a href="{{ route('list_products_by_category', $product='black-soap') }}">
-                    <div class="category">
+                <div class="category">
+                    <a href="{{ route('list_products_by_category', $product='black-soap') }}">
                         <h1>Black</h1>
                         <h1>Soap</h1>
-                    </div>
-                </a>
+                    </a>
+                </div>
 
-                <a href="{{ route('list_products_by_category', $product='cocoa-butter') }}">
-                    <div class="category">
+
+                <div class="category">
+                    <a href="{{ route('list_products_by_category', $product='cocoa-butter') }}">
                         <h1>Cocoa</h1>
                         <h1>Butter</h1>
-                    </div>
-                </a>
+                    </a>
+                </div>
 
-                <a href="{{ route('list_products_by_category', $product='essential-oil') }}">
-                    <div class="category">
+                <div class="category">
+                    <a href="{{ route('list_products_by_category', $product='essential-oil') }}">
                         <h1>Essential</h1>
                         <h1>Oils</h1>
-                    </div>
-                </a>
+                    </a>
+                </div>
 
-                <a href="{{ route('list_products_by_category', $product='carrier-oils') }}">
-                    <div class="category">
+                <div class="category">
+                    <a href="{{ route('list_products_by_category', $product='carrier-oils') }}">
                         <h1>Carrier</h1>
                         <h1>Oils</h1>
-                    </div>
-                </a>
+                    </a>
+                </div>
 
-                <a href="{{ route('list_products_by_category', $product='body-butters') }}">
-                    <div class="category">
+                <div class="category">
+                    <a href="{{ route('list_products_by_category', $product='body-butters') }}">
                         <h1>Body</h1>
                         <h1>Butters</h1>
-                    </div>
-                </a>
+                    </a>
+                </div>
             </div>
 
             <div class="hero_text">

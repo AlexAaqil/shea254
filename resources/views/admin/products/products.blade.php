@@ -31,7 +31,11 @@
                         <td>{{ $value->title }}</td>
                         <td>{{ $value->getTranslatedInStock() }}</td>
                         <td>{{ $value->getTranslatedFeatured() }}</td>
-                        <td>{{ $value->category->title }}</td>
+                        @if($value->category != null)
+                            <td>{{ $value->category->title }}</td>
+                        @else
+                            <td>Null</td>
+                        @endif
                         <td>{{ $value->product_size }}</td>
                         <td>{{ $value->price }}</td>
                         <td>{{ $value->discount_price ? $value->discount_price : 'No Discount' }}</td>
