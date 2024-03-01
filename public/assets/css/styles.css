@@ -611,13 +611,13 @@ footer .copyright {
 .products_wrapper .product .text .product_details .title a {
   text-decoration: none;
   color: #000;
-  font-size: 1em;
+  font-size: 1.1em;
   font-weight: bold;
 }
 .products_wrapper .product .text .product_details .price_details {
   color: green;
   font-weight: bold;
-  font-size: 1em;
+  font-size: 1.1em;
 }
 .products_wrapper .product .text .product_details .price_details .discount_percentage {
   top: 5px;
@@ -1166,7 +1166,7 @@ footer .copyright {
   .Homepage .Hero .container_fluid {
     height: 100%;
     grid-template-columns: 15% auto;
-    gap: 0;
+    gap: 1em;
     align-items: start;
   }
   .Homepage .Hero .categories,
