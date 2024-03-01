@@ -13,17 +13,17 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('slug')->unique();
+            $table->string('title')->unique();
+            $table->string('slug');
             $table->tinyInteger('in_stock')->default(1);
-            $table->tinyInteger('featured')->default(1);
+            $table->tinyInteger('featured')->default(0);
             $table->text('description')->nullable();
-            $table->decimal('price', 10, 2)->default(0);
-            $table->decimal('discount_price', 10, 2)->default(0)->nullable();
+            $table->decimal('price', 10, 2)->default(0.00);
+            $table->decimal('discount_price', 10, 2)->default(0.00)->nullable();
             $table->string('product_size')->nullable();
-            $table->integer('order')->default(100);
+            $table->unsignedMediumInteger('order')->default(500);
 
-            $table->foreignId('category_id')->default(1)->constrained('categories');
+            $table->foreignId('category_id')->nullable()->constrained('categories');
             $table->timestamps();
         });
     }
