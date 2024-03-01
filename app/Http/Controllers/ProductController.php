@@ -139,8 +139,8 @@ class ProductController extends Controller
             Storage::disk('public')->delete($image_path);
         }
 
-        return redirect()->route('list_products')->with('success', [
-            'message' => 'Product deleted successfully!',
+        return redirect()->route('products.index')->with('success', [
+            'message' => 'Product has been deleted.',
             'duration' => $this->alert_message_duration,
         ]);
     }

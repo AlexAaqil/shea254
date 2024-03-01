@@ -12,54 +12,66 @@
         </div>
 
         <div class="body">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Title</th>
-                        <th>In Stock</th>
-                        <th>Featured</th>
-                        <th>Category</th>
-                        <th>Size</th>
-                        <th>Price</th>
-                        <th>Discount Price</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($products as $value)
-                    <tr class="searchable">
-                        <td>{{ $value->title }}</td>
-                        <td>{{ $value->getTranslatedInStock() }}</td>
-                        <td>{{ $value->getTranslatedFeatured() }}</td>
-                        @if($value->category != null)
-                            <td>{{ $value->category->title }}</td>
-                        @else
-                            <td>Null</td>
-                        @endif
-                        <td>{{ $value->product_size }}</td>
-                        <td>{{ $value->price }}</td>
-                        <td>{{ $value->discount_price ? $value->discount_price : 'No Discount' }}</td>
-                        <td class="actions">
-                            <div class="action">
-                                <a href="{{ route('products.edit', ['product'=>$value->id]) }}">
-                                    <i class="fas fa-pencil-alt update"></i>
-                                </a>
+            <div class="products">
+                @foreach($products as $product)
+                <div class="product">
+                    <div class="image">
+                        <a href="{{ route('products.edit', ['product' => $product->id]) }}" class="title">
+                            <img src="{{ $product->getFirstImage() }}" alt="Product">
+                        </a>
+                    </div>
+
+                    <div class="text">
+                        <div class="details">
+                            <div class="extras">
+                                <span>{{ $product->category ? $product->category->title : 'null' }}</span>
+                                <span>{{ $product->product_size ? $product->product_size : 'null' }}</span>
+                                <span class="{{ $product->in_stock == 1 ? 'in_stock' : 'out_of_stock' }}">{{ $product->in_stock == 1 ? 'in stock' : 'out of stock'}}</span>
+                                <span class="{{ $product->featured == 1 ? 'featured' : 'not_featured'}}">{{ $product->featured == 1 ? 'featured' : 'not featured'}}</span>
                             </div>
+
+                            <div class="product_details">
+                                <span>
+                                    <a href="{{ route('products.edit', ['product' => $product->id]) }}" class="title">
+                                        {{ $product->title }}
+                                    </a>
+                                </span>
+                                @if($product->discount_price != 0.00 && $product->discount_price < $product->price)
+                                    <span class="price">
+                                        <span class="currency">Ksh.</span>
+                                        <span class="price_amount discount">{{ $product->discount_price }}</span>
+                                        <span class="original_price text-danger">
+                                            <del>{{ $product->price }}</del>
+                                        </span>
+                                        <span class="discount_percentage">
+                                            {{ round($product->calculateDiscount()) }}% off
+                                        </span>
+                                    </span>
+                                @else
+                                    <span class="price">
+                                        <span class="currency">Ksh.</span>
+                                        <span class="price_amount">{{ $product->price }}</span>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="actions">
                             <div class="action">
-                                <form id="deleteForm_{{ $value->id }}" action="{{ route('products.destroy', ['product' => $value->id]) }}" method="POST">
+                                <form id="deleteForm_{{ $product->id }}" action="{{ route('products.destroy', ['product' => $product->id]) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
 
-                                    <a href="javascript:void(0);" onclick="deleteItem({{ $value->id }}, 'product');">
+                                    <a href="javascript:void(0);" onclick="deleteItem({{ $product->id }}, 'product');">
                                         <i class="fas fa-trash-alt delete"></i>
                                     </a>
                                 </form>
                             </div>
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+            </div>
         </div>
     </div>
 @endsection

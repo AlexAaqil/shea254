@@ -1534,6 +1534,78 @@ footer .copyright {
   padding: 0;
   cursor: pointer;
 }
+.Admin .Main .container .body .products {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1em;
+  margin: 1em 0;
+}
+@media screen and (width >= 726px) {
+  .Admin .Main .container .body .products {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+.Admin .Main .container .body .products .product {
+  box-shadow: 2px 2px 6px grey;
+}
+.Admin .Main .container .body .products .product .image {
+  height: 200px;
+  width: 100%;
+  background: whitesmoke;
+}
+.Admin .Main .container .body .products .product .image img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+.Admin .Main .container .body .products .product .text {
+  display: grid;
+  grid-template-columns: auto 10%;
+  gap: 0.5em;
+  align-items: center;
+}
+.Admin .Main .container .body .products .product .text .details {
+  padding: 4px 8px;
+}
+.Admin .Main .container .body .products .product .text .details .extras {
+  display: flex;
+  gap: 0.5em;
+}
+.Admin .Main .container .body .products .product .text .details .extras span {
+  border: 1px solid rgb(216, 216, 216);
+  border-radius: 32px;
+  padding: 1px 6px 0;
+  font-size: 0.8em;
+}
+.Admin .Main .container .body .products .product .text .details .extras .in_stock {
+  color: green;
+}
+.Admin .Main .container .body .products .product .text .details .extras .featured {
+  color: green;
+}
+.Admin .Main .container .body .products .product .text .details .extras .not_featured {
+  color: rgb(235, 4, 4);
+}
+.Admin .Main .container .body .products .product .text .details .product_details {
+  margin: 0.5em 0;
+  display: grid;
+  gap: 0.5em;
+}
+.Admin .Main .container .body .products .product .text .details .product_details .title {
+  text-decoration: none;
+  color: #000;
+  font-weight: bold;
+  font-size: 1.05em;
+}
+.Admin .Main .container .body .products .product .text .details .product_details .price .currency,
+.Admin .Main .container .body .products .product .text .details .product_details .price .price_amount {
+  font-weight: bold;
+  color: green;
+}
+.Admin .Main .container .body .products .product .text .actions .delete {
+  color: rgb(235, 4, 4);
+}
 .Admin .Main .container .users_form form .row_input_group {
   margin: 2em 0;
 }

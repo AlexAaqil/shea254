@@ -96,6 +96,88 @@
                         }
                     }
                 }
+
+                .products {
+                    @include grid(3);
+                    margin: 1em 0;
+
+                    .product {
+                        box-shadow: 2px 2px 6px grey;
+
+                        .image {
+                            height: 200px;
+                            width: 100%;
+                            background: whitesmoke;
+
+                            img {
+                                width: 100%;
+                                height: 100%;
+                                object-fit: contain;
+                            }
+                        }
+
+                        .text {
+                            display: grid;
+                            grid-template-columns: auto 10%;
+                            gap: 0.5em;
+                            align-items: center;
+
+                            .details {
+                                padding: 4px 8px;
+
+                                .extras {
+                                    display: flex;
+                                    gap: 0.5em;
+
+                                    span {
+                                        border: 1px solid rgb(216, 216, 216);
+                                        border-radius: 32px;
+                                        padding: 1px 6px 0;
+                                        font-size: 0.8em;
+                                    }
+
+                                    .in_stock {
+                                        color: green;
+                                    }
+
+                                    .featured {
+                                        color: green;
+                                    }
+                                    .not_featured {
+                                        color: $danger;
+                                    }
+                                }
+
+                                .product_details {
+                                    margin: 0.5em 0;
+                                    display: grid;
+                                    gap: 0.5em;
+
+                                    .title {
+                                        text-decoration: none;
+                                        color: #000;
+                                        font-weight: bold;
+                                        font-size: 1.05em;
+                                    }
+
+                                    .price {
+                                        .currency,
+                                        .price_amount {
+                                            font-weight: bold;
+                                            color: green;
+                                        }
+                                    }
+                                }
+                            }
+
+                            .actions {
+                                .delete {
+                                    color: $danger;
+                                }
+                            }
+                        }
+                    }
+                }
             }
 
             .users_form {
