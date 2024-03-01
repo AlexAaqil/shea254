@@ -65,6 +65,6 @@ class Product extends Model
             $this->discount_percentage = 0;
         }
 
-        return $this;
+        return $this->discount_percentage;
     }
 }
