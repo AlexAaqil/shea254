@@ -7,15 +7,14 @@ use Illuminate\Database\Seeder;
 use App\Models\User;
 use Hash;
 
-class AdminSeeder extends Seeder
+class UserSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        $password = Hash::make('admin12345');
-        $user_password = Hash::make('test');
+        $password = Hash::make('admin_root');
 
         $admin_records = [
             [
@@ -25,14 +24,6 @@ class AdminSeeder extends Seeder
                 'phone_number' => '+254 746 055 487',
                 'password' => $password,
                 'user_level' => 1,
-            ],
-            [
-                'first_name' => 'User',
-                'last_name' => 'UserActive',
-                'email' => 'test@gmail.com',
-                'phone_number' => '+254 701 001 002',
-                'password' => $user_password,
-                'user_level' => 2,
             ],
         ];
 
