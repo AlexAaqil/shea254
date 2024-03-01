@@ -28,7 +28,7 @@ class ProductController extends Controller
         $validated_data = $request->validate([
             'title' => 'required|unique:products',
             'price' => 'required|numeric',
-            'category_id' => 'required',
+            'category_id' => 'nullable',
             'order' => 'nullable|integer',
             'images' => 'max:2048'
         ]);
@@ -72,7 +72,7 @@ class ProductController extends Controller
     {
         $request->validate([
             'title' => 'required|unique:products,title,'.$product->id,
-            'category_id' => 'required',
+            'category_id' => 'nullable',
             'order' => 'nullable|integer',
         ]);
 
