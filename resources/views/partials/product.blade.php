@@ -7,9 +7,11 @@
     <div class="text">
         <div class="product_details">
             <div class="extra">
+                @if($product->category != null)
                 <a href="{{ route('list_products_by_category', $product->category->slug) }}">
                     <span>{{ $product->category->title }}</span>
                 </a>
+                @endif
                 @if($product->product_size != null)
                 <span>{{ $product->product_size }}</span>
                 @endif
