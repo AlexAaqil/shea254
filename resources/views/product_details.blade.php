@@ -41,9 +41,11 @@
                     </p>
                     <p>
                         <span>Category</span>
+                        @if($product->category != null)
                         <a href="{{ route('list_products_by_category', $product->category->slug) }}">
                             <span>{{ $product->category->title }}</span>
                         </a>
+                        @endif
                     </p>
                 </div>
             </div>
