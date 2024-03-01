@@ -150,7 +150,7 @@ class ProductController extends Controller
             $i = 1;
             foreach($request->photo_id as $photo_id) {
                 $image = ProductImage::find($photo_id);
-                $image->order_by = $i;
+                $image->order = $i;
                 $image->save();
 
                 $i++;
