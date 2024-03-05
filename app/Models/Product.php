@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Product extends Model
 {
@@ -45,9 +46,14 @@ class Product extends Model
         $productImages = $this->getProductImages;
         $imagePath = $productImages->isNotEmpty()
             ? $productImages->first()->image_name
-            : '/assets/images/default_product.jpg';
+            : 'default_product.jpg';
 
-        return url('storage/' . $imagePath); // Include url() generation here
+        // Check if the image exists in storage, otherwise return the default image path
+        if ($productImages->isNotEmpty() && Storage::disk('public')->exists($imagePath)) {
+            return Storage::url($imagePath);
+        } else {
+            return asset('assets/images/default_product.jpg'); // Use asset() to generate URL for the default image
+        }
     }
 
     public function calculateDiscount()
