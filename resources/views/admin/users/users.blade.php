@@ -26,8 +26,8 @@
                         <td>{{ $user->first_name }} {{ $user->last_name }}</td>
                         <td>{{ $user->email }}</td>
                         <td>{{ $user->phone_number }}</td>
-                        <td>{{ $user->User_level === 1 ? 'Admin':'User' }}</td>
-                        <td class="{{ $user->status === 1 ? '' : 'text-danger bold' }}">{{ $user->status === 1 ? 'Active' : 'Inactive'}} </td>
+                        <td>{{ $user->User_level == 1 ? 'Admin':'User' }}</td>
+                        <td class="{{ $user->status == 1 ? '' : 'text-danger bold' }}">{{ $user->status == 1 ? 'Active' : 'Inactive'}} </td>
                         <td class="actions">
                             <div class="action">
                                 <a href="{{ route('get_update_user', ['id' => $user->id]) }}">

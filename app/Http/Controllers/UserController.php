@@ -16,7 +16,7 @@ class UserController extends Controller
     public function get_update_admin($id)
     {
         $admin = User::findOrFail($id);
-        return view('admin.update_admin', compact('admin'));
+        return view('admin.users.update_admin', compact('admin'));
     }
 
 
@@ -43,7 +43,7 @@ class UserController extends Controller
     public function get_update_user($id)
     {
         $user = User::find($id);
-        return view('admin.update_user', compact('user'));
+        return view('admin.users.update_user', compact('user'));
     }
 
     public function post_update_user($id, Request $request)

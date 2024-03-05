@@ -25,7 +25,7 @@
                         <td>{{ $admin->email }}</td>
                         <td>{{ $admin->phone_number }}</td>
                         <td>{{ $admin->user_level === 1? 'Admin':'User' }} </td>
-                        <td>{{ $admin->status === 1? 'Active':'Inactive' }} </td>
+                        <td class="{{ $admin->status === 1 ? '' : 'text-danger bold' }}">{{ $admin->status == 1? 'Active':'Inactive' }} </td>
                         <td class="actions">
                             <div class="action">
                                 <a href="{{ route('get_update_admin', ['id' => $admin->id]) }}">
