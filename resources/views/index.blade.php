@@ -37,14 +37,14 @@
                 </div>
 
                 <div class="category">
-                    <a href="{{ route('list_products_by_category', $product='carrier-oils') }}">
+                    <a href="{{ route('list_products_by_category', $product='carrier-oil') }}">
                         <h1>Carrier</h1>
                         <h1>Oils</h1>
                     </a>
                 </div>
 
                 <div class="category">
-                    <a href="{{ route('list_products_by_category', $product='body-butters') }}">
+                    <a href="{{ route('list_products_by_category', $product='body-butter') }}">
                         <h1>Body</h1>
                         <h1>Butters</h1>
                     </a>
