@@ -48,7 +48,7 @@ class HomeController extends Controller
 
     public function shop()
     {
-        $products = Product::where('in_stock', 1)->orderBy('order', 'asc')->get();
+        $products = Product::where('in_stock', 1)->orderBy('order', 'asc')->orderBy('title', 'asc')->get();
 
         foreach ($products as $product) {
             $product->calculateDiscount();
