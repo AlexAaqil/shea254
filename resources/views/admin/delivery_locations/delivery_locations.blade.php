@@ -6,7 +6,7 @@
 
         <div class="header">
             <h1>Locations</h1>
-            <input type="text" name="search" id="myInput" placeholder="Search" onkeyup="searchFunction()" />
+            @include('admin.partials.search_bar')
             <div class="header_btn">
                 <a href="{{ route('locations.create') }}">New</a>
             </div>
@@ -22,7 +22,7 @@
                 </thead>
                 <tbody>
                     @foreach($delivery_locations as $value)
-                        <tr>
+                        <tr class="searchable">
                             <td>{{ $value->location_name }}</td>
                             <td class="actions">
                                 <div class="action">

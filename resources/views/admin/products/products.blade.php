@@ -5,7 +5,7 @@
 
         <div class="header">
             <h1>Products</h1>
-            <input type="text" name="search" id="myInput" placeholder="Search" onkeyup="searchFunction()" />
+            @include('admin.partials.search_bar')
             <div class="header_btn">
                 <a href="{{ route('products.create') }}">New</a>
             </div>
@@ -14,7 +14,7 @@
         <div class="body">
             <div class="products">
                 @foreach($products as $product)
-                <div class="product">
+                <div class="product searchable">
                     <div class="image">
                         <a href="{{ route('products.edit', ['product' => $product->id]) }}" class="title">
                             <img src="{{ $product->getFirstImage() }}" alt="Product">

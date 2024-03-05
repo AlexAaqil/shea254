@@ -3,7 +3,7 @@
     <div class="container users">
         <div class="header">
             <h1>Users</h1>
-            <input type="text" name="search" id="search" placeholder="Search">
+            @include('admin.partials.search_bar')
         </div>
 
         @include('partials.messages')
@@ -22,7 +22,7 @@
                 </thead>
                 <tbody>
                     @foreach($list_users as $user)
-                    <tr>
+                    <tr class="searchable">
                         <td>{{ $user->first_name }} {{ $user->last_name }}</td>
                         <td>{{ $user->email }}</td>
                         <td>{{ $user->phone_number }}</td>

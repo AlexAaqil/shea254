@@ -75,7 +75,7 @@ Route::middleware(['auth', 'admin'])->group(function() {
     });
 
     Route::get('/admin/orders/list', [OrderController::class, 'list_orders'])->name('list_orders');
-    Route::get('/admin/orders/list_orders_table', [OrderController::class, 'list_orders_table'])->name('list_orders_table');
     Route::get('/admin/order/update/{id}', [OrderController::class, 'get_update_order'])->name('get_update_order');
     Route::post('/admin/order/update/{id}', [OrderController::class, 'post_update_order'])->name('post_update_order');
+    Route::delete('/admin/orders/delete/{id}', [OrderController::class, 'delete_order'])->name('delete_order');
 });

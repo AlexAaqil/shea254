@@ -3,7 +3,7 @@
     <div class="container admins">
         <div class="header">
             <h1>Admins</h1>
-            <input type="text" name="search" id="search" placeholder="Search">
+            @include('admin.partials.search_bar')
         </div>
 
         <div class="body">
@@ -20,7 +20,7 @@
                 </thead>
                 <tbody>
                     @foreach($list_admins as $admin)
-                    <tr>
+                    <tr class="searchable">
                         <td>{{ $admin->first_name }} {{ $admin->last_name }}</td>
                         <td>{{ $admin->email }}</td>
                         <td>{{ $admin->phone_number }}</td>
