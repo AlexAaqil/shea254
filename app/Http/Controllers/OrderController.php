@@ -15,15 +15,10 @@ class OrderController extends Controller
 {
     public function list_orders()
     {
-        return view('admin.orders.orders');
-    }
-
-    public function list_orders_table()
-    {
         $orders = Order::orderBy('status')
         ->orderBy('created_at', 'desc')
         ->get();
-        return view('partials.orders_table_body', compact('orders'));
+        return view('admin.orders.orders', compact('orders'));
     }
 
     public function list_user_orders()
@@ -138,6 +133,13 @@ class OrderController extends Controller
             'message' => 'Order has been updated.',
             'duration' => $this->alert_message_duration,
         ]);
+    }
+
+    public function delete_order($id)
+    {
+        $order = Order::findOrFail($id);
+        $order->delete();
+        return redirect()->route('list_orders')->with('success', ['message' => 'Order has been deleted.', 'duration' => $this->alert_message_duration]);
     }
 
     public function order_success()
