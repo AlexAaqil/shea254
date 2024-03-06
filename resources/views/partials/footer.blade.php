@@ -20,7 +20,7 @@
             <h1>Contacts</h1>
             <div class="enquiries">
                 <p>+254 711 894 267</p>
-                <p>shea254@gmail.com</p>
+                <p>info@shea254.com</p>
             </div>
             <div class="socials">
                 <a href="https://wa.me/254711894267" target="_blank"
