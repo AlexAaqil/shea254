@@ -53,7 +53,7 @@
 
             <div class="hero_text">
                 <div class="image">
-                    <img src="{{ asset('/assets/images/hero_logo.png') }}" alt="Logo">
+                    <img src="{{ asset('/assets/images/hero-logo.png') }}" alt="Logo">
                 </div>
 
                 <div class="brand">
