@@ -7,7 +7,7 @@
         @include('partials.messages')
         <div class="contact_details">
             <p>+254 711 894 267</p>
-            <p>shea.254@gmail.com</p>
+            <p>info@shea254.com</p>
         </div>
 
         <div class="contact_form">
