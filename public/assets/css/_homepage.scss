@@ -4,125 +4,138 @@
     }
 
     .Hero {
-        .container_fluid {
-            .categories {
-                .category {
-                    padding: 4px 15px;
+        .categories {
+            .category {
+                padding: 4px 15px;
 
-                    a {
-                        text-decoration: none;
+                a {
+                    text-decoration: none;
 
-                        h1 {
-                            font-size: 2em;
-                            text-transform: uppercase;
-                        }
-                    }
-
-                    &:nth-of-type(1) {
-                        background: #050608;
-                        a {
-                            color: #ffffff;
-                        }
-                    }
-
-                    &:nth-of-type(2) {
-                        background: #999999;
-                        a {
-                            color: #000000;
-                        }
-                    }
-
-                    &:nth-of-type(3) {
-                        background: #f0e416;
-                        a {
-                            color: #2c3233;
-                        }
-                    }
-
-                    &:nth-of-type(4) {
-                        background: #57c6d9;
-                        a {
-                            color: #ffffff;
-                        }
-                    }
-
-                    &:nth-of-type(5) {
-                        background: #cb3c96;
-                        a {
-                            color: #fff;
-                        }
-                    }
-
-                    &:nth-of-type(6) {
-                        background: #91c640;
-                        a {
-                            color: #2b323d;
-                        }
-                    }
-                }
-            }
-
-            .hero_text {
-                padding: 12px 0;
-                text-align: center;
-                background-image: linear-gradient(
-                        120deg,
-                        rgba(0, 0, 0, 0.7),
-                        rgba(0, 0, 0, 0.65)
-                    ),
-                    url("../images/activated-charcoal.jpg");
-                background-repeat: no-repeat;
-                background-size: contain;
-                background-position: center;
-
-                div {
-                    margin: 0 0 1em;
-                }
-
-                .image {
-                    height: 80px;
-                    width: 50%;
-                    margin: auto;
-                    img {
-                        width: 100%;
-                        height: 100%;
-                        object-fit: contain;
-                        // filter: invert(100%);
-                        animation: rotate 35s infinite linear;
-                    }
-                }
-
-                .brand,
-                .banner,
-                .footer {
-                    h1,
-                    p {
+                    h1 {
+                        font-size: 2em;
                         text-transform: uppercase;
+                    }
+                }
+
+                &:nth-of-type(1) {
+                    background: #050608;
+                    a {
+                        color: #ffffff;
+                    }
+                }
+
+                &:nth-of-type(2) {
+                    background: #999999;
+                    a {
+                        color: #000000;
+                    }
+                }
+
+                &:nth-of-type(3) {
+                    background: #f0e416;
+                    a {
+                        color: #2c3233;
+                    }
+                }
+
+                &:nth-of-type(4) {
+                    background: #57c6d9;
+                    a {
+                        color: #ffffff;
+                    }
+                }
+
+                &:nth-of-type(5) {
+                    background: #cb3c96;
+                    a {
                         color: #fff;
                     }
                 }
 
-                .brand {
-                    h1 {
-                        font-size: 2em;
+                &:nth-of-type(6) {
+                    background: #91c640;
+                    a {
+                        color: #2b323d;
                     }
+                }
+            }
+        }
 
-                    p {
-                        font-size: 0.8em;
+        .hero_text {
+            height: 40vh;
+            position: relative;
+
+            &:after {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(
+                    120deg,
+                    rgba(0, 0, 0, 0.75),
+                    rgba(0, 0, 0, 0.7),
+                    rgba(0, 0, 0, 0.8),
+                );
+                z-index: 0; /* Ensure the pseudo-element is behind other content */
+            }
+
+            .slideshow {
+                position: relative;
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
+
+                img {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    object-fit: contain;
+                    opacity: 0;
+                    transition: opacity 1s ease-in-out;
+                }
+
+                .active {
+                    opacity: 1;
+                }
+            }
+
+            .brand {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                z-index: 1;
+                text-align: center;
+
+                .image {
+                    height: 100%;
+                    width: 50%;
+                    margin: auto;
+
+                    img {
+                        height: 100%;
+                        width: 100%;
+                        object-fit: contain;
+                        animation: rotate 35s linear infinite;
                     }
                 }
 
-                .banner {
-                    border: 3px solid #fff;
-                    width: 70%;
-                    margin: 1em auto;
-                    padding: 4px 0;
+                h1,
+                p {
+                    color: #fff;
                 }
 
-                .footer {
-                    p {
-                        font-weight: bold;
-                    }
+                h1 {
+                    font-size: 3.3em;
+                    text-transform: uppercase;
+                }
+
+                p {
+                    font-size: 1.5em;
                 }
             }
         }
@@ -148,59 +161,43 @@
 @media screen and (width >= 726px) {
     .Homepage {
         .Hero {
+            display: grid;
+            grid-template-columns: 15% auto;
+            gap: 0.1em;
             height: 90vh;
 
-            .container_fluid,
-            .categories,
-            .hero_text {
+            .hero_text,
+            .categories {
                 height: 100%;
             }
 
-            .categories,
-            .hero_text,
-            .category {
+            .categories {
                 display: grid;
-            }
+                gap: 0.1em;
 
-            .container_fluid {
-                display: grid;
-                grid-template-columns: 15% auto;
-                gap: 0.2em;
-
-                .categories {
+                .category {
                     display: grid;
-
-                    .category {
-                        display: grid;
-                        align-items: center;
-                        a {
-                            h1 {
-                                font-size: 1.5em;
-                            }
+                    align-items: center;
+                    a {
+                        h1 {
+                            font-size: 1.5em;
                         }
                     }
                 }
+            }
 
-                .hero_text {
-                    align-items: center;
-
-                    .brand {
-                        h1 {
-                            font-size: 3em !important;
-                        }
+            .hero_text {
+                .brand {
+                    .image {
+                        height: 110px;
+                        margin: 0 auto 0.3em;
                     }
 
-                    .banner {
-                        width: 50% !important;
-                        h1 {
-                            font-size: 5em;
-                        }
+                    h1 {
+                        font-size: 5.6em;
                     }
-
-                    .footer {
-                        p {
-                            font-size: 2em;
-                        }
+                    p {
+                        font-size: 1.8em;
                     }
                 }
             }

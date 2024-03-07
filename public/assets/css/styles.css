@@ -1055,98 +1055,116 @@ footer .copyright {
 .Homepage section {
   margin: 0 0 5em;
 }
-.Homepage .Hero .container_fluid .categories .category {
+.Homepage .Hero .categories .category {
   padding: 4px 15px;
 }
-.Homepage .Hero .container_fluid .categories .category a {
+.Homepage .Hero .categories .category a {
   text-decoration: none;
 }
-.Homepage .Hero .container_fluid .categories .category a h1 {
+.Homepage .Hero .categories .category a h1 {
   font-size: 2em;
   text-transform: uppercase;
 }
-.Homepage .Hero .container_fluid .categories .category:nth-of-type(1) {
+.Homepage .Hero .categories .category:nth-of-type(1) {
   background: #050608;
 }
-.Homepage .Hero .container_fluid .categories .category:nth-of-type(1) a {
+.Homepage .Hero .categories .category:nth-of-type(1) a {
   color: #ffffff;
 }
-.Homepage .Hero .container_fluid .categories .category:nth-of-type(2) {
+.Homepage .Hero .categories .category:nth-of-type(2) {
   background: #999999;
 }
-.Homepage .Hero .container_fluid .categories .category:nth-of-type(2) a {
+.Homepage .Hero .categories .category:nth-of-type(2) a {
   color: #000000;
 }
-.Homepage .Hero .container_fluid .categories .category:nth-of-type(3) {
+.Homepage .Hero .categories .category:nth-of-type(3) {
   background: #f0e416;
 }
-.Homepage .Hero .container_fluid .categories .category:nth-of-type(3) a {
+.Homepage .Hero .categories .category:nth-of-type(3) a {
   color: #2c3233;
 }
-.Homepage .Hero .container_fluid .categories .category:nth-of-type(4) {
+.Homepage .Hero .categories .category:nth-of-type(4) {
   background: #57c6d9;
 }
-.Homepage .Hero .container_fluid .categories .category:nth-of-type(4) a {
+.Homepage .Hero .categories .category:nth-of-type(4) a {
   color: #ffffff;
 }
-.Homepage .Hero .container_fluid .categories .category:nth-of-type(5) {
+.Homepage .Hero .categories .category:nth-of-type(5) {
   background: #cb3c96;
 }
-.Homepage .Hero .container_fluid .categories .category:nth-of-type(5) a {
+.Homepage .Hero .categories .category:nth-of-type(5) a {
   color: #fff;
 }
-.Homepage .Hero .container_fluid .categories .category:nth-of-type(6) {
+.Homepage .Hero .categories .category:nth-of-type(6) {
   background: #91c640;
 }
-.Homepage .Hero .container_fluid .categories .category:nth-of-type(6) a {
+.Homepage .Hero .categories .category:nth-of-type(6) a {
   color: #2b323d;
 }
-.Homepage .Hero .container_fluid .hero_text {
-  padding: 12px 0;
-  text-align: center;
-  background-image: linear-gradient(120deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.65)), url("../images/activated-charcoal.jpg");
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
+.Homepage .Hero .hero_text {
+  height: 40vh;
+  position: relative;
 }
-.Homepage .Hero .container_fluid .hero_text div {
-  margin: 0 0 1em;
+.Homepage .Hero .hero_text:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(120deg, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8));
+  z-index: 0; /* Ensure the pseudo-element is behind other content */
 }
-.Homepage .Hero .container_fluid .hero_text .image {
-  height: 80px;
-  width: 50%;
-  margin: auto;
+.Homepage .Hero .hero_text .slideshow {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 }
-.Homepage .Hero .container_fluid .hero_text .image img {
+.Homepage .Hero .hero_text .slideshow img {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   -o-object-fit: contain;
      object-fit: contain;
-  animation: rotate 35s infinite linear;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
 }
-.Homepage .Hero .container_fluid .hero_text .brand h1,
-.Homepage .Hero .container_fluid .hero_text .brand p,
-.Homepage .Hero .container_fluid .hero_text .banner h1,
-.Homepage .Hero .container_fluid .hero_text .banner p,
-.Homepage .Hero .container_fluid .hero_text .footer h1,
-.Homepage .Hero .container_fluid .hero_text .footer p {
-  text-transform: uppercase;
+.Homepage .Hero .hero_text .slideshow .active {
+  opacity: 1;
+}
+.Homepage .Hero .hero_text .brand {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  text-align: center;
+}
+.Homepage .Hero .hero_text .brand .image {
+  height: 100%;
+  width: 50%;
+  margin: auto;
+}
+.Homepage .Hero .hero_text .brand .image img {
+  height: 100%;
+  width: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+  animation: rotate 35s linear infinite;
+}
+.Homepage .Hero .hero_text .brand h1,
+.Homepage .Hero .hero_text .brand p {
   color: #fff;
 }
-.Homepage .Hero .container_fluid .hero_text .brand h1 {
-  font-size: 2em;
+.Homepage .Hero .hero_text .brand h1 {
+  font-size: 3.3em;
+  text-transform: uppercase;
 }
-.Homepage .Hero .container_fluid .hero_text .brand p {
-  font-size: 0.8em;
-}
-.Homepage .Hero .container_fluid .hero_text .banner {
-  border: 3px solid #fff;
-  width: 70%;
-  margin: 1em auto;
-  padding: 4px 0;
-}
-.Homepage .Hero .container_fluid .hero_text .footer p {
-  font-weight: bold;
+.Homepage .Hero .hero_text .brand p {
+  font-size: 1.5em;
 }
 .Homepage .Products .header {
   display: flex;
@@ -1163,47 +1181,35 @@ footer .copyright {
 
 @media screen and (width >= 726px) {
   .Homepage .Hero {
-    height: 90vh;
-  }
-  .Homepage .Hero .container_fluid,
-  .Homepage .Hero .categories,
-  .Homepage .Hero .hero_text {
-    height: 100%;
-  }
-  .Homepage .Hero .categories,
-  .Homepage .Hero .hero_text,
-  .Homepage .Hero .category {
-    display: grid;
-  }
-  .Homepage .Hero .container_fluid {
     display: grid;
     grid-template-columns: 15% auto;
-    gap: 0.2em;
+    gap: 0.1em;
+    height: 90vh;
   }
-  .Homepage .Hero .container_fluid .categories {
+  .Homepage .Hero .hero_text,
+  .Homepage .Hero .categories {
+    height: 100%;
+  }
+  .Homepage .Hero .categories {
     display: grid;
+    gap: 0.1em;
   }
-  .Homepage .Hero .container_fluid .categories .category {
+  .Homepage .Hero .categories .category {
     display: grid;
     align-items: center;
   }
-  .Homepage .Hero .container_fluid .categories .category a h1 {
+  .Homepage .Hero .categories .category a h1 {
     font-size: 1.5em;
   }
-  .Homepage .Hero .container_fluid .hero_text {
-    align-items: center;
+  .Homepage .Hero .hero_text .brand .image {
+    height: 110px;
+    margin: 0 auto 0.3em;
   }
-  .Homepage .Hero .container_fluid .hero_text .brand h1 {
-    font-size: 3em !important;
+  .Homepage .Hero .hero_text .brand h1 {
+    font-size: 5.6em;
   }
-  .Homepage .Hero .container_fluid .hero_text .banner {
-    width: 50% !important;
-  }
-  .Homepage .Hero .container_fluid .hero_text .banner h1 {
-    font-size: 5em;
-  }
-  .Homepage .Hero .container_fluid .hero_text .footer p {
-    font-size: 2em;
+  .Homepage .Hero .hero_text .brand p {
+    font-size: 1.8em;
   }
 }
 @keyframes rotate {
