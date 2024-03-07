@@ -33,6 +33,10 @@
                     <img src="{{ asset('assets/images/instagram.png') }}" alt="Instagram">
                 </a>
 
+                <a href="https://www.facebook.com/profile.php?id=100056436834853" target="_blank">
+                    <img src="{{ asset('assets/images/facebook.png') }}" alt="Facebook">
+                </a>
+
                 <a
                     href="https://www.tiktok.com/@shea.254?_t=8gJ9b2q8TP4&_r=1"
                     target="_blank"
