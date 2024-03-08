@@ -61,10 +61,20 @@ class DashboardController extends Controller
             ->whereYear('created_at', Carbon::now()->year)
             ->groupBy('month')
             ->orderBy('month')
-            ->get();
+            ->pluck('total_sales', 'month');
 
-        // Map the sales data for each month
-        $sales_data = $monthly_sales->pluck('total_sales')->toArray();
+        // Initialize an array to hold sales data for each month of the year
+        $sales_data = [];
+
+        // Loop through each month of the year and get sales data
+        for ($month = 1; $month <= 12; $month++) {
+            // Check if sales data exists for the current month
+            if (isset($monthly_sales[$month])) {
+                $sales_data[] = $monthly_sales[$month];
+            } else {
+                $sales_data[] = 0; // Set sales to 0 if no data exists for the current month
+            }
+        }
 
         $locations_data = Order::select('location', \DB::raw('COUNT(*) as total_orders'))
         ->groupBy('location')
