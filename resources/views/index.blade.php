@@ -52,9 +52,12 @@
 
         <div class="hero_text">
             <div class="slideshow">
-                <img src="{{ asset('/assets/images/activated-charcoal.jpg') }}" alt="Hero Image">
-                <img src="{{ asset('/assets/images/black-soap.jpg') }}" alt="Hero Image">
-                <!-- Add more images as needed -->
+                <img src="{{ asset('/assets/images/shea254-1.jpg') }}" alt="Hero Image">
+                <img src="{{ asset('/assets/images/shea254-2.jpg') }}" alt="Hero Image">
+                <img src="{{ asset('/assets/images/shea254-3.jpg') }}" alt="Hero Image">
+                <img src="{{ asset('/assets/images/shea254-4.jpg') }}" alt="Hero Image">
+                <img src="{{ asset('/assets/images/shea254-5.jpg') }}" alt="Hero Image">
+                <img src="{{ asset('/assets/images/shea254-6.jpg') }}" alt="Hero Image">
             </div>
 
             <div class="brand">
