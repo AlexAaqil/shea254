@@ -1057,6 +1057,10 @@ footer .copyright {
 }
 .Homepage .Hero .categories .category {
   padding: 4px 15px;
+  transition: all 0.3s ease-in-out;
+}
+.Homepage .Hero .categories .category:hover {
+  margin-left: 3px;
 }
 .Homepage .Hero .categories .category a {
   text-decoration: none;
