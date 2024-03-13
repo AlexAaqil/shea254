@@ -24,6 +24,10 @@
                     <span class="inline_alert">{{ $errors->first('password') }}</span>
                 </div>
 
+                <div class="input_group">
+                    <a href="{{ route('password.request') }}">Forgot your password?</a>
+                </div>
+
                 <button type="submit">Login</button>
             </form>
 
