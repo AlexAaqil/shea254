@@ -1735,4 +1735,66 @@ footer .copyright {
   border-radius: 16px;
   padding: 0.1em 0.4em;
   font-size: 0.7em;
+}
+
+.Admin .Main .Blogs .blogs {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1em;
+  margin: 1em 0;
+}
+@media screen and (width >= 726px) {
+  .Admin .Main .Blogs .blogs {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+.Admin .Main .Blogs .blogs .blog {
+  box-shadow: 2px 2px 6px grey;
+}
+.Admin .Main .Blogs .blogs .blog .image {
+  height: 200px;
+  width: 100%;
+  background: whitesmoke;
+}
+.Admin .Main .Blogs .blogs .blog .image img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+.Admin .Main .Blogs .blogs .blog .text {
+  display: grid;
+  grid-template-columns: auto 10%;
+  gap: 0.5em;
+  align-items: center;
+}
+.Admin .Main .Blogs .blogs .blog .text .details {
+  padding: 4px 8px;
+}
+.Admin .Main .Blogs .blogs .blog .text .details .title a {
+  text-decoration: none;
+  font-size: 1.2em;
+}
+.Admin .Main .Blogs .blogs .blog .text .actions .delete {
+  color: rgb(235, 4, 4);
+}
+.Admin .Main .Blogs .custom_form .blog_image_input {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1em;
+}
+@media screen and (width >= 726px) {
+  .Admin .Main .Blogs .custom_form .blog_image_input {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+.Admin .Main .Blogs .custom_form .blog_image_input .blog_image {
+  height: 80px;
+  width: 120px;
+}
+.Admin .Main .Blogs .custom_form .blog_image_input .blog_image img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
 }/*# sourceMappingURL=styles.css.map */
