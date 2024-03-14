@@ -20,6 +20,7 @@
                 <li><a href="{{ route('shop') }}">Shop</a></li>
                 <li><a href="{{ route('aboutpage') }}">About</a></li>
                 <li><a href="{{ route('contactpage') }}">Contact</a></li>
+                <li><a href="{{ route('users.blogs') }}">Blog</a></li>
                 <li class="cart">
                     <a href="{{ route('cart') }}">
                         <i class="fa fa-shopping-cart"></i>

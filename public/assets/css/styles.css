@@ -1797,4 +1797,105 @@ footer .copyright {
   height: 100%;
   -o-object-fit: contain;
      object-fit: contain;
+}
+
+.Blog .Hero {
+  height: 30vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fcfcee;
+}
+.Blog .Hero .hero_content .breadcrumb {
+  text-align: center;
+  margin: 0 0 0.5em;
+}
+.Blog .Hero .hero_content .breadcrumb a {
+  text-decoration: none;
+  color: #000;
+  font-weight: bold;
+  font-size: 0.9em;
+}
+.Blog .Hero .hero_content .breadcrumb a:not(:last-of-type)::after {
+  content: " > ";
+  font-weight: bold;
+}
+.Blog .Hero .hero_content h1 {
+  font-size: 2.5em;
+}
+.Blog .Blogs .container .blogs h1 {
+  text-align: center;
+  font-size: 1.8em;
+  margin: 0.5em 0 1em;
+}
+.Blog .Blogs .container .blogs .blogs_wrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1em;
+  gap: 2em;
+}
+@media screen and (width >= 726px) {
+  .Blog .Blogs .container .blogs .blogs_wrapper {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+.Blog .Blogs .container .blogs .blogs_wrapper .blog {
+  box-shadow: 2px 2px 8px #000;
+}
+.Blog .Blogs .container .blogs .blogs_wrapper .blog .image {
+  height: 250px;
+}
+.Blog .Blogs .container .blogs .blogs_wrapper .blog .image img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.Blog .Blogs .container .blogs .blogs_wrapper .blog .text {
+  display: grid;
+  gap: 0.5em;
+  padding: 4px 15px;
+}
+.Blog .Blogs .container .blogs .blogs_wrapper .blog .text .date {
+  font-size: 0.8em;
+}
+.Blog .Blogs .container .blogs .blogs_wrapper .blog .text .title a {
+  text-decoration: none;
+  color: #000;
+  font-size: 1.1em;
+  font-weight: bold;
+}
+.Blog .Blogs .container .blogs .blogs_wrapper .blog .text .content {
+  line-height: 1.3;
+}
+.Blog .Blogs .container .blogs .blogs_wrapper .blog .text .btn {
+  margin: 0.5em 0;
+}
+.Blog .Blogs .container .blogs .blogs_wrapper .blog .text .btn a {
+  text-decoration: none;
+}
+.Blog .Blogs .container .blogs .blogs_wrapper .blog .text .btn a i {
+  font-size: 0.8em;
+}
+.Blog .Blogs .container .blogs .pagination {
+  margin: 3em 0;
+  text-align: center;
+}
+.Blog .Blogs .container .blogs .pagination a {
+  text-decoration: none;
+  color: #000;
+}
+.Blog .Blogs .container .blogs .pagination .disabled {
+  color: grey;
+}
+.Blog .Blogs .container .blogs .pagination .pagination-links {
+  margin: 0 1em;
+}
+.Blog .Blogs .container .blogs .pagination .pagination-links a {
+  color: grey;
+}
+.Blog .Blogs .container .blogs .pagination .pagination-links .active {
+  font-size: 1.3em;
+  font-weight: bold;
+  color: green;
 }/*# sourceMappingURL=styles.css.map */

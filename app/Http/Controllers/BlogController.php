@@ -31,6 +31,7 @@ class BlogController extends Controller
         $blog = new Blog;
 
         $blog->title = $validated['title'];
+        $blog->slug = Str::slug($validated['title']);
         $blog->content = $validated['content'];
 
         $blog->save();
@@ -70,6 +71,7 @@ class BlogController extends Controller
         ]);
 
         $blog->title = $request->title;
+        $blog->slug = Str::slug($request->title);
         $blog->content = $request->content;
 
         if ($request->hasFile('image')) {
@@ -108,5 +110,11 @@ class BlogController extends Controller
             'message' => 'Blog has been deleted.',
             'duration' => $this->alert_message_duration,
         ]);
+    }
+
+    public function users_blogs(Blog $blog)
+    {
+        $blogs = Blog::latest()->paginate(6);
+        return view('blogs', compact('blogs'));
     }
 }

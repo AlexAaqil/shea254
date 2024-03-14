@@ -25,6 +25,9 @@ Route::post('/cart/add/{id}', [CartController::class, 'add_to_cart'])->name('add
 Route::post('/cart/quantity/{product_id}', [CartController::class, 'change_quantity'])->name('change_quantity');
 Route::delete('/cart/remove/{productId}', [CartController::class, 'delete_from_cart'])->name('delete_from_cart');
 
+Route::get('/blogs', [BlogController::class,'users_blogs'])->name('users.blogs');
+Route::get('/blogs/{slug}', [BlogController::class,'show'])->name('blogs.show');
+
 Route::get('/areas/fetch/{areaId}', [OrderController::class, 'get_areas'])->name('get_areas');
 Route::get('/area/fetch/shipping-price/{areaId}', [OrderController::class, 'get_shipping_price'])->name('get_shipping_price');
 
@@ -74,7 +77,8 @@ Route::middleware(['auth', 'admin'])->group(function() {
         Route::resource('comments', CommentController::class)
         ->except('create', 'store', 'edit', 'update');
 
-        Route::resource('blogs', BlogController::class);
+        Route::resource('blogs', BlogController::class)
+        ->except('show');
     });
 
     Route::get('/admin/orders/list', [OrderController::class, 'list_orders'])->name('list_orders');
