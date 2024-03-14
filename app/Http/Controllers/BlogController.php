@@ -52,9 +52,10 @@ class BlogController extends Controller
         ]);
     }
 
-    public function show(Blog $blog)
+    public function show($slug)
     {
-        //
+        $blog = Blog::where('slug', $slug)->firstOrFail();
+        return view('blog_details', compact('blog'));
     }
 
     public function edit(Blog $blog)

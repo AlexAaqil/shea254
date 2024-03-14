@@ -188,5 +188,39 @@
                 }
             }
         }
+        .blog_details {
+            .image {
+                height: 70vh;
+
+                img {
+                    height: 100%;
+                    width: 100%;
+                    object-fit: cover;
+                    object-position: center;
+                }
+            }
+
+            .text {
+                .date {
+                    font-size: 0.7em;
+                }
+
+                h1 {
+                    margin: 0.5em 0;
+                }
+
+                .blog {
+                    .container {
+                        .text {
+                            .btn {
+                                border: 2px solid green;
+                                margin: 2em 0;
+                                background: red;
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }

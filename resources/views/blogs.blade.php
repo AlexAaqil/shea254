@@ -24,14 +24,16 @@
                         @foreach($blogs as $blog)
                         <div class="blog">
                             <div class="image">
-                                <img src="{{ $blog->getImageUrl() }}" alt="Blog Image">
+                                <a href="{{ route('blogs.show', ['slug' => $blog->slug]) }}">
+                                    <img src="{{ $blog->getImageUrl() }}" alt="Blog Image">
+                                </a>
                             </div>
                             <div class="text">
                                 <span class="date">
                                     {{ $blog->created_at->diffForHumans() }}
                                 </span>
                                 <span class="title">
-                                    <a href="">
+                                    <a href="{{ route('blogs.show', ['slug' => $blog->slug]) }}">
                                         {{ $blog->title }}
                                     </a>
                                 </span>
@@ -39,7 +41,9 @@
                                     {!! html_entity_decode(Illuminate\Support\Str::limit($blog->content, 100, ' ...')) !!}
                                 </span>
                                 <div class="btn">
-                                    <a href="">Read More <i class="fas fa-arrow-right"></i></a>
+                                    <a href="{{ route('blogs.show', ['slug' => $blog->slug]) }}">
+                                        Read More <i class="fas fa-arrow-right"></i>
+                                    </a>
                                 </div>
                             </div>
                         </div>

@@ -1898,4 +1898,26 @@ footer .copyright {
   font-size: 1.3em;
   font-weight: bold;
   color: green;
+}
+.Blog .Blogs .blog_details .image {
+  height: 70vh;
+}
+.Blog .Blogs .blog_details .image img {
+  height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+}
+.Blog .Blogs .blog_details .text .date {
+  font-size: 0.7em;
+}
+.Blog .Blogs .blog_details .text h1 {
+  margin: 0.5em 0;
+}
+.Blog .Blogs .blog_details .text .blog .container .text .btn {
+  border: 2px solid green;
+  margin: 2em 0;
+  background: red;
 }/*# sourceMappingURL=styles.css.map */
