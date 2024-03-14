@@ -8,6 +8,7 @@
     <link rel="icon" type="image/jpg" href="{{ asset('assets/images/logo.jpg') }}">
     <link rel="stylesheet" href="{{ asset('assets/icons/icons.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
+    @yield('head')
     <title>{{ config('app.name') }}</title>
 </head>
 <body>
