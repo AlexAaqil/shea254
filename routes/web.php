@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CommentController;
 
 Route::get('/', [HomeController::class, 'homepage'])->name('homepage');
@@ -72,6 +73,8 @@ Route::middleware(['auth', 'admin'])->group(function() {
 
         Route::resource('comments', CommentController::class)
         ->except('create', 'store', 'edit', 'update');
+
+        Route::resource('blogs', BlogController::class);
     });
 
     Route::get('/admin/orders/list', [OrderController::class, 'list_orders'])->name('list_orders');
