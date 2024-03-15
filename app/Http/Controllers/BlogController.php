@@ -25,7 +25,7 @@ class BlogController extends Controller
         $validated = $request->validate([
             'title' => 'required|string|unique:blogs',
             'content' => 'required|string',
-            'image' => 'nullable|image|max:2048',
+            'image' => 'required|image|max:2048',
         ]);
 
         $blog = new Blog;
@@ -72,7 +72,7 @@ class BlogController extends Controller
         $request->validate([
             'title' => 'required|string|unique:blogs,title,' . $blog->id,
             'content' => 'required|string',
-            'image' => 'nullable|image|max:2048',
+            'image' => 'required|image|max:2048',
         ]);
 
         $blog->title = $request->title;
@@ -100,7 +100,7 @@ class BlogController extends Controller
         $blog->save();
 
         return redirect()->route('blogs.index')->with('success', [
-            'message' => 'Blogs has been updated.',
+            'message' => 'Blog has been updated.',
             'duration' => $this->alert_message_duration,
         ]);
     }
