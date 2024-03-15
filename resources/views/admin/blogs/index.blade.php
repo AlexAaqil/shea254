@@ -15,7 +15,7 @@
                 <div class="blog searchable">
                     <div class="image">
                         <a href="{{ route('blogs.edit', ['blog' => $blog->id]) }}" class="title">
-                            <img src="{{ $blog->getImageUrl() }}" alt="Product">
+                            <img src="{{ $blog->getImageUrl() }}" alt="Blog Image">
                         </a>
                     </div>
 
