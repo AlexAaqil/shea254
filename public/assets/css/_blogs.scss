@@ -200,24 +200,17 @@
                 }
             }
 
-            .text {
-                .date {
-                    font-size: 0.7em;
-                }
+            .container {
+                .text {
+                    .date {
+                        font-size: 0.7em;
+                    }
 
-                h1 {
-                    margin: 0.5em 0;
-                }
-
-                .blog {
-                    .container {
-                        .text {
-                            .btn {
-                                border: 2px solid green;
-                                margin: 2em 0;
-                                background: red;
-                            }
-                        }
+                    h1 {
+                        margin: 0.5em 0;
+                    }
+                    .btn {
+                        margin: 1em 0;
                     }
                 }
             }

@@ -1910,14 +1910,12 @@ footer .copyright {
   -o-object-position: center;
      object-position: center;
 }
-.Blog .Blogs .blog_details .text .date {
+.Blog .Blogs .blog_details .container .text .date {
   font-size: 0.7em;
 }
-.Blog .Blogs .blog_details .text h1 {
+.Blog .Blogs .blog_details .container .text h1 {
   margin: 0.5em 0;
 }
-.Blog .Blogs .blog_details .text .blog .container .text .btn {
-  border: 2px solid green;
-  margin: 2em 0;
-  background: red;
+.Blog .Blogs .blog_details .container .text .btn {
+  margin: 1em 0;
 }/*# sourceMappingURL=styles.css.map */
