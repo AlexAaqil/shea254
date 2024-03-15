@@ -36,14 +36,18 @@ class BlogController extends Controller
 
         $blog->save();
 
-        if($request->hasFile('image')) {
+        if ($request->hasFile('image')) {
             $image = $request->file('image');
-            $extension = $image->getClientOriginalExtension();
-            $filename = $blog->id . '_' . Str::slug($blog->title) . '.' . $extension;
-            $image->storeAs('public/blog-thumbnails', $filename);
+            if ($image->isValid()) {
+                $extension = $image->getClientOriginalExtension();
+                $filename = $blog->id . '_' . Str::slug($blog->title) . '.' . $extension;
+                $image->storeAs('public/blog-thumbnails', $filename);
 
-            $blog->image = $filename;
-            $blog->save();
+                $blog->image = $filename;
+                $blog->save();
+            } else {
+                return redirect()->back()->withErrors(['image' => 'The image could not be uploaded.'])->withInput();
+            }
         }
 
         return redirect()->route('blogs.index')->with('success', [
@@ -66,7 +70,7 @@ class BlogController extends Controller
     public function update(Request $request, Blog $blog)
     {
         $request->validate([
-            'title' => 'required|string|unique:blogs,title,'.$blog->id,
+            'title' => 'required|string|unique:blogs,title,' . $blog->id,
             'content' => 'required|string',
             'image' => 'nullable|image|max:2048',
         ]);
@@ -77,23 +81,27 @@ class BlogController extends Controller
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');
-            $extension = $image->getClientOriginalExtension();
-            $filename = $blog->id . '_' . Str::slug($blog->title) . '.' . $extension;
-            $image->storeAs('public/blog-thumbnails', $filename);
+            if ($image->isValid()) {
+                $extension = $image->getClientOriginalExtension();
+                $filename = $blog->id . '_' . Str::slug($blog->title) . '.' . $extension;
+                $image->storeAs('public/blog-thumbnails', $filename);
 
-            // Delete the previous image if it exists
-            if ($blog->image) {
-                Storage::delete('public/blog-thumbnails/' . $blog->image);
+                // Delete the previous image if it exists
+                if ($blog->image) {
+                    Storage::delete('public/blog-thumbnails/' . $blog->image);
+                }
+
+                $blog->image = $filename;
+            } else {
+                return redirect()->back()->withErrors(['image' => 'The image could not be uploaded.'])->withInput();
             }
-
-            $blog->image = $filename;
         }
 
         $blog->save();
 
         return redirect()->route('blogs.index')->with('success', [
             'message' => 'Blogs has been updated.',
-            'duration' => $this->alert_message_duration
+            'duration' => $this->alert_message_duration,
         ]);
     }
 
