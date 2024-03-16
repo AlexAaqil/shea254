@@ -1899,13 +1899,13 @@ footer .copyright {
   color: green;
 }
 .Blog .Blogs .blog_details .image {
-  height: 70vh;
+  height: 75vh;
 }
 .Blog .Blogs .blog_details .image img {
   height: 100%;
   width: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
+  -o-object-fit: contain;
+     object-fit: contain;
   -o-object-position: center;
      object-position: center;
 }
