@@ -6,6 +6,7 @@ use App\Models\Blog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 
 class BlogController extends Controller
 {
@@ -22,33 +23,27 @@ class BlogController extends Controller
 
     public function store(Request $request)
     {
-        $validated = $request->validate([
+        $request->validate([
             'title' => 'required|string|unique:blogs',
             'content' => 'required|string',
-            'image' => 'required|image|max:2048',
+            'image' => 'nullable|image|mimes:png,jpg,jpeg,webp|max:2048',
         ]);
 
         $blog = new Blog;
 
-        $blog->title = $validated['title'];
-        $blog->slug = Str::slug($validated['title']);
-        $blog->content = $validated['content'];
-
-        $blog->save();
+        $blog->title = $request->title;
+        $blog->slug = Str::slug($request->title);
+        $blog->content = $request->content;
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');
-            if ($image->isValid()) {
-                $extension = $image->getClientOriginalExtension();
-                $filename = $blog->id . '_' . Str::slug($blog->title) . '.' . $extension;
-                $image->storeAs('public/blog-thumbnails', $filename);
-
-                $blog->image = $filename;
-                $blog->save();
-            } else {
-                return redirect()->back()->withErrors(['image' => 'The image could not be uploaded.'])->withInput();
-            }
+            $filename = $blog->id . '-' . Str::slug($request->title) . '.' . $image->getClientOriginalExtension();
+            $path = 'uploads/blogs/';
+            $image->move(public_path($path), $filename);
+            $blog->image = $path . $filename;
         }
+
+        $blog->save();
 
         return redirect()->route('blogs.index')->with('success', [
             'message' => 'Blog has been added.',
@@ -72,30 +67,41 @@ class BlogController extends Controller
         $request->validate([
             'title' => 'required|string|unique:blogs,title,' . $blog->id,
             'content' => 'required|string',
-            'image' => 'required|image|max:2048',
+            'image' => 'nullable|image|mimes:png,jpg,jpeg,webp|max:2048',
         ]);
 
-        $blog->title = $request->title;
-        $blog->slug = Str::slug($request->title);
-        $blog->content = $request->content;
-
+        // Handle image upload and update filename if necessary
         if ($request->hasFile('image')) {
             $image = $request->file('image');
-            if ($image->isValid()) {
-                $extension = $image->getClientOriginalExtension();
-                $filename = $blog->id . '_' . Str::slug($blog->title) . '.' . $extension;
-                $image->storeAs('public/blog-thumbnails', $filename);
+            $filename = $blog->id . '-' . Str::slug($request->title) . '.' . $image->getClientOriginalExtension();
+            $path = 'uploads/blogs/';
+            $image->move(public_path($path), $filename);
 
-                // Delete the previous image if it exists
-                if ($blog->image) {
-                    Storage::delete('public/blog-thumbnails/' . $blog->image);
-                }
+            // Delete the old image file if exists
+            if (File::exists(public_path($blog->image))) {
+                File::delete(public_path($blog->image));
+            }
+            // Update the image filename
+            $blog->image = $path . $filename;
+        }
 
-                $blog->image = $filename;
-            } else {
-                return redirect()->back()->withErrors(['image' => 'The image could not be uploaded.'])->withInput();
+        // Check if the title has changed
+        if ($request->title !== $blog->title) {
+            // Update the slug and image filename based on the new title
+            $blog->title = $request->title;
+            $blog->slug = Str::slug($request->title);
+
+            // Rename the image file if it exists
+            if ($blog->image) {
+                $oldImagePath = public_path($blog->image);
+                $newImageFilename = $blog->id . '-' . Str::slug($request->title) . '.' . pathinfo($blog->image, PATHINFO_EXTENSION);
+                $newImagePath = public_path('uploads/blogs/'.$newImageFilename);
+                File::move($oldImagePath, $newImagePath);
+                $blog->image = 'uploads/blogs/' .$newImageFilename;
             }
         }
+
+        $blog->content = $request->content;
 
         $blog->save();
 
@@ -109,7 +115,7 @@ class BlogController extends Controller
     {
         // Delete the blog's image if it exists
         if ($blog->image) {
-            Storage::delete('public/blog-thumbnails/' . $blog->image);
+            File::delete(public_path($blog->image));
         }
 
         // Delete the blog

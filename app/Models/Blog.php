@@ -17,11 +17,8 @@ class Blog extends Model
 
     public function getImageUrl()
     {
-        $image_path = $this->image ? 'blog-thumbnails/' . $this->image : 'default_product.jpg';
-
-        // Check if the image exists in storage, otherwise return the default image path
-        if (Storage::disk('public')->exists($image_path)) {
-            return asset('storage/' . $image_path);
+        if($this->image) {
+            return asset($this->image);
         } else {
             return asset('assets/images/default_product.jpg');
         }
