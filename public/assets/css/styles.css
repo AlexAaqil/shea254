@@ -1920,6 +1920,9 @@ footer .copyright {
 .Blog .Blogs .blog_details .container .text h1 {
   margin: 0.5em 0;
 }
+.Blog .Blogs .blog_details .container .text .content p {
+  line-height: 1.5;
+}
 .Blog .Blogs .blog_details .container .text .btn {
   margin: 1em 0;
 }/*# sourceMappingURL=styles.css.map */
