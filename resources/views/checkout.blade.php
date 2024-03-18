@@ -40,42 +40,59 @@
                     </div>
 
                     <div class="input_group">
-                        <label for="address">Address</label>
-                        <input type="text" name="address" id="address" value="{{ $user ? $user->address : old('address') }}">
-                        <span class="inline_alert">{{ $errors->first('address') }}</span>
+                        <label for="status">How Would you like to receive your Order?</label>
+                        <div class="custom_radio_buttons">
+                            <label>
+                                <input class="option_radio" type="radio" name="pickup_method" id="delivery" value="delivery" checked>
+                                <span>Delivery</span>
+                            </label>
+
+                            <label>
+                                <input class="option_radio" type="radio" name="pickup_method" id="shop" value="shop">
+                                <span>Pick it from the shop</span>
+                            </label>
+                        </div>
                     </div>
 
-                    <div class="input_group">
-                        <label for="additional_information">Additional Information</label>
-                        <input type="text" name="additional_information" id="additional_information" placeholder="Extra Information... (e.g) Specific Location" value="{{ $user ? $user->additional_information : old('additional_information') }}">
-                        <span class="inline_alert">{{ $errors->first('additional_information') }}</span>
-                    </div>
-
-                    <div class="row_input_group">
+                    <div class="delivery_details" id="delivery_details">
                         <div class="input_group">
-                            <label for="location">Location</label>
-                            <select name="location" id="location">
-                                <option value="">Select Location</option>
-                                @foreach($locations as $location)
-                                    <option value="{{ $location->id }}">
-                                        {{ $location->location_name }}
-                                    </option>
-                                @endforeach
-                            </select>
-                            <span class="inline_alert">{{ $errors->first('location') }}</span>
+                            <label for="address">Address</label>
+                            <input type="text" name="address" id="address" value="{{ $user ? $user->address : old('address') }}">
+                            <span class="inline_alert">{{ $errors->first('address') }}</span>
                         </div>
 
                         <div class="input_group">
-                            <label for="area">Area</label>
-                            <select name="area" id="area">
-                                <option value="">Select Area</option>
-                                @foreach($areas as $area)
-                                    <option value="{{ $area->id }}">
-                                        {{ $area->area_name }}
-                                    </option>
-                                @endforeach
-                            </select>
-                            <span class="inline_alert">{{ $errors->first('area') }}</span>
+                            <label for="additional_information">Additional Information</label>
+                            <input type="text" name="additional_information" id="additional_information" placeholder="Extra Information... (e.g) Specific Location" value="{{ $user ? $user->additional_information : old('additional_information') }}">
+                            <span class="inline_alert">{{ $errors->first('additional_information') }}</span>
+                        </div>
+
+                        <div class="row_input_group">
+                            <div class="input_group">
+                                <label for="location">Location</label>
+                                <select name="location" id="location">
+                                    <option value="">Select Location</option>
+                                    @foreach($locations as $location)
+                                        <option value="{{ $location->id }}">
+                                            {{ $location->location_name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                <span class="inline_alert">{{ $errors->first('location') }}</span>
+                            </div>
+
+                            <div class="input_group">
+                                <label for="area">Area</label>
+                                <select name="area" id="area">
+                                    <option value="">Select Area</option>
+                                    @foreach($areas as $area)
+                                        <option value="{{ $area->id }}">
+                                            {{ $area->area_name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                <span class="inline_alert">{{ $errors->first('area') }}</span>
+                            </div>
                         </div>
                     </div>
 
@@ -107,6 +124,22 @@ document.addEventListener("DOMContentLoaded", function () {
     const areaSelect = document.getElementById("area");
     const shippingCostElement = document.getElementById("shipping_cost_amount");
     const totalElement = document.getElementById("total_amount");
+    const pick_up_method = document.querySelectorAll("input[name='pickup_method']");
+    const delivery_details = document.getElementById("delivery_details");
+
+    function togglePickupMethod() {
+        if(pick_up_method[0].checked) {
+            delivery_details.style.display = 'block';
+        } else {
+            delivery_details.style.display = 'none';
+        }
+    }
+
+    togglePickupMethod();
+
+    pick_up_method.forEach(function(radio) {
+        radio.addEventListener('change', togglePickupMethod);
+    });
 
     // Define areaPrice as a global variable
     let areaPrice = 0;
