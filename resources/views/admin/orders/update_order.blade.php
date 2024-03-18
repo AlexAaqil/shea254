@@ -26,12 +26,12 @@
                         <span>{{ $order->address }}</span>
                     </p>
                     <p>
-                        <span>City</span>
-                        <span>{{ $order->city }}</span>
+                        <span>Location</span>
+                        <span>{{ $order->location }}</span>
                     </p>
                     <p>
-                        <span>Town</span>
-                        <span>{{ $order->town }}</span>
+                        <span>Area</span>
+                        <span>{{ $order->area }}</span>
                     </p>
                     <p>
                         <span>Order Date</span>

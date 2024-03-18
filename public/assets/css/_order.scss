@@ -1,3 +1,21 @@
+.Admin {
+    .Main {
+        .orders {
+            .order_details {
+                .details {
+                    p {
+                        span {
+                            &:first-of-type {
+                                color: rgb(116, 116, 116);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
 .Orders {
     ul {
         list-style: none;

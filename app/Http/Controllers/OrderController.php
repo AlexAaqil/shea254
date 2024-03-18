@@ -53,28 +53,51 @@ class OrderController extends Controller
             'last_name' => 'required|string',
             'email' => 'required|email',
             'phone_number' => 'required|string',
-            'address' => 'required|string',
-            'additional_information' => 'nullable|string',
-            'location' => 'required|exists:delivery_locations,id',
-            'area' => 'required|exists:delivery_areas,id',
         ]);
-
-        // Retrieve cart items from the session
-        $cart = Session::get('cart', []);
-
-        // Get the area and location names
-        $area = DeliveryArea::findOrFail($validated_data['area']);
-        $location = DeliveryLocation::findOrFail($validated_data['location']);
-
-        $area_name = $area->area_name;
-        $location_name = $location->location_name;
-
-        // Calculate shipping cost and total amount based on the selected delivery area
-        $area_price = $area->price;
-        $shipping_cost = $area_price;
 
         $cart = app(CartController::class)->cartItemsWithCalculatedTotals();
         $cart_subtotal = $cart['subtotal'];
+
+        // Retrieve the selected pickup method
+        $pickup_method = $request->input('pickup_method');
+
+        // Initialize variables
+        $address = '';
+        $additional_information = '';
+
+        // Set values based on the selected pickup method
+        if ($pickup_method === 'delivery') {
+            $validated_data += $request->validate([
+                'address' => 'required|string',
+                'additional_information' => 'nullable|string',
+                'location' => 'required|exists:delivery_locations,id',
+                'area' => 'required|exists:delivery_areas,id',
+            ]);
+            $address = $validated_data['address'];
+            $additional_information = $validated_data['additional_information'];
+            $location = $validated_data['location'];
+            $area = $validated_data['area'];
+
+            // Get the area and location names
+            $area = DeliveryArea::findOrFail($validated_data['area']);
+            $location = DeliveryLocation::findOrFail($validated_data['location']);
+
+            $area_name = $area->area_name;
+            $location_name = $location->location_name;
+
+            // Calculate shipping cost and total amount based on the selected delivery area
+            $area_price = $area->price;
+            $shipping_cost = $area_price;
+
+        } else {
+            // Set manual values for address, location, and area
+            $address = 'Shop';
+            $additional_information = '';
+
+            $area_name = 'Shop';
+            $location_name = 'Shop';
+            $shipping_cost = 0;
+        }
 
         $total_amount = $shipping_cost + $cart_subtotal;
 
@@ -90,8 +113,8 @@ class OrderController extends Controller
             'last_name' => $validated_data['last_name'],
             'email' => $validated_data['email'],
             'phone_number' => $validated_data['phone_number'],
-            'address' => $validated_data['address'],
-            'additional_information' => $validated_data['additional_information'],
+            'address' => $address,
+            'additional_information' => $additional_information,
             'location' => $location_name,
             'area' => $area_name,
             'cart_items' => json_encode($cart),
@@ -107,6 +130,7 @@ class OrderController extends Controller
 
         return redirect()->route('order_success');
     }
+
 
     public function get_update_order($id)
     {

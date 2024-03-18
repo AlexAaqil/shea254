@@ -837,6 +837,10 @@ footer .copyright {
   color: rgb(2, 168, 29);
 }
 
+.Admin .Main .orders .order_details .details p span:first-of-type {
+  color: rgb(116, 116, 116);
+}
+
 .Orders ul {
   list-style: none;
   margin: 1em 0;
