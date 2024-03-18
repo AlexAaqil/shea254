@@ -1910,6 +1910,10 @@ footer .copyright {
   -o-object-position: center;
      object-position: center;
 }
+.Blog .Blogs .blog_details .container {
+  width: 75%;
+  margin: auto;
+}
 .Blog .Blogs .blog_details .container .text .date {
   font-size: 0.7em;
 }
