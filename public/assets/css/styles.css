@@ -837,6 +837,10 @@ footer .copyright {
   color: rgb(2, 168, 29);
 }
 
+.Admin .Main .orders .order_details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
 .Admin .Main .orders .order_details .details p span:first-of-type {
   color: rgb(116, 116, 116);
 }

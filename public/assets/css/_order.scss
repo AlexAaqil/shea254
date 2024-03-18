@@ -2,6 +2,8 @@
     .Main {
         .orders {
             .order_details {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
                 .details {
                     p {
                         span {
