@@ -8,23 +8,22 @@
         <div class="categories">
             <div class="category">
                 <a href="{{ route('list_products_by_category', $product='shea-butter') }}">
+                    <h1>Raw</h1>
                     <h1>Shea</h1>
-                    <h1>Butter</h1>
                 </a>
             </div>
-
-            <div class="category">
-                <a href="{{ route('list_products_by_category', $product='black-soap') }}">
-                    <h1>Black</h1>
-                    <h1>Soap</h1>
-                </a>
-            </div>
-
 
             <div class="category">
                 <a href="{{ route('list_products_by_category', $product='cocoa-butter') }}">
+                    <h1>Raw</h1>
                     <h1>Cocoa</h1>
-                    <h1>Butter</h1>
+                </a>
+            </div>
+
+            <div class="category">
+                <a href="{{ route('list_products_by_category', $product='body-butter') }}">
+                    <h1>Body</h1>
+                    <h1>Butters</h1>
                 </a>
             </div>
 
@@ -43,9 +42,21 @@
             </div>
 
             <div class="category">
-                <a href="{{ route('list_products_by_category', $product='body-butter') }}">
-                    <h1>Body</h1>
-                    <h1>Butters</h1>
+                <a href="{{ route('list_products_by_category', $product='scrub') }}">
+                    <h1>Scrubs</h1>
+                </a>
+            </div>
+
+            <div class="category">
+                <a href="{{ route('list_products_by_category', $product='serum') }}">
+                    <h1>Serums</h1>
+                </a>
+            </div>
+
+            <div class="category">
+                <a href="{{ route('list_products_by_category', $product='gel') }}">
+                    <h1>Gel</h1>
+                    <h1>& Others</h1>
                 </a>
             </div>
         </div>
