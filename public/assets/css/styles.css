@@ -1123,7 +1123,7 @@ footer .copyright {
   left: 0;
   width: 100%;
   height: 100%;
-  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.5), rgba(225, 225, 225, 0.05));
+  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.4), rgba(225, 225, 225, 0.05));
   z-index: 0; /* Ensure the pseudo-element is behind other content */
 }
 .Homepage .Hero .hero_text .slideshow {

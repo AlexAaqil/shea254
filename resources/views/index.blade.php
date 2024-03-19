@@ -56,6 +56,12 @@
                 <img src="{{ asset('/assets/images/shea254-2.png') }}" alt="Hero Image">
                 <img src="{{ asset('/assets/images/shea254-3.png') }}" alt="Hero Image">
                 <img src="{{ asset('/assets/images/shea254-4.png') }}" alt="Hero Image">
+                <img src="{{ asset('/assets/images/shea254-5.jpeg') }}" alt="Hero Image">
+                <img src="{{ asset('/assets/images/shea254-6.jpeg') }}" alt="Hero Image">
+                <img src="{{ asset('/assets/images/shea254-7.jpeg') }}" alt="Hero Image">
+                <img src="{{ asset('/assets/images/shea254-8.jpeg') }}" alt="Hero Image">
+                <img src="{{ asset('/assets/images/shea254-9.jpeg') }}" alt="Hero Image">
+                <img src="{{ asset('/assets/images/shea254-10.jpeg') }}" alt="Hero Image">
             </div>
 
             <div class="brand">
