@@ -1157,6 +1157,10 @@ footer .copyright {
   opacity: 0;
   transition: all 1s ease-in-out;
 }
+.Homepage .Hero .hero_text .slideshow img:nth-of-type(6), .Homepage .Hero .hero_text .slideshow img:nth-of-type(7), .Homepage .Hero .hero_text .slideshow img:nth-of-type(8) {
+  -o-object-fit: cover;
+     object-fit: cover;
+}
 .Homepage .Hero .hero_text .slideshow .active {
   opacity: 1;
   transform: scale(1.1);
