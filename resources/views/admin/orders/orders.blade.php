@@ -2,6 +2,11 @@
 
 @section('admin_content')
     <div class="container orders">
+        <div class="related_pages_navbar">
+            <a href="#">Sales</a>
+            <a href="{{ route('list_orders') }}">Orders</a>
+        </div>
+
         <div class="header">
             <h1>Orders</h1>
             @include('admin.partials.search_bar')
