@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Blog;
+use App\Models\Message;
 use App\Models\Order;
 use Carbon\Carbon;
 
@@ -24,6 +26,8 @@ class DashboardController extends Controller
         $count_products = Product::all()->count();
         $count_categories = Category::all()->count();
         $count_orders = Order::all()->count();
+        $count_blogs = Blog::all()->count();
+        $count_comments = Message::all()->count();
 
         $this_year = Carbon::now()->year;
 
@@ -94,6 +98,8 @@ class DashboardController extends Controller
             'count_categories',
             'count_products',
             'count_orders',
+            'count_blogs',
+            'count_comments',
 
             'this_year',
 

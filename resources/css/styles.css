@@ -1672,8 +1672,9 @@ footer .copyright {
   color: #000;
 }
 .admin_dashboard .statistics,
-.admin_dashboard .analytics {
-  margin: 0 0 4em;
+.admin_dashboard .sales_analytics,
+.admin_dashboard .sales {
+  margin: 0 0 3em;
 }
 .admin_dashboard .statistics {
   display: grid;
@@ -1709,11 +1710,32 @@ footer .copyright {
   font-weight: bold;
   font-size: 1.1em;
 }
-.admin_dashboard .analytics {
+.admin_dashboard .sales_analytics {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.5em;
+}
+.admin_dashboard .sales_analytics .analytic {
+  display: grid;
+  grid-template-columns: 90% auto;
+  align-items: center;
+  background: rgb(238, 238, 238);
+  border-radius: 8px;
+  padding: 8px 15px;
+}
+.admin_dashboard .sales_analytics .analytic p {
+  font-size: 0.9em;
+  margin: 0 0 4px;
+}
+.admin_dashboard .sales_analytics .analytic p:first-of-type {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+.admin_dashboard .sales {
   display: grid;
   gap: 1em;
 }
-.admin_dashboard .analytics .info ul li {
+.admin_dashboard .sales .info ul li {
   margin: 0.5em 0;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1721,14 +1743,14 @@ footer .copyright {
   border-bottom: 1px solid rgb(218, 218, 218);
   padding: 0.1em;
 }
-.admin_dashboard .analytics .info ul li:first-of-type {
+.admin_dashboard .sales .info ul li:first-of-type {
   border-top: 1px solid rgb(218, 218, 218);
 }
-.admin_dashboard .analytics .info ul li span:nth-of-type(2) {
+.admin_dashboard .sales .info ul li span:nth-of-type(2) {
   font-weight: bold;
   text-align: right;
 }
-.admin_dashboard .analytics .info .sales_analytics li {
+.admin_dashboard .sales .info .sales_summary li {
   gap: 0.5em;
 }
 
@@ -1736,7 +1758,10 @@ footer .copyright {
   .admin_dashboard .statistics {
     grid-template-columns: repeat(6, 1fr);
   }
-  .admin_dashboard .analytics {
+  .admin_dashboard .sales_analytics {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .admin_dashboard .sales {
     grid-template-columns: 1fr 1fr;
     gap: 1em;
   }

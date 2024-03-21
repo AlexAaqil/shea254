@@ -45,29 +45,71 @@
 
             <div class="static">
                 <div class="icon">
-                    <i class="fas fa-truck-loading"></i>
+                    <i class="fas fa-blog"></i>
                 </div>
                 <div class="text">
-                    <p>Orders</p>
-                    <p>{{ $count_orders }}</p>
+                    <p>Blogs</p>
+                    <p>{{ $count_blogs }}</p>
                 </div>
             </div>
 
             <div class="static">
                 <div class="icon">
-                    <i class="fas fa-dollar-sign"></i>
+                    <i class="fas fa-comment"></i>
                 </div>
                 <div class="text">
-                    <p>Sales</p>
-                    <p>{{ number_format($total_sales) }}</p>
+                    <p>Comments</p>
+                    <p>{{ $count_comments }}</p>
                 </div>
             </div>
         </div>
 
-        <div class="analytics">
+        <div class="sales_analytics">
+            <div class="analytic">
+                <div class="text">
+                    <p>xxx</p>
+                    <p>Gross Sales</p>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-dollar-sign"></i>
+                </div>
+            </div>
+
+            <div class="analytic">
+                <div class="text">
+                    <p>xxx</p>
+                    <p>Net Sales</p>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-dollar-sign"></i>
+                </div>
+            </div>
+
+            <div class="analytic">
+                <div class="text">
+                    <p>xxx</p>
+                    <p>Cost of Sales</p>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-dollar-sign"></i>
+                </div>
+            </div>
+
+            <div class="analytic">
+                <div class="text">
+                    <p>xxx</p>
+                    <p>Gross Profit</p>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-dollar-sign"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="sales">
             <div class="info">
                 <h2>Sales Analytics</h2>
-                <ul class="list_style_none sales_analytics">
+                <ul class="list_style_none sales_summary">
                     <li>
                         <span>Today</span>
                         <span>Ksh. {{ number_format($sales_today) }}</span>
