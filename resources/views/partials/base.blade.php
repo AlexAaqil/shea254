@@ -7,7 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="icon" type="image/jpg" href="{{ asset('assets/images/logo.jpg') }}">
     <link rel="stylesheet" href="{{ asset('assets/icons/icons.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
     @yield('head')
     @vite(['resources/css/styles.css', 'resources/js/app.js'])
     <title>{{ config('app.name') }}</title>

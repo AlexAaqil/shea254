@@ -64,4 +64,53 @@
     @endif
 </main>
 @include('partials.javascripts')
+@section('additional_javascript')
+<script>
+// Product Details Images Slideshow
+
+document.addEventListener("DOMContentLoaded", function () {
+    const mainProductImage = document.querySelector(".main_product_image img");
+    const otherImagesContainer = document.querySelector(".other_images");
+
+    otherImagesContainer.querySelectorAll("img").forEach((thumbnail) => {
+        thumbnail.addEventListener("click", (event) => {
+            // Remove active class from all thumbnails
+            otherImagesContainer.querySelectorAll("img").forEach((img) => {
+                img.classList.remove("active");
+            });
+
+            // Add active class to the clicked thumbnail
+            event.target.classList.add("active");
+
+            // Change the source of the main product image with a zoom effect
+            mainProductImage.src = event.target.src;
+        });
+    });
+
+    // Add the zoom effect on hover for the main product image
+    mainProductImage.addEventListener("mousemove", (e) => {
+        const containerWidth = mainProductImage.offsetWidth;
+        const containerHeight = mainProductImage.offsetHeight;
+
+        const image = mainProductImage;
+        const imageWidth = image.offsetWidth;
+        const imageHeight = image.offsetHeight;
+
+        const x = e.pageX - mainProductImage.offsetLeft;
+        const y = e.pageY - mainProductImage.offsetTop;
+
+        const translateX = (containerWidth / 2 - x) * 2;
+        const translateY = (containerHeight / 2 - y) * 2;
+
+        const scale = 3;
+
+        image.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+    });
+
+    mainProductImage.addEventListener("mouseleave", () => {
+        mainProductImage.style.transform = "translate(0%, 0%) scale(1)";
+    });
+});
+</script>
+@endsection
 @endsection
