@@ -1,13 +1,12 @@
-<div class="admin_sidebar">
-    <div class="header">
+<aside class="admin_sidebar">
+    <div class="branding">
         <a href="{{ route('homepage') }}">
             <img src="{{ asset('assets/images/logo.jpg') }}" alt="Logo" width=30 height=30 class="rounded">
         </a>
         <h1>{{ config('app.name') }}</h1>
-        <i class="fas fa-chevron-right toggle"></i>
     </div>
 
-    <div class="body">
+    <div class="nav_links">
         <ul class="list_style_none">
             <li class="nav-link">
                 <a href="/home">
@@ -81,4 +80,4 @@
             </li>
         </ul>
     </div>
-</div>
+</aside>

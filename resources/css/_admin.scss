@@ -6,11 +6,10 @@
     }
 
     .Main {
-        margin-left: 1%;
-        width: calc(100% - $sidenav_width);
+        margin-left: $aside_width_s;
+        width: 100%;
 
         .container {
-            width: 100%;
             padding: 0.5em 3%;
 
             .related_pages_navbar {
@@ -205,6 +204,7 @@
 @media screen and (width >= 726px) {
     .Admin {
         .Main {
+            margin-left: $aside_width_l;
             .container {
                 .header {
                     display: grid;

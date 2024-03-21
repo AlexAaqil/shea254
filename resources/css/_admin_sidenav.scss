@@ -1,64 +1,66 @@
 $sidenav_bgcolor: #fff;
-
-$sidenav_width: 15%;
+$aside_width_s: 20%;
+$aside_width_l: 15%;
 
 .admin_sidebar {
-    position: sticky;
-    top: 0;
-    left: 0;
-    height: 100vh;
-    width: $sidenav_width;
+    position: fixed;
+    height: 100%;
+    width: $aside_width_s;
     border-right: 1px solid grey;
     padding: 0.5em 0;
+    text-align: center;
 
-    .header {
-        position: relative;
-        text-align: center;
+    i {
+        font-size: 1.8em;
+    }
 
-        h1 {
-            @include desktop_only;
-        }
+    a {
+        text-decoration: none;
+        color: #000;
+    }
 
-        .toggle {
-            @include desktop_only;
+    .branding h1,
+    .footer .text {
+        @include desktop_only;
+    }
+
+    .nav_links {
+        margin: 0.8em 0 0;
+
+        ul {
+            li {
+                margin: 0 0 0.8em;
+                a {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 0.1em;
+                    span {
+                        font-size: 0.8em;
+                    }
+                }
+            }
         }
     }
 
-    ul {
-        li {
-            margin: 0 0 0.3em;
-            padding: 0.7em 1em;
-            a {
-                text-decoration: none;
-                color: #000;
-            }
-            i {
-                font-size: 1.4em;
-                color: #000;
-            }
-            .text {
-                @include desktop_only;
+    .footer {
+        position: absolute;
+        bottom: 2em;
+        width: 100%;
+
+        .profile {
+            margin: 0 0 1em;
+            img {
+                border: 1px solid green;
+                padding: 2px;
             }
         }
-    }
 
-    .profile {
-        padding: 0;
-        text-align: center;
-    }
-
-    .logout {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 0;
         form {
             button {
                 background: none;
-                cursor: pointer;
+                padding: unset;
                 i {
                     color: red;
-                    font-size: 1.5em;
                 }
             }
         }
@@ -66,129 +68,71 @@ $sidenav_width: 15%;
 }
 
 @media screen and (width >= 726px) {
-    $sidenav_width: 5%;
     .admin_sidebar {
-        .header,
-        .profile {
-            @include flex_center;
-            justify-content: center;
+        padding: 0.5em 0.8em;
+        width: $aside_width_l;
+        text-align: left;
+
+        i {
+            font-size: 1em;
         }
 
-        .header {
-            gap: 0 0.3em;
-            margin: 0 0 1.5em;
+        .branding {
+            display: flex;
+            align-items: center;
+            gap: 0.5em;
+
             h1 {
                 font-size: 1.2em;
             }
-            .toggle {
-                @include flex_center;
-                justify-content: center;
-                position: absolute;
-                top: 50%;
-                right: -12px;
-                transform: translateY(-50%) rotate(180deg);
-                height: 25px;
-                width: 25px;
-                border-radius: 50%;
-                background: #000;
-                color: #fff;
-            }
         }
 
-        ul {
-            padding: 0 0.5em;
+        .nav_links {
+            margin: 2em 0;
+            ul {
+                li {
+                    border-bottom: 1px solid rgb(204, 204, 204);
+                    padding: 0 4px 4px;
+                    a {
+                        display: grid;
+                        grid-template-columns: 25px auto;
 
-            li {
-                padding: 0.2em 0.3em;
-                a {
-                    display: flex;
-                    align-items: center;
-                    gap: 0 0.4em;
-                    padding: 0.4em 0;
-                    transition: all 0.2s ease;
-
-                    &:hover {
-                        background: #f2f2f2;
-                        font-weight: bold;
-                    }
-
-                    i {
-                        font-size: 1em;
-                        width: 20px;
+                        span {
+                            font-size: 1em;
+                            font-weight: bold;
+                        }
                     }
                 }
             }
         }
 
-        .profile {
-            flex-direction: column;
-            gap: 0.5em 0;
-            margin: 1em 0 0;
-            span {
-                a {
-                    padding: 0;
-                    font-size: 1em;
-                    &:hover {
-                        background: none;
+        .footer {
+            left: 0;
+            .profile {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 0.8em;
+
+                img {
+                    width: 50px;
+                    height: 50px;
+                    border-radius: 50%;
+                }
+            }
+
+            .logout {
+                text-align: center;
+                form {
+                    button {
+                        background: red;
+                        color: #fff;
+                        border-radius: 6px;
+                        padding: 8px 16px;
+                        i {
+                            color: #fff;
+                        }
                     }
-                }
-            }
-        }
-
-        .logout {
-            background: red;
-            border-radius: 6px;
-            margin: 0.5em auto;
-            button {
-                padding: 0.5em 1em;
-                i {
-                    color: #fff!important;
-                    font-size: 1.1em!important;
-                }
-            }
-        }
-    }
-
-    .close {
-        width: 5%;
-
-        .header {
-            h1 {
-                display: none;
-            }
-
-            .toggle {
-                transform: translateY(-50%) rotate(0deg);
-            }
-        }
-
-        ul {
-            li {
-                margin: 0 0 0.5em;
-                a {
-                    text-decoration: none;
-                    color: #000;
-                }
-                i {
-                    font-size: 1.4em;
-                    color: #000;
-                }
-                .text {
-                    display: none;
-                }
-            }
-        }
-
-        .logout {
-            background: unset;
-            button {
-                transition: all 0.2s ease;
-                i {
-                    color: red!important;
-                }
-                &:hover {
-                    font-size: 1.4em;
-                    background: unset;
                 }
             }
         }

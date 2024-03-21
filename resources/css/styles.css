@@ -333,181 +333,121 @@ nav .nav_container .burger_menu {
   }
 }
 .admin_sidebar {
-  position: sticky;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  width: 15%;
+  position: fixed;
+  height: 100%;
+  width: 20%;
   border-right: 1px solid grey;
   padding: 0.5em 0;
-}
-.admin_sidebar .header {
-  position: relative;
   text-align: center;
 }
-.admin_sidebar .header h1 {
-  display: none;
+.admin_sidebar i {
+  font-size: 1.8em;
 }
-@media screen and (width >= 726px) {
-  .admin_sidebar .header h1 {
-    display: unset;
-  }
-}
-.admin_sidebar .header .toggle {
-  display: none;
-}
-@media screen and (width >= 726px) {
-  .admin_sidebar .header .toggle {
-    display: unset;
-  }
-}
-.admin_sidebar ul li {
-  margin: 0 0 0.3em;
-  padding: 0.7em 1em;
-}
-.admin_sidebar ul li a {
+.admin_sidebar a {
   text-decoration: none;
   color: #000;
 }
-.admin_sidebar ul li i {
-  font-size: 1.4em;
-  color: #000;
-}
-.admin_sidebar ul li .text {
+.admin_sidebar .branding h1,
+.admin_sidebar .footer .text {
   display: none;
 }
 @media screen and (width >= 726px) {
-  .admin_sidebar ul li .text {
+  .admin_sidebar .branding h1,
+  .admin_sidebar .footer .text {
     display: unset;
   }
 }
-.admin_sidebar .profile {
-  padding: 0;
-  text-align: center;
+.admin_sidebar .nav_links {
+  margin: 0.8em 0 0;
 }
-.admin_sidebar .logout {
+.admin_sidebar .nav_links ul li {
+  margin: 0 0 0.8em;
+}
+.admin_sidebar .nav_links ul li a {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
+  flex-direction: column;
+  gap: 0.1em;
 }
-.admin_sidebar .logout form button {
+.admin_sidebar .nav_links ul li a span {
+  font-size: 0.8em;
+}
+.admin_sidebar .footer {
+  position: absolute;
+  bottom: 2em;
+  width: 100%;
+}
+.admin_sidebar .footer .profile {
+  margin: 0 0 1em;
+}
+.admin_sidebar .footer .profile img {
+  border: 1px solid green;
+  padding: 2px;
+}
+.admin_sidebar .footer form button {
   background: none;
-  cursor: pointer;
+  padding: unset;
 }
-.admin_sidebar .logout form button i {
+.admin_sidebar .footer form button i {
   color: red;
-  font-size: 1.5em;
 }
 
 @media screen and (width >= 726px) {
-  .admin_sidebar .header,
-  .admin_sidebar .profile {
+  .admin_sidebar {
+    padding: 0.5em 0.8em;
+    width: 15%;
+    text-align: left;
+  }
+  .admin_sidebar i {
+    font-size: 1em;
+  }
+  .admin_sidebar .branding {
     display: flex;
     align-items: center;
-    justify-content: center;
+    gap: 0.5em;
   }
-  .admin_sidebar .header {
-    gap: 0 0.3em;
-    margin: 0 0 1.5em;
-  }
-  .admin_sidebar .header h1 {
+  .admin_sidebar .branding h1 {
     font-size: 1.2em;
   }
-  .admin_sidebar .header .toggle {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    top: 50%;
-    right: -12px;
-    transform: translateY(-50%) rotate(180deg);
-    height: 25px;
-    width: 25px;
-    border-radius: 50%;
-    background: #000;
-    color: #fff;
+  .admin_sidebar .nav_links {
+    margin: 2em 0;
   }
-  .admin_sidebar ul {
-    padding: 0 0.5em;
+  .admin_sidebar .nav_links ul li {
+    border-bottom: 1px solid rgb(204, 204, 204);
+    padding: 0 4px 4px;
   }
-  .admin_sidebar ul li {
-    padding: 0.2em 0.3em;
+  .admin_sidebar .nav_links ul li a {
+    display: grid;
+    grid-template-columns: 25px auto;
   }
-  .admin_sidebar ul li a {
-    display: flex;
-    align-items: center;
-    gap: 0 0.4em;
-    padding: 0.4em 0;
-    transition: all 0.2s ease;
-  }
-  .admin_sidebar ul li a:hover {
-    background: #f2f2f2;
+  .admin_sidebar .nav_links ul li a span {
+    font-size: 1em;
     font-weight: bold;
   }
-  .admin_sidebar ul li a i {
-    font-size: 1em;
-    width: 20px;
+  .admin_sidebar .footer {
+    left: 0;
   }
-  .admin_sidebar .profile {
+  .admin_sidebar .footer .profile {
+    display: flex;
     flex-direction: column;
-    gap: 0.5em 0;
-    margin: 1em 0 0;
+    align-items: center;
+    gap: 0.8em;
   }
-  .admin_sidebar .profile span a {
-    padding: 0;
-    font-size: 1em;
+  .admin_sidebar .footer .profile img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
   }
-  .admin_sidebar .profile span a:hover {
-    background: none;
+  .admin_sidebar .footer .logout {
+    text-align: center;
   }
-  .admin_sidebar .logout {
+  .admin_sidebar .footer .logout form button {
     background: red;
+    color: #fff;
     border-radius: 6px;
-    margin: 0.5em auto;
+    padding: 8px 16px;
   }
-  .admin_sidebar .logout button {
-    padding: 0.5em 1em;
-  }
-  .admin_sidebar .logout button i {
-    color: #fff !important;
-    font-size: 1.1em !important;
-  }
-  .close {
-    width: 5%;
-  }
-  .close .header h1 {
-    display: none;
-  }
-  .close .header .toggle {
-    transform: translateY(-50%) rotate(0deg);
-  }
-  .close ul li {
-    margin: 0 0 0.5em;
-  }
-  .close ul li a {
-    text-decoration: none;
-    color: #000;
-  }
-  .close ul li i {
-    font-size: 1.4em;
-    color: #000;
-  }
-  .close ul li .text {
-    display: none;
-  }
-  .close .logout {
-    background: unset;
-  }
-  .close .logout button {
-    transition: all 0.2s ease;
-  }
-  .close .logout button i {
-    color: red !important;
-  }
-  .close .logout button:hover {
-    font-size: 1.4em;
-    background: unset;
+  .admin_sidebar .footer .logout form button i {
+    color: #fff;
   }
 }
 footer {
@@ -1484,11 +1424,10 @@ footer .copyright {
   top: 0;
 }
 .Admin .Main {
-  margin-left: 1%;
-  width: 85%;
+  margin-left: 20%;
+  width: 100%;
 }
 .Admin .Main .container {
-  width: 100%;
   padding: 0.5em 3%;
 }
 .Admin .Main .container .related_pages_navbar {
@@ -1647,6 +1586,9 @@ footer .copyright {
 }
 
 @media screen and (width >= 726px) {
+  .Admin .Main {
+    margin-left: 15%;
+  }
   .Admin .Main .container .header {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
