@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="{{ asset('assets/icons/icons.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
     @yield('head')
+    @vite(['resources/css/styles.css', 'resources/js/app.js'])
     <title>{{ config('app.name') }}</title>
 </head>
 <body>
