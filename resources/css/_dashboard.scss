@@ -1,5 +1,5 @@
 .admin_dashboard {
-    h1 {
+    .hero {
         margin: 0 0 0.5em;
     }
 
@@ -12,7 +12,6 @@
         }
     }
 
-    .statistics,
     .sales_analytics,
     .sales {
         margin: 0 0 3em;
@@ -22,13 +21,14 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 0.5em;
+        margin: 0 0 2em;
 
         .static {
             display: grid;
             grid-template-columns: 15% auto;
             align-items: center;
             gap: 0 1.5em;
-            background: #d5e0f8;
+            background: #cadaff;
             padding: 0.5em 0.6em;
             border-radius: 12px;
 
@@ -36,7 +36,7 @@
                 @include flex_center;
                 justify-content: center;
                 $dimensions: 20px;
-                background: #adc5f7;
+                background: #7c9fec;
                 width: $dimensions;
                 height: $dimensions;
                 padding: 16px;
@@ -60,24 +60,30 @@
     }
 
     .sales_analytics {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 0.5em;
+        .header {
+            margin: 0 0 0.5em;
+        }
 
-        .analytic {
+        .analytics {
             display: grid;
-            grid-template-columns: 90% auto;
-            align-items: center;
-            background: rgb(238, 238, 238);
-            border-radius: 8px;
-            padding: 8px 15px;
+            grid-template-columns: 1fr;
+            gap: 0.5em;
 
-            p {
-                font-size: 0.9em;
-                margin: 0 0 4px;
-                &:first-of-type {
-                    font-size: 1.5em;
-                    font-weight: bold;
+            .analytic {
+                display: grid;
+                grid-template-columns: 90% auto;
+                align-items: center;
+                background: rgb(245, 245, 245);
+                border-radius: 8px;
+                padding: 8px 15px;
+
+                p {
+                    font-size: 0.9em;
+                    margin: 0 0 4px;
+                    &:first-of-type {
+                        font-size: 1.5em;
+                        font-weight: bold;
+                    }
                 }
             }
         }
@@ -126,7 +132,14 @@
         }
 
         .sales_analytics {
-            grid-template-columns: repeat(4, 1fr);
+            .header {
+                display: flex!important;
+                justify-content: space-between;
+            }
+
+            .analytics {
+                grid-template-columns: repeat(4, 1fr);
+            }
         }
 
         .sales {
@@ -135,6 +148,7 @@
         }
 
         .charts {
+            margin: 0 0 4em;
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 1em;

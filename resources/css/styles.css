@@ -1603,7 +1603,7 @@ footer .copyright {
     margin: unset;
   }
 }
-.admin_dashboard h1 {
+.admin_dashboard .hero {
   margin: 0 0 0.5em;
 }
 .admin_dashboard h2 {
@@ -1613,7 +1613,6 @@ footer .copyright {
   text-decoration: none;
   color: #000;
 }
-.admin_dashboard .statistics,
 .admin_dashboard .sales_analytics,
 .admin_dashboard .sales {
   margin: 0 0 3em;
@@ -1622,13 +1621,14 @@ footer .copyright {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0.5em;
+  margin: 0 0 2em;
 }
 .admin_dashboard .statistics .static {
   display: grid;
   grid-template-columns: 15% auto;
   align-items: center;
   gap: 0 1.5em;
-  background: #d5e0f8;
+  background: #cadaff;
   padding: 0.5em 0.6em;
   border-radius: 12px;
 }
@@ -1636,7 +1636,7 @@ footer .copyright {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #adc5f7;
+  background: #7c9fec;
   width: 20px;
   height: 20px;
   padding: 16px;
@@ -1652,24 +1652,27 @@ footer .copyright {
   font-weight: bold;
   font-size: 1.1em;
 }
-.admin_dashboard .sales_analytics {
+.admin_dashboard .sales_analytics .header {
+  margin: 0 0 0.5em;
+}
+.admin_dashboard .sales_analytics .analytics {
   display: grid;
   grid-template-columns: 1fr;
   gap: 0.5em;
 }
-.admin_dashboard .sales_analytics .analytic {
+.admin_dashboard .sales_analytics .analytics .analytic {
   display: grid;
   grid-template-columns: 90% auto;
   align-items: center;
-  background: rgb(238, 238, 238);
+  background: rgb(245, 245, 245);
   border-radius: 8px;
   padding: 8px 15px;
 }
-.admin_dashboard .sales_analytics .analytic p {
+.admin_dashboard .sales_analytics .analytics .analytic p {
   font-size: 0.9em;
   margin: 0 0 4px;
 }
-.admin_dashboard .sales_analytics .analytic p:first-of-type {
+.admin_dashboard .sales_analytics .analytics .analytic p:first-of-type {
   font-size: 1.5em;
   font-weight: bold;
 }
@@ -1700,7 +1703,11 @@ footer .copyright {
   .admin_dashboard .statistics {
     grid-template-columns: repeat(6, 1fr);
   }
-  .admin_dashboard .sales_analytics {
+  .admin_dashboard .sales_analytics .header {
+    display: flex !important;
+    justify-content: space-between;
+  }
+  .admin_dashboard .sales_analytics .analytics {
     grid-template-columns: repeat(4, 1fr);
   }
   .admin_dashboard .sales {
@@ -1708,6 +1715,7 @@ footer .copyright {
     gap: 1em;
   }
   .admin_dashboard .charts {
+    margin: 0 0 4em;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1em;

@@ -1,7 +1,10 @@
 @extends('admin.partials.base')
 @section('admin_content')
     <div class="container admin_dashboard">
-        <h1>Dashboard</h1>
+        <div class="hero">
+            <p>Hi {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</p>
+        </div>
+
         <div class="statistics">
             <div class="static">
                 <div class="icon">
@@ -65,44 +68,70 @@
         </div>
 
         <div class="sales_analytics">
-            <div class="analytic">
-                <div class="text">
-                    <p>xxx</p>
-                    <p>Gross Sales</p>
-                </div>
-                <div class="icon">
-                    <i class="fas fa-dollar-sign"></i>
-                </div>
+            <div class="header">
+                <h2>Sales Analytics</h2>
+
+                <form action="">
+                    <select name="duration" id="duration">
+                        <option value="today">Today</option>
+                        <option value="this_week">This Week</option>
+                        <option value="this_month">This Month</option>
+                        <option value="this_year">This Year</option>
+                    </select>
+                </form>
             </div>
 
-            <div class="analytic">
-                <div class="text">
-                    <p>xxx</p>
-                    <p>Net Sales</p>
+            <div class="analytics">
+                <div class="analytic">
+                    <div class="text">
+                        <p>xxx</p>
+                        <p>Gross Sales</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
                 </div>
-                <div class="icon">
-                    <i class="fas fa-dollar-sign"></i>
+
+                <div class="analytic">
+                    <div class="text">
+                        <p>xxx</p>
+                        <p>Net Sales</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                </div>
+
+                <div class="analytic">
+                    <div class="text">
+                        <p>xxx</p>
+                        <p>Cost of Sales</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                </div>
+
+                <div class="analytic">
+                    <div class="text">
+                        <p>xxx</p>
+                        <p>Gross Profit</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
                 </div>
             </div>
+        </div>
 
-            <div class="analytic">
-                <div class="text">
-                    <p>xxx</p>
-                    <p>Cost of Sales</p>
-                </div>
-                <div class="icon">
-                    <i class="fas fa-dollar-sign"></i>
-                </div>
+        <div class="charts">
+            <div class="chart">
+                <h2>{{ $this_year }} Sales</h2>
+                <canvas id="salesChart"></canvas>
             </div>
-
-            <div class="analytic">
-                <div class="text">
-                    <p>xxx</p>
-                    <p>Gross Profit</p>
-                </div>
-                <div class="icon">
-                    <i class="fas fa-dollar-sign"></i>
-                </div>
+            <div class="chart">
+                <h2>Location Orders</h2>
+                <canvas id="citiesChart"></canvas>
             </div>
         </div>
 
@@ -144,17 +173,6 @@
                     </li>
                     @endforeach
                 </ul>
-            </div>
-        </div>
-
-        <div class="charts">
-            <div class="chart">
-                <h2>{{ $this_year }} Sales</h2>
-                <canvas id="salesChart"></canvas>
-            </div>
-            <div class="chart">
-                <h2>Location Orders</h2>
-                <canvas id="citiesChart"></canvas>
             </div>
         </div>
     </div>
