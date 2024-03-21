@@ -54,17 +54,16 @@ require __DIR__.'/auth.php';
 
 
 Route::middleware(['auth', 'admin'])->group(function() {
-    Route::get('/admin/dashboard', [DashboardController::class, 'admin_dashboard'])->name('admin_dashboard');
-
-    Route::get('/admin/admins/list', [UserController::class, 'list_admins'])->name('list_admins');
-    Route::get('/admin/admins/update/{id}', [UserController::class, 'get_update_admin'])->name('get_update_admin');
-    Route::post('/admin/admins/update/{id}', [UserController::class, 'post_update_admin'])->name('post_update_admin');
-
-    Route::get('/admin/users/list', [UserController::class, 'list_users'])->name('list_users');
-    Route::get('/admin/users/update/{id}', [UserController::class, 'get_update_user'])->name('get_update_user');
-    Route::post('/admin/users/update/{id}', [UserController::class, 'post_update_user'])->name('post_update_user');
-
     Route::prefix('admin')->group(function() {
+        Route::get('/dashboard', [DashboardController::class, 'admin_dashboard'])->name('admin_dashboard');
+
+        Route::get('/admins/list', [UserController::class, 'list_admins'])->name('list_admins');
+        Route::get('/admins/update/{id}', [UserController::class, 'get_update_admin'])->name('get_update_admin');
+        Route::post('/admins/update/{id}', [UserController::class, 'post_update_admin'])->name('post_update_admin');
+        Route::get('/users/list', [UserController::class, 'list_users'])->name('list_users');
+        Route::get('/users/update/{id}', [UserController::class, 'get_update_user'])->name('get_update_user');
+        Route::post('/users/update/{id}', [UserController::class, 'post_update_user'])->name('post_update_user');
+
         Route::resource('categories', CategoryController::class);
 
         Route::resource('products', ProductController::class);
@@ -79,10 +78,10 @@ Route::middleware(['auth', 'admin'])->group(function() {
 
         Route::resource('blogs', BlogController::class)
         ->except('show');
-    });
 
-    Route::get('/admin/orders/list', [OrderController::class, 'list_orders'])->name('list_orders');
-    Route::get('/admin/order/update/{id}', [OrderController::class, 'get_update_order'])->name('get_update_order');
-    Route::post('/admin/order/update/{id}', [OrderController::class, 'post_update_order'])->name('post_update_order');
-    Route::delete('/admin/orders/delete/{id}', [OrderController::class, 'delete_order'])->name('delete_order');
+        Route::get('/orders', [OrderController::class, 'list_orders'])->name('list_orders');
+        Route::get('/order/update/{id}', [OrderController::class, 'get_update_order'])->name('get_update_order');
+        Route::post('/order/update/{id}', [OrderController::class, 'post_update_order'])->name('post_update_order');
+        Route::delete('/orders/delete/{id}', [OrderController::class, 'delete_order'])->name('delete_order');
+    });
 });

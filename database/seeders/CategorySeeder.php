@@ -15,13 +15,15 @@ class CategorySeeder extends Seeder
     public function run(): void
     {
         $titles = [
-            'body oil',
+            'carrier oil',
             'essential oil',
-            'hair care',
             'liquid black soap',
-            'raw butter',
-            'solid black soap',
-            'whipped body butter',
+            'raw black soap',
+            'raw cocoa butter',
+            'raw shea butter',
+            'soaps',
+            'whipped cocoa',
+            'whipped shea & cocoa',
         ];
 
         foreach($titles as $title)
