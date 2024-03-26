@@ -9,6 +9,109 @@
   padding: 10px 5%;
 }
 
+form input,
+form select,
+form textarea {
+  width: 100%;
+  padding: 0.4em 0.6em;
+  font-size: 1em;
+  border: 1px solid grey;
+  border-radius: 4px;
+  margin: 0.3em 0 0;
+}
+form button {
+  padding: 10px 32px;
+  font-weight: bold;
+  font-size: 1em;
+  border: none;
+  border-radius: 4px;
+  background: #000;
+  color: #fff;
+  cursor: pointer;
+}
+
+.custom_form h1 {
+  font-size: 1.1em;
+  text-align: center;
+  margin: 0 0 0.5em;
+  padding: 0.5em 0;
+  background: #000;
+  color: #fff;
+  border-radius: 6px 6px 0 0;
+}
+.custom_form form .input_group {
+  padding: 0.3em 0;
+  width: 100%;
+  margin: 0 0 0.3em;
+}
+.custom_form form .input_group label {
+  font-weight: 500;
+  font-size: 0.95em;
+}
+.custom_form form .input_group .custom_radio_buttons {
+  display: flex;
+}
+.custom_form form .input_group .custom_radio_buttons label {
+  padding: 0.3em 0.2em;
+  position: relative;
+  cursor: pointer;
+  width: 30%;
+  display: flex;
+  align-items: center;
+}
+.custom_form form .input_group .custom_radio_buttons label .option_radio {
+  position: relative;
+  margin: 0 0.1em 0 0;
+  cursor: pointer;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  width: auto;
+  border: unset;
+}
+.custom_form form .input_group .custom_radio_buttons label .option_radio:before {
+  transition: transform 0.4s cubic-bezier(0.45, 1.8, 0.5, 0.75);
+  transform: scale(0, 0);
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0.125rem;
+  z-index: 1;
+  width: 0.75rem;
+  height: 0.75rem;
+  background: #16a085;
+  border-radius: 50%;
+}
+.custom_form form .input_group .custom_radio_buttons label .option_radio:checked:before {
+  transform: scale(1, 1);
+}
+.custom_form form .input_group .custom_radio_buttons label .option_radio:after {
+  content: "";
+  position: absolute;
+  top: -0.25rem;
+  left: -0.125rem;
+  width: 1rem;
+  height: 1rem;
+  background: #fff;
+  border: 2px solid #d6d6d6;
+  border-radius: 50%;
+}
+.custom_form p {
+  margin: 0.8em 0 0.5em;
+}
+
+@media screen and (width >= 726px) {
+  .custom_form .row_input_group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 1em;
+  }
+  .custom_form .row_input_group_3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0 1em;
+  }
+}
 nav,
 .nav_container,
 .nav_container a,
@@ -352,6 +455,7 @@ footer .copyright {
 .Homepage .Products .header {
   display: flex;
   align-items: center;
+  justify-content: center;
   justify-content: space-between;
 }
 .Homepage .Products .header h1 {
@@ -431,5 +535,61 @@ footer .copyright {
 @media screen and (width >= 726px) {
   .Shop .search form {
     width: 30%;
+  }
+}
+.Authentication {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.Authentication .container .header {
+  text-align: center;
+  margin: 0 0 1em;
+}
+.Authentication .container .header img {
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+}
+
+.profile_update {
+  background: #f5f5f5;
+}
+.profile_update .page_header,
+.profile_update .section {
+  background: #fff;
+}
+.profile_update .page_header {
+  margin: 0 0 1em;
+  padding: 1.5em 5%;
+}
+.profile_update h1,
+.profile_update h2 {
+  font-size: 1.2em;
+}
+.profile_update h2 {
+  margin: 0 0 0.3em;
+}
+.profile_update .section {
+  padding: 1.4em 3%;
+  border-radius: 8px;
+  margin: 0 auto 1em;
+}
+.profile_update .section .header {
+  margin: 0 0 1em;
+}
+.profile_update .section .body .custom_form {
+  width: 50%;
+}
+
+@media screen and (width >= 726px) {
+  .Authentication .login {
+    width: 40%;
+  }
+  .Authentication .signup {
+    width: 50%;
+  }
+  .profile_update .section {
+    width: 95%;
   }
 }/*# sourceMappingURL=styles.css.map */

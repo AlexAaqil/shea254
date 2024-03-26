@@ -14,7 +14,7 @@
                     </li>
                 @elseif(Auth::user() && Auth::user()->user_level == 1)
                     <li>
-                        <a href="{{ route('admin_dashboard') }}">Dashboard</a>
+                        <a href="{{ route('admin.dashboard') }}">Dashboard</a>
                     </li>
                 @endif
                 <li><a href="{{ route('shop') }}">Shop</a></li>
