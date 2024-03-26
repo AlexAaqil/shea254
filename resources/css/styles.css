@@ -162,6 +162,53 @@ nav .nav_container .burger_menu {
     transform: rotate(45deg) translate(-5px, -6px);
   }
 }
+footer {
+  background: #000;
+  color: #fff;
+}
+footer .container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1em;
+}
+@media screen and (width >= 726px) {
+  footer .container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+footer .container div:not(:first-of-type) h1 {
+  font-size: max(1.2em, 1.2vw);
+  margin: 0 0 0.7em;
+}
+footer .container a {
+  text-decoration: none;
+  color: #fff;
+}
+footer .container p,
+footer .container .links ul li {
+  margin: 0 0 0.5em;
+}
+footer .container .contacts .socials {
+  margin: 1em 0 0;
+}
+footer .container .contacts .socials a {
+  margin: 0 1em 0 0;
+  font-size: 1.2em;
+}
+footer .container .contacts .socials a img {
+  width: 20px;
+}
+footer .copyright {
+  border-top: 1px solid rgb(161, 161, 161);
+  padding: 1em;
+  text-align: center;
+}
+
+@media screen and (width >= 726px) {
+  footer .container {
+    justify-items: center;
+  }
+}
 .Homepage section {
   margin: 0 0 5em;
 }
@@ -351,5 +398,35 @@ nav .nav_container .burger_menu {
   }
   100% {
     transform: rotate(-360deg);
+  }
+}
+.Shop .search {
+  padding: 1.2em 0 0;
+  display: flex;
+  justify-content: center;
+}
+.Shop .search form {
+  position: relative;
+  margin: auto;
+}
+.Shop .search form input,
+.Shop .search form button {
+  height: 35px;
+}
+.Shop .search form input {
+  border-radius: 32px;
+  margin: 0;
+}
+.Shop .search form button {
+  position: absolute;
+  right: 0;
+  border-radius: 0 32px 32px 0;
+  padding: 0.5em 0.7em;
+  cursor: pointer;
+}
+
+@media screen and (width >= 726px) {
+  .Shop .search form {
+    width: 30%;
   }
 }/*# sourceMappingURL=styles.css.map */
