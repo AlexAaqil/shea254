@@ -46,4 +46,13 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    static public function getAdmins()
+    {
+        return self::select('users.*')
+        ->where('user_level', '=', 1)
+        ->where('user_status', '=', 1)
+        ->orderBy('id', 'desc')
+        ->get();
+    }
 }
