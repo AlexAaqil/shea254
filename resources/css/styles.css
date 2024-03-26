@@ -631,4 +631,135 @@ footer .copyright {
   .profile_update .section {
     width: 95%;
   }
+}
+.Admin aside {
+  position: fixed;
+  border-right: 1px solid grey;
+  width: 20%;
+  height: 100%;
+  padding: 4px 8px;
+  text-align: center;
+}
+.Admin aside i {
+  font-size: 1.5em;
+}
+.Admin aside a {
+  text-decoration: none;
+  color: #000;
+}
+.Admin aside .branding h1,
+.Admin aside .footer .text {
+  display: none;
+}
+@media screen and (width >= 726px) {
+  .Admin aside .branding h1,
+  .Admin aside .footer .text {
+    display: unset;
+  }
+}
+.Admin aside .branding a img,
+.Admin aside .footer .profile img {
+  border-radius: 50%;
+}
+.Admin aside .nav_links {
+  margin: 0.8em 0 0;
+}
+.Admin aside .nav_links ul {
+  list-style: none;
+}
+.Admin aside .nav_links ul li {
+  margin: 0 0 0.8em;
+}
+.Admin aside .nav_links ul li a {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1em;
+}
+.Admin aside .nav_links ul li a span {
+  font-size: 0.8em;
+}
+.Admin aside .footer {
+  position: absolute;
+  bottom: 2em;
+  width: 100%;
+}
+.Admin aside .footer .profile {
+  margin: 0 0 1em;
+}
+.Admin aside .footer .profile img {
+  border: 1px solid green;
+  padding: 2px;
+}
+.Admin aside .footer form button {
+  background: none;
+  padding: unset;
+}
+.Admin aside .footer form button i {
+  color: red;
+}
+.Admin .admin_content {
+  margin-left: calc(20% + 0.5em);
+}
+
+@media screen and (width >= 726px) {
+  .Admin aside {
+    padding: 0.5em 0.8em;
+    width: 15%;
+    text-align: left;
+  }
+  .Admin aside i {
+    font-size: 1em;
+  }
+  .Admin aside .branding {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+  }
+  .Admin aside .branding h1 {
+    font-size: 1.2em;
+  }
+  .Admin aside .nav_links {
+    margin: 2em 0;
+  }
+  .Admin aside .nav_links ul li {
+    border-bottom: 1px solid rgb(204, 204, 204);
+    padding: 0 4px 4px;
+  }
+  .Admin aside .nav_links ul li a {
+    display: grid;
+    grid-template-columns: 25px auto;
+  }
+  .Admin aside .nav_links ul li a span {
+    font-size: 1em;
+    font-weight: bold;
+  }
+  .Admin aside .footer {
+    left: 0;
+  }
+  .Admin aside .footer .profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8em;
+  }
+  .Admin aside .footer .profile img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+  }
+  .Admin aside .footer .logout {
+    text-align: center;
+  }
+  .Admin aside .footer .logout form button {
+    background: red;
+    color: #fff;
+    border-radius: 6px;
+    padding: 8px 16px;
+  }
+  .Admin aside .footer .logout form button i {
+    color: #fff;
+  }
+  .Admin .admin_content {
+    margin-left: calc(15% + 0.5em);
+  }
 }/*# sourceMappingURL=styles.css.map */

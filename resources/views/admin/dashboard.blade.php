@@ -1,3 +1,5 @@
-<x-app-layout>
-    <h1>Admin Dashboard</h1>
-</x-app-layout>
+<x-admin>
+    <div class="hero">
+        <p>Hi {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</p>
+    </div>
+</x-admin>
