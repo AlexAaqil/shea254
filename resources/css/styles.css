@@ -315,6 +315,43 @@ footer .copyright {
     justify-items: center;
   }
 }
+.alert {
+  padding: 1em;
+  border-radius: 4px;
+  color: #fff;
+  font-weight: bold;
+  position: absolute;
+  right: 0;
+  top: 10vh;
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+  z-index: 10;
+}
+
+.alert-danger {
+  background: rgb(235, 4, 4);
+}
+
+.alert-success {
+  background: rgb(2, 168, 29);
+}
+
+.alert-warning {
+  background: rgb(194, 128, 5);
+}
+
+.inline_alert {
+  margin: 0.1em 0 0;
+  font-weight: bold;
+  color: rgb(235, 4, 4);
+}
+
+.inline_alert_success {
+  padding: 0.5em;
+  margin: 0.5em 0;
+  color: rgb(2, 168, 29);
+}
+
 .Homepage section {
   margin: 0 0 5em;
 }

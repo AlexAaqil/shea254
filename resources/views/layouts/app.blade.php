@@ -19,5 +19,7 @@
         @isset($javascript)
             {{ $javascript }}
         @endisset
+
+        <x-alert></x-alert>
     </body>
 </html>
