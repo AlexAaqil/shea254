@@ -76,6 +76,86 @@ $aside_width_l: 15%;
 
     .admin_content {
         margin-left: calc($aside_width_s + 0.5em);
+        
+        .container {
+            padding: 10px 15px;
+
+            .header {
+                margin: 0 0 0.5em;
+                h1 {
+                    font-size: 1.25em;
+                }
+
+                input {
+                    border: 1px solid grey;
+                    border-radius: 32px;
+                    padding: 4px 16px;
+                }
+            }
+
+            .body {
+                table {
+                    width: 100%;
+                    border-collapse: collapse;
+                    border-spacing: 0;
+
+                    thead {
+                        background: #000;
+                        color: #fff;
+
+                        th {
+                            text-align: left;
+                            padding: 4px 6px;
+                            font-size: 0.9em;
+
+                            &:last-of-type {
+                                text-align: center;
+                            }
+                        }
+                    }
+
+                    tbody {
+                        tr {
+                            &:nth-of-type(odd) {
+                                border-bottom: 1px solid grey;
+                                background: rgb(245, 245, 245);
+                            }
+
+                            td {
+                                padding: 4px 6px;
+                            }
+
+                            .actions {
+                                display: flex;
+                                justify-content: center;
+                                gap: 0 2em;
+    
+                                .action {
+                                    i {
+                                        font-size: 1em;
+                                        font-weight: bold;
+                                    }
+                                    .update {
+                                        color: green;
+                                    }
+                                    .delete {
+                                        color: red;
+                                    }
+    
+                                    form {
+                                        button {
+                                            background: none;
+                                            padding: 0;
+                                            cursor: pointer;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -153,6 +233,13 @@ $aside_width_l: 15%;
 
         .admin_content {
             margin-left: calc($aside_width_l + 0.5em);
+
+            .container {
+                .header {
+                    display: grid;
+                    grid-template-columns: repeat(3, 1fr);
+                }
+            }
         }
     }
 }

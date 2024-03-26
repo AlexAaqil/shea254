@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\DB;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -49,10 +50,21 @@ class User extends Authenticatable implements MustVerifyEmail
 
     static public function getAdmins()
     {
-        return self::select('users.*')
-        ->where('user_level', '=', 1)
-        ->where('user_status', '=', 1)
-        ->orderBy('id', 'desc')
+        return DB::table('users')
+        ->select('users.*')
+        ->where('user_level', 1)
+        ->where('user_status', 1)
+        ->orderByDesc('id')
+        ->get();
+    }
+
+    static public function getUsers()
+    {
+        return DB::table('users')
+        ->select('users.*')
+        ->where('user_level', 2)
+        ->where('user_status', 1)
+        ->orderByDesc('id')
         ->get();
     }
 }

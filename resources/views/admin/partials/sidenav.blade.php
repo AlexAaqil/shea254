@@ -9,19 +9,19 @@
     <div class="nav_links">
         <ul>
             <li class="nav-link">
-                <a href="/home">
+                <a href="{{ route('admin.dashboard') }}">
                     <i class="fas fa-home"></i>
                     <span class="text">Dashboard</span>
                 </a>
             </li>
             <li class="nav-link">
-                <a href="">
+                <a href="{{ route('admin.admins') }}">
                     <i class="fas fa-users-cog"></i>
                     <span class="text">Admins</span>
                 </a>
             </li>
             <li class="nav-link">
-                <a href="">
+                <a href="{{ route('admin.users') }}">
                     <i class="fas fa-users"></i>
                     <span class="text">Users</span>
                 </a>

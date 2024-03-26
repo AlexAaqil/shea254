@@ -15,6 +15,12 @@ $warning: rgb(194, 128, 5);
     z-index: 10;
 }
 
+.Admin {
+    .alert {
+        top: 0;
+    }
+}
+
 .alert-danger {
     background: $danger;
 }

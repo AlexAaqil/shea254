@@ -328,6 +328,10 @@ footer .copyright {
   z-index: 10;
 }
 
+.Admin .alert {
+  top: 0;
+}
+
 .alert-danger {
   background: rgb(235, 4, 4);
 }
@@ -700,6 +704,64 @@ footer .copyright {
 .Admin .admin_content {
   margin-left: calc(20% + 0.5em);
 }
+.Admin .admin_content .container {
+  padding: 10px 15px;
+}
+.Admin .admin_content .container .header {
+  margin: 0 0 0.5em;
+}
+.Admin .admin_content .container .header h1 {
+  font-size: 1.25em;
+}
+.Admin .admin_content .container .header input {
+  border: 1px solid grey;
+  border-radius: 32px;
+  padding: 4px 16px;
+}
+.Admin .admin_content .container .body table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+.Admin .admin_content .container .body table thead {
+  background: #000;
+  color: #fff;
+}
+.Admin .admin_content .container .body table thead th {
+  text-align: left;
+  padding: 4px 6px;
+  font-size: 0.9em;
+}
+.Admin .admin_content .container .body table thead th:last-of-type {
+  text-align: center;
+}
+.Admin .admin_content .container .body table tbody tr:nth-of-type(odd) {
+  border-bottom: 1px solid grey;
+  background: rgb(245, 245, 245);
+}
+.Admin .admin_content .container .body table tbody tr td {
+  padding: 4px 6px;
+}
+.Admin .admin_content .container .body table tbody tr .actions {
+  display: flex;
+  justify-content: center;
+  gap: 0 2em;
+}
+.Admin .admin_content .container .body table tbody tr .actions .action i {
+  font-size: 1em;
+  font-weight: bold;
+}
+.Admin .admin_content .container .body table tbody tr .actions .action .update {
+  color: green;
+}
+.Admin .admin_content .container .body table tbody tr .actions .action .delete {
+  color: red;
+}
+.Admin .admin_content .container .body table tbody tr .actions .action form button {
+  background: none;
+  padding: 0;
+  cursor: pointer;
+}
 
 @media screen and (width >= 726px) {
   .Admin aside {
@@ -761,5 +823,9 @@ footer .copyright {
   }
   .Admin .admin_content {
     margin-left: calc(15% + 0.5em);
+  }
+  .Admin .admin_content .container .header {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
   }
 }/*# sourceMappingURL=styles.css.map */
