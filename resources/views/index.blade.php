@@ -99,6 +99,8 @@
         </section>
     </main>
 
+    @include('partials.footer')
+
     <x-slot name="javascript">
         <x-jquery>
             <script>

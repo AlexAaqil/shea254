@@ -188,6 +188,9 @@ footer .container p,
 footer .container .links ul li {
   margin: 0 0 0.5em;
 }
+footer .container ul {
+  list-style: none;
+}
 footer .container .contacts .socials {
   margin: 1em 0 0;
 }
