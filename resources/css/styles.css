@@ -620,7 +620,9 @@ footer .copyright {
 }
 
 @media screen and (width >= 726px) {
-  .Authentication .login {
+  .Authentication .login,
+  .Authentication .verify_email,
+  .Authentication .forgot_password {
     width: 40%;
   }
   .Authentication .signup {

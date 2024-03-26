@@ -1,4 +1,36 @@
-<x-guest-layout>
+<x-app-layout>
+    @include('partials.navbar')
+
+    <section class="Authentication">
+        <div class="container forgot_password">
+            <div class="header">
+                <a href="{{ route('home') }}">
+                    <img src="{{ asset('assets/images/logo.jpg') }}" alt="Logo Image">
+                </a>
+            </div>
+    
+            <div class="custom_form">
+                @include('partials.messages')
+                <p>Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.</p>
+    
+                <form action="{{ route('password.email') }}" method="post">
+                    @csrf
+    
+                    <div class="input_group">
+                        <label for="email">Email Address</label>
+                        <input type="email" name="email" id="email" placeholder="Email Address" value="{{ old('email') }}">
+                        <span class="inline_alert">{{ $errors->first('email') }}</span>
+                    </div>
+    
+                    <button type="submit">Email Password Reset Link</button>
+                </form>
+            </div>
+        </div>
+    </section>
+</x-app-layout>
+
+
+{{-- <x-guest-layout>
     <div class="mb-4 text-sm text-gray-600">
         {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
     </div>
@@ -22,4 +54,4 @@
             </x-primary-button>
         </div>
     </form>
-</x-guest-layout>
+</x-guest-layout> --}}
