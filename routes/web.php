@@ -1,22 +1,19 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\GeneralPagesController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
+Route::get('/welcome', [GeneralPagesController::class, 'welcome'])->name('welcome');
+Route::get('/', [GeneralPagesController::class, 'home'])->name('home');
+Route::get('/shop')->name('shop');
+Route::get('/about')->name('about');
+Route::get('/contact')->name('contact');
+Route::get('/blogs')->name('users.blogs');
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/cart')->name('cart');
+
+Route::get('/list_categorised_products')->name('list_products_by_category');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

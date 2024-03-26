@@ -1,1 +1,8 @@
 @import '_global';
+@import '_mixins';
+
+// Partials
+@import 'navbar';
+
+// Pages
+@import 'Homepage';
