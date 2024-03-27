@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class DashboardController extends Controller
 {
@@ -31,6 +31,12 @@ class DashboardController extends Controller
 
     public function admin_dashboard()
     {
-        return view('admin.dashboard');
+        $count_admins = User::getAdmins()->count();
+        $count_users = User::getUsers()->count();
+
+        return view('admin.dashboard', compact(
+            'count_admins',
+            'count_users',
+        ));
     }
 }

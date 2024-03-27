@@ -1,0 +1,227 @@
+.Admin_dashboard {
+    .hero {
+        margin: 0 0 0.5em;
+
+        p {
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+    }
+
+    .stats {
+        @include grid(6);
+
+        .stat {
+            background: #cadaff;
+            border-radius: 8px;
+            padding: 6px 8px;
+            display: grid;
+            grid-template-columns: 20% auto;
+            gap: 1em;
+            align-items: center;
+
+            .icon {
+                @include flex_center;
+                font-size: 1.1em;
+                background: #7c9fec;
+                border-radius: 50%;
+                width: 20px;
+                height: 20px;
+                padding: 16px;
+            }
+
+            .text {
+                a {
+                    text-decoration: none;
+                    color: #000;
+                }
+            }
+        }
+    }
+
+    .analytics {
+        @include grid(4);
+        margin: 2em 0;
+
+        .analytic {
+            background: rgb(198, 250, 193);
+            border-radius: 8px;
+            padding: 6px 12px;
+            display: grid;
+            grid-template-columns: auto 20%;
+            align-items: center;
+
+            .text {
+                p {
+                    &:first-of-type {
+                        font-size: 1.35em;
+                    }
+
+                    font-size: 0.8em;
+                }
+            }
+        }
+    }
+}
+
+// .admin_dashboard {
+//     .hero {
+//         margin: 0 0 0.5em;
+//     }
+
+//     h2 {
+//         font-size: 1.2em;
+
+//         a {
+//             text-decoration: none;
+//             color: #000;
+//         }
+//     }
+
+//     .sales_analytics,
+//     .sales {
+//         margin: 0 0 3em;
+//     }
+
+//     .statistics {
+//         display: grid;
+//         grid-template-columns: 1fr 1fr;
+//         gap: 0.5em;
+//         margin: 0 0 2em;
+
+//         .static {
+//             display: grid;
+//             grid-template-columns: 15% auto;
+//             align-items: center;
+//             gap: 0 1.5em;
+//             background: #cadaff;
+//             padding: 0.5em 0.6em;
+//             border-radius: 12px;
+
+//             .icon {
+//                 @include flex_center;
+//                 justify-content: center;
+//                 $dimensions: 20px;
+//                 background: #7c9fec;
+//                 width: $dimensions;
+//                 height: $dimensions;
+//                 padding: 16px;
+//                 border-radius: 50%;
+//                 i {
+//                     font-size: 1em;
+//                 }
+//             }
+//             .text {
+//                 p {
+//                     &:first-of-type {
+//                         font-size: 0.85em;
+//                     }
+//                     &:last-of-type {
+//                         font-weight: bold;
+//                         font-size: 1.1em;
+//                     }
+//                 }
+//             }
+//         }
+//     }
+
+//     .sales_analytics {
+//         .header {
+//             margin: 0 0 0.5em;
+//         }
+
+//         .analytics {
+//             display: grid;
+//             grid-template-columns: 1fr;
+//             gap: 0.5em;
+
+//             .analytic {
+//                 display: grid;
+//                 grid-template-columns: 90% auto;
+//                 align-items: center;
+//                 background: rgb(245, 245, 245);
+//                 border-radius: 8px;
+//                 padding: 8px 15px;
+
+//                 p {
+//                     font-size: 0.9em;
+//                     margin: 0 0 4px;
+//                     &:first-of-type {
+//                         font-size: 1.5em;
+//                         font-weight: bold;
+//                     }
+//                 }
+//             }
+//         }
+//     }
+
+//     .sales {
+//         display: grid;
+//         gap: 1em;
+
+//         .info {
+//             ul {
+//                 li {
+//                     margin: 0.5em 0;
+//                     display: grid;
+//                     grid-template-columns: 1fr 1fr;
+//                     align-items: center;
+//                     border-bottom: 1px solid rgb(218, 218, 218);
+//                     padding: 0.1em;
+
+//                     &:first-of-type {
+//                         border-top: 1px solid rgb(218, 218, 218);
+//                     }
+
+//                     span {
+//                         &:nth-of-type(2) {
+//                             font-weight: bold;
+//                             text-align: right;
+//                         }
+//                     }
+//                 }
+//             }
+
+//             .sales_summary {
+//                 li {
+//                     gap: 0.5em;
+//                 }
+//             }
+//         }
+//     }
+// }
+
+// @media screen and (width >= 726px) {
+//     .admin_dashboard {
+//         .statistics {
+//             grid-template-columns: repeat(6, 1fr);
+//         }
+
+//         .sales_analytics {
+//             .header {
+//                 display: flex!important;
+//                 justify-content: space-between;
+//             }
+
+//             .analytics {
+//                 grid-template-columns: repeat(4, 1fr);
+//             }
+//         }
+
+//         .sales {
+//             grid-template-columns: 1fr 1fr;
+//             gap: 1em;
+//         }
+
+//         .charts {
+//             margin: 0 0 4em;
+//             display: grid;
+//             grid-template-columns: 1fr 1fr;
+//             gap: 1em;
+
+//             .chart {
+//                 height: 40vh;
+//             }
+//         }
+//     }
+// }

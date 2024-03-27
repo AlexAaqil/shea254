@@ -34,14 +34,14 @@
             </li>
             <li class="nav-link">
                 <a href="">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <span class="text">Locations</span>
+                    <i class="fas fa-truck-loading"></i>
+                    <span class="text">Orders</span>
                 </a>
             </li>
             <li class="nav-link">
                 <a href="">
-                    <i class="fas fa-truck-loading"></i>
-                    <span class="text">Orders</span>
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span class="text">Locations</span>
                 </a>
             </li>
             <li class="nav-link">

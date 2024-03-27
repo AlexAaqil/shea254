@@ -828,4 +828,70 @@ footer .copyright {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
   }
+}
+.Admin_dashboard .hero {
+  margin: 0 0 0.5em;
+}
+.Admin_dashboard .hero p {
+  font-weight: bold;
+  font-size: 1.2em;
+}
+.Admin_dashboard .stats {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1em;
+}
+@media screen and (width >= 726px) {
+  .Admin_dashboard .stats {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+.Admin_dashboard .stats .stat {
+  background: #cadaff;
+  border-radius: 8px;
+  padding: 6px 8px;
+  display: grid;
+  grid-template-columns: 20% auto;
+  gap: 1em;
+  align-items: center;
+}
+.Admin_dashboard .stats .stat .icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1em;
+  background: #7c9fec;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  padding: 16px;
+}
+.Admin_dashboard .stats .stat .text a {
+  text-decoration: none;
+  color: #000;
+}
+.Admin_dashboard .analytics {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1em;
+  margin: 2em 0;
+}
+@media screen and (width >= 726px) {
+  .Admin_dashboard .analytics {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+.Admin_dashboard .analytics .analytic {
+  background: rgb(198, 250, 193);
+  border-radius: 8px;
+  padding: 6px 12px;
+  display: grid;
+  grid-template-columns: auto 20%;
+  align-items: center;
+}
+.Admin_dashboard .analytics .analytic .text p {
+  font-size: 0.8em;
+}
+.Admin_dashboard .analytics .analytic .text p:first-of-type {
+  font-size: 1.35em;
 }/*# sourceMappingURL=styles.css.map */
