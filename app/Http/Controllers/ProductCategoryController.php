@@ -4,62 +4,59 @@ namespace App\Http\Controllers;
 
 use App\Models\ProductCategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ProductCategoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $product_categories = ProductCategory::latest()->get();
+
+        return view('admin.product_categories.index', compact('product_categories'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        return view('admin.product_categories.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'title' => 'required|string|max:80|unique:product_categories',
+        ]);
+
+        $validated['title'] = Str::lower($validated['title']);
+        $validated['slug'] = Str::slug($validated['title']);
+
+        ProductCategory::create($validated);
+
+        return redirect()->route('product-categories.index')->with('success', ['message' => 'Product category has been created.']);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(ProductCategory $productCategory)
+    public function edit(ProductCategory $product_category)
     {
-        //
+        return view('admin.product_categories.edit', compact('product_category'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(ProductCategory $productCategory)
+    public function update(Request $request, ProductCategory $product_category)
     {
-        //
+        $validated = $request->validate([
+            'title' => 'required|string|max:80|unique:product_categories,title,' . $product_category->id,
+        ]);
+
+        $validated['title'] = Str::lower($validated['title']);
+        $validated['slug'] = Str::slug($validated['title']);
+
+        $product_category->update($validated);
+
+        return redirect()->route('product-categories.index')->with('success', ['message' => 'Product category has been updated.']);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, ProductCategory $productCategory)
+    public function destroy(ProductCategory $product_category)
     {
-        //
-    }
+        $product_category->delete();
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(ProductCategory $productCategory)
-    {
-        //
+        return redirect()->route('product-categories.index')->with('success', ['message' => 'Product category has been deleted.']);
     }
 }

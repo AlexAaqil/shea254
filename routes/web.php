@@ -51,7 +51,7 @@ Route::middleware('auth', 'verified', 'admin')->group(function() {
         Route::patch('/users/{user}', [UserController::class, 'update_user'])->name('user.update');
 
         Route::resource('/products', ProductController::class);
-        Route::resource('/product-categories', ProductCategoryController::class);
+        Route::resource('/product-categories', ProductCategoryController::class)->except('show');
 
         Route::resource('/delivery/locations', DeliveryLocationController::class)->except('show');
         Route::resource('/delivery/areas', DeliveryAreaController::class)->except('show');
