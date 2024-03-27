@@ -10,12 +10,12 @@ class DeliveryLocationController extends Controller
     public function index()
     {
         $delivery_locations = DeliveryLocation::latest()->get();
-        return view('admin.locations.index', compact('delivery_locations'));
+        return view('admin.delivery_locations.index', compact('delivery_locations'));
     }
 
     public function create()
     {
-        return view('admin.locations.create');
+        return view('admin.delivery_locations.create');
     }
 
     public function store(Request $request)
@@ -31,7 +31,7 @@ class DeliveryLocationController extends Controller
 
     public function edit(DeliveryLocation $location)
     {
-        return view('admin.locations.edit', compact('location'));
+        return view('admin.delivery_locations.edit', compact('location'));
     }
 
     public function update(Request $request, DeliveryLocation $location)
@@ -51,6 +51,6 @@ class DeliveryLocationController extends Controller
     {
         $location->delete();
         
-        return redirect()->route('location.index')->with('success', ['message' => 'Location and associated areas have been deleted.']);
+        return redirect()->route('locations.index')->with('success', ['message' => 'Location and associated areas have been deleted.']);
     }
 }

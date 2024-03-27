@@ -4,8 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\GeneralPagesController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\DeliveryLocationController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\DeliveryAreaController;
+use App\Http\Controllers\DeliveryLocationController;
 
 Route::get('/welcome', [GeneralPagesController::class, 'welcome'])->name('welcome');
 Route::get('/', [GeneralPagesController::class, 'home'])->name('home');
@@ -44,5 +45,6 @@ Route::middleware('auth', 'verified', 'admin')->group(function() {
         Route::patch('/users/{user}', [UserController::class, 'update_user'])->name('user.update');
 
         Route::resource('/delivery/locations', DeliveryLocationController::class)->except('show');
+        Route::resource('/delivery/areas', DeliveryAreaController::class)->except('show');
     });
 });

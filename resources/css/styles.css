@@ -316,7 +316,7 @@ footer .copyright {
   }
 }
 .alert {
-  padding: 1em;
+  padding: 0.5em 1em;
   border-radius: 4px;
   color: #fff;
   font-weight: bold;
@@ -924,4 +924,11 @@ footer .copyright {
 }
 .Admin_dashboard .analytics .analytic .text p:first-of-type {
   font-size: 1.35em;
+}
+
+.Delivery_locations .areas .body h2 {
+  font-size: 1.2em;
+}
+.Delivery_locations .areas .body table {
+  margin: 0 0 1.5em;
 }/*# sourceMappingURL=styles.css.map */

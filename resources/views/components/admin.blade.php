@@ -3,6 +3,7 @@
         @include('admin.partials.sidenav')
 
         <div class="admin_content">
+            @include('partials.messages')
             {{ $slot }}
         </div>
     </main>

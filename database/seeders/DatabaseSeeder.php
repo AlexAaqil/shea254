@@ -20,5 +20,6 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $this->call(DeliveryLocationsSeeder::class);
+        $this->call(DeliveryAreasSeeder::class);
     }
 }
