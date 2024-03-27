@@ -12,6 +12,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProductMeasurementController;
 
 Route::get('/welcome', [GeneralPagesController::class, 'welcome'])->name('welcome');
 Route::get('/', [GeneralPagesController::class, 'home'])->name('home');
@@ -50,8 +51,9 @@ Route::middleware('auth', 'verified', 'admin')->group(function() {
         Route::get('/users/{user}/edit', [UserController::class, 'edit_user'])->name('user.edit');
         Route::patch('/users/{user}', [UserController::class, 'update_user'])->name('user.update');
 
-        Route::resource('/products', ProductController::class);
+        Route::resource('/product-measurements', ProductMeasurementController::class)->except('show');
         Route::resource('/product-categories', ProductCategoryController::class)->except('show');
+        Route::resource('/products', ProductController::class);
 
         Route::resource('/delivery/locations', DeliveryLocationController::class)->except('show');
         Route::resource('/delivery/areas', DeliveryAreaController::class)->except('show');

@@ -3,10 +3,10 @@
         @include('admin.partials.products_navbar')
 
         <div class="header">
-            <h1>Product Categories <span>({{ $product_categories->count() }})</span></h1>
+            <h1>Product Measurements <span>({{ $product_measurements->count() }})</span></h1>
             <x-js_search></x-js_search>
             <div class="header_btn">
-                <a href="{{ route('product-categories.create') }}">New</a>
+                <a href="{{ route('product-measurements.create') }}">New</a>
             </div>
         </div>
 
@@ -15,27 +15,25 @@
                 <thead>
                     <tr>
                         <th>Title</th>
-                        <th>Slug</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($product_categories as $value)
+                    @foreach($product_measurements as $value)
                     <tr class="searchable">
-                        <td>{{ $value->title }}</td>
-                        <td>{{ $value->slug }}</td>
+                        <td>{{ $value->measurement_name }}</td>
                         <td class="actions">
                                 <div class="action">
-                                <a href="{{ route('product-categories.edit', ['product_category'=>$value->id]) }}">
+                                <a href="{{ route('product-measurements.edit', ['product_measurement'=>$value->id]) }}">
                                     <i class="fas fa-pencil-alt update"></i>
                                 </a>
                             </div>
                             <div class="action">
-                                <form id="deleteForm_{{ $value->id }}" action="{{ route('product-categories.destroy', ['product_category' => $value->id]) }}" method="POST">
+                                <form id="deleteForm_{{ $value->id }}" action="{{ route('product-measurements.destroy', ['product_measurement' => $value->id]) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
 
-                                    <button type="button" onclick="deleteItem({{ $value->id }}, 'product category');">
+                                    <button type="button" onclick="deleteItem({{ $value->id }}, 'product measurement');">
                                         <i class="fas fa-trash-alt delete"></i>
                                     </button>
                                 </form>

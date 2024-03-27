@@ -1,7 +1,7 @@
 <x-admin>
     <div class="container categories">
         <div class="custom_form">
-            <h1>Update Category</h1>
+            <h1>Update Product Category</h1>
             <form action="{{ route('product-categories.update', ['product_category' => $product_category->id]) }}" method="post">
                 @csrf
                 @method('PATCH')

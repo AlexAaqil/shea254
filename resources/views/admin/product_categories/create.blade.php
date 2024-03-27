@@ -1,5 +1,5 @@
 <x-admin>
-    <div class="container categories">
+    <div class="container">
         <div class="custom_form">
             <h1>Add Product Category</h1>
             <form action="{{ route('product-categories.store') }}" method="post">
