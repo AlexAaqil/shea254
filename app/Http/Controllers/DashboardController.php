@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Blog;
+use App\Models\Comment;
 
 class DashboardController extends Controller
 {
@@ -33,10 +35,14 @@ class DashboardController extends Controller
     {
         $count_admins = User::getAdmins()->count();
         $count_users = User::getUsers()->count();
+        $count_blogs = Blog::count();
+        $count_comments = Comment::count();
 
         return view('admin.dashboard', compact(
             'count_admins',
             'count_users',
+            'count_blogs',
+            'count_comments',
         ));
     }
 }

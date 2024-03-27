@@ -60,9 +60,9 @@
                     </div>
                     <div class="text">
                         <p>
-                            <a href="">Blogs</a>
+                            <a href="{{ route('blogs.index') }}">Blogs</a>
                         </p>
-                        <p>xxx</p>
+                        <p>{{ $count_blogs }}</p>
                     </div>
                 </div>
         
@@ -72,9 +72,9 @@
                     </div>
                     <div class="text">
                         <p>
-                            <a href="">Comments</a>
+                            <a href="{{ route('comments.index') }}">Comments</a>
                         </p>
-                        <p>xxx</p>
+                        <p>{{ $count_comments }}</p>
                     </div>
                 </div>
             </div>

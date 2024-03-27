@@ -1055,6 +1055,9 @@ footer .copyright {
 .Admin_dashboard .analytics .analytic .text p:first-of-type {
   font-size: 1.35em;
 }
+.Admin_dashboard .analytics .analytic .icon {
+  text-align: center;
+}
 
 .Delivery_locations .areas .body h2 {
   font-size: 1.2em;
