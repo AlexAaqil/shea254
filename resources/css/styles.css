@@ -646,6 +646,64 @@ footer .copyright {
     width: 30%;
   }
 }
+.Contact {
+  padding: 2em 0;
+}
+.Contact .container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1em;
+  align-items: center;
+}
+@media screen and (width >= 726px) {
+  .Contact .container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+.Contact .container .contact_details p {
+  font-size: max(2em, 2vw);
+}
+
+.Comment {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.Comment .container {
+  width: 100%;
+}
+.Comment .container .view_comment h1 {
+  background: #000;
+  color: #fff;
+  border-radius: 8px 8px 0 0;
+  padding: 4px 8px;
+  display: grid;
+  justify-content: center;
+  text-align: center;
+}
+.Comment .container .view_comment h1 span {
+  font-size: 0.65em;
+  font-weight: 500;
+  margin: 0 0 0.2em;
+}
+.Comment .container .view_comment h1 span:first-of-type {
+  font-size: 0.8em;
+  font-weight: bold;
+  margin: 0 0 0.4em;
+}
+.Comment .container .view_comment p {
+  margin: 1em 0;
+  background: #e6e6e6;
+  padding: 8px 10px;
+  width: 60%;
+  border-radius: 8px 8px 12px 8px;
+}
+
+@media screen and (width >= 726px) {
+  .Comment .container {
+    width: 50%;
+  }
+}
 .Authentication {
   display: flex;
   align-items: center;
@@ -821,11 +879,15 @@ footer .copyright {
 }
 .Admin .admin_content .container .body table thead th {
   text-align: left;
-  padding: 4px 6px;
+  padding: 6px 6px;
   font-size: 0.9em;
 }
 .Admin .admin_content .container .body table thead th:last-of-type {
   text-align: center;
+  border-radius: 0 8px 0 0;
+}
+.Admin .admin_content .container .body table thead th:first-of-type {
+  border-radius: 8px 0 0 0;
 }
 .Admin .admin_content .container .body table tbody tr {
   border-bottom: 1px solid rgb(211, 211, 211);

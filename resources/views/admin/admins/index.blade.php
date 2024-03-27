@@ -1,7 +1,7 @@
 <x-admin>
     <section class="container admins">
         <div class="header">
-            <h1>Admins</h1>
+            <h1>Admins <span>({{ $admins->count() }})</span></h1>
             <x-js_search></x-js_search>
         </div>
 

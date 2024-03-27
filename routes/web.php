@@ -9,12 +9,14 @@ use App\Http\Controllers\DeliveryAreaController;
 use App\Http\Controllers\DeliveryLocationController;
 use App\Http\Controllers\BlogCategoryController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\CommentController;
 
 Route::get('/welcome', [GeneralPagesController::class, 'welcome'])->name('welcome');
 Route::get('/', [GeneralPagesController::class, 'home'])->name('home');
 Route::get('/shop', [GeneralPagesController::class, 'shop'])->name('shop');
 Route::get('/about')->name('about');
-Route::get('/contact')->name('contact');
+Route::get('/contact', [GeneralPagesController::class, 'contact'])->name('contact');
+Route::post('/contact', [CommentController::class, 'store'])->name('comments.store');
 Route::get('/blogs')->name('users.blogs');
 
 Route::get('/cart')->name('cart');
@@ -51,5 +53,7 @@ Route::middleware('auth', 'verified', 'admin')->group(function() {
 
         Route::resource('/blog-categories', BlogCategoryController::class)->except('show');
         Route::resource('/blogs', BlogController::class);
+
+        Route::resource('/comments', CommentController::class)->except('create', 'store', 'edit', 'update');
     });
 });

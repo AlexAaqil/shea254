@@ -20,4 +20,9 @@ class GeneralPagesController extends Controller
     {
         return view('shop');
     }
+
+    public function contact()
+    {
+        return view('contact');
+    }
 }

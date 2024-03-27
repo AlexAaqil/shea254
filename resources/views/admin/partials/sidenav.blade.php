@@ -51,7 +51,7 @@
                 </a>
             </li>
             <li class="nav-link">
-                <a href="">
+                <a href="{{ route('comments.index') }}">
                     <i class="fas fa-comment"></i>
                     <span class="text">Comments</span>
                 </a>
