@@ -27,7 +27,7 @@
                 </a>
             </li>
             <li class="nav-link">
-                <a href="">
+                <a href="{{ route('products.index') }}">
                     <i class="fas fa-barcode"></i>
                     <span class="text">Products</span>
                 </a>
