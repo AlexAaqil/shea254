@@ -42,6 +42,11 @@ form {
             label {
                 font-weight: 500;
                 font-size: 0.95em;
+
+                span {
+                    font-weight: bold;
+                    color: red;
+                }
             }
 
             .custom_radio_buttons {
@@ -108,6 +113,10 @@ form {
                     }
                 }
             }
+        }
+
+        img {
+            width: 150px;
         }
     }
 

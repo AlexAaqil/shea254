@@ -7,6 +7,8 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DeliveryAreaController;
 use App\Http\Controllers\DeliveryLocationController;
+use App\Http\Controllers\BlogCategoryController;
+use App\Http\Controllers\BlogController;
 
 Route::get('/welcome', [GeneralPagesController::class, 'welcome'])->name('welcome');
 Route::get('/', [GeneralPagesController::class, 'home'])->name('home');
@@ -46,5 +48,8 @@ Route::middleware('auth', 'verified', 'admin')->group(function() {
 
         Route::resource('/delivery/locations', DeliveryLocationController::class)->except('show');
         Route::resource('/delivery/areas', DeliveryAreaController::class)->except('show');
+
+        Route::resource('/blog-categories', BlogCategoryController::class)->except('show');
+        Route::resource('/blogs', BlogController::class)->except('show');
     });
 });

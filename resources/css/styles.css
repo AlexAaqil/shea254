@@ -48,6 +48,10 @@ form button {
   font-weight: 500;
   font-size: 0.95em;
 }
+.custom_form form .input_group label span {
+  font-weight: bold;
+  color: red;
+}
 .custom_form form .input_group .custom_radio_buttons {
   display: flex;
 }
@@ -96,6 +100,9 @@ form button {
   border: 2px solid #d6d6d6;
   border-radius: 50%;
 }
+.custom_form form img {
+  width: 150px;
+}
 .custom_form p {
   margin: 0.8em 0 0.5em;
 }
@@ -112,6 +119,67 @@ form button {
     gap: 0 1em;
   }
 }
+.card_wrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1em;
+}
+@media screen and (width >= 726px) {
+  .card_wrapper {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+.card_wrapper .card {
+  box-shadow: 2px 2px 8px #000;
+  border-radius: 8px;
+}
+.card_wrapper .card .image {
+  height: 200px;
+}
+.card_wrapper .card .image img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+.card_wrapper .card .text {
+  padding: 4px 8px 6px;
+}
+.card_wrapper .card .text .extra_details {
+  margin: 0 0 0.2em;
+}
+.card_wrapper .card .text .extra_details span {
+  font-size: 0.75em;
+  color: grey;
+}
+.card_wrapper .card .text .extra_details span:not(:last-of-type) {
+  margin-right: 12px;
+}
+.card_wrapper .card .text .content {
+  display: grid;
+  grid-template-columns: auto 15%;
+  gap: 0.5em;
+  align-items: center;
+}
+.card_wrapper .card .text .content .details .title a {
+  text-decoration: none;
+  color: #000;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+.card_wrapper .card .text .content .details .content {
+  margin: 0.2em 0;
+}
+.card_wrapper .card .text .content .actions {
+  text-align: center;
+}
+.card_wrapper .card .text .content .actions i {
+  font-size: 1.45em;
+}
+.card_wrapper .card .text .content .actions .delete {
+  color: red;
+}
+
 nav,
 .nav_container,
 .nav_container a,
@@ -739,7 +807,7 @@ footer .copyright {
   text-decoration: none;
   background: #000;
   color: #fff;
-  padding: 4px 8px;
+  padding: 6px 12px;
   border-radius: 4px;
 }
 .Admin .admin_content .container .body table {

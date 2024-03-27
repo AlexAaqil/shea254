@@ -45,7 +45,7 @@
                 </a>
             </li>
             <li class="nav-link">
-                <a href="">
+                <a href="{{ route('blogs.index') }}">
                     <i class="fas fa-blog"></i>
                     <span class="text">Blogs</span>
                 </a>
