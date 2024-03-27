@@ -50,6 +50,6 @@ Route::middleware('auth', 'verified', 'admin')->group(function() {
         Route::resource('/delivery/areas', DeliveryAreaController::class)->except('show');
 
         Route::resource('/blog-categories', BlogCategoryController::class)->except('show');
-        Route::resource('/blogs', BlogController::class)->except('show');
+        Route::resource('/blogs', BlogController::class);
     });
 });
