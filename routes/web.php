@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\GeneralPagesController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DeliveryLocationController;
 use App\Http\Controllers\UserController;
 
 Route::get('/welcome', [GeneralPagesController::class, 'welcome'])->name('welcome');
@@ -41,5 +42,7 @@ Route::middleware('auth', 'verified', 'admin')->group(function() {
         Route::get('/users', [UserController::class, 'users'])->name('admin.users');
         Route::get('/users/{user}/edit', [UserController::class, 'edit_user'])->name('user.edit');
         Route::patch('/users/{user}', [UserController::class, 'update_user'])->name('user.update');
+
+        Route::resource('/delivery/locations', DeliveryLocationController::class)->except('show');
     });
 });
