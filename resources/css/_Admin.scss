@@ -17,6 +17,10 @@ $aside_width_l: 15%;
             text-decoration: none;
             color: #000;
         }
+
+        .active {
+            background: black;
+        }
     
         .branding h1,
         .footer .text {

@@ -63,6 +63,9 @@ form button {
   display: flex;
   align-items: center;
 }
+.custom_form form .input_group .custom_radio_buttons label span {
+  color: #000;
+}
 .custom_form form .input_group .custom_radio_buttons label .option_radio {
   position: relative;
   margin: 0 0.1em 0 0;
