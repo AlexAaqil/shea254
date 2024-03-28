@@ -780,6 +780,14 @@ footer .copyright {
   text-decoration: none;
   color: #000;
 }
+.Admin aside .active {
+  background: black;
+  border-radius: 8px;
+}
+.Admin aside .active a {
+  color: #fff;
+  padding: 2px 0;
+}
 .Admin aside .branding h1,
 .Admin aside .footer .text {
   display: none;

@@ -20,6 +20,11 @@ $aside_width_l: 15%;
 
         .active {
             background: black;
+            border-radius: 8px;
+            a {
+                color: #fff;
+                padding: 2px 0;
+            }
         }
     
         .branding h1,
