@@ -1,5 +1,6 @@
-<x-app-layout>
+@extends('partials.base')
 @include('partials.navbar')
+@section('content')
     <div class="profile_update">
         @include('partials.messages')
 
@@ -108,52 +109,52 @@
         </div>
     </div>
 
-    <x-jquery_sweetalert>
-        <script>
-            function checkPasswordAndDelete() {
-                const password = document.getElementById("password").value.trim();
-    
-                if (password !== "") {
-                    const message = "Are you sure you want to permanently delete your account?";
-    
-                    // Show a confirmation dialog
-                    showConfirmationDialog(message, () => {
-                        // Submit the form if the user confirms
-                        const form = document.getElementById("deleteAccountForm");
-                        if (form) {
-                            form.submit();
-                        }
-                    });
-                }
+    @section('additional_javascript')
+    <script>
+        function checkPasswordAndDelete() {
+            const password = document.getElementById("password").value.trim();
+
+            if (password !== "") {
+                const message = "Are you sure you want to permanently delete your account?";
+
+                // Show a confirmation dialog
+                showConfirmationDialog(message, () => {
+                    // Submit the form if the user confirms
+                    const form = document.getElementById("deleteAccountForm");
+                    if (form) {
+                        form.submit();
+                    }
+                });
             }
-    
-            // Add an event listener for the input to toggle the button style
-            document.getElementById("password").addEventListener('input', function() {
-                const password = this.value.trim();
-                const deleteAccountBtn = document.getElementById("deleteAccountBtn");
-    
-                if (password !== "") {
-                    deleteAccountBtn.style.display = "block";
-                } else {
-                    deleteAccountBtn.style.display = "none";
-                }
-            });
-    
-            // Add an event listener for the Enter key press on the password input
-            document.getElementById("password").addEventListener('keypress', function(e) {
-                if (e.which === 13) { // 13 is the Enter key code
-                    e.preventDefault(); // Prevent default form submission
-                    checkPasswordAndDelete();
-                }
-            });
-    
-            // Add an event listener for the Enter key press on the delete button
-            document.getElementById("deleteAccountBtn").addEventListener('keypress', function(e) {
-                if (e.which === 13) { // 13 is the Enter key code
-                    e.preventDefault(); // Prevent default form submission
-                    checkPasswordAndDelete();
-                }
-            });
-        </script>
-    </x-jquery>
-</x-app-layout>
+        }
+
+        // Add an event listener for the input to toggle the button style
+        document.getElementById("password").addEventListener('input', function() {
+            const password = this.value.trim();
+            const deleteAccountBtn = document.getElementById("deleteAccountBtn");
+
+            if (password !== "") {
+                deleteAccountBtn.style.display = "block";
+            } else {
+                deleteAccountBtn.style.display = "none";
+            }
+        });
+
+        // Add an event listener for the Enter key press on the password input
+        document.getElementById("password").addEventListener('keypress', function(e) {
+            if (e.which === 13) { // 13 is the Enter key code
+                e.preventDefault(); // Prevent default form submission
+                checkPasswordAndDelete();
+            }
+        });
+
+        // Add an event listener for the Enter key press on the delete button
+        document.getElementById("deleteAccountBtn").addEventListener('keypress', function(e) {
+            if (e.which === 13) { // 13 is the Enter key code
+                e.preventDefault(); // Prevent default form submission
+                checkPasswordAndDelete();
+            }
+        });
+    </script>
+    @endsection
+@endsection

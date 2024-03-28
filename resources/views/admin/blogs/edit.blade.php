@@ -1,9 +1,9 @@
-<x-admin>
+@extends('admin.partials.base')
+@section('head')
+<script src="https://cdn.tiny.cloud/1/44zgxk9rangxvjd8no219bfrmnon247y18bl2fylec4zpa55/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+@endsection
 
-    <x-slot name='extra_head'>
-        <script src="https://cdn.tiny.cloud/1/44zgxk9rangxvjd8no219bfrmnon247y18bl2fylec4zpa55/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
-    </x-slot>
-    
+@section('admin_content')
     <div class="container Blogs">
         <div class="custom_form">
             <h1>Update Blog</h1>
@@ -11,30 +11,15 @@
                 @csrf
                 @method('PATCH')
 
-                <div class="row_input_group">
+                <div class="blog_image_input">
                     <div class="input_group">
-                        <label for="category_id">Blog Category<span>*</span></label>
-                        <select name="category_id" id="category_id">
-                            <option value="">Select Blog Category</option>
-                            @foreach($blog_categories as $category)
-                                <option value="{{ $category->id }}" {{ (old('category_id', $blog->category_id) == $category->id) ? 'selected' : '' }}>
-                                    {{ $category->title }}
-                                </option>
-                            @endforeach
-                        </select>
-                        <span class="inline_alert">{{ $errors->first('category_id') }}</span>
+                        <label for="image">Thumbnail</label>
+                        <input type="file" name="image" id="image" />
+                        <span class="inline_alert">{{ $errors->first('image') }}</span>
                     </div>
 
-                    <div class="blog_image_input">
-                        <div class="input_group">
-                            <label for="image">Thumbnail</label>
-                            <input type="file" name="image" id="image" />
-                            <span class="inline_alert">{{ $errors->first('image') }}</span>
-                        </div>
-    
-                        <div class="blog_image">
-                            <img src="{{ $blog->getImageUrl() }}" alt="Blog Image">
-                        </div>
+                    <div class="blog_image">
+                        <img src="{{ $blog->getImageUrl() }}" alt="Blog Image">
                     </div>
                 </div>
 
@@ -56,8 +41,8 @@
             </form>
         </div>
     </div>
+@endsection
 
-    <x-slot name='javascript'>
-        <script src="{{ asset('assets/js/tinymce.js') }}"></script>
-    </x-slot>
-</x-admin>
+@section('additional_javascript')
+<script src="{{ asset('assets/js/tinymce.js') }}"></script>
+@endsection

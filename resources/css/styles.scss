@@ -1,19 +1,24 @@
-@import '_global';
-@import '_mixins';
-@import '_forms';
-@import '_cards';
+@import "_global";
+@import "_mixins";
+@import "_variables";
 
-// Partials
-@import 'navbar';
-@import 'footer';
-@import 'alerts';
 
-// Pages
-@import 'Homepage';
-@import 'Shop';
-@import 'Contactpage';
-@import 'Authentication';
-@import 'Admin';
-@import 'Dashboard';
-@import 'DeliveryLocations';
-@import 'Products';
+@import "forms";
+@import "tables";
+@import "navbar";
+@import "admin_sidenav";
+@import "footer";
+@import "product";
+@import "messages";
+@import "order";
+
+@import "homepage";
+@import "authentication";
+@import "about";
+@import "contact";
+@import "cart";
+@import "shop";
+@import "admin";
+@import "dashboard";
+@import "locations";
+@import "blogs";

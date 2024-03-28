@@ -1,0 +1,140 @@
+$sidenav_bgcolor: #fff;
+$aside_width_s: 20%;
+$aside_width_l: 15%;
+
+.admin_sidebar {
+    position: fixed;
+    height: 100%;
+    width: $aside_width_s;
+    border-right: 1px solid grey;
+    padding: 0.5em 0;
+    text-align: center;
+
+    i {
+        font-size: 1.5em;
+    }
+
+    a {
+        text-decoration: none;
+        color: #000;
+    }
+
+    .branding h1,
+    .footer .text {
+        @include desktop_only;
+    }
+
+    .nav_links {
+        margin: 0.8em 0 0;
+
+        ul {
+            li {
+                margin: 0 0 0.8em;
+                a {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 0.1em;
+                    span {
+                        font-size: 0.8em;
+                    }
+                }
+            }
+        }
+    }
+
+    .footer {
+        position: absolute;
+        bottom: 2em;
+        width: 100%;
+
+        .profile {
+            margin: 0 0 1em;
+            img {
+                border: 1px solid green;
+                padding: 2px;
+            }
+        }
+
+        form {
+            button {
+                background: none;
+                padding: unset;
+                i {
+                    color: red;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (width >= 726px) {
+    .admin_sidebar {
+        padding: 0.5em 0.8em;
+        width: $aside_width_l;
+        text-align: left;
+
+        i {
+            font-size: 1em;
+        }
+
+        .branding {
+            display: flex;
+            align-items: center;
+            gap: 0.5em;
+
+            h1 {
+                font-size: 1.2em;
+            }
+        }
+
+        .nav_links {
+            margin: 2em 0;
+            ul {
+                li {
+                    border-bottom: 1px solid rgb(204, 204, 204);
+                    padding: 0 4px 4px;
+                    a {
+                        display: grid;
+                        grid-template-columns: 25px auto;
+
+                        span {
+                            font-size: 1em;
+                            font-weight: bold;
+                        }
+                    }
+                }
+            }
+        }
+
+        .footer {
+            left: 0;
+            .profile {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 0.8em;
+
+                img {
+                    width: 50px;
+                    height: 50px;
+                    border-radius: 50%;
+                }
+            }
+
+            .logout {
+                text-align: center;
+                form {
+                    button {
+                        background: red;
+                        color: #fff;
+                        border-radius: 6px;
+                        padding: 8px 16px;
+                        i {
+                            color: #fff;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

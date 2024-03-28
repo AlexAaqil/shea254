@@ -1,4 +1,6 @@
-<x-app-layout>
+@extends('partials.base')
+
+@section('content')
 @include('partials.navbar')
 <main class="Contact">
     <div class="container">
@@ -36,4 +38,4 @@
     </div>
 </main>
 @include('partials.footer')
-</x-app-layout>
+@endsection

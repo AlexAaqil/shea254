@@ -10,28 +10,33 @@ class DeliveryLocationController extends Controller
     public function index()
     {
         $delivery_locations = DeliveryLocation::latest()->get();
-        return view('admin.delivery_locations.index', compact('delivery_locations'));
+        return view('admin.delivery_locations.delivery_locations', compact('delivery_locations'));
     }
 
     public function create()
     {
-        return view('admin.delivery_locations.create');
+        return view('admin.delivery_locations.add_location');
     }
 
     public function store(Request $request)
     {
-        $request->validate([
+        $validated = $request->validate([
             'location_name' => 'required|string|max:100|unique:delivery_locations',
         ]);
 
-        DeliveryLocation::create($request->only('location_name'));
+        DeliveryLocation::create([
+            'location_name' => $validated['location_name'],
+        ]);
 
-        return redirect()->route('locations.index')->with('success', ['message' => 'Location has been added.']);
+        return redirect()->route('locations.index')->with('success', [
+            'message' => 'Delivery Location has been added!',
+            'duration' => $this->alert_message_duration,
+        ]);
     }
 
     public function edit(DeliveryLocation $location)
     {
-        return view('admin.delivery_locations.edit', compact('location'));
+        return view('admin.delivery_locations.update_location', compact('location'));
     }
 
     public function update(Request $request, DeliveryLocation $location)
@@ -41,16 +46,22 @@ class DeliveryLocationController extends Controller
         ]);
 
         $location->update([
-            'location_name' => $request->input('location_name'),
+            'location_name'=>$request->input('location_name'),
         ]);
 
-        return redirect()->route('locations.index')->with('success', ['message' => 'Location has been updated.']);
+        return redirect()->route('locations.index')->with('success', [
+            'message' => 'Delivery Location has been updated.',
+            'duration' => $this->alert_message_duration,
+        ]);
     }
 
     public function destroy(DeliveryLocation $location)
     {
         $location->delete();
-        
-        return redirect()->route('locations.index')->with('success', ['message' => 'Location and associated areas have been deleted.']);
+
+        return redirect()->route('locations.index')->with('success', [
+            'message' => 'Delivery Location and associated areas have been deleted.',
+            'duration' => $this->alert_message_duration,
+        ]);
     }
 }

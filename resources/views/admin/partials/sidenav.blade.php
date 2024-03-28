@@ -1,39 +1,66 @@
 <aside class="admin_sidebar">
     <div class="branding">
-        <a href="{{ route('home') }}">
+        <a href="{{ route('homepage') }}">
             <img src="{{ asset('assets/images/logo.jpg') }}" alt="Logo" width=30 height=30 class="rounded">
         </a>
         <h1>{{ config('app.name') }}</h1>
     </div>
 
     <div class="nav_links">
-        <ul>
-            @php
-                $navLinks = [
-                    ['route' => 'admin.dashboard', 'icon' => 'fas fa-home', 'text' => 'Dashboard'],
-                    ['route' => 'admin.admins', 'icon' => 'fas fa-users-cog', 'text' => 'Admins'],
-                    ['route' => 'admin.users', 'icon' => 'fas fa-users', 'text' => 'Users'],
-                    ['route' => 'products.index', 'icon' => 'fas fa-barcode', 'text' => 'Products'],
-                    ['route' => '', 'icon' => 'fas fa-truck-loading', 'text' => 'Orders'],
-                    ['route' => 'locations.index', 'icon' => 'fas fa-map-marker-alt', 'text' => 'Locations'],
-                    ['route' => 'blogs.index', 'icon' => 'fas fa-blog', 'text' => 'Blogs'],
-                    ['route' => 'comments.index', 'icon' => 'fas fa-comment', 'text' => 'Comments'],
-                ];
-            @endphp
-
-            @foreach($navLinks as $link)
-                <li class="nav-link {{ Route::currentRouteName() === $link['route'] ? 'active' : '' }}">
-                    <a href="{{ $link['route'] ? route($link['route']) : '#' }}">
-                        <i class="{{ $link['icon'] }}"></i>
-                        <span class="text">{{ $link['text'] }}</span>
-                    </a>
-                </li>
-            @endforeach
+        <ul class="list_style_none">
+            <li class="nav-link">
+                <a href="/home">
+                    <i class="fas fa-home"></i>
+                    <span class="text">Dashboard</span>
+                </a>
+            </li>
+            <li class="nav-link">
+                <a href="{{ route('list_admins') }}">
+                    <i class="fas fa-users-cog"></i>
+                    <span class="text">Admins</span>
+                </a>
+            </li>
+            <li class="nav-link">
+                <a href="{{ route('list_users') }}">
+                    <i class="fas fa-users"></i>
+                    <span class="text">Users</span>
+                </a>
+            </li>
+            <li class="nav-link">
+                <a href="{{ route('products.index') }}">
+                    <i class="fas fa-barcode"></i>
+                    <span class="text">Products</span>
+                </a>
+            </li>
+            <li class="nav-link">
+                <a href="{{ route('locations.index') }}">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span class="text">Locations</span>
+                </a>
+            </li>
+            <li class="nav-link">
+                <a href="{{ route('list_orders') }}">
+                    <i class="fas fa-truck-loading"></i>
+                    <span class="text">Orders</span>
+                </a>
+            </li>
+            <li class="nav-link">
+                <a href="{{ route('blogs.index') }}">
+                    <i class="fas fa-blog"></i>
+                    <span class="text">Blogs</span>
+                </a>
+            </li>
+            <li class="nav-link">
+                <a href="{{ route('comments.index') }}">
+                    <i class="fas fa-comment"></i>
+                    <span class="text">Comments</span>
+                </a>
+            </li>
         </ul>
     </div>
 
     <div class="footer">
-        <ul>
+        <ul class="list_style_none">
             <li class="profile">
                 <img src="{{ asset('assets/images/default_profile.jpg') }}" alt="Logo" width=40 height=40 class="rounded">
                 <span class="text">

@@ -2,14 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-use Illuminate\Support\Facades\DB;
 
-class User extends Authenticatable implements MustVerifyEmail
+class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -23,9 +22,9 @@ class User extends Authenticatable implements MustVerifyEmail
         'last_name',
         'email',
         'phone_number',
-        'user_level',
-        'user_status',
         'password',
+        'user_level',
+        'status',
     ];
 
     /**
@@ -48,23 +47,24 @@ class User extends Authenticatable implements MustVerifyEmail
         'password' => 'hashed',
     ];
 
-    static public function getAdmins()
-    {
-        return DB::table('users')
-        ->select('users.*')
-        ->where('user_level', 1)
-        ->where('user_status', 1)
-        ->orderByDesc('id')
+    static public function getAdmins(){
+        return self::select('users.*')
+        ->where('user_level', '=' , 1)
+        ->where('status','=', 1)
+        ->orderBy('id', 'desc')
         ->get();
     }
 
     static public function getUsers()
     {
-        return DB::table('users')
-        ->select('users.*')
-        ->where('user_level', 2)
-        ->where('user_status', 1)
-        ->orderByDesc('id')
+        return self::select('users.*')
+        ->where('user_level', '=', 2)
+        ->orderBy('id', 'desc')
         ->get();
+    }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
     }
 }

@@ -1,10 +1,46 @@
 * {
-    padding: 0;
     margin: 0;
+    padding: 0;
     box-sizing: border-box;
-    font-family: -apple-system, Roboto, sans-serif, Arial, 'Helvetica Neue';
+    font-family: Arial, Helvetica, sans-serif;
 }
+
+.text-danger {
+    color: red;
+}
+.text-success {
+    color: green;
+}
+.btn_danger {
+    background: #d80202;
+    color: #fff;
+}
+.bold {
+    font-weight: bold;
+}
+
 
 .container {
     padding: 10px 5%;
+}
+
+
+.list_style_none {
+    list-style: none;
+}
+
+
+.rounded {
+    border-radius: 50%;
+}
+
+
+.icon {
+    background: transparent;
+    width: 20px;
+    height: 20px;
+
+    img {
+        background: blue;
+    }
 }

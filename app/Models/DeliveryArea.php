@@ -10,13 +10,13 @@ class DeliveryArea extends Model
     use HasFactory;
 
     protected $fillable = [
-        'delivery_location_id',
+        'location_id',
         'area_name',
         'price',
     ];
 
-    public function delivery_location()
+    public function location()
     {
-        return $this->belongsTo(DeliveryLocation::class, 'delivery_location_id');
+        return $this->belongsTo(DeliveryLocation::class, 'location_id');
     }
 }

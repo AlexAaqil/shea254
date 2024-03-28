@@ -15,7 +15,8 @@ class Admin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(Auth()->user()->user_level == 1) {
+        if(Auth()->user()->user_level==1)
+        {
             return $next($request);
         }
         abort(401);

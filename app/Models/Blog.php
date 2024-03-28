@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Blog extends Model
 {
@@ -11,22 +12,15 @@ class Blog extends Model
 
     protected $fillable = [
         'title',
-        'slug',
         'content',
-        'category_id'
     ];
-
-    public function blog_category()
-    {
-        return $this->belongsTo(BlogCategory::class, 'category_id');
-    }
 
     public function getImageUrl()
     {
         if($this->image) {
             return asset($this->image);
         } else {
-            return asset('assets/images/default_image.jpg');
+            return asset('assets/images/default.jpg');
         }
     }
 }

@@ -18,9 +18,11 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('phone_number');
-            $table->unsignedTinyInteger('user_level')->default(2);
-            $table->boolean('user_status')->default(1);
             $table->string('password');
+            // 1 - Admin, 2 - Client/Customer
+            $table->tinyInteger('user_level')->default(2);
+            // 0 - Inactive, 1 - Active
+            $table->tinyInteger('status')->default(1);
             $table->rememberToken();
             $table->timestamps();
         });

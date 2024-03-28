@@ -11,8 +11,8 @@
             <h1>Explore</h1>
             <ul class="list_style_none">
                 <li><a href="{{ route('shop') }}">Shop</a></li>
-                <li><a href="{{ route('about') }}">About</a></li>
-                <li><a href="{{ route('contact') }}">Contacts</a></li>
+                <li><a href="{{ route('aboutpage') }}">About</a></li>
+                <li><a href="{{ route('contactpage') }}">Contacts</a></li>
             </ul>
         </div>
 
