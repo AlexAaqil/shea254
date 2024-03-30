@@ -36,9 +36,9 @@
                     </div>
                     <div class="text">
                         <p>
-                            <a href="">Categories</a>
+                            <a href="{{ route('product-categories.index') }}">Categories</a>
                         </p>
-                        <p>xxx</p>
+                        <p>{{ $count_product_categories }}</p>
                     </div>
                 </div>
         
@@ -48,9 +48,9 @@
                     </div>
                     <div class="text">
                         <p>
-                            <a href="">Products</a>
+                            <a href="{{ route('products.index') }}">Products</a>
                         </p>
-                        <p>xxx</p>
+                        <p>{{ $count_products }}</p>
                     </div>
                 </div>
         
