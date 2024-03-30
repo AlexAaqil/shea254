@@ -1138,4 +1138,39 @@ footer .copyright {
   color: green;
   font-weight: bold;
   font-size: 1.15em;
+}
+
+.product_images {
+  display: flex;
+  gap: 0 1em;
+  margin: 0.5em 0;
+}
+.product_images .product_image {
+  position: relative;
+}
+.product_images .product_image img {
+  width: 120px;
+  height: 120px;
+  -o-object-fit: contain;
+     object-fit: contain;
+  -o-object-position: center;
+     object-position: center;
+  background: rgb(221, 221, 221);
+}
+.product_images .product_image a {
+  text-decoration: none;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: red;
+  color: white;
+  font-weight: bold;
+  padding: 8px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
 }/*# sourceMappingURL=styles.css.map */

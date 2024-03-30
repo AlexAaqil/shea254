@@ -5,12 +5,18 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\ProductCategory;
+use App\Models\ProductMeasurement;
+use App\Models\ProductImages;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::with('product_category', 'getProductImages')->orderBy('order', 'asc')->orderBy('title', 'asc')->get();
+        $products = Product::with('product_category', 'getProductImages')->orderBy('order', 'asc')
+        ->orderBy('title', 'asc')
+        ->get();
 
         return view('admin.products.index', compact('products'));
     }
@@ -18,13 +24,36 @@ class ProductController extends Controller
     public function create()
     {
         $categories = ProductCategory::all();
+        $measurement_units = ProductMeasurement::all();
 
-        return view('admin.products.create', compact('categories'));
+        return view('admin.products.create', compact('categories', 'measurement_units'));
     }
 
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'title'=> 'required|string|max:120|unique:products',
+            'product_code' => 'numeric',
+            'category' => 'nullable',
+            'stock_count' => 'numeric',
+            'safety_stock' => 'numeric',
+            'buying_price' => 'numeric',
+            'selling_price' => 'numeric',
+            'discount_price' => 'numeric',
+            'product_measurement' => 'nullable|numeric',
+            'measurement_unit' => 'nullable|numeric',
+            'order' => 'nullable|numeric',
+            'images' => 'max:2048',
+            'description' => 'nullable',
+        ]);
+
+        $validated['slug'] = Str::slug($validated['title']);
+
+        $product = Product::create($validated);
+
+        $this->storeProductImages($request, $product);
+
+        return redirect()->route('products.index')->with('success', ['message' => 'Product has been added.']);
     }
 
     public function show(Product $product)
@@ -34,16 +63,131 @@ class ProductController extends Controller
 
     public function edit(Product $product)
     {
-        //
+        $categories = ProductCategory::all();
+        $measurement_units = ProductMeasurement::all();
+        $product_images = $product->getProductImages;
+
+        return view('admin.products.edit', compact('product', 'categories', 'measurement_units', 'product_images'));
     }
 
     public function update(Request $request, Product $product)
     {
-        //
+        $validated = $request->validate([
+            'title'=> 'required|string|max:120|unique:products,title,' . $product->id,
+            'product_code' => 'numeric',
+            'category' => 'nullable',
+            'stock_count' => 'numeric',
+            'safety_stock' => 'numeric',
+            'buying_price' => 'numeric',
+            'selling_price' => 'numeric',
+            'discount_price' => 'numeric',
+            'product_measurement' => 'nullable|numeric',
+            'measurement_unit' => 'nullable|numeric',
+            'order' => 'nullable|numeric',
+            'images' => 'max:2048',
+            'description' => 'nullable',
+        ]);
+
+        $validated['slug'] = Str::slug($validated['title']);
+        
+        $product->save($validated);
+
+        // Retrieve existing images
+        $existing_images = $product->getProductImages->pluck('image')->toArray();
+
+        // Check if new images are being uploaded
+        $images = $request->file('images');
+        if ($images) {
+            $total_images = count($existing_images) + count($images);
+
+            // Check if the total number of images doesn't exceed five
+            if ($total_images <= 5) {
+                foreach ($images as $image) {
+                    $random_string = date('Ymdhis').Str::random(5);
+                    $extension = $image->getClientOriginalExtension();
+                    $filename = $random_string. '.' .$extension;
+
+                    $image_path = $image->storeAs('products', $filename, 'public');
+
+                    $image_upload = new ProductImages;
+                    $image_upload->image = $image_path;
+                    $image_upload->product_id = $product->id;
+
+                    $image_upload->save();
+                }
+            } else {
+                return redirect()->route('products.edit', $product->id)->withErrors(['images' => 'You can only upload a maximum of five images.'])->withInput();
+            }
+        }
+
+        return redirect()->route('products.index')->with('success', ['message' => 'Product has been updated.']);
     }
 
     public function destroy(Product $product)
     {
-        //
+        $image_paths = $product->getProductImages->pluck('image')->toArray();
+
+        $product->getProductImages()->delete();
+
+        $product->delete();
+
+        foreach($image_paths as $image_path) {
+            Storage::disk('public')->delete($image_path);
+        }
+
+        return redirect()->route('products.index')->with('success', ['message' => 'Product has been deleted.']);
+    }
+
+    public function product_images_sort(Request $request) {
+        if(!empty($request->photo_id)) {
+            $i = 1;
+            foreach($request->photo_id as $photo_id) {
+                $image = ProductImages::find($photo_id);
+                $image->order = $i;
+                $image->save();
+
+                $i++;
+            }
+        }
+
+        $json['success'] = true;
+        echo json_encode($json);
+    }
+
+    public function delete_product_image($id) {
+        // Delete the selected image matching the condition
+        $image = ProductImages::find($id);
+
+        // Delete from the database
+        $image->delete();
+
+        // Delete the file from storage
+        Storage::disk('public')->delete($image->image_name);
+
+        return redirect()->route('products.edit', $image->product_id)->with('success',['message' => 'Image has been deleted.']);
+    }
+
+    private function storeProductImages(Request $request, Product $product)
+    {
+        $images = $request->file('images');
+        if ($images) {
+            foreach ($images as $image) {
+                $filename = $this->generateImageFilename($image, $product->title, $product->id);
+                $image_path = $image->storeAs('products', $filename, 'public');
+
+                $image_upload = new ProductImages;
+                $image_upload->image = $image_path;
+                $image_upload->product_id = $product->id;
+
+                $image_upload->save();
+            }
+        }
+    }
+
+    private function generateImageFilename($image, $title, $productId)
+    {
+        $extension = $image->getClientOriginalExtension();
+        $slug = Str::slug($title);
+        return "{$slug}-{$productId}-" . uniqid() . ".$extension";
     }
 }

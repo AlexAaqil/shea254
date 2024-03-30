@@ -43,18 +43,27 @@ class Product extends Model
     }
 
     public function getFirstImage() {
-        $productImages = $this->getProductImages;
-        $imagePath = $productImages->isNotEmpty()
-            ? $productImages->first()->image_name
-            : 'default_image.jpg';
-
+        $productImages = $this->getProductImages()->get();
+        
+        if ($productImages->isEmpty()) {
+            return asset('assets/images/default_image.jpg');
+        }
+    
+        $firstImage = $productImages->first();
+    
+        if (!$firstImage || !$firstImage->image) {
+            return asset('assets/images/default_image.jpg');
+        }
+    
+        $imagePath = $firstImage->image;
+    
         // Check if the image exists in storage, otherwise return the default image path
-        if ($productImages->isNotEmpty() && Storage::disk('public')->exists($imagePath)) {
+        if (Storage::disk('public')->exists($imagePath)) {
             return Storage::url($imagePath);
         } else {
             return asset('assets/images/default_image.jpg');
         }
-    }
+    }    
 
     public function calculateDiscount()
     {

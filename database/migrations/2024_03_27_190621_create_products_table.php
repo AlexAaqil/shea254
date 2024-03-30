@@ -15,9 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('title')->unique();
             $table->string('slug')->index();
-            $table->unsignedSmallInteger('product_code')->unique()->default(0);
+            $table->unsignedSmallInteger('product_code')->default(0);
             $table->boolean('featured')->default(0);
-            $table->text('description')->nullable();
             $table->decimal('buying_price', 10, 2)->default(0.00);
             $table->decimal('selling_price', 10, 2)->default(0.00);
             $table->decimal('discount_price', 10, 2)->default(0.00)->nullable();
@@ -25,6 +24,7 @@ return new class extends Migration
             $table->unsignedSmallInteger('order')->default(200);
             $table->unsignedSmallInteger('stock_count')->default(0);
             $table->unsignedSmallInteger('safety_stock')->default(0);
+            $table->text('description')->nullable();
             $table->foreignId('category_id')->nullable()->constrained('product_categories')->onDelete('set null');
             $table->foreignId('measurement_id')->nullable()->constrained('product_measurements')->onDelete('set null');
             $table->timestamps();
