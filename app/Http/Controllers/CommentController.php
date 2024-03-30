@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use Illuminate\Http\Request;
-use App\Models\Message;
 
 class CommentController extends Controller
 {
     public function index()
     {
-        $comments = Message::latest()->get();
-        return view('admin.comments.comments', compact('comments'));
+        $comments = Comment::latest()->get();
+        
+        return view('admin.comments.index', compact('comments'));
     }
 
     public function store(Request $request)
@@ -22,26 +23,20 @@ class CommentController extends Controller
             'message' => 'required|string',
         ]);
 
-        Message::create($validatedData);
+        Comment::create($validatedData);
 
-        return redirect()->back()->with('success',[
-            'message' => 'Your message has been sent.',
-            'duration' => $this->alert_message_duration
-        ]);
+        return redirect()->back()->with('success',['message' => 'Your message has been sent.']);
     }
 
-    public function show(Message $comment)
+    public function show(Comment $comment)
     {
-        return view('admin.comments.comment', compact('comment'));
+        return view('admin.comments.show', compact('comment'));
     }
 
-    public function destroy(Message $comment)
+    public function destroy(Comment $comment)
     {
         $comment->delete();
 
-        return redirect()->route('comments.index')->with('success', [
-            'message' =>"Comment has been deleted.",
-            'duration' => $this->alert_message_duration,
-        ]);
+        return redirect()->route('comments.index')->with('success', ['message' => 'Comment has been deleted.']);
     }
 }

@@ -23,13 +23,13 @@ class Product extends Model
         'order',
     ];
 
-    public function category()
+    public function product_category()
     {
-        return $this->belongsTo(Category::class, 'category_id');
+        return $this->belongsTo(ProductCategory::class, 'category_id');
     }
 
     public function getProductImages() {
-        return $this->hasMany(ProductImage::class, 'product_id')->orderBy('order', 'asc');
+        return $this->hasMany(ProductImages::class, 'product_id')->orderBy('order', 'asc');
     }
 
     public function getTranslatedInStock()
@@ -46,13 +46,13 @@ class Product extends Model
         $productImages = $this->getProductImages;
         $imagePath = $productImages->isNotEmpty()
             ? $productImages->first()->image_name
-            : 'default_product.jpg';
+            : 'default_image.jpg';
 
         // Check if the image exists in storage, otherwise return the default image path
         if ($productImages->isNotEmpty() && Storage::disk('public')->exists($imagePath)) {
             return Storage::url($imagePath);
         } else {
-            return asset('assets/images/default_product.jpg'); // Use asset() to generate URL for the default image
+            return asset('assets/images/default_image.jpg');
         }
     }
 

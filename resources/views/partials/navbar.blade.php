@@ -1,6 +1,6 @@
 <nav>
     <div class="nav_container">
-        <a href="{{ route('homepage') }}" class="branding">
+        <a href="{{ route('home') }}" class="branding">
             <img src="{{ asset('/assets/images/logo.jpg') }}" width=30 height=30 alt="Logo" class="rounded">
             <h1>{{ config('app.name') }}</h1>
         </a>
@@ -14,12 +14,12 @@
                     </li>
                 @elseif(Auth::user() && Auth::user()->user_level == 1)
                     <li>
-                        <a href="{{ route('admin_dashboard') }}">Dashboard</a>
+                        <a href="{{ route('admin.dashboard') }}">Dashboard</a>
                     </li>
                 @endif
                 <li><a href="{{ route('shop') }}">Shop</a></li>
-                <li><a href="{{ route('aboutpage') }}">About</a></li>
-                <li><a href="{{ route('contactpage') }}">Contact</a></li>
+                <li><a href="{{ route('about') }}">About</a></li>
+                <li><a href="{{ route('contact') }}">Contact</a></li>
                 <li><a href="{{ route('users.blogs') }}">Blog</a></li>
                 <li class="cart">
                     <a href="{{ route('cart') }}">

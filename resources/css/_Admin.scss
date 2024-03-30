@@ -1,46 +1,131 @@
+$aside_width_s: 20%;
+$aside_width_l: 15%;
 .Admin {
-    display: flex;
+    aside {
+        position: fixed;
+        border-right: 1px solid grey;
+        width: $aside_width_s;
+        height: 100%;
+        padding: 4px 8px;
+        text-align: center;
 
-    .alert {
-        top: 0;
+        i {
+            font-size: 1.5em;
+        }
+
+        a {
+            text-decoration: none;
+            color: #000;
+        }
+
+        .active {
+            background: black;
+            border-radius: 8px;
+            a {
+                color: #fff;
+                padding: 2px 0;
+            }
+        }
+    
+        .branding h1,
+        .footer .text {
+            @include desktop_only;
+        }
+
+        .branding a,
+        .footer .profile {
+            img {
+                border-radius: 50%;
+            }
+        }
+
+        .nav_links {
+            margin: 0.8em 0 0;
+    
+            ul {
+                list-style: none;
+                li {
+                    margin: 0 0 0.8em;
+                    a {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 0.1em;
+                        span {
+                            font-size: 0.8em;
+                        }
+                    }
+                }
+            }
+        }
+    
+        .footer {
+            position: absolute;
+            bottom: 2em;
+            width: 100%;
+    
+            .profile {
+                margin: 0 0 1em;
+                img {
+                    border: 1px solid green;
+                    padding: 2px;
+                }
+            }
+    
+            form {
+                button {
+                    background: none;
+                    padding: unset;
+                    i {
+                        color: red;
+                    }
+                }
+            }
+        }
     }
 
-    .Main {
-        margin-left: $aside_width_s;
-        width: 100%;
-
+    .admin_content {
+        margin-left: calc($aside_width_s + 0.5em);
+        
         .container {
-            padding: 0.5em 3%;
+            padding: 10px 15px;
 
             .related_pages_navbar {
-                display: flex;
-                gap: 0 0.3em;
                 margin: 0 0 0.5em;
+
                 a {
                     text-decoration: none;
-                    padding: 0.3em 0.6em;
-                    border-radius: 0 16px 0 0;
                     background: #000;
                     color: #fff;
-                    font-weight: bold;
+                    padding: 2px 8px;
+                    border-radius: 0 8px 0 0;
                 }
             }
 
             .header {
-                input {
-                    @include desktop_only;
+                margin: 0 0 0.5em;
+                h1 {
+                    font-size: 1.25em;
+
+                    span {
+                        font-size: 0.85em;
+                        color: grey;
+                    }
                 }
+
+                input {
+                    border: 1px solid rgb(41, 41, 41);
+                    border-radius: 32px;
+                    padding: 4px 16px;
+                }
+
                 .header_btn {
-                    margin: 1em 0;
-                    border: none;
+                    margin: 0.5em 0;
                     a {
                         text-decoration: none;
                         background: #000;
                         color: #fff;
-                        font-weight: bold;
-                        font-size: 1em;
-                        padding: 8px 16px;
-                        border-radius: 6px;
+                        padding: 6px 12px;
+                        border-radius: 4px;
                     }
                 }
             }
@@ -48,151 +133,66 @@
             .body {
                 table {
                     width: 100%;
+                    border-collapse: collapse;
+                    border-spacing: 0;
 
                     thead {
                         background: #000;
                         color: #fff;
-
+                        
                         th {
-                            padding: 0.5em 0.2em;
                             text-align: left;
+                            padding: 6px 6px;
+                            font-size: 0.9em;
 
                             &:last-of-type {
                                 text-align: center;
+                                border-radius: 0 8px 0 0;
+                            }
+
+                            &:first-of-type {
+                                border-radius: 8px 0 0 0;
                             }
                         }
                     }
 
                     tbody {
-                        td {
-                            padding: 0.5em 0.2em;
-                        }
-                        .actions {
-                            display: flex;
-                            justify-content: center;
-                            gap: 0 2em;
-
-                            .action {
-                                i {
-                                    font-size: 1em;
-                                    font-weight: bold;
-                                }
-                                .update {
-                                    color: green;
-                                }
-                                .delete {
-                                    color: red;
-                                }
-
-                                form {
-                                    button {
-                                        background: none;
-                                        padding: 0;
-                                        cursor: pointer;
-                                    }
-                                }
+                        tr {
+                            border-bottom: 1px solid rgb(211, 211, 211);
+                            &:nth-of-type(odd) {
+                                background: rgb(245, 245, 245);
                             }
-                        }
-                    }
-                }
 
-                .products {
-                    @include grid(3);
-                    margin: 1em 0;
-
-                    .product {
-                        box-shadow: 2px 2px 6px grey;
-
-                        .image {
-                            height: 200px;
-                            width: 100%;
-                            background: whitesmoke;
-
-                            img {
-                                width: 100%;
-                                height: 100%;
-                                object-fit: contain;
+                            td {
+                                padding: 4px 6px;
                             }
-                        }
 
-                        .text {
-                            display: grid;
-                            grid-template-columns: auto 10%;
-                            gap: 0.5em;
-                            align-items: center;
-
-                            .details {
-                                padding: 4px 8px;
-
-                                .extras {
-                                    display: flex;
-                                    gap: 0.5em;
-
-                                    span {
-                                        border: 1px solid rgb(216, 216, 216);
-                                        border-radius: 32px;
-                                        padding: 1px 6px 0;
-                                        font-size: 0.8em;
-                                    }
-
-                                    .in_stock {
-                                        color: green;
-                                    }
-
-                                    .featured {
-                                        color: green;
-                                    }
-                                    .not_featured {
-                                        color: $danger;
-                                    }
-                                }
-
-                                .product_details {
-                                    margin: 0.5em 0;
-                                    display: grid;
-                                    gap: 0.5em;
-
-                                    .title {
-                                        text-decoration: none;
-                                        color: #000;
+                            .actions {
+                                display: flex;
+                                justify-content: center;
+                                gap: 0 2em;
+    
+                                .action {
+                                    i {
+                                        font-size: 1em;
                                         font-weight: bold;
-                                        font-size: 1.05em;
                                     }
-
-                                    .price {
-                                        .currency,
-                                        .price_amount {
-                                            font-weight: bold;
-                                            color: green;
+                                    .update {
+                                        color: green;
+                                    }
+                                    .delete {
+                                        color: red;
+                                    }
+    
+                                    form {
+                                        button {
+                                            background: none;
+                                            padding: 0;
+                                            cursor: pointer;
                                         }
                                     }
                                 }
                             }
-
-                            .actions {
-                                .delete {
-                                    color: $danger;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
-            .users_form {
-                form {
-                    .row_input_group {
-                        margin: 2em 0;
-                    }
-                }
-                p {
-                    display: grid;
-                    grid-template-columns: 15% auto;
-                    padding: 0 0.5em;
-
-                    span {
-                        &:first-child {
-                            font-weight: bold;
                         }
                     }
                 }
@@ -203,22 +203,87 @@
 
 @media screen and (width >= 726px) {
     .Admin {
-        .Main {
-            margin-left: $aside_width_l;
+        aside {
+            padding: 0.5em 0.8em;
+            width: $aside_width_l;
+            text-align: left;
+
+            i {
+                font-size: 1em;
+            }
+
+            .branding {
+                display: flex;
+                align-items: center;
+                gap: 0.5em;
+
+                h1 {
+                    font-size: 1.2em;
+                }
+            }
+
+            .nav_links {
+                margin: 2em 0;
+                ul {
+                    li {
+                        border-bottom: 1px solid rgb(204, 204, 204);
+                        padding: 0 4px 4px;
+                        a {
+                            display: grid;
+                            grid-template-columns: 25px auto;
+
+                            span {
+                                font-size: 1em;
+                                font-weight: bold;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .footer {
+                left: 0;
+                .profile {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 0.8em;
+
+                    img {
+                        width: 50px;
+                        height: 50px;
+                        border-radius: 50%;
+                    }
+                }
+
+                .logout {
+                    text-align: center;
+                    form {
+                        button {
+                            background: red;
+                            color: #fff;
+                            border-radius: 6px;
+                            padding: 8px 16px;
+                            i {
+                                color: #fff;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .admin_content {
+            margin-left: calc($aside_width_l + 0.5em);
+
             .container {
                 .header {
                     display: grid;
                     grid-template-columns: repeat(3, 1fr);
                     align-items: center;
 
-                    input {
-                        padding: 0.5em 1em;
-                        border-radius: 32px;
-                    }
-
                     .header_btn {
                         text-align: right;
-                        margin: unset;
                     }
                 }
             }

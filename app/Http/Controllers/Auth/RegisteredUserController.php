@@ -32,7 +32,7 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'first_name' => ['required', 'string', 'max:80'],
-            'last_name' => ['required', 'string', 'max:160'],
+            'last_name' => ['required', 'string', 'max:120'],
             'email' => ['required', 'string', 'lowercase', 'email:rfc,dns', 'max:255', 'unique:'.User::class],
             'phone_number' => ['required', 'string', 'max:40'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],

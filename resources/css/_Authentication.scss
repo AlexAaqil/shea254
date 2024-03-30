@@ -1,13 +1,15 @@
-.authentication {
-    margin: 2em auto 0;
+.Authentication {
+    @include flex_center;
 
-    .header {
-        text-align: center;
-        margin: 0 0 1em;
-        img {
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
+    .container {
+        .header {
+            text-align: center;
+            margin: 0 0 1em;
+            img {
+                border-radius: 50%;
+                width: 60px;
+                height: 60px;
+            }
         }
     }
 }
@@ -52,12 +54,16 @@
 }
 
 @media screen and (width >= 726px) {
-    .login {
-        width: 40%;
-    }
-
-    .signup {
-        width: 50%;
+    .Authentication {
+        .login,
+        .verify_email,
+        .forgot_password {
+            width: 40%;
+        }
+    
+        .signup {
+            width: 50%;
+        }
     }
 
     .profile_update {

@@ -7,57 +7,45 @@ use App\Models\User;
 
 class UserController extends Controller
 {
-    public function list_admins()
+    public function admins()
     {
-        $list_admins = user::getAdmins();
-        return view ('admin.users.admins', compact('list_admins'));
+        $admins = User::getAdmins();
+        return view('admin.admins.index', compact('admins'));
     }
 
-    public function get_update_admin($id)
+    public function edit_admin(User $admin)
     {
-        $admin = User::findOrFail($id);
-        return view('admin.users.update_admin', compact('admin'));
+        return view('admin.admins.edit', compact('admin'));
     }
 
-
-    public function post_update_admin($id, Request $request)
+    public function update_admin(Request $request, User $admin)
     {
-        $admin = User::findOrFail($id);
         $admin->user_level = $request->user_level;
-        $admin->status = $request->status;
+        $admin->user_status = $request->user_status;
 
         $admin->save();
 
-        return redirect()->route('list_admins')->with('success', [
-            'message' => "Admin updated Successfully",
-            'duration' => $this->alert_message_duration,
-        ]);
+        return redirect()->route('admin.admins')->with('success', ['message' => 'Admin has been updated.']);
     }
 
-    public function list_users()
+    public function users()
     {
-        $list_users = user::getUsers();
-        return view('admin.users.users', compact('list_users'));
+        $users = User::getUsers();
+        return view('admin.users.index', compact('users'));
     }
 
-    public function get_update_user($id)
+    public function edit_user(User $user)
     {
-        $user = User::find($id);
-        return view('admin.users.update_user', compact('user'));
+        return view('admin.users.edit', compact('user'));
     }
 
-    public function post_update_user($id, Request $request)
+    public function update_user(Request $request, User $user)
     {
-        $user = User::findOrFail($id);
-
         $user->user_level = $request->user_level;
-        $user->status = $request->status;
+        $user->user_status = $request->user_status;
 
         $user->save();
 
-        return redirect()->route('list_users')->with('success', [
-            'message' => "User updated successfully",
-            'duration' => $this->alert_message_duration,
-        ]);
+        return redirect()->route('admin.users')->with('success', ['message' => 'User has been updated.']);
     }
 }
