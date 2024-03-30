@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Product;
+use App\Models\ProductCategory;
 
 class GeneralPagesController extends Controller
 {
@@ -18,7 +19,10 @@ class GeneralPagesController extends Controller
 
     public function shop()
     {
-        return view('shop');
+        $products = Product::orderBy('title','asc')->get();
+        $product_categories = ProductCategory::orderBy('title','asc')->take(18)->get();
+        
+        return view('shop', compact('products', 'product_categories'));
     }
 
     public function contact()
