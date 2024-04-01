@@ -20,7 +20,8 @@ Route::get('/shop', [GeneralPagesController::class, 'shop'])->name('shop');
 Route::get('/about', [GeneralPagesController::class, 'about'])->name('about');
 Route::get('/contact', [GeneralPagesController::class, 'contact'])->name('contact');
 Route::post('/contact', [CommentController::class, 'store'])->name('comments.store');
-Route::get('/blogs')->name('users.blogs');
+Route::get('/blogs', [BlogController::class, 'users_blogs'])->name('users.blogs');
+Route::get('/blogs/{slug}', [BlogController::class, 'show'])->name('blogs.show');
 
 Route::get('/cart')->name('cart');
 
@@ -62,7 +63,7 @@ Route::middleware('auth', 'verified', 'admin')->group(function() {
         Route::resource('/delivery/areas', DeliveryAreaController::class)->except('show');
 
         Route::resource('/blog-categories', BlogCategoryController::class)->except('show');
-        Route::resource('/blogs', BlogController::class);
+        Route::resource('/blogs', BlogController::class)->except('show');
 
         Route::resource('/comments', CommentController::class)->except('create', 'store', 'edit', 'update');
     });

@@ -128,10 +128,10 @@ class BlogController extends Controller
         return redirect()->route('blogs.index')->with('success', ['message' => 'Blog has been deleted.']);
     }
 
-    // public function users_blogs(Blog $blog)
-    // {
-    //     $blogs = Blog::latest()->paginate(6);
+    public function users_blogs(Blog $blog)
+    {
+        $blogs = Blog::latest()->paginate(6);
 
-    //     return view('blogs', compact('blogs'));
-    // }
+        return view('blogs', compact('blogs'));
+    }
 }
