@@ -24,7 +24,7 @@
             <div class="container">
                 <div class="card_wrapper">
                     @foreach($products as $product)
-                    <div class="card">
+                    <div class="card product_card">
                         <div class="image">
                             <a href="{{ route('products.edit', ['product' => $product->id]) }}" class="title">
                                 <img src="{{ $product->getFirstImage() }}" alt="Product">

@@ -14,7 +14,15 @@ class GeneralPagesController extends Controller
 
     public function home()
     {
-        return view('index');
+        $featured_products = Product::where([
+            ['featured', 1],
+            // ['stock_count', '>', 0]
+        ])
+        ->orderBy('product_order')
+        ->take(4)
+        ->get();
+
+        return view('index', compact('featured_products'));
     }
 
     public function about()

@@ -14,7 +14,7 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::with('product_category', 'getProductImages')->orderBy('order', 'asc')
+        $products = Product::with('product_category', 'getProductImages')->orderBy('product_order', 'asc')
         ->orderBy('title', 'asc')
         ->get();
 
@@ -34,7 +34,7 @@ class ProductController extends Controller
         $validated = $request->validate([
             'title'=> 'required|string|max:120|unique:products',
             'product_code' => 'numeric',
-            'category' => 'nullable',
+            'category_id' => 'nullable',
             'stock_count' => 'numeric',
             'safety_stock' => 'numeric',
             'buying_price' => 'numeric',
@@ -42,12 +42,13 @@ class ProductController extends Controller
             'discount_price' => 'numeric',
             'product_measurement' => 'nullable|numeric',
             'measurement_unit' => 'nullable|numeric',
-            'order' => 'nullable|numeric',
+            'product_order' => 'nullable|numeric',
             'images' => 'max:2048',
             'description' => 'nullable',
         ]);
 
         $validated['slug'] = Str::slug($validated['title']);
+        $validated['featured'] = $request->featured;
 
         $product = Product::create($validated);
 
@@ -75,7 +76,7 @@ class ProductController extends Controller
         $validated = $request->validate([
             'title'=> 'required|string|max:120|unique:products,title,' . $product->id,
             'product_code' => 'numeric',
-            'category' => 'nullable',
+            'category_id' => 'nullable',
             'stock_count' => 'numeric',
             'safety_stock' => 'numeric',
             'buying_price' => 'numeric',
@@ -83,14 +84,15 @@ class ProductController extends Controller
             'discount_price' => 'numeric',
             'product_measurement' => 'nullable|numeric',
             'measurement_unit' => 'nullable|numeric',
-            'order' => 'nullable|numeric',
+            'product_order' => 'nullable|numeric',
             'images' => 'max:2048',
             'description' => 'nullable',
         ]);
 
         $validated['slug'] = Str::slug($validated['title']);
+        $validated['featured'] = $request->featured;
         
-        $product->save($validated);
+        $product->update($validated);
 
         // Retrieve existing images
         $existing_images = $product->getProductImages->pluck('image')->toArray();

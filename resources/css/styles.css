@@ -720,13 +720,6 @@ footer .copyright {
   font-weight: bold;
   font-size: 1.15em;
 }
-.Shop .shop_products .card_wrapper .card .text .actions form button {
-  background: none;
-  border: none;
-}
-.Shop .shop_products .card_wrapper .card .text .actions form button i {
-  font-size: 2.5em;
-}
 
 @media screen and (width >= 726px) {
   .Shop .search form {
@@ -1351,21 +1344,28 @@ footer .copyright {
   margin: 0 0 1.5em;
 }
 
-.Products .container .card_wrapper .card .text .extra_details .in_stock,
-.Products .container .card_wrapper .card .text .extra_details .featured {
+.product_card .text .extra_details .in_stock,
+.product_card .text .extra_details .featured {
   color: green;
 }
-.Products .container .card_wrapper .card .text .extra_details .out_of_stock,
-.Products .container .card_wrapper .card .text .extra_details .not_featured {
+.product_card .text .extra_details .out_of_stock,
+.product_card .text .extra_details .not_featured {
   color: red;
 }
-.Products .container .card_wrapper .card .text .title a {
+.product_card .text .content .details .title a {
   font-size: 1.1em;
 }
-.Products .container .card_wrapper .card .text .price {
+.product_card .text .content .details .price {
   color: green;
   font-weight: bold;
   font-size: 1.15em;
+}
+.product_card .text .content .actions .action form button {
+  background: none;
+  border: none;
+}
+.product_card .text .content .actions .action form button i {
+  font-size: 2.5em;
 }
 
 .product_images {

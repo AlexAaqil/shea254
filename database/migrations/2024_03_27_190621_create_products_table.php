@@ -21,7 +21,7 @@ return new class extends Migration
             $table->decimal('selling_price', 10, 2)->default(0.00);
             $table->decimal('discount_price', 10, 2)->default(0.00)->nullable();
             $table->unsignedSmallInteger('product_measurement')->nullable();
-            $table->unsignedSmallInteger('order')->default(200);
+            $table->unsignedSmallInteger('product_order')->default(200);
             $table->unsignedSmallInteger('stock_count')->default(0);
             $table->unsignedSmallInteger('safety_stock')->default(0);
             $table->text('description')->nullable();

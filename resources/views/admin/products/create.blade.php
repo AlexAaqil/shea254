@@ -102,9 +102,9 @@
                     </div>
 
                     <div class="input_group">
-                        <label for="order">Order</label>
-                        <input type="number" name="order" id="order" min="1" value={{ old('order', 200) }}>
-                        <span class="inline_alert">{{ $errors->first('order') }}</span>
+                        <label for="product_order">Order</label>
+                        <input type="number" name="product_order" id="product_order" min="1" value={{ old('product_order', 200) }}>
+                        <span class="inline_alert">{{ $errors->first('product_order') }}</span>
                     </div>
                 </div>
 

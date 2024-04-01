@@ -59,8 +59,8 @@
 
                     <div class="input_group">
                         <label for="safety_stock">Safety Stock</label>
-                        <input type="number" name="safety_stock" id="safety_stock" placeholder="Safety Stock" value="{{ old('safety_stock', $product->safety_count) }}" />
-                        <span class="inline_alert">{{ $errors->first('stock_count') }}</span>
+                        <input type="number" name="safety_stock" id="safety_stock" placeholder="Safety Stock" value="{{ old('safety_stock', $product->safety_stock) }}" />
+                        <span class="inline_alert">{{ $errors->first('stock_stock') }}</span>
                     </div>
                 </div>
 
@@ -103,9 +103,9 @@
                     </div>
 
                     <div class="input_group">
-                        <label for="order">Order</label>
-                        <input type="number" name="order" id="order" min="1" value={{ old('order', $product->order) }}>
-                        <span class="inline_alert">{{ $errors->first('order') }}</span>
+                        <label for="product_order">Order</label>
+                        <input type="number" name="product_order" id="product_order" min="1" value={{ old('product_order', $product->product_order) }}>
+                        <span class="inline_alert">{{ $errors->first('product_order') }}</span>
                     </div>
                 </div>
 
