@@ -121,7 +121,7 @@
                 </div>
             </div>
 
-            <div class="charts">
+            {{-- <div class="charts">
                 <div class="chart">
                     <h2>Sales</h2>
                     <canvas id="salesChart"></canvas>
@@ -130,7 +130,7 @@
                     <h2>Location Orders</h2>
                     <canvas id="citiesChart"></canvas>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </section>
 </x-admin>
