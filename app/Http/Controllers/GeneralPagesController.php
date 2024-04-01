@@ -17,6 +17,11 @@ class GeneralPagesController extends Controller
         return view('index');
     }
 
+    public function about()
+    {
+        return view('about');
+    }
+
     public function shop()
     {
         $products = Product::orderBy('title','asc')->get();

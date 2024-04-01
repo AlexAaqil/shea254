@@ -17,7 +17,7 @@ use App\Http\Controllers\ProductMeasurementController;
 Route::get('/welcome', [GeneralPagesController::class, 'welcome'])->name('welcome');
 Route::get('/', [GeneralPagesController::class, 'home'])->name('home');
 Route::get('/shop', [GeneralPagesController::class, 'shop'])->name('shop');
-Route::get('/about')->name('about');
+Route::get('/about', [GeneralPagesController::class, 'about'])->name('about');
 Route::get('/contact', [GeneralPagesController::class, 'contact'])->name('contact');
 Route::post('/contact', [CommentController::class, 'store'])->name('comments.store');
 Route::get('/blogs')->name('users.blogs');
