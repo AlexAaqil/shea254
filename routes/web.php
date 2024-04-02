@@ -13,6 +13,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductMeasurementController;
+use App\Http\Controllers\CartController;
 
 Route::get('/welcome', [GeneralPagesController::class, 'welcome'])->name('welcome');
 Route::get('/', [GeneralPagesController::class, 'home'])->name('home');
@@ -23,13 +24,18 @@ Route::post('/contact', [CommentController::class, 'store'])->name('comments.sto
 Route::get('/blogs', [BlogController::class, 'users_blogs'])->name('users.blogs');
 Route::get('/blogs/{slug}', [BlogController::class, 'show'])->name('blogs.show');
 
-Route::get('/cart')->name('cart');
+Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+Route::post('/cart/add/{product}', [CartController::class, 'store'])->name('cart.store');
+Route::post('/cart/quantity/{product_id}', [CartController::class, 'change_quantity'])->name('change_quantity');
+Route::delete('/cart/remove/{productId}', [CartController::class, 'destroy'])->name('cart.destroy');
+
+Route::get('/checkout')->name('get_checkout');
 
 Route::get('/list_categorised_products')->name('list_products_by_category');
 Route::get('/products/search')->name('products.search');
 
 
-Route::middleware('auth', 'verified')->group(function () {
+Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/home', [DashboardController::class, 'index']);
     Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
 
@@ -40,7 +46,7 @@ Route::middleware('auth', 'verified')->group(function () {
 
 require __DIR__.'/auth.php';
 
-Route::middleware('auth', 'verified', 'admin')->group(function() {
+Route::middleware(['auth', 'verified', 'admin'])->group(function() {
     Route::prefix('admin')->group(function() {
         Route::get('/dashboard', [DashboardController::class, 'admin_dashboard'])->name('admin.dashboard');
 

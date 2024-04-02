@@ -22,9 +22,9 @@
                 <li><a href="{{ route('contact') }}">Contact</a></li>
                 <li><a href="{{ route('users.blogs') }}">Blog</a></li>
                 <li class="cart">
-                    <a href="{{ route('cart') }}">
+                    <a href="{{ route('cart.index') }}">
                         <i class="fa fa-shopping-cart"></i>
-                        <span>{{ Session::get('cart_count', 0) }}</span>
+                        <span>{{ count((array) session('cart')) }}</span>
                     </a>
                 </li>
                 <li class="nav_authentication">
