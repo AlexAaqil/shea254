@@ -24,11 +24,10 @@
                     </a>
                 </span>
                 <span class="content">
-                    @if($product->discount_price != 0.00 && $product->discount_price < $product->price)
+                    @if($product->discount_price != 0.00 && $product->discount_price < $product->selling_price)
                         <span class="price">
-                            <span class="currency">Ksh.</span>
-                            <span class="price_amount discount">{{ $product->discount_price }}</span>
-                            <span class="original_price text-danger">
+                            <span class="amount">Ksh. {{ $product->discount_price }}</span>
+                            <span class="discount_price">
                                 <del>{{ $product->selling_price }}</del>
                             </span>
                             <span class="discount_percentage">

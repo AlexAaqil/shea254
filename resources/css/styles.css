@@ -764,11 +764,12 @@ footer .copyright {
 }
 @media screen and (width >= 726px) {
   .Shop .shop_products .card_wrapper {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 .Shop .shop_products .card_wrapper .card .text .content {
-  grid-template-columns: 70% auto;
+  grid-template-columns: 80% auto;
+  gap: 1em;
 }
 .Shop .shop_products .card_wrapper .card .text .content .title a {
   font-size: 1.1em;
@@ -1452,10 +1453,17 @@ footer .copyright {
 .product_card .text .content .details .title a {
   font-size: 1.1em;
 }
-.product_card .text .content .details .price {
+.product_card .text .content .details .content .price {
   color: green;
   font-weight: bold;
   font-size: 1.15em;
+}
+.product_card .text .content .details .content .price .discount_price,
+.product_card .text .content .details .content .price .discount_percentage {
+  font-size: 0.8em;
+}
+.product_card .text .content .details .content .price .discount_price {
+  color: red;
 }
 .product_card .text .content .actions .action form button {
   background: none;

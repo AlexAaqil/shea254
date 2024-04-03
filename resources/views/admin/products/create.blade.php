@@ -77,7 +77,7 @@
                     </div>
 
                     <div class="input_group">
-                        <label for="discount_price">Discount Price</label>
+                        <label for="discount_price">Discount Price (New Price)</label>
                         <input type="number" step="0.01" name="discount_price" id="discount_price" value="{{ old('discount_price', 0.00) }}" placeholder="Enter the discount_price." />
                         <span class="inline_alert">{{ $errors->first('discount_price') }}</span>
                     </div>

@@ -14,7 +14,7 @@
             <div class="body">
                 <div class="card_wrapper products">
                     @foreach($products as $product)
-                    <div class="card product searchable">
+                    <div class="card product_card product searchable">
                         <div class="image">
                             <a href="{{ route('products.edit', ['product' => $product->id]) }}" class="title">
                                 <img src="{{ $product->getFirstImage() }}" alt="Product">
@@ -37,11 +37,10 @@
                                         </a>
                                     </span>
                                     <span class="content">
-                                        @if($product->discount_price != 0.00 && $product->discount_price < $product->price)
+                                        @if($product->discount_price != 0 && $product->discount_price < $product->selling_price)
                                             <span class="price">
-                                                <span class="currency">Ksh.</span>
-                                                <span class="price_amount discount">{{ $product->discount_price }}</span>
-                                                <span class="original_price text-danger">
+                                                <span class="amount">Ksh. {{ $product->discount_price }}</span>
+                                                <span class="discount_price">
                                                     <del>{{ $product->selling_price }}</del>
                                                 </span>
                                                 <span class="discount_percentage">
@@ -50,8 +49,7 @@
                                             </span>
                                         @else
                                             <span class="price">
-                                                <span class="currency">Ksh.</span>
-                                                <span class="price_amount">{{ $product->selling_price }}</span>
+                                                <span class="amount">Ksh. {{ $product->selling_price }}</span>
                                             </span>
                                         @endif
                                     </span>

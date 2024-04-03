@@ -47,12 +47,13 @@
 
     .shop_products {
         .card_wrapper {
-            @include grid(4);
+            @include grid(3);
             
             .card {
                 .text {
                     .content {
-                        grid-template-columns: 70% auto;
+                        grid-template-columns: 80% auto;
+                        gap: 1em;
 
                         .title {
                             a {

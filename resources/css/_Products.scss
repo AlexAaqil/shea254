@@ -26,10 +26,21 @@
                     }
                 }
         
-                .price {
-                    color: green;
-                    font-weight: bold;
-                    font-size: 1.15em;
+                .content {
+                    .price {
+                        color: $price_color;
+                        font-weight: bold;
+                        font-size: 1.15em;
+
+                        .discount_price,
+                        .discount_percentage {
+                            font-size: 0.8em;
+                        }
+    
+                        .discount_price {
+                            color: red;
+                        }
+                    }
                 }
             }
 

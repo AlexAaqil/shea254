@@ -71,16 +71,16 @@ class Product extends Model
 
     public function calculateDiscount()
     {
-        if ($this->discount_price && $this->discount_price < $this->price) {
+        if ($this->discount_price != 0 && $this->discount_price < $this->selling_price) {
             // Calculate the discount percentage
-            $discountPercentage = (($this->price - $this->discount_price) / $this->price) * 100;
+            $discountPercentage = (($this->selling_price - $this->discount_price) / $this->selling_price) * 100;
 
             // Set the new price and percentage in the model
             $this->new_price = $this->discount_price;
             $this->discount_percentage = round($discountPercentage, 0);
         } else {
             // If no discount, set the new price as the regular price
-            $this->new_price = $this->price;
+            $this->new_price = $this->selling_price;
             $this->discount_percentage = 0;
         }
 
