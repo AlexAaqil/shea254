@@ -1,6 +1,6 @@
 <div class="card product_card">
     <div class="image">
-        <a href="{{ route('products.edit', ['product' => $product->id]) }}" class="title">
+        <a href="{{ route('products.details', ['slug' => $product->slug]) }}" class="title">
             <img src="{{ $product->getFirstImage() }}" alt="Product">
         </a>
     </div>
@@ -8,14 +8,18 @@
     <div class="text">
         <div class="extra_details">
             @if($product->product_category)
-                <span>{{ $product->product_category->title }}</span>
+                <span>
+                    <a href="{{ route('products.categorized', $product->product_category->slug) }}">
+                        {{ $product->product_category->title }}
+                    </a>
+                </span>
             @endif
         </div>
         
         <div class="content">
             <div class="details">
                 <span class="title">
-                    <a href="{{ route('products.edit', ['product' => $product->id]) }}">
+                    <a href="{{ route('products.details', ['slug' => $product->slug]) }}">
                         {{ $product->title }}
                     </a>
                 </span>

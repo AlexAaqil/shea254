@@ -9,6 +9,13 @@
             .not_featured {
                 color: red;
             }
+
+            span {
+                a {
+                    text-decoration: none;
+                    color: grey;
+                }
+            }
         }
 
         .content {
@@ -196,6 +203,19 @@
                 text-decoration: none;
                 color: blue;
             }
+        }
+    }
+
+    .categories {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.3em 0.5em;
+        a {
+            text-decoration: none;
+            color: #202020;
+            background: #e6e6e6;
+            border-radius: 32px;
+            padding: 1px 10px;
         }
     }
 

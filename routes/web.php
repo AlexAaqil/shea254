@@ -31,7 +31,8 @@ Route::delete('/cart/remove/{productId}', [CartController::class, 'destroy'])->n
 
 Route::get('/checkout')->name('get_checkout');
 
-Route::get('/list_categorised_products')->name('list_products_by_category');
+Route::get('/products/details/{slug}', [ProductController::class, 'show'])->name('products.details');
+Route::get('/products/category/{category_slug}', [ProductController::class, 'categorized_products'])->name('products.categorized');
 Route::get('/products/search', [ProductController::class, 'search_products'])->name('products.search');
 
 
@@ -60,7 +61,7 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function() {
 
         Route::resource('/product-measurements', ProductMeasurementController::class)->except('show');
         Route::resource('/product-categories', ProductCategoryController::class)->except('show');
-        Route::resource('/products', ProductController::class);
+        Route::resource('/products', ProductController::class)->except('show');
         Route::get('product/product-image/delete/{id}', [ProductController::class, 'delete_product_image'])->name('delete_product_image');
         Route::post('product/product_images_sort', [ProductController::class, 'product_images_sort'])->name('product_images_sort');
 

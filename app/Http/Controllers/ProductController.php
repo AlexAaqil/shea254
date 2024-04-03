@@ -162,6 +162,19 @@ class ProductController extends Controller
         return view('product_search_results', compact('products', 'query'));
     }
 
+    public function categorized_products($category_slug)
+    {
+        $categories = ProductCategory::all();
+        $category = ProductCategory::where('slug', $category_slug)->firstOrFail();
+        $products = $category->products()->get();
+
+        foreach ($products as $product) {
+            $product->calculateDiscount();
+        }
+
+        return view('product_categorized', compact('products', 'category', 'categories'));
+    }
+
     public function product_images_sort(Request $request) {
         if(!empty($request->photo_id)) {
             $i = 1;
