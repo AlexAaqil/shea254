@@ -5,7 +5,7 @@
     
             <div class="header">
                 <h1>Areas</h1>
-                <x-js_search></x-js_search>
+                @include('partials.js_search')
                 <div class="header_btn">
                     <a href="{{ route('areas.create') }}">New</a>
                 </div>

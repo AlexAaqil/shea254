@@ -5,7 +5,7 @@
     
             <div class="header">
                 <h1>Locations <span>({{ $delivery_locations->count() }})</span></h1>
-                <x-js_search></x-js_search>
+                @include('partials.js_search')
                 <div class="header_btn">
                     <a href="{{ route('locations.create') }}">New</a>
                 </div>

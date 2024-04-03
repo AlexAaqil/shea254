@@ -22,6 +22,7 @@
             {{ $javascript }}
         @endisset
 
-        <x-alert></x-alert>
+        <script src="{{ asset('assets/js/alert.js') }}"></script>
+        <script src="{{ asset('assets/js/custom.js') }}"></script>
     </body>
 </html>

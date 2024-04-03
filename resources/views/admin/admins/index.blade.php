@@ -2,7 +2,7 @@
     <section class="container admins">
         <div class="header">
             <h1>Admins <span>({{ $admins->count() }})</span></h1>
-            <x-js_search></x-js_search>
+            @include('partials.js_search')
         </div>
 
         <div class="body">
