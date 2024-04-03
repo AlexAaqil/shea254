@@ -57,9 +57,15 @@ class ProductController extends Controller
         return redirect()->route('products.index')->with('success', ['message' => 'Product has been added.']);
     }
 
-    public function show(Product $product)
+    public function show($slug)
     {
-        //
+        $product = Product::where('slug', $slug)->firstOrFail();
+        $product_images = $product->getProductImages;
+        $related_products = Product::where('category_id', $product->category_id)
+        ->where('id', '!=', $product->id)
+        ->take(5)
+        ->get();
+        return view('product_details', compact('product', 'product_images', 'related_products'));
     }
 
     public function edit(Product $product)
@@ -138,6 +144,22 @@ class ProductController extends Controller
         }
 
         return redirect()->route('products.index')->with('success', ['message' => 'Product has been deleted.']);
+    }
+
+    public function search_products(Request $request)
+    {
+        $query = $request->input('query');
+
+        $products = Product::with('product_category')
+        ->where('title', 'like', "%$query%")
+        ->orWhere('description', 'like', "%$query%")
+        ->get();
+
+        foreach ($products as $product) {
+            $product->calculateDiscount();
+        }
+
+        return view('product_search_results', compact('products', 'query'));
     }
 
     public function product_images_sort(Request $request) {

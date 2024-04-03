@@ -81,3 +81,125 @@
         }
     }
 }
+
+.Product_details {
+    .container {
+        padding: 1em 5%;
+        .wrapper {
+            @include grid(2);
+            gap: 2em;
+
+            .images {
+                .main_product_image {
+                    width: 100%;
+                    height: 450px;
+                    overflow: hidden;
+                    cursor: crosshair;
+                    border: 1px solid grey;
+                    border-radius: 10px;
+
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: contain;
+                        border-radius: 10px;
+                    }
+                }
+
+                .other_images {
+                    margin: 0.5em 0;
+
+                    img {
+                        height: 70px;
+                        width: 70px;
+                        cursor: pointer;
+                        border: 2px solid transparent;
+                        border-radius: 4px;
+                        transition: border 0.5s ease;
+                        object-fit: contain;
+                    }
+
+                    .active {
+                        border: 2px solid #000;
+                    }
+                }
+            }
+
+            .details {
+                h1,
+                .price,
+                .action,
+                .description {
+                    margin: 0 0 1em;
+                }
+                h1 {
+                    font-size: 1.6em;
+                }
+
+                .price {
+                    color: $price_color;
+                    font-size: 1.4em;
+                    font-weight: bold;
+                }
+
+                .description {
+                    margin: 2em 0 0;
+                }
+
+                .action {
+                    button {
+                        border-radius: 32px;
+                        padding: 8px 12px;
+                    }
+                }
+
+                .extras {
+                    margin: 4em 0;
+                    p {
+                        font-size: 0.8em;
+                        display: grid;
+                        grid-template-columns: 20% auto;
+                        margin: 0 0 0.5em;
+                        span {
+                            &:last-of-type {
+                                font-weight: bold;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .related_products {
+        margin: 5em 0 0;
+    }
+}
+
+.Categorised_Products {
+    .hero {
+        height: 18vh;
+        background: rgb(240, 240, 240);
+        display: grid;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 1em 0;
+
+        .breadcrumb,
+        h1 {
+            text-transform: capitalize;
+        }
+
+        .breadcrumb {
+            font-weight: bold;
+            a {
+                text-decoration: none;
+                color: blue;
+            }
+        }
+    }
+
+    .product_search_results {
+        margin: 1em 0 0;
+    }
+}

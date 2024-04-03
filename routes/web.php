@@ -32,7 +32,7 @@ Route::delete('/cart/remove/{productId}', [CartController::class, 'destroy'])->n
 Route::get('/checkout')->name('get_checkout');
 
 Route::get('/list_categorised_products')->name('list_products_by_category');
-Route::get('/products/search')->name('products.search');
+Route::get('/products/search', [ProductController::class, 'search_products'])->name('products.search');
 
 
 Route::middleware(['auth', 'verified'])->group(function () {
