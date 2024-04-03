@@ -2,7 +2,7 @@
     <div class="container comments">
         <div class="header">
             <h1>Comments <span>({{ $comments->count() }})</span></h1>
-            <x-js_search></x-js_search>
+            @include('partials.js_search')
         </div>
 
         <div class="body">

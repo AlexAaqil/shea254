@@ -2,7 +2,7 @@
     <div class="container users">
         <div class="header">
             <h1>Users <span>({{ $users->count() }})</span></h1>
-            <x-js_search></x-js_search>
+            @include('partials.js_search')
         </div>
 
         @include('partials.messages')

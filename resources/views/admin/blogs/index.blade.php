@@ -5,7 +5,7 @@
             
             <div class="header">
                 <h1>Blogs <span>({{ $blogs->count() }})</span></h1>
-                <x-js_search></x-js_search>
+                @include('partials.js_search')
                 <div class="header_btn">
                     <a href="{{ route('blogs.create') }}">New</a>
                 </div>
