@@ -59,7 +59,7 @@
                 </p>
 
                 <div class="action">
-                    <a href="{{ route('get_checkout') }}">Proceed to Checkout</a>
+                    <a href="{{ route('checkout.create') }}">Proceed to Checkout</a>
                 </div>
             </div>
         </div>
