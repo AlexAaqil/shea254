@@ -14,6 +14,7 @@
 
             <h1>Success</h1>
             <p>Your order (<strong>{{ $order_number }}</strong>) has been submitted.</p>
+            <p>Please enter your M-PESA PIN to complete this order.</p>
             <p>We will contact you in case we need any clarification.</p>
 
             <div class="actions">
