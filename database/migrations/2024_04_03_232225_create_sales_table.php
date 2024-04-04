@@ -19,7 +19,7 @@ return new class extends Migration
             $table->decimal('discount',10,2)->default(0.00);
             $table->decimal('total_amount', 10,2)->default(0.00);
             $table->unsignedTinyInteger('payment_status')->default(0);
-            $table->string('payment_reference');
+            $table->string('payment_reference')->nullable();
             $table->string('payment_method');
             $table->decimal('amount_paid', 10,2)->default(0.00);
             $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('set null');

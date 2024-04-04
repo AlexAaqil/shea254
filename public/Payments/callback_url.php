@@ -33,13 +33,15 @@ $phoneNumber=$callbackData->Body->stkCallback->CallbackMetadata->Item[4]->Value;
 
 $orderid = strval($orderid);
 $amount = strval($amount);
+$payment_reference = strval($mpesaReceiptNumber);
 
 if($resultCode == 0){
 	try {
-		$sql = "UPDATE sales SET payment_status = 1, amount_paid = :amount WHERE order_number = :orderid";
+		$sql = "UPDATE sales SET payment_status = 1, amount_paid = :amount, payment_reference = :payment_reference WHERE order_number = :orderid";
 		$stmt = $conn->prepare($sql);
 		$stmt->bindParam(':orderid', $orderid, PDO::PARAM_STR);
 		$stmt->bindParam(':amount', $amount, PDO::PARAM_STR);
+		$stmt->bindParam(':payment_reference', $payment_reference, PDO::PARAM_STR);
 		$stmt->execute();
 		$stmt = null;
 	} catch (PDOException $e) {
