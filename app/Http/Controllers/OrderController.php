@@ -95,6 +95,8 @@ class OrderController extends Controller
         $order_type = 1;
         $discount_code = null;
         $discount = 0;
+        $payment_reference = null;
+        $payment_method = null;
         $user_id = Auth::check() ? Auth::user()->id : null;
 
         $res = $this->mpesa($phone_number, $total_amount, $order_number);
@@ -107,6 +109,8 @@ class OrderController extends Controller
                 'discount_code' => $discount_code,
                 'discount' => $discount,
                 'total_amount' => $total_amount,
+                'payment_reference' => $payment_reference,
+                'payment_method' => $payment_method,
                 'user_id' => $user_id,
             ]);
 
