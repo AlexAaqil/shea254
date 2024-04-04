@@ -143,6 +143,11 @@
 
                             .content {
                                 line-height: 1.3;
+
+                                ul,
+                                ol {
+                                    list-style-position: inside;
+                                }
                             }
 
                             .btn {
@@ -216,6 +221,11 @@
                     .content {
                         p {
                             line-height: 1.5;
+                        }
+
+                        ul,
+                        ol {
+                            list-style-position: inside;
                         }
                     }
 
