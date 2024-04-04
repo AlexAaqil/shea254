@@ -2,8 +2,10 @@
 
 session_start();
 function db_conn(){
-	$db_username = $_ENV['DB_USERNAME'];
-	$db_password = $_ENV['DB_PASSWORD'];
+	// $db_username = $_ENV['DB_USERNAME'];
+	// $db_password = $_ENV['DB_PASSWORD'];
+	$db_username = 'sheacom';
+	$db_password = 'Admin@254';
 
 	$conn = new PDO( 'mysql:host=localhost;dbname=sheacom_db', $db_username, $db_password );
 	if(!$conn){
