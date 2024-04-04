@@ -103,7 +103,7 @@
                 <h1>Order Summary</h1>
                 <p>
                     <span>Cart Total</span>
-                    <span>{{ number_format($cart['subtotal'], 2) }}</span>
+                    <span>Ksh. {{ number_format($cart['subtotal'], 2) }}</span>
                 </p>
                 <p>
                     <span>Shipping Cost</span>
@@ -117,81 +117,83 @@
         </div>
     </div>
 </main>
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-    const locationSelect = document.getElementById("location");
-    const areaSelect = document.getElementById("area");
-    const shippingCostElement = document.getElementById("shipping_cost_amount");
-    const totalElement = document.getElementById("total_amount");
-    const pick_up_method = document.querySelectorAll("input[name='pickup_method']");
-    const delivery_details = document.getElementById("delivery_details");
-
-    function togglePickupMethod() {
-        if(pick_up_method[0].checked) {
-            delivery_details.style.display = 'block';
-        } else {
-            delivery_details.style.display = 'none';
-        }
-    }
-
-    togglePickupMethod();
-
-    pick_up_method.forEach(function(radio) {
-        radio.addEventListener('change', togglePickupMethod);
-    });
-
-    // Define areaPrice as a global variable
-    let areaPrice = 0;
-
-    // Function to update shipping cost and total
-    function updateShippingAndTotal() {
-        const shippingCost = parseFloat(areaPrice); // Parse areaPrice as a float
-
-        if (!isNaN(shippingCost)) {
-            const cartSubtotal = parseFloat("{{ $cart['subtotal'] }}"); // Get cart subtotal from PHP as a float
-
-            // Format shipping cost and total with two decimal places
-            const formattedShippingCost = shippingCost.toFixed(2);
-            const formattedTotal = (shippingCost + cartSubtotal).toFixed(2);
-
-            // Update the DOM with formatted values
-            shippingCostElement.textContent = `Ksh. ${formattedShippingCost}`;
-            totalElement.textContent = `Ksh. ${formattedTotal}`;
-        } else {
-            console.error("Invalid shipping cost:", areaPrice);
-        }
-    }
-
-    locationSelect.addEventListener("change", function () {
-        const selectedLocationId = this.value;
-
-        // Make an Ajax request to fetch areas based on the selected location
-        fetch(`/areas/fetch/${selectedLocationId}`)
-            .then(response => response.json())
-            .then(data => {
-                // Clear and update the areas select box
-                areaSelect.innerHTML = "";
-                areaSelect.add(new Option("Select Area", ""));
-
-                data.forEach(area => {
-                    areaSelect.add(new Option(area.area_name, area.id));
-                });
+<x-slot name="javascript">
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const locationSelect = document.getElementById("location");
+            const areaSelect = document.getElementById("area");
+            const shippingCostElement = document.getElementById("shipping_cost_amount");
+            const totalElement = document.getElementById("total_amount");
+            const pick_up_method = document.querySelectorAll("input[name='pickup_method']");
+            const delivery_details = document.getElementById("delivery_details");
+        
+            function togglePickupMethod() {
+                if(pick_up_method[0].checked) {
+                    delivery_details.style.display = 'block';
+                } else {
+                    delivery_details.style.display = 'none';
+                }
+            }
+        
+            togglePickupMethod();
+        
+            pick_up_method.forEach(function(radio) {
+                radio.addEventListener('change', togglePickupMethod);
             });
-    });
-
-    areaSelect.addEventListener("change", function () {
-        const selectedAreaId = this.value;
-
-        // Make an Ajax request to fetch the selected area's price
-        fetch(`/area/fetch/shipping-price/${selectedAreaId}`)
-            .then(response => response.json())
-            .then(data => {
-                areaPrice = data.price; // Update the global areaPrice variable
-
-                // Trigger update with the area's price
-                updateShippingAndTotal();
+        
+            // Define areaPrice as a global variable
+            let areaPrice = 0;
+        
+            // Function to update shipping cost and total
+            function updateShippingAndTotal() {
+                const shippingCost = parseFloat(areaPrice); // Parse areaPrice as a float
+        
+                if (!isNaN(shippingCost)) {
+                    const cartSubtotal = parseFloat("{{ $cart['subtotal'] }}"); // Get cart subtotal from PHP as a float
+        
+                    // Format shipping cost and total with two decimal places
+                    const formattedShippingCost = shippingCost.toFixed(2);
+                    const formattedTotal = (shippingCost + cartSubtotal).toFixed(2);
+        
+                    // Update the DOM with formatted values
+                    shippingCostElement.textContent = `Ksh. ${formattedShippingCost}`;
+                    totalElement.textContent = `Ksh. ${formattedTotal}`;
+                } else {
+                    console.error("Invalid shipping cost:", areaPrice);
+                }
+            }
+        
+            locationSelect.addEventListener("change", function () {
+                const selectedLocationId = this.value;
+        
+                // Make an Ajax request to fetch areas based on the selected location
+                fetch(`/areas/fetch/${selectedLocationId}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        // Clear and update the areas select box
+                        areaSelect.innerHTML = "";
+                        areaSelect.add(new Option("Select Area", ""));
+        
+                        data.forEach(area => {
+                            areaSelect.add(new Option(area.area_name, area.id));
+                        });
+                    });
             });
-    });
-});
-</script>
+        
+            areaSelect.addEventListener("change", function () {
+                const selectedAreaId = this.value;
+        
+                // Make an Ajax request to fetch the selected area's price
+                fetch(`/area/shipping-price/${selectedAreaId}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        areaPrice = data.price; // Update the global areaPrice variable
+        
+                        // Trigger update with the area's price
+                        updateShippingAndTotal();
+                    });
+            });
+        });
+        </script>
+</x-slot>
 </x-app-layout>

@@ -15,12 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('order_number');
             $table->boolean('order_type');
+            $table->string('discount_code')->nullable();
+            $table->decimal('discount',10,2)->default(0.00);
             $table->decimal('total_amount', 10,2)->default(0.00);
-            $table->decimal('discount',10,2)->default(0);
-            $table->unsignedTinyInteger('payment_method')->default(0);
-            $table->foreignId('payment_id');
-            $table->foreignId('customer_id')->constrained('customers')->nullable();
-            $table->foreignId('delivery_id')->constrained('deliveries')->nullable();
+            $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('set null');
             $table->timestamps();
         });
     }

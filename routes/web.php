@@ -14,9 +14,10 @@ use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductMeasurementController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\OrderController;
 
-Route::get('/welcome', [GeneralPagesController::class, 'welcome'])->name('welcome');
 Route::get('/', [GeneralPagesController::class, 'home'])->name('home');
+Route::get('/welcome', [GeneralPagesController::class, 'welcome'])->name('welcome');
 Route::get('/shop', [GeneralPagesController::class, 'shop'])->name('shop');
 Route::get('/about', [GeneralPagesController::class, 'about'])->name('about');
 Route::get('/contact', [GeneralPagesController::class, 'contact'])->name('contact');
@@ -29,12 +30,15 @@ Route::post('/cart/add/{product}', [CartController::class, 'store'])->name('cart
 Route::post('/cart/quantity/{product_id}', [CartController::class, 'change_quantity'])->name('change_quantity');
 Route::delete('/cart/remove/{productId}', [CartController::class, 'destroy'])->name('cart.destroy');
 
-Route::get('/checkout')->name('get_checkout');
-
 Route::get('/products/details/{slug}', [ProductController::class, 'show'])->name('products.details');
 Route::get('/products/category/{category_slug}', [ProductController::class, 'categorized_products'])->name('products.categorized');
 Route::get('/products/search', [ProductController::class, 'search_products'])->name('products.search');
 
+Route::get('/checkout', [OrderController::class, 'create'])->name('checkout.create');
+Route::post('/checkout', [OrderController::class, 'store'])->name('checkout.store');
+Route::get('/order-successful', [OrderController::class, 'order_success'])->name('order_success');
+Route::get('/areas/fetch/{areaId}', [OrderController::class, 'get_areas'])->name('get_areas');
+Route::get('/area/shipping-price/{areaId}', [OrderController::class, 'get_shipping_price'])->name('get_shipping_price');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/home', [DashboardController::class, 'index']);
@@ -65,9 +69,10 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function() {
         Route::get('product/product-image/delete/{id}', [ProductController::class, 'delete_product_image'])->name('delete_product_image');
         Route::post('product/product_images_sort', [ProductController::class, 'product_images_sort'])->name('product_images_sort');
 
-
         Route::resource('/delivery/locations', DeliveryLocationController::class)->except('show');
         Route::resource('/delivery/areas', DeliveryAreaController::class)->except('show');
+
+        Route::resource('/orders', OrderController::class);
 
         Route::resource('/blog-categories', BlogCategoryController::class)->except('show');
         Route::resource('/blogs', BlogController::class)->except('show');
