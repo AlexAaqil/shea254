@@ -195,7 +195,7 @@ class OrderController extends Controller
 
     public function mpesa($phone, $amount, $ordernum){
         #Callback url
-        define('CALLBACK_URL', 'https://shea254.com/Payments/callback_url.php?orderid=');
+        define('CALLBACK_URL', 'https://shea254.com/public/Payments/callback_url.php?orderid=');
   
         # access token
         $consumerKey = 'GLLuJh7msoyl7ESShcWt0k6CR1M48OLGCxusxknzOJsjLPOJ'; //Fill with your app Consumer Key

@@ -18,8 +18,22 @@
             <div class="details">
                 <h1>{{ $product->title }}</h1>
                 <p class="price">
-                    <span class="currency">Ksh. </span>
-                    <span class="price_amount">{{ $product->selling_price }}</span>
+                    @if($product->discount_price != 0.00 && $product->discount_price < $product->selling_price)
+                        <span class="price">
+                            <span class="amount">Ksh. {{ $product->discount_price }}</span>
+                            <span class="discount_price">
+                                <del>{{ $product->selling_price }}</del>
+                            </span>
+                            <span class="discount_percentage">
+                                {{ round($product->calculateDiscount()) }}% off
+                            </span>
+                        </span>
+                    @else
+                        <span class="price">
+                            <span class="currency">Ksh.</span>
+                            <span class="price_amount">{{ $product->selling_price }}</span>
+                        </span>
+                    @endif
                 </p>
 
                 <div class="action">
