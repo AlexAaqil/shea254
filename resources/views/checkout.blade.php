@@ -27,13 +27,13 @@
                     <div class="row_input_group">
                         <div class="input_group">
                             <label for="email">Email Address</label>
-                            <input type="email" name="email" id="email" value="{{ $user ? $user->email : old('email') }}">
+                            <input type="email" name="email" id="email" placeholder="example@gmail.com" value="{{ $user ? $user->email : old('email') }}">
                             <span class="inline_alert">{{ $errors->first('email') }}</span>
                         </div>
 
                         <div class="input_group">
                             <label for="phone_number">Phone Number</label>
-                            <input type="text" name="phone_number" id="phone_number" value="{{ $user ? $user->phone_number : old('phone_number') }}">
+                            <input type="text" name="phone_number" id="phone_number" placeholder="2547xxxxxxxx" value="{{ $user ? $user->phone_number : old('phone_number') }}">
                             <span class="inline_alert">{{ $errors->first('phone_number') }}</span>
                         </div>
                     </div>
@@ -58,12 +58,6 @@
                             <label for="address">Address</label>
                             <input type="text" name="address" id="address" value="{{ $user ? $user->address : old('address') }}">
                             <span class="inline_alert">{{ $errors->first('address') }}</span>
-                        </div>
-
-                        <div class="input_group">
-                            <label for="additional_information">Additional Information</label>
-                            <input type="text" name="additional_information" id="additional_information" placeholder="Extra Information... (e.g) Specific Location" value="{{ $user ? $user->additional_information : old('additional_information') }}">
-                            <span class="inline_alert">{{ $errors->first('additional_information') }}</span>
                         </div>
 
                         <div class="row_input_group">
@@ -92,7 +86,14 @@
                                 </select>
                                 <span class="inline_alert">{{ $errors->first('area') }}</span>
                             </div>
+                        </div>                        
+
+                        <div class="input_group">
+                            <label for="additional_information">Additional Information</label>
+                            <input type="text" name="additional_information" id="additional_information" placeholder="Extra Information about the order... (e.g) Specific Location" value="{{ $user ? $user->additional_information : old('additional_information') }}">
+                            <span class="inline_alert">{{ $errors->first('additional_information') }}</span>
                         </div>
+
                     </div>
 
                     <button type="submit">Confirm Order</button>
