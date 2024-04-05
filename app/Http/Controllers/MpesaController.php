@@ -80,6 +80,7 @@ class MpesaController extends Controller
 
     public function stkCallback()
     {
+        dd('stkcallback');
         header("Content-Type: application/json");
         $callbackJSONData = file_get_contents('php://input');
         // $logFile = "stkpaymentsdata.json";
