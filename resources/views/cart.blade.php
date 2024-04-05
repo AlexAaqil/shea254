@@ -95,7 +95,7 @@
             });
         });
     </script>
-    <x-jquery_sweetalert></x-jquery_sweetalert>
+    <x-sweetalert></x-sweetalert>
 </x-slot>
 
 </x-app-layout>

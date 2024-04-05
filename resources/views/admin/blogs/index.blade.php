@@ -66,5 +66,5 @@
         </div>
     </section>
 
-    <x-jquery_sweetalert></x-jquery_sweetalert>
+    <x-sweetalert></x-sweetalert>
 </x-admin>

@@ -108,7 +108,7 @@
         </div>
     </div>
 
-    <x-jquery_sweetalert>
+    <x-sweetalert>
         <script>
             function checkPasswordAndDelete() {
                 const password = document.getElementById("password").value.trim();
