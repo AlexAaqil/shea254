@@ -17,7 +17,13 @@ class MpesaController extends Controller
         # provide the following details, this part is found on your test credentials on the developer account
         $BusinessShortCode = '6812022'; //business short code
         $Passkey = env('MPESA_PASSKEY'); //live passkey
-        $phone = preg_replace('/^0/', '254', str_replace("+", "", $phone));
+        // $phone = preg_replace('/^0/', '254', str_replace("+", "", $phone));
+        $phone = (substr($phone, 0,1) == '+') ? str_replace('+', '', $phone) : $phone;
+        $phone = (substr($phone, 0,1) == '0') ? preg_replace('/^0/', '254', $phone) : $phone;
+        $phone = (substr($phone, 0,1) == '7') ? preg_replace('/^7/', '2547', $phone) : $phone;
+        $phone = (substr($phone, 0,1) == '1') ? preg_replace('/^1/', '2541', $phone) : $phone;
+        $phone = (substr($phone, 0,1) == '0') ? preg_replace('/^01/', '2541', $phone) : $phone;
+        $phone = (substr($phone, 0,1) == '0') ? preg_replace('/^07/', '2547', $phone) : $phone;
         $PartyA = $phone; // This is your phone number,
         $PartyB = '4311370'; // For the buy goods, the till number. For paybill, just the paybill
         $TransactionDesc = 'SHEA254 Ecommerce Payment';
