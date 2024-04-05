@@ -166,7 +166,7 @@ class ProductController extends Controller
     {
         $categories = ProductCategory::all();
         $category = ProductCategory::where('slug', $category_slug)->firstOrFail();
-        $products = $category->products()->get();
+        $products = $category->products()->orderBy('title', 'asc')->get();
 
         foreach ($products as $product) {
             $product->calculateDiscount();
