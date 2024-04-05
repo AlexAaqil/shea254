@@ -6,24 +6,32 @@
 
         <section class="Hero">
             <div class="categories">
+                
                 <div class="category">
                     <a href="{{ route('products.categorized', $product='raw-shea-butter') }}">
                         <h1>Raw</h1>
                         <h1>Shea</h1>
                     </a>
                 </div>
-    
+                
                 <div class="category">
                     <a href="{{ route('products.categorized', $product='raw-cocoa-butter') }}">
                         <h1>Raw</h1>
                         <h1>Cocoa</h1>
                     </a>
                 </div>
+                
+                <div class="category">
+                    <a href="{{ route('products.categorized', $product='whipped-shea-cocoa') }}">
+                        <h1>Shea</h1>
+                        <h1>& Cocoa</h1>
+                    </a>
+                </div>
     
                 <div class="category">
-                    <a href="{{ route('products.categorized', $product='body-butter') }}">
-                        <h1>Body</h1>
-                        <h1>Butters</h1>
+                    <a href="{{ route('products.categorized', $product='black-soap') }}">
+                        <h1>Black</h1>
+                        <h1>Soap</h1>
                     </a>
                 </div>
     
@@ -50,13 +58,6 @@
                 <div class="category">
                     <a href="{{ route('products.categorized', $product='serum') }}">
                         <h1>Serums</h1>
-                    </a>
-                </div>
-    
-                <div class="category">
-                    <a href="{{ route('products.categorized', $product='gel') }}">
-                        <h1>Gel</h1>
-                        <h1>& Others</h1>
                     </a>
                 </div>
             </div>
