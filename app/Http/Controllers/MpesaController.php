@@ -66,7 +66,7 @@ class MpesaController extends Controller
           'PartyA' => $PartyA,
           'PartyB' => $PartyB,
           'PhoneNumber' => $PartyA,
-          'CallBackURL' => CALLBACK_URL . $ordernum,
+          'CallBackURL' => CALLBACK_URL,
           'AccountReference' => $ordernum,
           'TransactionDesc' => $TransactionDesc
         );
