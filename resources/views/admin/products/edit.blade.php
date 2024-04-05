@@ -147,7 +147,7 @@
 
     <x-slot name='javascript'>
         <script src="{{ asset('assets/js/tinymce.js') }}"></script>
-        <script src={{ asset('assets/js/jquery.js') }}></script>
+        <script src="{{ asset('assets/js/jquery.js') }}"></script>
         <script src="{{ asset('assets/js/jquery_ui.js') }}"></script>
         <script>
             $(document).ready(function() {

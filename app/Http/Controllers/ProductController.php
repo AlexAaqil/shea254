@@ -192,14 +192,11 @@ class ProductController extends Controller
     }
 
     public function delete_product_image($id) {
-        // Delete the selected image matching the condition
         $image = ProductImages::find($id);
 
-        // Delete from the database
         $image->delete();
 
-        // Delete the file from storage
-        Storage::disk('public')->delete($image->image_name);
+        Storage::disk('public')->delete($image->image);
 
         return redirect()->route('products.edit', $image->product_id)->with('success',['message' => 'Image has been deleted.']);
     }

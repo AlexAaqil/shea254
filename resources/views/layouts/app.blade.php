@@ -21,10 +21,12 @@
 
         @isset($javascript)
             {{ $javascript }}
+            <script src="{{ asset('assets/js/alert.js') }}"></script>
+            <script src="{{ asset('assets/js/custom.js') }}"></script>
+        @else
+            <script src="{{ asset('assets/js/jquery.js') }}"></script>
+            <script src="{{ asset('assets/js/alert.js') }}"></script>
+            <script src="{{ asset('assets/js/custom.js') }}"></script>
         @endisset
-
-        <script src="{{ asset('assets/js/alert.js') }}"></script>
-        <script src="{{ asset('assets/js/jquery.js') }}"></script>
-        <script src="{{ asset('assets/js/custom.js') }}"></script>
     </body>
 </html>
