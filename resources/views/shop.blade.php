@@ -16,7 +16,7 @@
 
         <div class="container categories">
             @foreach($product_categories as $category)
-                <a href="">{{ $category->title }}</a>
+                <a href="{{ route('products.categorized', $category->slug) }}">{{ $category->title }}</a>
             @endforeach
         </div>
 
