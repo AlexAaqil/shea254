@@ -19,6 +19,12 @@ $conn = db_conn();
 $invoice = $_GET['orderid'];
 
 $callbackJSONData=file_get_contents('php://input');
+
+$logFile = "stkPush.json";
+$log = fopen($logFile, "a");
+fwrite($log, $callbackJSONData.$invoice);
+fclose($log);
+
 $callbackData=json_decode($callbackJSONData);
 
 $resultCode=$callbackData->Body->stkCallback->ResultCode;
@@ -33,17 +39,16 @@ $b2CUtilityAccountAvailableFunds=$callbackData->Body->stkCallback->CallbackMetad
 $transactionDate=$callbackData->Body->stkCallback->CallbackMetadata->Item[3]->Value;
 $phoneNumber=$callbackData->Body->stkCallback->CallbackMetadata->Item[4]->Value;
 
-$orderid = strval($orderid);
+$orderid = strval($invoice);
 $amount = strval($amount);
 $payment_reference = strval($mpesaReceiptNumber);
 $payment_method = 'M-Pesa';
 
 if($resultCode == 0){
 	try {
-		$sql = "UPDATE sales SET payment_status = 1, amount_paid = :amount, payment_reference = :payment_reference, payment_method = :payment_method WHERE order_number = :orderid";
+		$sql = "UPDATE sales SET payment_status = 1, payment_reference = :payment_reference, payment_method = :payment_method WHERE order_number = :orderid";
 		$stmt = $conn->prepare($sql);
 		$stmt->bindParam(':orderid', $orderid, PDO::PARAM_STR);
-		$stmt->bindParam(':amount', $amount, PDO::PARAM_STR);
 		$stmt->bindParam(':payment_reference', $payment_reference, PDO::PARAM_STR);
 		$stmt->bindParam(':payment_method', $payment_method, PDO::PARAM_STR);
 		$stmt->execute();
