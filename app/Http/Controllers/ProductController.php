@@ -164,9 +164,9 @@ class ProductController extends Controller
 
     public function categorized_products($category_slug)
     {
-        $categories = ProductCategory::all();
+        $categories = ProductCategory::all()->orderBy('title', 'asc');
         $category = ProductCategory::where('slug', $category_slug)->firstOrFail();
-        $products = $category->products()->orderBy('title', 'asc')->get();
+        $products = $category->products()->get();
 
         foreach ($products as $product) {
             $product->calculateDiscount();
