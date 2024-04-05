@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Storage;
 class MpesaController extends Controller
 {
     public function stkPush($phone, $amount, $ordernum){
-        define('CALLBACK_URL', 'https://shea254.com/pay/callback');
+        define('CALLBACK_URL', 'https://pay.shea254.com/pay/callback.php');
   
         $consumerKey = env('MPESA_CONSUMER_KEY');
         $consumerSecret = env('MPESA_CONSUMER_SECRET');
@@ -80,11 +80,10 @@ class MpesaController extends Controller
 
     public function stkCallback()
     {
-        dd('stkcallback');
         header("Content-Type: application/json");
         $callbackJSONData = file_get_contents('php://input');
         // $logFile = "stkpaymentsdata.json";
-        $logFile = storage_path("logs/stkpaymentsdata.json");
+        $logFile = "stkpayments.json";;
         $log = fopen($logFile, "a");
         fwrite($log, $callbackJSONData); 
         fclose($log); 
