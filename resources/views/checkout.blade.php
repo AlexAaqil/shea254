@@ -12,15 +12,9 @@
                     @csrf
                     <div class="row_input_group">
                         <div class="input_group">
-                            <label for="first_name">First Name</label>
-                            <input type="text" name="first_name" id="first_name" value="{{ $user ? $user->first_name : old('first_name') }}">
-                            <span class="inline_alert">{{ $errors->first('first_name') }}</span>
-                        </div>
-
-                        <div class="input_group">
-                            <label for="last_name">Last Name</label>
-                            <input type="text" name="last_name" id="last_name" value="{{ $user ? $user->last_name : old('last_name') }}">
-                            <span class="inline_alert">{{ $errors->first('last_name') }}</span>
+                            <label for="full_name">Full Name</label>
+                            <input type="text" name="full_name" id="full_name" value="{{ $user ? $user->full_name : old('full_name') }}">
+                            <span class="inline_alert">{{ $errors->first('full_name') }}</span>
                         </div>
                     </div>
 

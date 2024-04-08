@@ -38,8 +38,7 @@ class OrderController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'first_name' => 'required|string|max:80',
-            'last_name' => 'required|string|max:120',
+            'full_name' => 'required|string|max:200',
             'email' => 'required|string|lowercase|email:rfc,dns|max:255',
             'phone_number' => 'required|string|max:40',
         ]);
@@ -116,8 +115,7 @@ class OrderController extends Controller
 
             $order_delivery = new OrderDelivery();
             $order_delivery->order_id = $order->id;
-            $order_delivery->first_name = $validated['first_name'];
-            $order_delivery->last_name = $validated['last_name'];
+            $order_delivery->full_name = $validated['full_name'];
             $order_delivery->email = $email;
             $order_delivery->phone_number = $phone_number;
             $order_delivery->address = $address;
