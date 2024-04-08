@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('slug')->index();
             $table->unsignedSmallInteger('product_code')->default(0);
             $table->boolean('featured')->default(0);
+            $table->boolean('is_visible')->default(1);
             $table->decimal('buying_price', 10, 2)->default(0.00);
             $table->decimal('selling_price', 10, 2)->default(0.00);
             $table->decimal('discount_price', 10, 2)->default(0.00)->nullable();

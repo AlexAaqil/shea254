@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId('product_id')->nullable()->constrained('products')->onDelete('set null');
             $table->string('title');
             $table->unsignedSmallInteger('quantity')->default(1);
+            $table->decimal('buying_price',10,2)->default(0);
             $table->decimal('selling_price',10,2)->default(0);
             $table->timestamps();
         });

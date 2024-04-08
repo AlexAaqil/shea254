@@ -33,7 +33,7 @@ class Product extends Model
     }
 
     public function getProductImages() {
-        return $this->hasMany(ProductImages::class, 'product_id')->orderBy('order', 'asc');
+        return $this->hasMany(ProductImages::class, 'product_id')->orderBy('image_order', 'asc');
     }
 
     public function getTranslatedInStock()

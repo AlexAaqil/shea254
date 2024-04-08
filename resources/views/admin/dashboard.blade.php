@@ -8,18 +8,6 @@
             <div class="stats">
                 <div class="stat">
                     <div class="icon">
-                        <i class="fas fa-users-cog"></i>
-                    </div>
-                    <div class="text">
-                        <p>
-                            <a href="{{ route('admin.admins') }}">Admins</a>
-                        </p>
-                        <p>{{ $count_admins }}</p>
-                    </div>
-                </div>
-        
-                <div class="stat">
-                    <div class="icon">
                         <i class="fas fa-users"></i>
                     </div>
                     <div class="text">
@@ -29,16 +17,16 @@
                         <p>{{ $count_users }}</p>
                     </div>
                 </div>
-        
+
                 <div class="stat">
                     <div class="icon">
                         <i class="fas fa-tags"></i>
                     </div>
                     <div class="text">
                         <p>
-                            <a href="{{ route('product-categories.index') }}">Categories</a>
+                            <a href="{{ route('orders.index') }}">Orders</a>
                         </p>
-                        <p>{{ $count_product_categories }}</p>
+                        <p>{{ $count_orders }}</p>
                     </div>
                 </div>
         
@@ -51,6 +39,18 @@
                             <a href="{{ route('products.index') }}">Products</a>
                         </p>
                         <p>{{ $count_products }}</p>
+                    </div>
+                </div>
+
+                <div class="stat">
+                    <div class="icon">
+                        <i class="fas fa-barcode"></i>
+                    </div>
+                    <div class="text">
+                        <p>
+                            <a href="{{ route('locations.index') }}">Areas</a>
+                        </p>
+                        <p>{{ $count_delivery_areas }}</p>
                     </div>
                 </div>
         
@@ -79,44 +79,60 @@
                 </div>
             </div>
 
-            <div class="analytics">
-                <div class="analytic">
-                    <div class="text">
-                        <p>xxx</p>
-                        <p>Gross Sales</p>
-                    </div>
-                    <div class="icon">
-                        <i class="fas fa-dollar-sign"></i>
-                    </div>
+            <div class="analytics_wrapper">
+                <div class="custom_form">
+                    <form action="">
+                        <div class="input_group">
+                            <select name="period" id="period">
+                                <option value="">Today</option>
+                                <option value="">Yesterday</option>
+                                <option value="">This Week</option>
+                                <option value="">This Month</option>
+                                <option value="">This Year</option>
+                            </select>
+                        </div>
+                    </form>
                 </div>
 
-                <div class="analytic">
-                    <div class="text">
-                        <p>xxx</p>
-                        <p>Net Sales</p>
+                <div class="analytics">
+                    <div class="analytic">
+                        <div class="text">
+                            <p>{{ number_format($gross_sales) }}</p>
+                            <p>Gross Sales</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
                     </div>
-                    <div class="icon">
-                        <i class="fas fa-dollar-sign"></i>
+    
+                    <div class="analytic">
+                        <div class="text">
+                            <p>{{ number_format($net_sales) }}</p>
+                            <p>Net Sales</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
                     </div>
-                </div>
-
-                <div class="analytic">
-                    <div class="text">
-                        <p>xxx</p>
-                        <p>Cost of Sales</p>
+    
+                    <div class="analytic">
+                        <div class="text">
+                            <p>{{ number_format($cost_of_sales) }}</p>
+                            <p>Cost of Sales</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
                     </div>
-                    <div class="icon">
-                        <i class="fas fa-dollar-sign"></i>
-                    </div>
-                </div>
-
-                <div class="analytic">
-                    <div class="text">
-                        <p>xxx</p>
-                        <p>Gross Profit</p>
-                    </div>
-                    <div class="icon">
-                        <i class="fas fa-dollar-sign"></i>
+    
+                    <div class="analytic">
+                        <div class="text">
+                            <p>{{ number_format($gross_profit) }}</p>
+                            <p>Gross Profit</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
                     </div>
                 </div>
             </div>

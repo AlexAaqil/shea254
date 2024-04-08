@@ -23,7 +23,7 @@
                     @foreach($orders as $value)
                     <tr class="searchable">
                         <td>{{ $value->order_number }}</td>
-                        <td>{{ $value->order_delivery->first_name }} {{ $value->order_delivery->last_name }}</td>
+                        <td>{{ $value->order_delivery->full_name }}</td>
                         <td>{{ $value->order_delivery->phone_number }}</td>
                         <td>{{ $value->order_delivery->address }}</td>
                         <td>{{ number_format($value->order_delivery->shipping_cost) }}</td>

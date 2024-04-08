@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('discount_code')->nullable();
             $table->decimal('discount',10,2)->default(0.00);
             $table->decimal('total_amount', 10,2)->default(0.00);
-            $table->string('payment_method')->nullable();
             $table->decimal('amount_paid', 10,2)->default(0.00);
+            $table->string('payment_method')->nullable();
             $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('set null');
             $table->timestamps();
         });

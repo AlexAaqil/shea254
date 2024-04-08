@@ -133,6 +133,7 @@ class OrderController extends Controller
                 $order_item->product_id = $item['id'];
                 $order_item->title = $item['title'];
                 $order_item->quantity = $item['quantity'];
+                $order_item->buying_price = $item['buying_price'];
                 $order_item->selling_price = $item['selling_price'];
                 $order_item->order_id = $order->id;
                 $order_item->save();
