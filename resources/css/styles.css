@@ -1418,18 +1418,20 @@ footer .copyright {
   text-decoration: none;
   color: #000;
 }
-.Admin_dashboard .analytics {
+.Admin_dashboard .analytics_wrapper {
+  margin: 1.5em 0;
+}
+.Admin_dashboard .analytics_wrapper .analytics {
   display: grid;
   grid-template-columns: 1fr;
   gap: 1em;
-  margin: 2em 0;
 }
 @media screen and (width >= 726px) {
-  .Admin_dashboard .analytics {
+  .Admin_dashboard .analytics_wrapper .analytics {
     grid-template-columns: repeat(4, 1fr);
   }
 }
-.Admin_dashboard .analytics .analytic {
+.Admin_dashboard .analytics_wrapper .analytics .analytic {
   background: rgb(198, 250, 193);
   border-radius: 8px;
   padding: 6px 12px;
@@ -1437,16 +1439,26 @@ footer .copyright {
   grid-template-columns: auto 20%;
   align-items: center;
 }
-.Admin_dashboard .analytics .analytic .text p {
+.Admin_dashboard .analytics_wrapper .analytics .analytic .text p {
   font-size: 0.8em;
 }
-.Admin_dashboard .analytics .analytic .text p:first-of-type {
-  font-size: 1.35em;
+.Admin_dashboard .analytics_wrapper .analytics .analytic .text p:first-of-type {
+  font-size: 1.45em;
+  font-weight: bold;
 }
-.Admin_dashboard .analytics .analytic .icon {
+.Admin_dashboard .analytics_wrapper .analytics .analytic .icon {
   text-align: center;
 }
 
+@media screen and (width >= 726px) {
+  .Admin_dashboard .analytics_wrapper .custom_form {
+    display: flex;
+    justify-content: end;
+  }
+  .Admin_dashboard .analytics_wrapper .custom_form form {
+    width: 15%;
+  }
+}
 .Delivery_locations .areas .body h2 {
   font-size: 1.2em;
 }
