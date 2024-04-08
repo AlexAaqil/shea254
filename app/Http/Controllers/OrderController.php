@@ -45,6 +45,7 @@ class OrderController extends Controller
         ]);
 
         $phone_number = $validated['phone_number'];
+        $email = $validated['email'];
 
         $cart = app(CartController::class)->cartItemsWithTotals();
         $cart_items = $cart['items'];
@@ -91,7 +92,7 @@ class OrderController extends Controller
         $total_amount = $shipping_cost + $cart_subtotal;
 
         // Generate order number and set user ID
-        $order_number = date('YmdHis');
+        $order_number = date('YmdHis') . '-' . Str::random(5);
         $order_type = 1;
         $discount_code = null;
         $discount = 0;
@@ -99,7 +100,7 @@ class OrderController extends Controller
         $payment_method = null;
         $user_id = Auth::check() ? Auth::user()->id : null;
 
-        $res = app(MpesaController::class)->stkPush($phone_number, $total_amount, $order_number);
+        $res = app(MpesaController::class)->stkPush($phone_number, $total_amount, $order_number, $email);
 
         if($res == 0 ) {
             // Create the order
@@ -118,7 +119,7 @@ class OrderController extends Controller
             $order_delivery->order_id = $order->id;
             $order_delivery->first_name = $validated['first_name'];
             $order_delivery->last_name = $validated['last_name'];
-            $order_delivery->email = $validated['email'];
+            $order_delivery->email = $email;
             $order_delivery->phone_number = $phone_number;
             $order_delivery->address = $address;
             $order_delivery->additional_information = $additional_information;
