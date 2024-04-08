@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Storage;
 
 class MpesaController extends Controller
 {
-    public function sstkPush($phone, $amount, $order_number, $email){
+    public function stkPush($phone, $amount, $order_number, $email){
         // define('CALLBACK_URL', 'https://pay.shea254.com/pay/callback.php?order_no');
         $CallBackURL = "https://pay.shea254.com/pay/callback.php";
   
