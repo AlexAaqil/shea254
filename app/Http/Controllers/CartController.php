@@ -43,6 +43,7 @@ class CartController extends Controller
                 'slug' => $product->slug,
                 'buying_price' => $product->buying_price,
                 'selling_price' => $price,
+                'discount_price' => $product->discount_price,
                 'quantity' => 1,
             ];
         }
