@@ -110,7 +110,6 @@ class OrderController extends Controller
                 'discount_code' => $discount_code,
                 'discount' => $discount,
                 'total_amount' => $total_amount,
-                'payment_reference' => $payment_reference,
                 'payment_method' => $payment_method,
                 'user_id' => $user_id,
             ]);
