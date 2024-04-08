@@ -4,7 +4,7 @@
             @include('admin.partials.locations_navbar')
     
             <div class="header">
-                <h1>Areas</h1>
+                <h1>Areas <span>({{ $areas->count() }})</span></h1>
                 @include('partials.js_search')
                 <div class="header_btn">
                     <a href="{{ route('areas.create') }}">New</a>
