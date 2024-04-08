@@ -77,37 +77,5 @@ class MpesaController extends Controller
         $res = (array)(json_decode($curl_response));
         $ResponseCode = $res['ResponseCode'];
         return $ResponseCode;
-
-        switch($ResponseCode)
-        {
-            //Request Successfully Sent for processing.
-            case("0"):
-                // $payment = Payment::where('order_reference', $order_number);
-                // if($payment){
-                //     // update transaction tbl
-                //     // $payment->merchant_request_id;
-
-                // }else{
-                //     // insert
-                //     // $payment = new Payment();
-                //     // $payment->order_reference = $order_number;
-                //     // $payment->email = $email;
-                //     // $payment->merchant_request_id = '';
-                //     // $payment->checkout_request_id = '';
-                //     // $payment->result_code = 0;
-                //     // $payment->result_description = '';
-                //     // $payment->phone_number = '';
-                //     // $payment->amount_paid = '';
-                //     // $payment->transaction_receipt_number = '';
-                //     // $payment->payment_status = '';
-                // }
-            break;
-
-            //Request failed for some reason...
-            default:
-                echo 'ERROR';
-            break;
-
-        }
     }
 }
