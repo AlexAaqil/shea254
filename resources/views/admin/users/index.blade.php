@@ -1,5 +1,7 @@
 <x-admin>
     <div class="container users">
+        @include('admin.partials.users_navbar')
+        
         <div class="header">
             <h1>Users <span>({{ $users->count() }})</span></h1>
             @include('partials.js_search')

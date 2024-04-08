@@ -11,8 +11,7 @@
             @php
                 $navLinks = [
                     ['route' => 'admin.dashboard', 'icon' => 'fas fa-home', 'text' => 'Dashboard'],
-                    ['route' => 'admin.admins', 'icon' => 'fas fa-users-cog', 'text' => 'Admins'],
-                    ['route' => 'admin.users', 'icon' => 'fas fa-users', 'text' => 'Users'],
+                    ['route' => 'admin.admins', 'icon' => 'fas fa-users-cog', 'text' => 'Users'],
                     ['route' => 'products.index', 'icon' => 'fas fa-barcode', 'text' => 'Products'],
                     ['route' => 'orders.index', 'icon' => 'fas fa-truck-loading', 'text' => 'Orders'],
                     ['route' => 'locations.index', 'icon' => 'fas fa-map-marker-alt', 'text' => 'Locations'],
