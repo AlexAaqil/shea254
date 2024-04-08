@@ -85,21 +85,21 @@ class MpesaController extends Controller
                 $payment = Payment::where('order_reference', $order_number);
                 if($payment){
                     // update transaction tbl
-                    $payment->merchant_request_id;
+                    // $payment->merchant_request_id;
 
                 }else{
                     // insert
-                    $payment = new Payment();
-                    $payment->order_reference = $order_number;
-                    $payment->email = $email;
-                    $payment->merchant_request_id = '';
-                    $payment->checkout_request_id = '';
-                    $payment->result_code = 0;
-                    $payment->result_description = '';
-                    $payment->phone_number = '';
-                    $payment->amount_paid = '';
-                    $payment->transaction_receipt_number = '';
-                    $payment->payment_status = '';
+                    // $payment = new Payment();
+                    // $payment->order_reference = $order_number;
+                    // $payment->email = $email;
+                    // $payment->merchant_request_id = '';
+                    // $payment->checkout_request_id = '';
+                    // $payment->result_code = 0;
+                    // $payment->result_description = '';
+                    // $payment->phone_number = '';
+                    // $payment->amount_paid = '';
+                    // $payment->transaction_receipt_number = '';
+                    // $payment->payment_status = '';
                 }
             break;
 
