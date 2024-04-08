@@ -12,8 +12,9 @@ class DeliveryAreaController extends Controller
     public function index()
     {
         $locations = DeliveryLocation::with('delivery_areas')->get();
+        $areas = DeliveryArea::all();
         
-        return view('admin.delivery_areas.index', compact('locations'));
+        return view('admin.delivery_areas.index', compact('locations', 'areas'));
     }
 
     public function create()
