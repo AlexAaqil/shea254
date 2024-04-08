@@ -91,11 +91,10 @@ class OrderController extends Controller
         $total_amount = $shipping_cost + $cart_subtotal;
 
         // Generate order number and set user ID
-        $order_number = date('YmdHis') . '-' . Str::random(5);
+        $order_number = 'ord_' . Str::random(5) . date('Ymd');
         $order_type = 1;
         $discount_code = null;
         $discount = 0;
-        $payment_reference = null;
         $payment_method = null;
         $user_id = Auth::check() ? Auth::user()->id : null;
 
