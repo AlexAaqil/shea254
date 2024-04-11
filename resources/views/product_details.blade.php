@@ -45,13 +45,13 @@
                     </form>
                 </div>
 
-                <p class="description">{{ Illuminate\Support\Str::limit($product->description, 150) }}</p>
-
                 <div class="extras">
-                    <p>
-                        <span>Size</span>
-                        <span>{{ $product->product_measurement }}</span>
-                    </p>
+                    @if($product->product_measurement)
+                        <p>
+                            <span>Size</span>
+                            <span>{{ $product->product_measurement }}</span>
+                        </p>
+                    @endif
                     <p>
                         <span>Category</span>
                         @if($product->category_id != null)
@@ -61,6 +61,10 @@
                         @endif
                     </p>
                 </div>
+
+                <div class="description">
+                    {!! Illuminate\Support\Str::limit($product->description, 600) !!}
+                </div>
             </div>
         </div>
     </div>
@@ -68,7 +72,7 @@
     @if($related_products->count() > 0)
     <div class="container related_products">
         <h2>Related Products</h2>
-        <div class="products_wrapper">
+        <div class="card_wrapper products_wrapper">
             @foreach($related_products as $product)
                 @include('partials.product')
             @endforeach

@@ -148,31 +148,45 @@
                 .price,
                 .action,
                 .description {
-                    margin: 0 0 1em;
+                    margin: 0 0 0.5em;
                 }
                 h1 {
-                    font-size: 1.6em;
+                    font-size: 1.4em;
                 }
 
                 .price {
                     color: $price_color;
-                    font-size: 1.4em;
+                    font-size: 1.2em;
                     font-weight: bold;
                 }
 
                 .description {
-                    margin: 2em 0 0;
+                    margin: 1.5em 0 0;
+
+                    ul,
+                    ol {
+                        list-style-position: inside;
+                        padding: 0 1em;
+                    }
+
+                    p {
+                        line-height: 1.2;
+                    }
                 }
 
                 .action {
                     button {
                         border-radius: 32px;
                         padding: 8px 12px;
+                        border: none;
+                        background: #000;
+                        color: #fff;
                     }
                 }
 
                 .extras {
-                    margin: 4em 0;
+                    margin: 1.5em 0;
+                    
                     p {
                         font-size: 0.8em;
                         display: grid;
@@ -188,8 +202,13 @@
             }
         }
     }
+
     .related_products {
         margin: 5em 0 0;
+
+        h2 {
+            margin: 0 0 0.5em;
+        }
     }
 }
 

@@ -86,17 +86,16 @@
     }
 }
 
-// .admin_dashboard {
-// @media screen and (width >= 726px) {
-//         .charts {
-//             margin: 0 0 4em;
-//             display: grid;
-//             grid-template-columns: 1fr 1fr;
-//             gap: 1em;
 
-//             .chart {
-//                 height: 40vh;
-//             }
-//         }
-//     }
-// }
+@media screen and (width >= 726px) {
+    .charts {
+        margin: 0 0 4em;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1em;
+
+        .chart {
+            height: 40vh;
+        }
+    }
+}
