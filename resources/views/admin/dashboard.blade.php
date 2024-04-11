@@ -137,7 +137,7 @@
                 </div>
             </div>
 
-            {{-- <div class="charts">
+            <div class="charts">
                 <div class="chart">
                     <h2>Sales</h2>
                     <canvas id="salesChart"></canvas>
@@ -146,7 +146,50 @@
                     <h2>Location Orders</h2>
                     <canvas id="citiesChart"></canvas>
                 </div>
-            </div> --}}
+            </div>
         </div>
     </section>
+
+    <x-slot name="javascript">
+        <script src="{{ asset('assets/js/chart.js') }}"></script>
+        <script>
+            const ctx = document.getElementById('salesChart');
+
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                datasets: [{
+                    label: 'Amount',
+                    data: {!! json_encode($sales_data) !!},
+                    borderWidth: 1
+                }]
+                },
+                options: {
+                    responsive: true,
+                }
+            });
+
+            const cities = document.getElementById('citiesChart');
+
+                new Chart(cities, {
+                    type: 'doughnut',
+                    data: {
+                        labels: {!! json_encode($locations_labels) !!},
+                        datasets: [{
+                            label: 'Orders',
+                            data: {!! json_encode($locations_orders) !!},
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'right',
+                            }
+                        }
+                }
+            });
+        </script>
+    </x-slot>
 </x-admin>
