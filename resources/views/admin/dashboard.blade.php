@@ -87,7 +87,9 @@
                                 <option value="">Today</option>
                                 <option value="">Yesterday</option>
                                 <option value="">This Week</option>
+                                <option value="">Last Week</option>
                                 <option value="">This Month</option>
+                                <option value="">Last Month</option>
                                 <option value="">This Year</option>
                             </select>
                         </div>
