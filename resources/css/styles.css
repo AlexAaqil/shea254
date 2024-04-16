@@ -1561,6 +1561,9 @@ footer .copyright {
   .charts .chart {
     height: 40vh;
   }
+  .charts .chart h2 {
+    font-size: 1.2em;
+  }
 }
 .Delivery_locations .areas .body h2 {
   font-size: 1.2em;
