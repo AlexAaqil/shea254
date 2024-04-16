@@ -53,7 +53,7 @@
                     @if($product->product_reviews->isNotEmpty())
                         <p>
                             <span>Rating</span>
-                            <span>{{ number_format($product->product_reviews->avg('rating'), 1) }} / 5</span>
+                            <span><i class="fas fa-star"></i> {{ number_format($product->product_reviews->avg('rating'), 1) }} / 5</span>
                         </p>
                     @endif
 
@@ -86,7 +86,7 @@
     @if($product->product_reviews->isNotEmpty())
         <div class="product_reviews">
             <div class="container">
-                <h1>Testimonials</h1>
+                <h1>Reviews</h1>
                 <div class="reviews_wrapper">
                     @foreach($product->product_reviews as $product_review)
                         <div class="review">
