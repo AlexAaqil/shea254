@@ -22,7 +22,7 @@
             </div>
 
             <div class="custom_form">
-                <form action="{{ route('product-reviews.store', $product->id) }}" method="post">
+                <form action="{{ route('product-reviews.store', ['product' => $product->id]) }}" method="post">
                     @csrf
 
                     <div class="input_group">

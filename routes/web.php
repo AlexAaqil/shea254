@@ -74,6 +74,7 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function() {
         Route::resource('/products', ProductController::class)->except('show');
         Route::get('product/product-image/delete/{id}', [ProductController::class, 'delete_product_image'])->name('delete_product_image');
         Route::post('product/product_images_sort', [ProductController::class, 'product_images_sort'])->name('product_images_sort');
+        Route::resource('product-reviews', ProductReviewController::class)->except('create', 'store');
 
         Route::resource('/delivery/locations', DeliveryLocationController::class)->except('show');
         Route::resource('/delivery/areas', DeliveryAreaController::class)->except('show');

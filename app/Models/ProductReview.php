@@ -15,10 +15,17 @@ class ProductReview extends Model
         'image',
         'product_id',
         'user_id',
+        'is_visible',
+        'ordering'
     ];
 
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class,'product_id');
     }
 }

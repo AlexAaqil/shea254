@@ -11,7 +11,9 @@ class ProductReviewController extends Controller
 {
     public function index()
     {
-        return view('shop');
+        $reviews = ProductReview::latest()->get();
+
+        return view('admin.product_reviews.index', compact('reviews'));
     }
 
     public function create($product)
@@ -39,35 +41,32 @@ class ProductReviewController extends Controller
         return redirect()->route('shop')->with('success', ['message' => 'Your review has been sent']);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(ProductReview $productReview)
+    public function show(ProductReview $product_review)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(ProductReview $productReview)
+    public function edit(ProductReview $product_review)
     {
-        //
+        return view('admin.product_reviews.edit', compact('product_review'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, ProductReview $productReview)
+    public function update(Request $request, ProductReview $product_review)
     {
-        //
+        $validated = $request->validate([
+            'is_visible' => 'required|numeric',
+            'ordering' => 'numeric',
+        ]);
+
+        $product_review->update($validated);
+
+        return redirect()->route('product-reviews.index')->with('success', ['message' => 'Product Review has been updated']);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(ProductReview $productReview)
+    public function destroy(ProductReview $product_review)
     {
-        //
+        $product_review->delete();
+
+        return redirect()->route('product-reviews.index')->with('success', ['message' => 'Product review has been deleted']);
     }
 }

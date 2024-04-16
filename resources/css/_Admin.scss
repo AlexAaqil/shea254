@@ -54,6 +54,10 @@ $aside_width_l: 15%;
                             font-size: 0.8em;
                         }
                     }
+
+                    .fa-star {
+                        color: unset;
+                    }
                 }
             }
         }
@@ -165,6 +169,13 @@ $aside_width_l: 15%;
 
                             td {
                                 padding: 4px 6px;
+                            }
+
+                            .edit {
+                                a {
+                                    text-decoration: none;
+                                    color: blue;
+                                }
                             }
 
                             .actions {
