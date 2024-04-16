@@ -41,7 +41,7 @@ class ProductController extends Controller
             'selling_price' => 'numeric',
             'discount_price' => 'numeric',
             'product_measurement' => 'nullable|numeric',
-            'measurement_unit' => 'nullable|numeric',
+            'measurement_id' => 'nullable|numeric',
             'product_order' => 'nullable|numeric',
             'images' => 'max:2048',
             'description' => 'nullable',
@@ -59,8 +59,9 @@ class ProductController extends Controller
 
     public function show($slug)
     {
-        $product = Product::where('slug', $slug)->firstOrFail();
+        $product = Product::with('measurement_unit')->where('slug', $slug)->firstOrFail();
         $product_images = $product->getProductImages;
+        $product_reviews = Product::with('product_reviews')->where('slug', $slug)->firstOrFail()->take(3);
         $related_products = Product::where('category_id', $product->category_id)
         ->where('id', '!=', $product->id)
         ->take(5)
@@ -89,7 +90,7 @@ class ProductController extends Controller
             'selling_price' => 'numeric',
             'discount_price' => 'numeric',
             'product_measurement' => 'nullable|numeric',
-            'measurement_unit' => 'nullable|numeric',
+            'measurement_id' => 'nullable|numeric',
             'product_order' => 'nullable|numeric',
             'images' => 'max:2048',
             'description' => 'nullable',

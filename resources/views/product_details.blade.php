@@ -43,35 +43,68 @@
                             <i class="fas fa-cart-plus add_to_cart_btn"></i> Add to Cart
                         </button>
                     </form>
+
+                    @if(auth()->user() && !auth()->user()->hasReviewedProduct($product->id))
+                        <a href="{{ route('product-reviews.create', $product->slug) }}">Review Product</a>
+                    @endif
                 </div>
 
                 <div class="extras">
-                    @if($product->product_measurement)
+                    @if($product->product_reviews->isNotEmpty())
                         <p>
-                            <span>Size</span>
-                            <span>{{ $product->product_measurement }}</span>
+                            <span>Rating</span>
+                            <span>{{ number_format($product->product_reviews->avg('rating'), 1) }} / 5</span>
                         </p>
                     @endif
-                    <p>
-                        <span>Category</span>
-                        @if($product->category_id != null)
-                            <a href="{{ route('products.categorized', $product->product_category->slug) }}">
-                                <span>{{ $product->product_category->title }}</span>
-                            </a>
-                        @endif
-                    </p>
+
+                    @if($product->product_measurement && $product->measurement_id)
+                        <p>
+                            <span>Size</span>
+                            <span>{{ $product->product_measurement . ' ' . $product->measurement_unit->measurement_name }}</span>
+                        </p>
+                    @endif
+
+                    @if($product->category_id != null)
+                        <p>
+                            <span>Category</span>
+                            <span>
+                                <a href="{{ route('products.categorized', $product->product_category->slug) }}">
+                                    {{ $product->product_category->title }}
+                                </a>
+                            </span>
+                        </p>
+                    @endif
                 </div>
 
                 <div class="description">
-                    {!! Illuminate\Support\Str::limit($product->description, 600) !!}
+                    {!! Illuminate\Support\Str::limit($product->description, 650) !!}
                 </div>
             </div>
         </div>
     </div>
 
+    @if($product->product_reviews->isNotEmpty())
+        <div class="product_reviews">
+            <div class="container">
+                <h1>Testimonials</h1>
+                <div class="reviews_wrapper">
+                    @foreach($product->product_reviews as $product_review)
+                        <div class="review">
+                            <p>{{ $product_review->review }}</p>
+                            <p class="details">
+                                <span class="username">{{ $product_review->user->first_name . ' ' . $product_review->user->last_name  }}</span>
+                                <span class="date">{{ $product_review->created_at->diffForHumans() }}</span>
+                            </p>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    @endif
+
     @if($related_products->count() > 0)
     <div class="container related_products">
-        <h2>Related Products</h2>
+        <h1>Related Products</h2>
         <div class="card_wrapper products_wrapper">
             @foreach($related_products as $product)
                 @include('partials.product')

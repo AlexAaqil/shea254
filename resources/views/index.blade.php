@@ -88,7 +88,7 @@
             <div class="container">
                 <div class="header">
                     <h1>Most Popular</h1>
-                    <a href="{{ route('shop') }}">View all</a>
+                    <a href="{{ route('shop') }}">Shop all</a>
                 </div>
     
                 <div class="card_wrapper">
@@ -98,6 +98,29 @@
                 </div>
             </div>
         </section>
+
+        @if($testimonials->count() > 2)
+        <section class="Testimonials">
+            <div class="container">
+                <div class="header">
+                    <h1>Testimonials</h1>
+                </div>
+
+                <div class="testimonials">
+                    @foreach($testimonials as $testimonial)
+                        <div class="testimonial">
+                            <p>{{ $testimonial->review }}</p>
+                            <p class="details">
+                                <span>
+                                    {{ $testimonial->user->first_name . ' ' . $testimonial->user->last_name }}</span>
+                                <span>{{ $testimonial->created_at->diffForHumans() }}</span>
+                            </p>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </section>
+        @endif
     </main>
 
     @include('partials.footer')

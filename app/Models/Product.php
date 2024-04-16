@@ -32,6 +32,17 @@ class Product extends Model
         return $this->belongsTo(ProductCategory::class, 'category_id');
     }
 
+    public function measurement_unit()
+    {
+        return $this->belongsTo(ProductMeasurement::class, 'measurement_id');
+    }
+
+    public function product_reviews()
+    {
+        return $this->hasMany(ProductReview::class, 'product_id');
+    }
+
+
     public function getProductImages() {
         return $this->hasMany(ProductImages::class, 'product_id')->orderBy('image_order', 'asc');
     }

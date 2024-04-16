@@ -16,6 +16,7 @@ use App\Http\Controllers\ProductMeasurementController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\MpesaController;
+use App\Http\Controllers\ProductReviewController;
 
 Route::get('/', [GeneralPagesController::class, 'home'])->name('home');
 Route::get('/welcome', [GeneralPagesController::class, 'welcome'])->name('welcome');
@@ -49,6 +50,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::get('/product-reviews/{product}', [ProductReviewController::class, 'create'])->name('product-reviews.create');
+    Route::post('/product-reviews/{product}', [ProductReviewController::class, 'store'])->name('product-reviews.store');
 });
 
 require __DIR__.'/auth.php';

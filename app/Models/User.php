@@ -67,4 +67,14 @@ class User extends Authenticatable implements MustVerifyEmail
         ->orderByDesc('id')
         ->get();
     }
+
+    public function productReviews()
+    {
+        return $this->hasMany(ProductReview::class);
+    }
+
+    public function hasReviewedProduct($product_id)
+    {
+        return $this->productReviews()->where('product_id', $product_id)->exists();
+    }
 }

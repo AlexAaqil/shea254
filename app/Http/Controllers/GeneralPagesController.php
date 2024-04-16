@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\ProductCategory;
+use App\Models\ProductReview;
 
 class GeneralPagesController extends Controller
 {
@@ -22,7 +23,9 @@ class GeneralPagesController extends Controller
         ->take(4)
         ->get();
 
-        return view('index', compact('featured_products'));
+        $testimonials = ProductReview::take(3)->get();
+
+        return view('index', compact('featured_products', 'testimonials'));
     }
 
     public function about()

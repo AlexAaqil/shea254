@@ -96,7 +96,7 @@
                         <select name="measurement_id" id="measurement_id">
                             <option value="">Select Measurement Unit</option>
                             @foreach($measurement_units as $measurement_unit)
-                                <option value="{{ $measurement_unit->id }}" {{ old('measurement_id') == $measurement_unit->id ? 'selected' : '' }}>{{ $measurement_unit->measurement_name }}</option>
+                                <option value="{{ $measurement_unit->id }}" {{ old('measurement_id', $product->measurement_id) == $measurement_unit->id ? 'selected' : '' }}>{{ $measurement_unit->measurement_name }}</option>
                             @endforeach
                         </select>
                         <span class="inline_alert">{{ $errors->first('measurement_id') }}</span>

@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .text-success {
   color: green;
 }
@@ -637,6 +638,7 @@ footer .copyright {
   align-items: center;
   justify-content: center;
   justify-content: space-between;
+  margin: 0 0 0.5em;
 }
 .Homepage .Products .header h1 {
   text-transform: uppercase;
@@ -644,6 +646,41 @@ footer .copyright {
 .Homepage .Products .header a {
   color: #000;
   font-weight: bold;
+}
+.Homepage .Testimonials .container .header {
+  margin: 0 0 0.5em;
+}
+.Homepage .Testimonials .container .header h1 {
+  text-transform: uppercase;
+}
+.Homepage .Testimonials .container .testimonials {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1em;
+}
+@media screen and (width >= 726px) {
+  .Homepage .Testimonials .container .testimonials {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+.Homepage .Testimonials .container .testimonials .testimonial {
+  background: rgb(242, 242, 250);
+  padding: 8px 16px;
+  border-radius: 8px;
+}
+.Homepage .Testimonials .container .testimonials .testimonial p {
+  line-height: 1.2;
+}
+.Homepage .Testimonials .container .testimonials .testimonial .details {
+  margin: 0.5em 0;
+  color: grey;
+  font-style: italic;
+}
+.Homepage .Testimonials .container .testimonials .testimonial .details span:first-of-type::before {
+  content: "''";
+}
+.Homepage .Testimonials .container .testimonials .testimonial .details span:first-of-type::after {
+  content: "''";
 }
 
 @media screen and (width >= 726px) {
@@ -1453,7 +1490,7 @@ footer .copyright {
 @media screen and (width >= 726px) {
   .Admin_dashboard .analytics_wrapper .custom_form {
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
   }
   .Admin_dashboard .analytics_wrapper .custom_form form {
     width: 15%;
@@ -1617,12 +1654,26 @@ footer .copyright {
 .Product_details .container .wrapper .details .description p {
   line-height: 1.2;
 }
-.Product_details .container .wrapper .details .action button {
+.Product_details .container .wrapper .details .action {
+  display: flex;
+  align-items: center;
+  gap: 2em;
+}
+.Product_details .container .wrapper .details .action button,
+.Product_details .container .wrapper .details .action a {
+  font-size: 1em;
+}
+.Product_details .container .wrapper .details .action form button {
   border-radius: 32px;
   padding: 8px 12px;
   border: none;
   background: #000;
   color: #fff;
+}
+.Product_details .container .wrapper .details .action a {
+  text-decoration: none;
+  color: blue;
+  font-weight: bold;
 }
 .Product_details .container .wrapper .details .extras {
   margin: 1.5em 0;
@@ -1630,17 +1681,116 @@ footer .copyright {
 .Product_details .container .wrapper .details .extras p {
   font-size: 0.8em;
   display: grid;
-  grid-template-columns: 20% auto;
+  grid-template-columns: 15% auto;
   margin: 0 0 0.5em;
+}
+.Product_details .container .wrapper .details .extras p span {
+  color: #333;
 }
 .Product_details .container .wrapper .details .extras p span:last-of-type {
   font-weight: bold;
 }
-.Product_details .related_products {
-  margin: 5em 0 0;
+.Product_details .container .wrapper .details .extras p span a {
+  text-decoration: none;
+  color: #333;
 }
-.Product_details .related_products h2 {
-  margin: 0 0 0.5em;
+.Product_details .product_reviews h1,
+.Product_details .related_products h1 {
+  margin: 0 0 0.3em;
+  font-size: 1.5em;
+}
+.Product_details .product_reviews .container .reviews_wrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1em;
+  gap: 1em;
+}
+@media screen and (width >= 726px) {
+  .Product_details .product_reviews .container .reviews_wrapper {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+.Product_details .product_reviews .container .reviews_wrapper .review {
+  background: #fcfcee;
+  border-radius: 8px;
+  padding: 8px 16px;
+}
+.Product_details .product_reviews .container .reviews_wrapper .review p {
+  line-height: 1.2;
+}
+.Product_details .product_reviews .container .reviews_wrapper .review .details {
+  margin: 0.5em 0;
+}
+.Product_details .product_reviews .container .reviews_wrapper .review .details span {
+  font-style: italic;
+  color: rgb(85, 85, 85);
+  font-size: 0.85em;
+}
+.Product_details .product_reviews .container .reviews_wrapper .review .details .username::before {
+  content: "''";
+}
+.Product_details .product_reviews .container .reviews_wrapper .review .details .username::after {
+  content: "''";
+}
+.Product_details .product_review_form {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1em;
+  gap: 1.5em;
+}
+@media screen and (width >= 726px) {
+  .Product_details .product_review_form {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+.Product_details .product_review_form .product h1 {
+  font-size: 1.5em;
+}
+.Product_details .product_review_form .product img {
+  height: 250px;
+}
+.Product_details .product_review_form .product .rating {
+  margin: 0.8em 0;
+}
+.Product_details .product_review_form .product .rating span:first-of-type {
+  color: grey;
+}
+.Product_details .product_review_form .product .rating span:last-of-type {
+  font-size: 1.1em;
+  color: unset;
+}
+.Product_details .product_review_form .custom_form form .rating {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: start;
+}
+.Product_details .product_review_form .custom_form form .rating:hover input:checked ~ label:before {
+  opacity: 0.4;
+}
+.Product_details .product_review_form .custom_form form .rating label {
+  position: relative;
+  width: 1em;
+  font-size: 30px;
+  font-weight: 300;
+  color: #ffd600;
+  cursor: pointer;
+}
+.Product_details .product_review_form .custom_form form .rating label::before {
+  content: "★";
+  position: absolute;
+  opacity: 0;
+}
+.Product_details .product_review_form .custom_form form .rating label:hover:before, .Product_details .product_review_form .custom_form form .rating label:hover ~ label:before {
+  opacity: 1 !important;
+}
+.Product_details .product_review_form .custom_form form .rating input {
+  display: none;
+}
+.Product_details .product_review_form .custom_form form .rating input:checked ~ label:before {
+  opacity: 1;
+}
+.Product_details .related_products {
+  margin: 3em 0 0;
 }
 
 .Categorised_Products .hero {
