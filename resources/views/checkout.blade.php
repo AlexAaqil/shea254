@@ -10,23 +10,23 @@
             <div class="custom_form">
                 <form action="" method="post">
                     @csrf
+
                     <div class="row_input_group">
                         <div class="input_group">
                             <label for="full_name">Full Name</label>
-                            <input type="text" name="full_name" id="full_name" value="{{ $user ? $user->full_name : old('full_name') }}">
+                            <input type="text" name="full_name" id="full_name" placeholder="Enter your Full Name" value="{{ $user ? $user->full_name : old('full_name') }}">
                             <span class="inline_alert">{{ $errors->first('full_name') }}</span>
                         </div>
-                    </div>
-
-                    <div class="row_input_group">
                         <div class="input_group">
                             <label for="email">Email Address</label>
                             <input type="email" name="email" id="email" placeholder="example@gmail.com" value="{{ $user ? $user->email : old('email') }}">
                             <span class="inline_alert">{{ $errors->first('email') }}</span>
                         </div>
+                    </div>
 
+                    <div class="row_input_group">
                         <div class="input_group">
-                            <label for="phone_number">Phone Number</label>
+                            <label for="phone_number">Phone Number <span class="details">(MPesa Number to be used for payment)</span></label>
                             <input type="text" name="phone_number" id="phone_number" placeholder="2547xxxxxxxx" value="{{ $user ? $user->phone_number : old('phone_number') }}">
                             <span class="inline_alert">{{ $errors->first('phone_number') }}</span>
                         </div>

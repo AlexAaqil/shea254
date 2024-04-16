@@ -142,7 +142,7 @@ class OrderController extends Controller
 
             return redirect()->route('order_success');
         } else {
-
+            return redirect()->route('checkout.create')->with('error', ['message' => 'something went wrong']);
         }
     }
 

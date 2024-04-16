@@ -41,16 +41,22 @@ form {
                     font-weight: bold;
                     color: red;
                 }
+
+                .details {
+                    font-size: 0.8em;
+                    color: grey;
+                }
             }
             
             .custom_radio_buttons {
                 display: flex;
+                flex-direction: column;
                 
                 label {
                     padding: 0.3em 0.2em;
                     position: relative;
                     cursor: pointer;
-                    width: 30%;
+                    width: 50%;
                     display: flex;
                     align-items: center;
                     
@@ -137,11 +143,16 @@ form {
 
 @media screen and (width >= 726px) {
     .custom_form {
+        .custom_radio_buttons {
+            flex-direction: row !important;
+        }
+
         .row_input_group {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 0 1em;
         }
+
         .row_input_group_3 {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
