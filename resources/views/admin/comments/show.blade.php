@@ -4,7 +4,7 @@
             <div class="view_comment">
                 <h1>
                     <span>{{ $comment->full_name }}</span>
-                    <span>{{ $comment->email_address }}</span>
+                    <span>{{ $comment->email }}</span>
                     <span>{{ $comment->phone_number }}</span>
                 </h1>
                 <p>{{ $comment->message }}</p>

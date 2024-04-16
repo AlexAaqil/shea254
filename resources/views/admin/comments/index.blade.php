@@ -21,7 +21,7 @@
                         @foreach($comments as $value)
                         <tr class="searchable">
                             <td>{{ $value->full_name }}</td>
-                            <td>{{ $value->email_address }}</td>
+                            <td>{{ $value->email }}</td>
                             <td>{{ $value->phone_number }}</td>
                             <td>{{ Illuminate\Support\Str::limit($value->message, 40) }}</td>
                             <td class="actions">
