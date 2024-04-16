@@ -145,7 +145,7 @@
                     <canvas id="salesChart"></canvas>
                 </div>
                 <div class="chart">
-                    <h2>Location Orders</h2>
+                    <h2>Order Locations</h2>
                     <canvas id="citiesChart"></canvas>
                 </div>
             </div>
