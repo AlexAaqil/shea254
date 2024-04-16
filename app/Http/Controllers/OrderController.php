@@ -91,7 +91,7 @@ class OrderController extends Controller
         $total_amount = $shipping_cost + $cart_subtotal;
 
         // Generate order number and set user ID
-        $order_number = 'ord_' . Str::random(5) . date('Ymd');
+        $order_number = 'ord_' . date('ymd') . Str::random(4);
         $order_type = 1;
         $discount_code = null;
         $discount = 0;
