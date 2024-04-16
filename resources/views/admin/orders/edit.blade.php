@@ -10,7 +10,7 @@
                     </p>
                     <p>
                         <span>Names</span>
-                        <span>{{ $order->order_delivery->first_name }} {{ $order->order_delivery->last_name }}</span>
+                        <span>{{ $order->order_delivery->full_name }}</span>
                     </p>
                     <p>
                         <span>Email Address</span>
