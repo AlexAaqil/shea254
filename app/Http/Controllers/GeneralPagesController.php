@@ -20,7 +20,7 @@ class GeneralPagesController extends Controller
             // ['stock_count', '>', 0]
         ])
         ->orderBy('product_order')
-        ->take(4)
+        ->take(6)
         ->get();
 
         $testimonials = ProductReview::take(3)->get();
