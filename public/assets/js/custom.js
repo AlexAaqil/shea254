@@ -1,11 +1,14 @@
-$(document).ready(function() {
-    $("#burgerIcon, #toggle").click(function () {
-        $("#navLinks").toggleClass("show");
-        $("#burgerIcon").toggleClass(
-            "active_burger",
-            $("#navLinks").hasClass("show")
-        );
-    });
+document.addEventListener('DOMContentLoaded', function () {
+    var burgerIcon = document.getElementById('burgerIcon');
+    var navLinks = document.querySelector('.nav_links');
+
+    // Check if burgerIcon exists before adding event listener
+    if (burgerIcon) {
+        burgerIcon.addEventListener('click', function () {
+            navLinks.classList.toggle('show');
+            burgerIcon.classList.toggle('active_burger', navLinks.classList.contains('show'));
+        });
+    }
 });
 
 function searchFunction() {

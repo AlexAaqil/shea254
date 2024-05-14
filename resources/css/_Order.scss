@@ -3,6 +3,7 @@
         .order_details {
             display: grid;
             grid-template-columns: 1fr 1fr;
+            
             .details {
                 p {
                     span {
@@ -80,6 +81,7 @@
         }
     }
 }
+
 .Order_success {
     display: flex;
     align-items: center;

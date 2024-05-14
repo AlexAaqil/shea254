@@ -15,17 +15,13 @@
             ul {
                 li {
                     display: grid;
-                    grid-template-columns: repeat(5, 1fr);
-                    align-items: center;
+                    grid-template-columns: 1fr;
                     gap: 1em;
                     padding: 0.8em 0;
                     border-bottom: 1px solid grey;
+
                     &:first-of-type {
                         border-top: 1px solid grey;
-                    }
-
-                    span {
-                        text-align: center;
                     }
 
                     .title {
@@ -33,7 +29,13 @@
                         a {
                             text-decoration: none;
                             color: #000;
+                            font-weight: bold;
                         }
+                    }
+
+                    .price {
+                        color: $price_color;
+                        font-weight: bold;
                     }
 
                     form {
@@ -124,6 +126,17 @@
             .body {
                 grid-template-columns: 70% auto;
                 align-items: start;
+
+                ul {
+                    li {
+                        grid-template-columns: 2fr 2fr 1fr 1fr 1fr;
+                        align-items: center;
+
+                        span {
+                            text-align: center;
+                        }
+                    }
+                }
             }
         }
     }

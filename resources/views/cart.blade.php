@@ -15,7 +15,7 @@
                 @foreach($cart['items'] as $product)
                 <li>
                     <span class="title">
-                        <a href="">
+                        <a href="{{ route('products.details', $product['slug']) }}">
                             {{ $product['title'] }}
                         </a>
                     </span>

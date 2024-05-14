@@ -1145,8 +1145,7 @@ footer .copyright {
 }
 .Cart .container .body ul li {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  align-items: center;
+  grid-template-columns: 1fr;
   gap: 1em;
   padding: 0.8em 0;
   border-bottom: 1px solid grey;
@@ -1154,15 +1153,17 @@ footer .copyright {
 .Cart .container .body ul li:first-of-type {
   border-top: 1px solid grey;
 }
-.Cart .container .body ul li span {
-  text-align: center;
-}
 .Cart .container .body ul li .title {
   text-align: left;
 }
 .Cart .container .body ul li .title a {
   text-decoration: none;
   color: #000;
+  font-weight: bold;
+}
+.Cart .container .body ul li .price {
+  color: green;
+  font-weight: bold;
 }
 .Cart .container .body ul li form button {
   cursor: pointer;
@@ -1225,6 +1226,13 @@ footer .copyright {
   .Cart .container .body {
     grid-template-columns: 70% auto;
     align-items: start;
+  }
+  .Cart .container .body ul li {
+    grid-template-columns: 2fr 2fr 1fr 1fr 1fr;
+    align-items: center;
+  }
+  .Cart .container .body ul li span {
+    text-align: center;
   }
 }
 .Admin aside {
