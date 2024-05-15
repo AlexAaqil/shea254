@@ -50,9 +50,12 @@
                         @endif
                     </span>
 
-                    <span class="rating">
-                        <span><i class="fas fa-star"></i> 4.5 (25 reviews)</span>
-                    </span>
+                    @if($product->product_reviews->count() > 0)
+                        <span class="rating">
+                            <span><i class="fas fa-star"></i> {{ number_format($product->average_rating(), 1) }} ({{ $product->product_reviews->count() }} reviews)</span>
+                        </span>
+                    @endif
+
                 </div>
             </div>
         </div>

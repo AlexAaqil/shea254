@@ -214,7 +214,7 @@ button,
   border-radius: 8px;
 }
 .card .details {
-  padding: 4px 8px 8px;
+  padding: 4px 12px 8px;
 }
 .card .details .extra_details {
   margin: 6px 0;
@@ -226,6 +226,9 @@ button,
 .card .details .content .info {
   display: grid;
   gap: 6px;
+}
+.card .details .content .info .title {
+  margin: 6px 0;
 }
 .card .details .content .info .title a {
   color: #000;

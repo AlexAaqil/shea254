@@ -6,7 +6,7 @@
             <h1>Hi {{ Auth::user()->first_name .' '. Auth::user()->last_name }}</h1>
             
             <div class="actions">
-                <a href="" class="btn_link">
+                <a href="{{ route('profile.edit') }}" class="btn_link">
                     Update Profile
                 </a>
                 <div class="custom_form">

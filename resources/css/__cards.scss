@@ -13,7 +13,7 @@
     }
 
     .details {
-        padding: 4px 8px 8px;
+        padding: 4px 12px 8px;
 
         .extra_details {
             margin: 6px 0;
@@ -30,6 +30,8 @@
                 gap: 6px;
 
                 .title {
+                    margin: 6px 0;
+
                     a {
                         color: #000;
                         font-size: 1.12em;
