@@ -40,7 +40,13 @@ class OrderController extends Controller
         $validated = $request->validate([
             'full_name' => 'required|string|max:200',
             'email' => 'required|string|lowercase|email:rfc,dns|max:255',
-            'phone_number' => 'required|string|max:40',
+            'phone_number' => [
+                'required',
+                'string',
+                'regex:/^(2547|2541)[0-9]{6}$/',
+            ],
+        ], [
+            'phone_number.regex' => 'The phone number must start with 2547 or 2541 and have exactly 10 digits. (254746055xxx or 25411055xxx)',
         ]);
 
         $phone_number = $validated['phone_number'];
@@ -91,11 +97,11 @@ class OrderController extends Controller
         $total_amount = $shipping_cost + $cart_subtotal;
 
         // Generate order number and set user ID
-        $order_number = 'ord_' . date('ymd') . Str::random(4);
+        $order_number = 'ord_' . date('ymd') . '_' . Str::random(5);
         $order_type = 1;
         $discount_code = null;
         $discount = 0;
-        $payment_method = null;
+        $payment_method = $request->input('payment_method');
         $user_id = Auth::check() ? Auth::user()->id : null;
 
         $res = app(MpesaController::class)->stkPush($phone_number, $total_amount, $order_number, $email);
@@ -116,7 +122,7 @@ class OrderController extends Controller
             $order_delivery->order_id = $order->id;
             $order_delivery->full_name = $validated['full_name'];
             $order_delivery->email = $email;
-            $order_delivery->phone_number = $phone_number;
+            $order_delivery->phone_number = $validated['phone_number'];
             $order_delivery->address = $address;
             $order_delivery->additional_information = $additional_information;
             $order_delivery->location = $location_name;
