@@ -11,7 +11,7 @@
                 <form action="" method="post">
                     @csrf
 
-                    <div class="row_input_group">
+                    <div class="row_input_group_3">
                         <div class="input_group">
                             <label for="full_name">Full Name</label>
                             <input type="text" name="full_name" id="full_name" placeholder="Enter your Full Name" value="{{ $user ? $user->first_name . ' ' . $user->last_name : old('full_name') }}">
@@ -23,13 +23,34 @@
                             <input type="email" name="email" id="email" placeholder="example@gmail.com" value="{{ $user ? $user->email : old('email') }}">
                             <span class="inline_alert">{{ $errors->first('email') }}</span>
                         </div>
+                        
+                        <div class="input_group">
+                            <label for="phone_number">Phone Number <span class="details">(To be used for payment)</span></label>
+                            <input type="text" name="phone_number" id="phone_number" placeholder="2547xxxxxxxx" value="{{ $user ? $user->phone_number : old('phone_number') }}">
+                            <span class="inline_alert">{{ $errors->first('phone_number') }}</span>
+                        </div>
                     </div>
 
                     <div class="row_input_group">
-                        <div class="input_group">
-                            <label for="phone_number">Phone Number</label>
-                            <input type="text" name="phone_number" id="phone_number" placeholder="2547xxxxxxxx" value="{{ $user ? $user->phone_number : old('phone_number') }}">
-                            <span class="inline_alert">{{ $errors->first('phone_number') }}</span>
+                    </div>
+
+                    <div class="input_group">
+                        <label for="status">Choose your preffered payment method</label>
+                        <div class="custom_radio_buttons">
+                            <label>
+                                <input class="option_radio" type="radio" name="payment_method" id="delivery" value="mpesa" checked>
+                                <span>Mpesa</span>
+                            </label>
+
+                            <label>
+                                <input class="option_radio" type="radio" name="payment_method" id="t_kash" value="t_kash">
+                                <span>T-Kash</span>
+                            </label>
+
+                            <label>
+                                <input class="option_radio" type="radio" name="payment_method" id="airtel_money" value="airtel_money">
+                                <span>Airtel Money</span>
+                            </label>
                         </div>
                     </div>
 
@@ -88,7 +109,6 @@
                             <input type="text" name="additional_information" id="additional_information" placeholder="Extra Information about the order... (e.g) Specific Location" value="{{ $user ? $user->additional_information : old('additional_information') }}">
                             <span class="inline_alert">{{ $errors->first('additional_information') }}</span>
                         </div>
-
                     </div>
 
                     <button type="submit">Confirm Order</button>
