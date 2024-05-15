@@ -18,9 +18,27 @@
         .extra_details {
             margin: 6px 0;
 
-            a {
+            .in_stock,
+            .featured {
+                color: green;
+            }
+
+            .out_of_stock,
+            .not_featured {
+                color: $danger;
+            }
+
+            span {
                 font-size: 0.75em;
-                color: $theme-2;
+
+                &:not(:last-of-type) {
+                    margin-right: 12px;
+                }
+
+                a {
+                    text-decoration: none;
+                    color: $theme-2;
+                }
             }
         }
 
@@ -56,8 +74,8 @@
             top: 10px;
             left: 6.5px;
             font-size: 0.75em;
-            background: $danger;
-            color: $text-color;
+            background: $price_color;
+            color: #fff;
             padding: 4px 8px;
             border-radius: 16px;
             font-weight: bold;
@@ -65,7 +83,7 @@
 
         .actions {
             position: absolute;
-            bottom: -12px;
+            bottom: -5px;
             right: 16px;
 
             form {
@@ -140,70 +158,3 @@
         }
     }
 }
-
-
-// .product_card {
-//     .text {
-//         .extra_details {
-//             .in_stock,
-//             .featured {
-//                 color: green;
-//             }
-//             .out_of_stock,
-//             .not_featured {
-//                 color: red;
-//             }
-
-//             span {
-//                 a {
-//                     text-decoration: none;
-//                     color: grey;
-//                 }
-//             }
-//         }
-
-//         .content {
-//             .details {
-//                 .title {
-//                     a {
-//                         font-size: 1.1em;
-//                     }
-//                 }
-        
-//                 .content {
-//                     .price {
-//                         color: $price_color;
-//                         font-weight: bold;
-//                         font-size: 1.15em;
-
-//                         .discount_price,
-//                         .discount_percentage {
-//                             font-size: 0.8em;
-//                         }
-    
-//                         .discount_price {
-//                             color: red;
-//                         }
-//                     }
-//                 }
-//             }
-
-            
-//             .actions {
-//                 .action {
-//                     form {
-//                         button {
-//                             background: none;
-//                             border: none;
-//                             i {
-//                                 font-size: 2.5em;
-//                             }
-//                         }
-//                     }
-//                 }
-//             }
-//         }
-
-
-//     }
-// }

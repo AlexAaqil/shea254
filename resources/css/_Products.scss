@@ -394,6 +394,10 @@
     }
 }
 
+.products_wrapper {
+    @include grid(3);
+}
+
 @media screen and (width >= 726px) {
     .Product_details {
         .product_reviews_update {

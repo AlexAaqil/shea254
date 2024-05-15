@@ -55,7 +55,6 @@
                             <span><i class="fas fa-star"></i> {{ number_format($product->average_rating(), 1) }} ({{ $product->product_reviews->count() }} reviews)</span>
                         </span>
                     @endif
-
                 </div>
             </div>
         </div>

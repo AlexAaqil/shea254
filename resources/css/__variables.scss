@@ -7,12 +7,16 @@ $theme-5: #efefef;
 $text-color: #eeeeee;
 $price_color: green;
 
-$danger: red;
+$danger: #eb0404;
 
 $sides_padding: 5%;
 
 .text-success {
     color: green;
+}
+
+.danger {
+    color: $danger;
 }
 
 .bold {

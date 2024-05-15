@@ -3,6 +3,10 @@
   color: green;
 }
 
+.danger {
+  color: #eb0404;
+}
+
 .bold {
   font-weight: bold;
 }
@@ -181,7 +185,7 @@ button,
 }
 
 .btn_danger {
-  background: red;
+  background: #eb0404;
   color: #fff;
 }
 
@@ -219,8 +223,22 @@ button,
 .card .details .extra_details {
   margin: 6px 0;
 }
-.card .details .extra_details a {
+.card .details .extra_details .in_stock,
+.card .details .extra_details .featured {
+  color: green;
+}
+.card .details .extra_details .out_of_stock,
+.card .details .extra_details .not_featured {
+  color: #eb0404;
+}
+.card .details .extra_details span {
   font-size: 0.75em;
+}
+.card .details .extra_details span:not(:last-of-type) {
+  margin-right: 12px;
+}
+.card .details .extra_details span a {
+  text-decoration: none;
   color: #393e46;
 }
 .card .details .content .info {
@@ -245,15 +263,15 @@ button,
   top: 10px;
   left: 6.5px;
   font-size: 0.75em;
-  background: red;
-  color: #eeeeee;
+  background: green;
+  color: #fff;
   padding: 4px 8px;
   border-radius: 16px;
   font-weight: bold;
 }
 .product_card .image .actions {
   position: absolute;
-  bottom: -12px;
+  bottom: -5px;
   right: 16px;
 }
 .product_card .image .actions form button {
@@ -290,7 +308,7 @@ button,
   font-size: 1.15em;
 }
 .product_card .price_rating .price .old_price {
-  color: red;
+  color: #eb0404;
   font-size: 0.8em;
 }
 .product_card .price_rating .rating span {
@@ -539,7 +557,7 @@ footer .copyright {
 }
 
 .alert-danger {
-  background: rgb(235, 4, 4);
+  background: #eb0404;
 }
 
 .alert-success {
@@ -554,7 +572,7 @@ footer .copyright {
   margin: 0.1em 0 0;
   font-size: 0.85em;
   font-weight: bold;
-  color: rgb(235, 4, 4);
+  color: #eb0404;
 }
 
 .inline_alert_success {
@@ -1063,7 +1081,7 @@ footer .copyright {
   font-size: 1.2em;
 }
 .Admin .Main .Blogs .blogs .blog .text .actions .delete {
-  color: rgb(235, 4, 4);
+  color: #eb0404;
 }
 .Admin .Main .Blogs .custom_form .blog_image_input {
   display: grid;
@@ -1359,6 +1377,8 @@ footer .copyright {
 .Admin aside .branding a img,
 .Admin aside .footer .profile img {
   border-radius: 50%;
+  width: 35px;
+  height: 35px;
 }
 .Admin aside .nav_links {
   margin: 0.8em 0 0;
@@ -2009,6 +2029,17 @@ footer .copyright {
 }
 .Categorised_Products .product_search_results {
   margin: 1em 0 0;
+}
+
+.products_wrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1em;
+}
+@media screen and (width >= 726px) {
+  .products_wrapper {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 @media screen and (width >= 726px) {
