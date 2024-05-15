@@ -13,6 +13,7 @@
                 <li><a href="{{ route('shop') }}">Shop</a></li>
                 <li><a href="{{ route('about') }}">About</a></li>
                 <li><a href="{{ route('contact') }}">Contacts</a></li>
+                <li><a href="{{ route('users.blogs') }}">Blogs</a></li>
             </ul>
         </div>
 
