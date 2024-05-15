@@ -1,69 +1,3 @@
-.product_card {
-    .text {
-        .extra_details {
-            .in_stock,
-            .featured {
-                color: green;
-            }
-            .out_of_stock,
-            .not_featured {
-                color: red;
-            }
-
-            span {
-                a {
-                    text-decoration: none;
-                    color: grey;
-                }
-            }
-        }
-
-        .content {
-            .details {
-                .title {
-                    a {
-                        font-size: 1.1em;
-                    }
-                }
-        
-                .content {
-                    .price {
-                        color: $price_color;
-                        font-weight: bold;
-                        font-size: 1.15em;
-
-                        .discount_price,
-                        .discount_percentage {
-                            font-size: 0.8em;
-                        }
-    
-                        .discount_price {
-                            color: red;
-                        }
-                    }
-                }
-            }
-
-            
-            .actions {
-                .action {
-                    form {
-                        button {
-                            background: none;
-                            border: none;
-                            i {
-                                font-size: 2.5em;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-
-    }
-}
-
 .product_images {
     display: flex;
     gap: 0 1em;
@@ -103,6 +37,7 @@
 .Product_details {
     .container {
         padding: 1em 5%;
+
         .wrapper {
             @include grid(2);
             gap: 2em;
@@ -232,6 +167,12 @@
         h1 {
             margin: 0 0 0.3em;
             font-size: 1.5em;
+        }
+    }
+
+    .related_products {
+        .products_wrapper {
+            @include grid(3);
         }
     }
 

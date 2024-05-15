@@ -1,17 +1,24 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
+    @include('partials.navbar')
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
-                    {{ __("You're logged in!") }}
+    <section class="Dashboard">
+        <div class="container">
+            <h1>Hi {{ Auth::user()->first_name .' '. Auth::user()->last_name }}</h1>
+            
+            <div class="actions">
+                <a href="" class="btn_link">
+                    Update Profile
+                </a>
+                <div class="custom_form">
+                    <form action="{{ route('logout') }}" method="post">
+                        @csrf
+        
+                        <button type="submit" class="btn_danger">Logout</button>
+                    </form>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
+
+    @include('partials.footer')
 </x-app-layout>

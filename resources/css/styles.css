@@ -157,7 +157,16 @@ form button {
   border: 2px solid #d6d6d6;
   border-radius: 50%;
 }
-.custom_form form button {
+.custom_form form img {
+  width: 150px;
+}
+.custom_form p {
+  margin: 0.8em 0 0.5em;
+}
+
+button,
+.btn_link,
+.btn_danger {
   padding: 10px 32px;
   font-weight: bold;
   font-size: 1em;
@@ -166,11 +175,14 @@ form button {
   background: #000;
   color: #fff;
 }
-.custom_form form img {
-  width: 150px;
+
+.btn_link {
+  text-decoration: none;
 }
-.custom_form p {
-  margin: 0.8em 0 0.5em;
+
+.btn_danger {
+  background: red;
+  color: #fff;
 }
 
 @media screen and (width >= 726px) {
@@ -202,7 +214,7 @@ form button {
   border-radius: 8px;
 }
 .card .details {
-  padding: 4px 8px 6px;
+  padding: 4px 8px 8px;
 }
 .card .details .extra_details {
   margin: 6px 0;
@@ -1550,6 +1562,11 @@ footer .copyright {
     text-align: right;
   }
 }
+.Dashboard .container .actions {
+  display: flex;
+  gap: 1em;
+}
+
 .Admin_dashboard .hero {
   margin: 0 0 0.5em;
 }
@@ -1651,41 +1668,6 @@ footer .copyright {
 }
 .Delivery_locations .areas .body table {
   margin: 0 0 1.5em;
-}
-
-.product_card .text .extra_details .in_stock,
-.product_card .text .extra_details .featured {
-  color: green;
-}
-.product_card .text .extra_details .out_of_stock,
-.product_card .text .extra_details .not_featured {
-  color: red;
-}
-.product_card .text .extra_details span a {
-  text-decoration: none;
-  color: grey;
-}
-.product_card .text .content .details .title a {
-  font-size: 1.1em;
-}
-.product_card .text .content .details .content .price {
-  color: green;
-  font-weight: bold;
-  font-size: 1.15em;
-}
-.product_card .text .content .details .content .price .discount_price,
-.product_card .text .content .details .content .price .discount_percentage {
-  font-size: 0.8em;
-}
-.product_card .text .content .details .content .price .discount_price {
-  color: red;
-}
-.product_card .text .content .actions .action form button {
-  background: none;
-  border: none;
-}
-.product_card .text .content .actions .action form button i {
-  font-size: 2.5em;
 }
 
 .product_images {
@@ -1837,6 +1819,16 @@ footer .copyright {
 .Product_details .related_products h1 {
   margin: 0 0 0.3em;
   font-size: 1.5em;
+}
+.Product_details .related_products .products_wrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1em;
+}
+@media screen and (width >= 726px) {
+  .Product_details .related_products .products_wrapper {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 .Product_details .product_reviews .container .reviews_wrapper {
   display: grid;

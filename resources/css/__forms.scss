@@ -162,17 +162,6 @@ form {
                 }
             }
         }
-
-        
-        button {
-            padding: 10px 32px;
-            font-weight: bold;
-            font-size: 1em;
-            border: none;
-            border-radius: 4px;
-            background: #000;
-            color: #fff;
-        }
         
         img {
             width: 150px;
@@ -182,6 +171,27 @@ form {
     p {
         margin: 0.8em 0 0.5em;
     }
+}
+
+button,
+.btn_link,
+.btn_danger {
+    padding: 10px 32px;
+    font-weight: bold;
+    font-size: 1em;
+    border: none;
+    border-radius: 4px;
+    background: #000;
+    color: #fff;
+}
+
+.btn_link {
+    text-decoration: none;
+}
+
+.btn_danger {
+    background: $danger;
+    color: #fff;
 }
 
 

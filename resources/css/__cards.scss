@@ -13,7 +13,7 @@
     }
 
     .details {
-        padding: 4px 8px 6px;
+        padding: 4px 8px 8px;
 
         .extra_details {
             margin: 6px 0;
@@ -138,3 +138,70 @@
         }
     }
 }
+
+
+// .product_card {
+//     .text {
+//         .extra_details {
+//             .in_stock,
+//             .featured {
+//                 color: green;
+//             }
+//             .out_of_stock,
+//             .not_featured {
+//                 color: red;
+//             }
+
+//             span {
+//                 a {
+//                     text-decoration: none;
+//                     color: grey;
+//                 }
+//             }
+//         }
+
+//         .content {
+//             .details {
+//                 .title {
+//                     a {
+//                         font-size: 1.1em;
+//                     }
+//                 }
+        
+//                 .content {
+//                     .price {
+//                         color: $price_color;
+//                         font-weight: bold;
+//                         font-size: 1.15em;
+
+//                         .discount_price,
+//                         .discount_percentage {
+//                             font-size: 0.8em;
+//                         }
+    
+//                         .discount_price {
+//                             color: red;
+//                         }
+//                     }
+//                 }
+//             }
+
+            
+//             .actions {
+//                 .action {
+//                     form {
+//                         button {
+//                             background: none;
+//                             border: none;
+//                             i {
+//                                 font-size: 2.5em;
+//                             }
+//                         }
+//                     }
+//                 }
+//             }
+//         }
+
+
+//     }
+// }
