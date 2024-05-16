@@ -44,7 +44,7 @@
                     <span class="price">
                         @if($product->discount_price != 0.00 && $product->discount_price < $product->selling_price)
                             <span class="new_price">Ksh. {{ $product->discount_price }}</span>
-                            <span class="old_price"><del>Ksh. {{ $product->selling_price }}</del></span>
+                            <span class="old_price"><del>{{ $product->selling_price }}</del></span>
                         @else
                             <span class="new_price">Ksh. {{ $product->selling_price }}</span>
                         @endif
