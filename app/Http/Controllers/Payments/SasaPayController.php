@@ -32,6 +32,7 @@ class SasaPayController extends Controller
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         $response = curl_exec($ch);
         $response = json_decode($response);
+        dd($response);
         if($response['status'] == true) {
             return $response['access_token'];
         } else {
