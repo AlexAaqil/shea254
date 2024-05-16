@@ -11,6 +11,15 @@ class OrderDelivery extends Model
 
     protected $fillable =[
         'order_id',
+        'full_name',
+        'email',
+        'phone_number',
+        'address',
+        'additional_information',
+        'location',
+        'area',
+        'shipping_cost',
+        'delivery_status',
     ];
 
     public function order()
