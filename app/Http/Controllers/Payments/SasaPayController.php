@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Http;
 
 class SasaPayController extends Controller
 {
+    protected $authorizationUrl;
     protected $baseUrl;
     protected $apiKey;
     protected $secretKey;
@@ -16,6 +17,7 @@ class SasaPayController extends Controller
 
     public function __construct()
     {
+        $this->authorizationUrl = env('SASAPAY_AUTHORIZATION_URL');
         $this->baseUrl = env('SASAPAY_BASE_URL');
         $this->apiKey = env('SASAPAY_API_KEY');
         $this->secretKey = env('SASAPAY_SECRET_KEY');
@@ -27,6 +29,8 @@ class SasaPayController extends Controller
     {
         $response = Http::withHeaders([
             'Authorization' => 'Basic ' . base64_encode('k78ssqi3z3tYHM3V52trTHebGNClijBWxPrLe9BF:2aj90YUwwMryPHiuYRVhjDR13Qw2dkhlgr2sBKG49shVBCuqt3i9Vb6cgufo3unbVE0M2bz2G68usMy9Zfel9L8DdNnc9QruCV54g6Ilxe3iD27IYvCBNsKIFZKQvey9'),
+        ])->get($this->authorizationUrl, [
+            
         ]);
 
         var_dump($response);
