@@ -42,16 +42,19 @@ class SasaPayController extends Controller
             'Authorization' => 'Bearer ' . $accessToken,
             'Content-Type' => 'application/json',
         ])->post($this->baseUrl, [
-            'merchantCode' => $this->shortcode,
-            'amount' => $amount,
-            'phoneNumber' => $phone_number,
-            'accountReference' => $order_number,
-            'transactionDesc' => 'Payment for Order ' . $order_number,
-            'callbackUrl' => $this->callbackUrl,
+            'MerchantCode' => $this->shortcode,
+            'NetworkCode' => 63902,
+            'Amount' => $amount,
+            'PhoneNumber' => $phone_number,
+            'Currency' => 'KES',
+            'AccountReference' => $order_number,
+            'TransactionDesc' => 'Payment for Order ' . $order_number,
+            'TransactionFee' => 0,
+            'CallBackURL' => $this->callbackUrl,
         ]);
 
         var_dump($response);
-        
+
         return $response;
     }
 
