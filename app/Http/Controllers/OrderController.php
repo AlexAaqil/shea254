@@ -128,6 +128,7 @@ class OrderController extends Controller
             }
 
             $order->payment()->create([
+                'payment_gateway' => $request->input('payment_method'),
                 'merchant_request_id' => $response->MerchantRequestID,
                 'checkout_request_id' => $response->CheckoutRequestID,
                 'transaction_reference' => $response->TransactionReference,
