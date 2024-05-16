@@ -25,19 +25,11 @@ class SasaPayController extends Controller
 
     private function getAuthorization()
     {
-        $ch = curl_init('https://sandbox.sasapay.app/oauth/v1/generate?grant_type=client_credentials');
-        curl_setopt($ch, CURLOPT_HTTPHEADER, [
-        'Authorization: Basic ' . base64_encode('k78ssqi3z3tYHM3V52trTHebGNClijBWxPrLe9BF:2aj90YUwwMryPHiuYRVhjDR13Qw2dkhlgr2sBKG49shVBCuqt3i9Vb6cgufo3unbVE0M2bz2G68usMy9Zfel9L8DdNnc9QruCV54g6Ilxe3iD27IYvCBNsKIFZKQvey9')
+        $response = Http::withHeaders([
+            'Authorization' => 'Basic ' . base64_encode('k78ssqi3z3tYHM3V52trTHebGNClijBWxPrLe9BF:2aj90YUwwMryPHiuYRVhjDR13Qw2dkhlgr2sBKG49shVBCuqt3i9Vb6cgufo3unbVE0M2bz2G68usMy9Zfel9L8DdNnc9QruCV54g6Ilxe3iD27IYvCBNsKIFZKQvey9'),
         ]);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        $response = curl_exec($ch);
-        $response = json_decode($response);
+
         var_dump($response);
-        if($response['status'] == true) {
-            return $response['access_token'];
-        } else {
-            return "Something went wrong";
-        }
     }
 
     public function initiatePayment($phone_number, $amount, $order_number, $email)
