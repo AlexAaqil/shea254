@@ -92,9 +92,8 @@ class OrderController extends Controller
 
         $sasaPayController = new SasaPayController();
         $response = $sasaPayController->initiatePayment($phone_number, $total_amount, $order_number, $email);
-        dd($response);
 
-        if ($response->successful()) {
+        if ($response->status) {
             $order = Sale::create([
                 'order_number' => $order_number,
                 'order_type' => 1,
@@ -127,6 +126,16 @@ class OrderController extends Controller
                     'order_id' => $order->id,
                 ]);
             }
+
+            $order->payment()->create([
+                'merchant_request_id' => $response->MerchantRequestID,
+                'checkout_request_id' => $response->CheckoutRequestID,
+                'transaction_reference' => $response->TransactionReference,
+                'response_code' => $response->ResponseCode,
+                'response_description' => $response->ResponseDescription,
+                'customer_message' => $response->CustomerMessage,
+                'status' => $response->status ? 'success' : 'failed',
+            ]);
 
             Session::put('order_number', $order->order_number);
             Session::forget(['cart', 'cart_count']);

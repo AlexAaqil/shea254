@@ -10,16 +10,19 @@ class Payment extends Model
     use HasFactory;
 
     protected $fillable = [
-        'order_id',
-        'order_reference',
-        'email',
+        'status',
+        'payment_gateway',
         'merchant_request_id',
         'checkout_request_id',
-        'result_code',
-        'result_description',
-        'phone_number',
-        'amount_paid',
-        'transaction_receipt_number',
-        'payment_status',
+        'transaction_reference',
+        'response_code',
+        'response_description',
+        'customer_message',
+        'order_id',
     ];
+
+    public function order()
+    {
+        return $this->belongsTo(Sale::class, 'order_id');
+    }
 }

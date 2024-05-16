@@ -15,7 +15,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductMeasurementController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
-use App\Http\Controllers\Payments\MpesaController;
+use App\Http\Controllers\Payments\SasaPayController;
 use App\Http\Controllers\ProductReviewController;
 
 Route::get('/', [GeneralPagesController::class, 'home'])->name('home');
@@ -38,7 +38,7 @@ Route::get('/products/search', [ProductController::class, 'search_products'])->n
 
 Route::get('/checkout', [OrderController::class, 'create'])->name('checkout.create');
 Route::post('/checkout', [OrderController::class, 'store'])->name('checkout.store');
-Route::post('/pay/callback', [MpesaController::class, 'stkCallback']);
+Route::post('/payment/callback', [SasaPayController::class, 'paymentCallback']);
 Route::get('/order-successful', [OrderController::class, 'order_success'])->name('order_success');
 Route::get('/areas/fetch/{areaId}', [OrderController::class, 'get_areas'])->name('get_areas');
 Route::get('/area/shipping-price/{areaId}', [OrderController::class, 'get_shipping_price'])->name('get_shipping_price');
