@@ -43,10 +43,10 @@ class OrderController extends Controller
             'phone_number' => [
                 'required',
                 'string',
-                'regex:/^(2547|2541)[0-9]{6}$/',
+                'regex:/^(2547|2541)[0-9]{8}$/',
             ],
         ], [
-            'phone_number.regex' => 'The phone number must start with 2547 or 2541 and have exactly 10 digits. (254746055xxx or 254116055xxx)',
+            'phone_number.regex' => 'The phone number must start with 2547 or 2541 and have exactly 12 digits. (254746055xxx or 254116055xxx)',
         ]);
 
         $phone_number = $validated['phone_number'];
