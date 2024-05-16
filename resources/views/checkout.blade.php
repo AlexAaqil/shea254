@@ -2,6 +2,7 @@
 @include('partials.navbar')
 <main class="Checkout Cart">
     <div class="container">
+        @include('partials.messages')
         <div class="header">
             <h1>Billing information</h1>
         </div>
