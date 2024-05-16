@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Payments;
 
 use Illuminate\Http\Request;
 use App\Models\Payment;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Controllers\Controller;
 
 class MpesaController extends Controller
 {

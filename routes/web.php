@@ -15,7 +15,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductMeasurementController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
-use App\Http\Controllers\MpesaController;
+use App\Http\Controllers\Payments\MpesaController;
 use App\Http\Controllers\ProductReviewController;
 
 Route::get('/', [GeneralPagesController::class, 'home'])->name('home');

@@ -11,13 +11,13 @@ use App\Models\OrderDelivery;
 use App\Models\OrderItems;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Session;
+use App\Http\Controllers\Payments\SasaPayController;
 
 class OrderController extends Controller
 {
     public function index()
     {
         $orders = Sale::with(['order_delivery', 'order_items'])->orderBy('id', 'desc')->get();
-
         return view('admin.orders.index', compact('orders'));
     }
 
@@ -28,7 +28,7 @@ class OrderController extends Controller
         $areas = DeliveryArea::all();
         $cart = app(CartController::class)->cartItemsWithTotals();
 
-        if(empty($cart['items'])) {
+        if (empty($cart['items'])) {
             return redirect()->route('shop')->with('error', ['message' => "You don't have any items in your cart to checkout."]);
         }
 
@@ -43,10 +43,10 @@ class OrderController extends Controller
             'phone_number' => [
                 'required',
                 'string',
-                'regex:/^(2547|2541)[0-9]{6}$/',
+                'regex:/^0[0-9]{9}$/',
             ],
         ], [
-            'phone_number.regex' => 'The phone number must start with 2547 or 2541 and have exactly 10 digits. (254746055xxx or 25411055xxx)',
+            'phone_number.regex' => 'The phone number must start with 0 and have exactly 10 digits. (0746055xxx or 0116055xxx)',
         ]);
 
         $phone_number = $validated['phone_number'];
@@ -58,12 +58,13 @@ class OrderController extends Controller
 
         $pickup_method = $request->input('pickup_method');
 
-        // Initialize variables
         $address = '';
         $additional_information = '';
+        $location_name = '';
+        $area_name = '';
+        $shipping_cost = 0;
 
-        // Set values based on the selected pickup method
-        if($pickup_method === 'delivery') {
+        if ($pickup_method === 'delivery') {
             $validated += $request->validate([
                 'address' => 'required|string',
                 'additional_information' => 'nullable|string',
@@ -73,82 +74,65 @@ class OrderController extends Controller
 
             $address = $validated['address'];
             $additional_information = $validated['additional_information'];
-            $location = $validated['location'];
-            $area = $validated['area'];
-
-            // Get the area and location names
-            $area = DeliveryArea::findOrFail($validated['area']);
             $location = DeliveryLocation::findOrFail($validated['location']);
+            $area = DeliveryArea::findOrFail($validated['area']);
 
-            $area_name = $area->area_name;
             $location_name = $location->location_name;
-
-            // Calculate the shipping cost and total amount based on selected delivery area
-            $area_price = $area->price;
-            $shipping_cost = $area_price;
+            $area_name = $area->area_name;
+            $shipping_cost = $area->price;
         } else {
             $address = 'Shop';
-            $additional_information = null;
-            $area_name = 'Shop';
             $location_name = 'Shop';
-            $shipping_cost = 0;
+            $area_name = 'Shop';
         }
 
         $total_amount = $shipping_cost + $cart_subtotal;
-
-        // Generate order number and set user ID
         $order_number = 'ord_' . date('ymd') . '_' . Str::random(5);
-        $order_type = 1;
-        $discount_code = null;
-        $discount = 0;
-        $payment_method = $request->input('payment_method');
         $user_id = Auth::check() ? Auth::user()->id : null;
 
-        $res = app(MpesaController::class)->stkPush($phone_number, $total_amount, $order_number, $email);
+        $sasaPayController = new SasaPayController();
+        $response = $sasaPayController->initiatePayment($phone_number, $total_amount, $order_number, $email);
 
-        if($res == 0 ) {
-            // Create the order
+        if ($response->successful()) {
             $order = Sale::create([
                 'order_number' => $order_number,
-                'order_type' => $order_type,
-                'discount_code' => $discount_code,
-                'discount' => $discount,
+                'order_type' => 1,
+                'discount_code' => null,
+                'discount' => 0,
                 'total_amount' => $total_amount,
-                'payment_method' => $payment_method,
+                'payment_method' => $request->input('payment_method'),
                 'user_id' => $user_id,
             ]);
 
-            $order_delivery = new OrderDelivery();
-            $order_delivery->order_id = $order->id;
-            $order_delivery->full_name = $validated['full_name'];
-            $order_delivery->email = $email;
-            $order_delivery->phone_number = $validated['phone_number'];
-            $order_delivery->address = $address;
-            $order_delivery->additional_information = $additional_information;
-            $order_delivery->location = $location_name;
-            $order_delivery->area = $area_name;
-            $order_delivery->shipping_cost = $shipping_cost;
-            $order_delivery->save();
+            OrderDelivery::create([
+                'order_id' => $order->id,
+                'full_name' => $validated['full_name'],
+                'email' => $email,
+                'phone_number' => $phone_number,
+                'address' => $address,
+                'additional_information' => $additional_information,
+                'location' => $location_name,
+                'area' => $area_name,
+                'shipping_cost' => $shipping_cost,
+            ]);
 
-            foreach($cart_items as $productId => $item) {
-                $order_item = new OrderItems();
-                $order_item->product_id = $item['id'];
-                $order_item->title = $item['title'];
-                $order_item->quantity = $item['quantity'];
-                $order_item->buying_price = $item['buying_price'];
-                $order_item->selling_price = $item['selling_price'];
-                $order_item->order_id = $order->id;
-                $order_item->save();
+            foreach ($cart_items as $productId => $item) {
+                OrderItems::create([
+                    'product_id' => $item['id'],
+                    'title' => $item['title'],
+                    'quantity' => $item['quantity'],
+                    'buying_price' => $item['buying_price'],
+                    'selling_price' => $item['selling_price'],
+                    'order_id' => $order->id,
+                ]);
             }
 
-            // Store order number in session
             Session::put('order_number', $order->order_number);
-
             Session::forget(['cart', 'cart_count']);
 
             return redirect()->route('order_success');
         } else {
-            return redirect()->route('checkout.create')->with('error', ['message' => 'something went wrong']);
+            return redirect()->route('checkout.create')->with('error', ['message' => 'Something went wrong.']);
         }
     }
 
