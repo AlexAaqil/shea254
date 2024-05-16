@@ -29,17 +29,17 @@ class SasaPayController extends Controller
     {
         $response = Http::withHeaders([
             'Authorization' => 'Basic ' . base64_encode('k78ssqi3z3tYHM3V52trTHebGNClijBWxPrLe9BF:2aj90YUwwMryPHiuYRVhjDR13Qw2dkhlgr2sBKG49shVBCuqt3i9Vb6cgufo3unbVE0M2bz2G68usMy9Zfel9L8DdNnc9QruCV54g6Ilxe3iD27IYvCBNsKIFZKQvey9'),
-        ])->get($this->authorizationUrl, [
-            
-        ]);
+        ])->get($this->authorizationUrl);
 
-        var_dump($response);
+        return $response->json('access_token');
     }
 
     public function initiatePayment($phone_number, $amount, $order_number, $email)
     {
+        $accessToken = $this->getAuthorization();
+
         $response = Http::withHeaders([
-            'Authorization' => 'Bearer ' . $this->getAuthorization(),
+            'Authorization' => 'Bearer ' . $accessToken,
             'Content-Type' => 'application/json',
         ])->post($this->baseUrl, [
             'merchantCode' => $this->shortcode,
@@ -50,6 +50,8 @@ class SasaPayController extends Controller
             'callbackUrl' => $this->callbackUrl,
         ]);
 
+        var_dump($response);
+        
         return $response;
     }
 
