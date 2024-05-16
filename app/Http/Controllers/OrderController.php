@@ -43,10 +43,10 @@ class OrderController extends Controller
             'phone_number' => [
                 'required',
                 'string',
-                'regex:/^0[0-9]{9}$/',
+                'regex:/^(2547|2541)[0-9]{6}$/',
             ],
         ], [
-            'phone_number.regex' => 'The phone number must start with 0 and have exactly 10 digits. (0746055xxx or 0116055xxx)',
+            'phone_number.regex' => 'The phone number must start with 2547 or 2541 and have exactly 10 digits. (254746055xxx or 254116055xxx)',
         ]);
 
         $phone_number = $validated['phone_number'];
@@ -87,7 +87,7 @@ class OrderController extends Controller
         }
 
         $total_amount = $shipping_cost + $cart_subtotal;
-        $order_number = 'ord_' . date('ymd') . '_' . Str::random(5);
+        $order_number = 'ord_' . Str::random(5) . '_' . date('ymd');
         $user_id = Auth::check() ? Auth::user()->id : null;
 
         $sasaPayController = new SasaPayController();
