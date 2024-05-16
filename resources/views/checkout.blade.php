@@ -29,7 +29,7 @@
                     <div class="row_input_group">
                         <div class="input_group">
                             <label for="phone_number">Phone Number <span class="details">(To be used for payment)</span></label>
-                            <input type="number" name="phone_number" id="phone_number" placeholder="07xxxxxxxx" value="{{ $user ? $user->phone_number : old('phone_number') }}">
+                            <input type="number" name="phone_number" id="phone_number" placeholder="2547xxxxxxxx" value="{{ $user ? $user->phone_number : old('phone_number') }}">
                             <span class="inline_alert">{{ $errors->first('phone_number') }}</span>
                         </div>
                     </div>
