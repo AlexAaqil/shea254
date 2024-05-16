@@ -9,6 +9,10 @@ class OrderDelivery extends Model
 {
     use HasFactory;
 
+    protected $fillable =[
+        'order_id',
+    ];
+
     public function order()
     {
         return $this->belongsTo(Sale::class, 'order_id');
