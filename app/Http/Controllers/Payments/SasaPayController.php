@@ -28,7 +28,7 @@ class SasaPayController extends Controller
     private function getAuthorization()
     {
         $response = Http::withHeaders([
-            'Authorization' => 'Basic ' . base64_encode('k78ssqi3z3tYHM3V52trTHebGNClijBWxPrLe9BF:2aj90YUwwMryPHiuYRVhjDR13Qw2dkhlgr2sBKG49shVBCuqt3i9Vb6cgufo3unbVE0M2bz2G68usMy9Zfel9L8DdNnc9QruCV54g6Ilxe3iD27IYvCBNsKIFZKQvey9'),
+            'Authorization' => 'Basic ' . base64_encode($this->apiKey .':' .$this->secretKey),
         ])->get($this->authorizationUrl);
 
         return $response->json('access_token');
@@ -52,8 +52,6 @@ class SasaPayController extends Controller
             'TransactionFee' => 0,
             'CallBackURL' => $this->callbackUrl,
         ]);
-
-        var_dump($response);
 
         return $response;
     }
