@@ -135,7 +135,7 @@ class OrderController extends Controller
                 'response_code' => $response->ResponseCode,
                 'response_description' => $response->ResponseDescription,
                 'customer_message' => $response->CustomerMessage,
-                'status' => $response->status ? 'success' : 'failed',
+                'status' => $response->status ? 'pending' : 'failed',
             ]);
 
             Session::put('order_number', $order->order_number);
