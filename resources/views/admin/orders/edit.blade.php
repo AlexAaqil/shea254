@@ -59,6 +59,21 @@
                         <span>Total Amount : </span>
                         <span>Ksh. {{ number_format($order->total_amount, 2) }}</span>
                     </p>
+
+                    <p>
+                        <span>Payment Status : </span>
+                        @php
+                            $statusClass = '';
+                            if ($order->payment->status === 'success') {
+                                $statusClass = 'success bold';
+                            } elseif ($order->payment->status === 'pending') {
+                                $statusClass = 'warning bold';
+                            } elseif ($order->payment->status === 'failed') {
+                                $statusClass = 'danger bold';
+                            }
+                        @endphp
+                        <span class="{{ $statusClass }}">{{ ucfirst($order->payment->status) }}</span>
+                    </p>
                 </div>
             </div>
             <form action="{{ route('orders.update', ['order' => $order->id]) }}" method="post">

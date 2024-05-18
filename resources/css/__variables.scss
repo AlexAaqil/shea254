@@ -8,6 +8,8 @@ $text-color: #eeeeee;
 $price_color: green;
 
 $danger: #eb0404;
+$success: #02a81d;
+$warning: #c28005;
 
 $sides_padding: 5%;
 
@@ -17,6 +19,14 @@ $sides_padding: 5%;
 
 .danger {
     color: $danger;
+}
+
+.warning {
+    color: $warning;
+}
+
+.success {
+    color: $success;
 }
 
 .bold {
