@@ -57,8 +57,6 @@ class SasaPayController extends Controller
             'CallBackURL' => $this->callbackUrl,
         ]);
 
-        Log::channel('payments')->debug('STK PUSH Was Sent: ');
-
         return json_decode($response);
     }
 
