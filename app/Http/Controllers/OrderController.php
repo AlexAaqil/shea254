@@ -93,6 +93,8 @@ class OrderController extends Controller
         $sasaPayController = new SasaPayController();
         $response = $sasaPayController->initiatePayment($phone_number, $total_amount, $order_number, $email);
 
+        dd($response);
+
         if ($response->status) {
             $order = Sale::create([
                 'order_number' => $order_number,
