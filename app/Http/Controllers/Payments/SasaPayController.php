@@ -57,8 +57,6 @@ class SasaPayController extends Controller
             'CallBackURL' => $this->callbackUrl,
         ]);
 
-        dd($this->callbackUrl);
-
         return json_decode($response);
     }
 
