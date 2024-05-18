@@ -94,9 +94,6 @@ class OrderController extends Controller
         $response = $sasaPayController->initiatePayment($phone_number, $total_amount, $order_number, $email);
 
         if ($response->status) {
-            // Store the payment initiation response in session
-            Session::put('payment_response', $response->json());
-
             $order = Sale::create([
                 'order_number' => $order_number,
                 'order_type' => 1,
@@ -178,8 +175,7 @@ class OrderController extends Controller
     public function order_success()
     {
         $order_number = session('order_number');
-        $paymentResponse = session('payment_response');
-        return view('order_success', compact('order_number', 'paymentResponse'));
+        return view('order_success', compact('order_number'));
     }
 
     public function get_areas($locationId)

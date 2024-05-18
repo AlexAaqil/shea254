@@ -17,17 +17,6 @@
             <p>Please enter your M-PESA PIN to complete this order.</p>
             <p>We will contact you in case we need any clarification.</p>
 
-            <!-- Display payment response details -->
-            @if($paymentResponse)
-                <h2>Payment Response Details</h2>
-                <ul>
-                    <li>Status: {{ $paymentResponse['status'] }}</li>
-                    <li>Merchant Request ID: {{ $paymentResponse['MerchantRequestID'] }}</li>
-                    <li>Checkout Request ID: {{ $paymentResponse['CheckoutRequestID'] }}</li>
-                    <!-- Add other payment response details as needed -->
-                </ul>
-            @endif
-
             <div class="actions">
                 <a href="{{ route('shop') }}" class="action_btn">Continue Shopping</a>
             </div>
