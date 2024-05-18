@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Log;
 use App\Models\Payment;
 
 class SasaPayController extends Controller
@@ -61,8 +62,17 @@ class SasaPayController extends Controller
 
     public function paymentCallback(Request $request)
     {
-        dd('payment callback');
         $data = json_decode($request->getContent(), true);
+
+        // Log the raw callback data to the custom payments log file
+        Log::channel('payments')->debug('Callback received: ', $data);
+
+        // Check if data is received
+        if (empty($data)) {
+            Log::channel('payments')->error('Callback data is empty or invalid JSON.');
+            return response()->json(['message' => 'Invalid callback data.'], 400);
+        }
+
         Storage::append('logs/payments.log', json_encode($data));
 
         // Extract relevant data from the callback
@@ -72,9 +82,16 @@ class SasaPayController extends Controller
         $transactionAmount = $data['TransAmount'];
         $transactionDescription = $data['ResultDesc'];
 
-        dd($data);
-
         $payment = Payment::where('order_id', $orderId)->first();
+
+        // Check if orderId is available
+        if (!$orderId) {
+            Log::channel('payments')->error('Order ID (BillRefNumber) is missing in the callback data.');
+            return response()->json(['message' => 'Order ID missing.'], 400);
+        }
+
+        // Update the payments table
+        $payment = Payment::where('merchant_request_id', $orderId)->first();
 
         if ($payment) {
             $payment->status = $transactionStatus;
@@ -82,6 +99,10 @@ class SasaPayController extends Controller
             $payment->amount = $transactionAmount;
             $payment->description = $transactionDescription;
             $payment->save();
+
+            Log::channel('payments')->info("Payment record for order_id {$orderId} updated successfully.");
+        } else {
+            Log::channel('payments')->warning("Payment record for order_id {$orderId} not found.");
         }
 
         return response()->json(['message' => 'Callback received successfully.']);
