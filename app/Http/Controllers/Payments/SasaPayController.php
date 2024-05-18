@@ -77,14 +77,13 @@ class SasaPayController extends Controller
         // Extract relevant data from the callback
         $orderId = $data['MerchantRequestID'];
         $transactionStatus = $data['ResultCode'] == 0 ? 'paid' : 'failed';
-        $transactionDate = $data['TransactionDate'];
-        $transactionAmount = $data['TransAmount'];
-        $transactionDescription = $data['ResultDesc'];
+        $responseCode = $data['ResultCode'];
+        $responseDescription = $data['ResultDesc'];
 
-        $payment = Payment::where('order_id', $orderId)->first();
+        $payment = Payment::where('merchant_request_id', $orderId)->first();
 
         // Check if orderId is available
-        if (!$orderId) {
+        if (empty($orderId)) {
             Log::channel('payments')->error('Order ID (MerchantRequestID) is missing in the callback data.');
             return response()->json(['message' => 'Order ID missing.'], 400);
         }
@@ -94,9 +93,8 @@ class SasaPayController extends Controller
 
         if ($payment) {
             $payment->status = $transactionStatus;
-            $payment->transaction_date = $transactionDate;
-            $payment->amount = $transactionAmount;
-            $payment->description = $transactionDescription;
+            $payment->response_code = $responseCode;
+            $payment->response_description = $responseDescription;
             $payment->save();
 
             Log::channel('payments')->info("Payment record for order_id {$orderId} updated successfully.");
