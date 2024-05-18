@@ -87,7 +87,7 @@ class OrderController extends Controller
         }
 
         $total_amount = $shipping_cost + $cart_subtotal;
-        $order_number = 'ord_' . Str::random(5) . '_' . date('ymd');
+        $order_number = 'ord_' . Str::random(6) . '_' . date('dmy');
         $user_id = Auth::check() ? Auth::user()->id : null;
 
         $sasaPayController = new SasaPayController();

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Payments;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Storage;
+use App\Models\Payment;
 
 class SasaPayController extends Controller
 {
@@ -59,10 +61,27 @@ class SasaPayController extends Controller
 
     public function paymentCallback(Request $request)
     {
-        $data = $request->all();
-        // Process the callback data
+        $data = json_decode($request->getContent(), true);
+        Storage::append('logs/payments.log', json_encode($data));
+
+        // Extract relevant data from the callback
+        $orderId = $data['BillRefNumber'];
+        $transactionStatus = $data['ResultCode'] == 0 ? 'paid' : 'failed';
+        $transactionDate = $data['TransactionDate'];
+        $transactionAmount = $data['TransAmount'];
+        $transactionDescription = $data['ResultDesc'];
 
         dd($data);
+
+        $payment = Payment::where('order_id', $orderId)->first();
+
+        if ($payment) {
+            $payment->status = $transactionStatus;
+            $payment->transaction_date = $transactionDate;
+            $payment->amount = $transactionAmount;
+            $payment->description = $transactionDescription;
+            $payment->save();
+        }
 
         return response()->json(['message' => 'Callback received successfully.']);
     }
