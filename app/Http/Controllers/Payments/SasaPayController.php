@@ -61,6 +61,7 @@ class SasaPayController extends Controller
 
     public function paymentCallback(Request $request)
     {
+        dd('payment callback');
         $data = json_decode($request->getContent(), true);
         Storage::append('logs/payments.log', json_encode($data));
 
