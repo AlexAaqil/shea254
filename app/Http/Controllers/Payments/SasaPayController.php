@@ -47,8 +47,7 @@ class SasaPayController extends Controller
         ])->post($this->baseUrl, [
             'MerchantCode' => $this->shortcode,
             'NetworkCode' => 63902,
-            // 'Amount' => $amount,
-            'Amount' => 100,
+            'Amount' => $amount,
             'PhoneNumber' => $phone_number,
             'Currency' => 'KES',
             'AccountReference' => $order_number,
@@ -76,7 +75,7 @@ class SasaPayController extends Controller
         Storage::append('logs/payments.log', json_encode($data));
 
         // Extract relevant data from the callback
-        $orderId = $data['BillRefNumber'];
+        $orderId = $data['MerchantRequestID'];
         $transactionStatus = $data['ResultCode'] == 0 ? 'paid' : 'failed';
         $transactionDate = $data['TransactionDate'];
         $transactionAmount = $data['TransAmount'];
@@ -86,7 +85,7 @@ class SasaPayController extends Controller
 
         // Check if orderId is available
         if (!$orderId) {
-            Log::channel('payments')->error('Order ID (BillRefNumber) is missing in the callback data.');
+            Log::channel('payments')->error('Order ID (MerchantRequestID) is missing in the callback data.');
             return response()->json(['message' => 'Order ID missing.'], 400);
         }
 
