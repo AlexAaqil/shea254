@@ -196,7 +196,7 @@ class OrderController extends Controller
     public function request_stkPush(Request $request, $order_number)
     {
         $order = Sale::where('order_number', $order_number)->firstOrFail();
-        $payment = $order->payment;
+        $payment = optional($order->payment);
 
         if($payment && $payment->status == 'failed') {
             $phone_number = $order->order_delivery->phone_number;
