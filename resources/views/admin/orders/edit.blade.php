@@ -79,9 +79,19 @@
                                 {{ ucfirst($payment_status ?? 'unknown') }}. {{ $payment_description }}.
                             </span>
                         </p>
+    
+                        @if($payment_status == 'failed')
+                            <form action="{{ route('payment.request_stkPush', $order->order_number) }}" method="post">
+                                @csrf
+
+                                <button type="submit">Request STK Push</button>
+                            </form>
+                        @endif
                     </div>
                 </div>
+
             </div>
+
             <form action="{{ route('orders.update', ['order' => $order->id]) }}" method="post">
                 @csrf
                 @method('PATCH')

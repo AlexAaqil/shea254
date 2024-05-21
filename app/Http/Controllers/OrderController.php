@@ -192,4 +192,39 @@ class OrderController extends Controller
 
         return response()->json(['price' => $price]);
     }
+
+    public function request_stkPush(Request $request, $order_number)
+    {
+        $order = Sale::where('order_number', $order_number)->firstOrFail();
+        $payment = $order->payment;
+
+        if($payment && $payment->status == 'failed') {
+            $phone_number = $order->order_delivery->phone_number;
+            $amount = $order->total_amount;
+            $order_number = $order->order_number;
+            $payment_gateway = $payment->gateway;
+
+            $sasaPayController = new SasaPayController();
+            $response = $sasaPayController->initiatePayment($phone_number, $amount, $order_number, $payment_gateway);
+
+            if($response->status) {
+                $payment->update([
+                    'payment_gateway' => $payment_gateway,
+                    'merchant_request_id' => $response->MerchantRequestID,
+                    'checkout_request_id' => $response->CheckoutRequestID,
+                    'transaction_reference' => $response->TransactionReference,
+                    'response_code' => $response->ResponseCode,
+                    'response_description' => $response->ResponseDescription,
+                    'customer_message' => $response->CustomerMessage,
+                    'status' => 'pending',
+                ]);
+
+                return redirect()->back()->with('success', ['message' => 'Payment retry initiated successfully.']);
+            } else {
+                return redirect()->back()->with('error', ['message' => 'Failed to initiate payment retry. Please try again.']);
+            }
+        }
+
+        return redirect()->back()->with('error', ['message' => 'Payment not eligible for retry.']);
+    }
 }

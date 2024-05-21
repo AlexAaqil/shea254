@@ -78,6 +78,7 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function() {
         Route::resource('/delivery/areas', DeliveryAreaController::class)->except('show');
 
         Route::resource('/orders', OrderController::class);
+        Route::post('/order/{order_number}/retry-payment', [OrderController::class, 'request_stkPush'])->name('payment.request_stkPush');
 
         Route::resource('/blog-categories', BlogCategoryController::class)->except('show');
         Route::resource('/blogs', BlogController::class)->except('show');
