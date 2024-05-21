@@ -203,8 +203,6 @@ class OrderController extends Controller
         $amount = $order->total_amount;
         $payment_gateway = $payment->payment_gateway;
 
-        dd($order_number, $phone_number, $amount, $payment_gateway);
-
         if($payment->status == 'failed') {
             $sasaPayController = new SasaPayController();
             $response = $sasaPayController->initiatePayment($phone_number, $amount, $order_number, $payment_gateway);
