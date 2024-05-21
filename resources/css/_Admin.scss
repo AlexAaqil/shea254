@@ -164,13 +164,13 @@ $aside_width_l: 15%;
 
                     tbody {
                         tr {
-                            border-bottom: 1px solid rgb(211, 211, 211);
+                            border-bottom: 1px solid #d3d3d3;
                             &:nth-of-type(odd) {
-                                background: rgb(245, 245, 245);
+                                background: #f7f7f7;
                             }
 
                             td {
-                                padding: 4px 6px;
+                                padding: 6px 6px 6px 0;
                             }
 
                             .edit {

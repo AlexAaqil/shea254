@@ -13,7 +13,7 @@
                         <th>Name</th>
                         <th>Phone Number</th>
                         <th>Address</th>
-                        <th>Amount (Ksh)</th>
+                        <th>Amount</th>
                         <th>Payment</th>
                         <th>Delivery</th>
                         <th>Actions</th>
@@ -28,7 +28,7 @@
                                 </a>
                             </td>
                             <td>{{ $order->order_delivery->full_name }}</td>
-                            <td>{{ $order->order_delivery->phone_number }}</td>
+                            <td>{{ format_phone_number($order->order_delivery->phone_number) }}</td>
                             <td>{!! Illuminate\Support\Str::limit($order->order_delivery->address, 15, ' ...') !!}</td>
                             <td>{{ number_format($order->total_amount) }}</td>
 
