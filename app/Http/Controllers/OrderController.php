@@ -201,7 +201,7 @@ class OrderController extends Controller
         $order_number = $order->order_number;
         $phone_number = $order->order_delivery->phone_number;
         $amount = $order->total_amount;
-        $payment_gateway = $payment->gateway;
+        $payment_gateway = $payment->payment_gateway;
 
         dd($order_number, $phone_number, $amount, $payment_gateway);
 
