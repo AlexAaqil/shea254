@@ -1,0 +1,4 @@
+SasaPay Network codes for payment:
+63902(MPesa) 
+63903(AirtelMoney) 
+63907(T-Kash)

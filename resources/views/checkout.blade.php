@@ -38,18 +38,18 @@
                         <label for="status">Choose your preffered payment method</label>
                         <div class="custom_radio_buttons">
                             <label>
-                                <input class="option_radio" type="radio" name="payment_method" id="delivery" value="mpesa" checked>
+                                <input class="option_radio" type="radio" name="payment_method" id="delivery" value="63902" checked>
                                 <span>Mpesa</span>
                             </label>
 
                             <label>
-                                <input class="option_radio" type="radio" name="payment_method" id="t_kash" value="t_kash">
-                                <span>T-Kash</span>
+                                <input class="option_radio" type="radio" name="payment_method" id="airtel_money" value="63903">
+                                <span>Airtel Money</span>
                             </label>
 
                             <label>
-                                <input class="option_radio" type="radio" name="payment_method" id="airtel_money" value="airtel_money">
-                                <span>Airtel Money</span>
+                                <input class="option_radio" type="radio" name="payment_method" id="t_kash" value="63907">
+                                <span>T-Kash</span>
                             </label>
                         </div>
                     </div>

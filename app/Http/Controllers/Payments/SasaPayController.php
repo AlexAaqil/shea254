@@ -37,7 +37,7 @@ class SasaPayController extends Controller
         return $response->json('access_token');
     }
 
-    public function initiatePayment($phone_number, $amount, $order_number, $email)
+    public function initiatePayment($phone_number, $amount, $order_number, $payment_gateway)
     {
         $accessToken = $this->getAuthorization();
 
@@ -46,8 +46,9 @@ class SasaPayController extends Controller
             'Content-Type' => 'application/json',
         ])->post($this->baseUrl, [
             'MerchantCode' => $this->shortcode,
-            'NetworkCode' => 63902,
-            'Amount' => $amount,
+            'NetworkCode' => $payment_gateway,
+            // 'Amount' => $amount,
+            'Amount' => "1",
             'PhoneNumber' => $phone_number,
             'Currency' => 'KES',
             'AccountReference' => $order_number,

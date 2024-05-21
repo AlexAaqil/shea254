@@ -56,6 +56,7 @@ class OrderController extends Controller
         $cart_items = $cart['items'];
         $cart_subtotal = $cart['subtotal'];
 
+        $payment_gateway = $request->input('payment_method');
         $pickup_method = $request->input('pickup_method');
 
         $address = '';
@@ -91,7 +92,7 @@ class OrderController extends Controller
         $user_id = Auth::check() ? Auth::user()->id : null;
 
         $sasaPayController = new SasaPayController();
-        $response = $sasaPayController->initiatePayment($phone_number, $total_amount, $order_number, $email);
+        $response = $sasaPayController->initiatePayment($phone_number, $total_amount, $order_number, $payment_gateway);
 
         if ($response->status) {
             $order = Sale::create([
@@ -128,7 +129,7 @@ class OrderController extends Controller
             }
 
             $order->payment()->create([
-                'payment_gateway' => $request->input('payment_method'),
+                'payment_gateway' => $payment_gateway,
                 'merchant_request_id' => $response->MerchantRequestID,
                 'checkout_request_id' => $response->CheckoutRequestID,
                 'transaction_reference' => $response->TransactionReference,
