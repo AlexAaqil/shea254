@@ -198,12 +198,14 @@ class OrderController extends Controller
         $order = Sale::where('order_number', $order_number)->firstOrFail();
         $payment = optional($order->payment);
 
-        if($payment->status == 'failed') {
-            $phone_number = $order->order_delivery->phone_number;
-            $amount = $order->total_amount;
-            $order_number = $order->order_number;
-            $payment_gateway = $payment->gateway;
+        $order_number = $order->order_number;
+        $phone_number = $order->order_delivery->phone_number;
+        $amount = $order->total_amount;
+        $payment_gateway = $payment->gateway;
 
+        dd($order_number, $phone_number, $amount, $payment_gateway);
+
+        if($payment->status == 'failed') {
             $sasaPayController = new SasaPayController();
             $response = $sasaPayController->initiatePayment($phone_number, $amount, $order_number, $payment_gateway);
 
