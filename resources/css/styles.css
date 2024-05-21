@@ -2061,6 +2061,9 @@ footer .copyright {
     margin: auto;
   }
 }
+.Admin .orders .del {
+  text-decoration: line-through;
+}
 .Admin .orders .order_details {
   display: grid;
   grid-template-columns: 1fr;

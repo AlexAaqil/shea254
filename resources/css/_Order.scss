@@ -1,5 +1,9 @@
 .Admin {
     .orders {
+        .del {
+            text-decoration: line-through;
+        }
+
         .order_details {
             @include grid(2);
             gap: 2em;

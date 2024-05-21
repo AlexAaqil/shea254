@@ -21,44 +21,44 @@
                 </thead>
                 <tbody>
                     @foreach($orders as $order)
-                    <tr class="searchable">
-                        <td>
-                            <a href="{{ route('orders.edit', ['order'=>$order->id]) }}" class="update_link">
-                                {{ $order->order_number }}
-                            </a>
-                        </td>
-                        <td>{{ $order->order_delivery->full_name }}</td>
-                        <td>{{ $order->order_delivery->phone_number }}</td>
-                        <td>{!! Illuminate\Support\Str::limit($order->order_delivery->address, 15, ' ...') !!}</td>
-                        <td>{{ number_format($order->total_amount) }}</td>
+                        <tr class="searchable {{ $order->order_delivery->delivery_status == 'processed' ? 'del' : '' }}">
+                            <td>
+                                <a href="{{ route('orders.edit', ['order'=>$order->id]) }}" class="update_link">
+                                    {{ $order->order_number }}
+                                </a>
+                            </td>
+                            <td>{{ $order->order_delivery->full_name }}</td>
+                            <td>{{ $order->order_delivery->phone_number }}</td>
+                            <td>{!! Illuminate\Support\Str::limit($order->order_delivery->address, 15, ' ...') !!}</td>
+                            <td>{{ number_format($order->total_amount) }}</td>
 
-                        @php
-                            $paymentStatus = optional($order->payment)->status;
-                            $statusClass = match($paymentStatus) {
-                                'paid' => 'success',
-                                'pending' => 'warning',
-                                'failed' => 'danger',
-                                default => ''
-                            };
-                        @endphp
-                        <td class="{{ $statusClass }}">
-                            {{ $paymentStatus ?? 'unknown' }}
-                        </td>                  
+                            @php
+                                $paymentStatus = optional($order->payment)->status;
+                                $statusClass = match($paymentStatus) {
+                                    'paid' => 'success',
+                                    'pending' => 'warning',
+                                    'failed' => 'danger',
+                                    default => ''
+                                };
+                            @endphp
+                            <td class="{{ $statusClass }}">
+                                {{ $paymentStatus ?? 'unknown' }}
+                            </td>                  
 
-                        <td class="{{ $order->order_delivery->delivery_status == 'pending' ? 'text-danger' : 'text-success'  }}">{{ $order->order_delivery->delivery_status }}</td>
-                        <td class="actions">
-                            <div class="action">
-                                <form id="deleteForm_{{ $order->id }}" action="{{ route('orders.destroy', ['order' => $order->id]) }}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
+                            <td class="{{ $order->order_delivery->delivery_status == 'pending' ? 'text-danger' : 'text-success'  }}">{{ $order->order_delivery->delivery_status }}</td>
+                            <td class="actions">
+                                <div class="action">
+                                    <form id="deleteForm_{{ $order->id }}" action="{{ route('orders.destroy', ['order' => $order->id]) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
 
-                                    <a href="javascript:void(0);" onclick="deleteItem({{ $order->id }}, 'order');">
-                                        <i class="fas fa-trash-alt delete"></i>
-                                    </a>
-                                </form>
-                            </div>
-                        </td>
-                    </tr>
+                                        <a href="javascript:void(0);" onclick="deleteItem({{ $order->id }}, 'order');">
+                                            <i class="fas fa-trash-alt delete"></i>
+                                        </a>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
                     @endforeach
                 </tbody>
             </table>
