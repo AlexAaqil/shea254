@@ -198,6 +198,8 @@ class OrderController extends Controller
         $order = Sale::where('order_number', $order_number)->firstOrFail();
         $payment = optional($order->payment);
 
+        dd($order, $payment, $payment->status);
+
         if($payment && $payment->status == 'failed') {
             $phone_number = $order->order_delivery->phone_number;
             $amount = $order->total_amount;
@@ -221,10 +223,8 @@ class OrderController extends Controller
 
                 return redirect()->back()->with('success', ['message' => 'Payment retry initiated successfully.']);
             } else {
-                return redirect()->back()->with('error', ['message' => 'Failed to initiate payment retry. Please try again.']);
+                return redirect()->back()->with('error', ['message' => 'Failed to initiate payment. Please try again.']);
             }
         }
-
-        return redirect()->back()->with('error', ['message' => 'Payment not eligible for retry.']);
     }
 }
