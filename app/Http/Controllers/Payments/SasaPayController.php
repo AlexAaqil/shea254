@@ -47,8 +47,7 @@ class SasaPayController extends Controller
         ])->post($this->baseUrl, [
             'MerchantCode' => $this->shortcode,
             'NetworkCode' => $payment_gateway,
-            // 'Amount' => $amount,
-            'Amount' => "1",
+            'Amount' => $amount,
             'PhoneNumber' => $phone_number,
             'Currency' => 'KES',
             'AccountReference' => $order_number,
