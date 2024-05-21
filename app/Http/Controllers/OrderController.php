@@ -198,9 +198,7 @@ class OrderController extends Controller
         $order = Sale::where('order_number', $order_number)->firstOrFail();
         $payment = optional($order->payment);
 
-        dd($order, $payment, $payment->status);
-
-        if($payment && $payment->status == 'failed') {
+        if($payment->status == 'failed') {
             $phone_number = $order->order_delivery->phone_number;
             $amount = $order->total_amount;
             $order_number = $order->order_number;
