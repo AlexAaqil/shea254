@@ -7,6 +7,14 @@
   color: #eb0404;
 }
 
+.warning {
+  color: #c28005;
+}
+
+.success {
+  color: #02a81d;
+}
+
 .bold {
   font-weight: bold;
 }
@@ -32,6 +40,11 @@ img {
   width: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+}
+
+.update_link {
+  text-decoration: none;
+  color: rgb(5, 59, 236);
 }
 
 form input,
@@ -561,11 +574,11 @@ footer .copyright {
 }
 
 .alert-success {
-  background: rgb(2, 168, 29);
+  background: #02a81d;
 }
 
 .alert-warning {
-  background: rgb(194, 128, 5);
+  background: #c28005;
 }
 
 .inline_alert {
@@ -578,7 +591,7 @@ footer .copyright {
 .inline_alert_success {
   padding: 0.5em;
   margin: 0.5em 0;
-  color: rgb(2, 168, 29);
+  color: #02a81d;
 }
 
 .Authentication {
@@ -2050,10 +2063,31 @@ footer .copyright {
 }
 .Admin .orders .order_details {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
+  gap: 1em;
+  gap: 2em;
+}
+@media screen and (width >= 726px) {
+  .Admin .orders .order_details {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+.Admin .orders .order_details .details p {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1em;
+  gap: 0.1em;
+}
+@media screen and (width >= 726px) {
+  .Admin .orders .order_details .details p {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 .Admin .orders .order_details .details p span:first-of-type {
   color: rgb(116, 116, 116);
+}
+.Admin .orders .order_details .payment_details {
+  margin-top: 50px;
 }
 .Admin .orders .order_details .cart_items .bold {
   font-weight: bold;
@@ -2278,6 +2312,9 @@ footer .copyright {
 }
 
 @media screen and (width >= 726px) {
+  .Admin .orders .order_details .details p {
+    grid-template-columns: 0.8fr 2fr;
+  }
   .Order_success .container {
     width: 50%;
   }

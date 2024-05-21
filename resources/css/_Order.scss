@@ -1,11 +1,14 @@
 .Admin {
     .orders {
         .order_details {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+            @include grid(2);
+            gap: 2em;
             
             .details {
                 p {
+                    @include grid(2);
+                    gap: 0.1em;
+
                     span {
                         &:first-of-type {
                             color: rgb(116, 116, 116);
@@ -14,10 +17,15 @@
                 }
             }
 
+            .payment_details {
+                margin-top: 50px;
+            }
+
             .cart_items {
                 .bold {
                     font-weight: bold;
                 }
+
                 ul {
                     li {
                         display: grid;
@@ -272,6 +280,18 @@
 }
 
 @media screen and (width >= 726px) {
+    .Admin {
+        .orders {
+            .order_details {
+                .details {
+                    p {
+                        grid-template-columns: 0.8fr 2fr;
+                    }
+                }
+            }
+        }
+    }
+
     .Order_success {
         .container {
             width: 50%;

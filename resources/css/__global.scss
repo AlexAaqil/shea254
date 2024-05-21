@@ -19,3 +19,8 @@ img {
     width: 100%;
     object-fit: cover;
 }
+
+.update_link {
+    text-decoration: none;
+    color: $link_color;
+}

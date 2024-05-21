@@ -16,10 +16,12 @@
                         <span>Email Address</span>
                         <span>{{ $order->order_delivery->email }}</span>
                     </p>
+
                     <p>
                         <span>Phone Number</span>
-                        <span>{{ $order->order_delivery->phone_number }}</span>
+                        <span>+{{ format_phone_number($order->order_delivery->phone_number) }}</span>
                     </p>
+                    
                     <p>
                         <span>Address</span>
                         <span>{{ $order->order_delivery->address }}</span>
@@ -34,7 +36,7 @@
                     </p>
                     <p>
                         <span>Order Date</span>
-                        <span>{{ $order->created_at->format('M d Y \a\t h:i A') }}</span>
+                        <span>{{ $order->created_at->format('d M Y \a\t h:i A') }}</span>
                     </p>
                 </div>
 
@@ -60,20 +62,24 @@
                         <span>Ksh. {{ number_format($order->total_amount, 2) }}</span>
                     </p>
 
-                    <p>
-                        <span>Payment Status : </span>
-                        @php
-                            $statusClass = '';
-                            if ($order->payment->status === 'success') {
-                                $statusClass = 'success bold';
-                            } elseif ($order->payment->status === 'pending') {
-                                $statusClass = 'warning bold';
-                            } elseif ($order->payment->status === 'failed') {
-                                $statusClass = 'danger bold';
-                            }
-                        @endphp
-                        <span class="{{ $statusClass }}">{{ ucfirst($order->payment->status) }}</span>
-                    </p>
+                    <div class="payment_details">
+                        <p>
+                            @php
+                                $payment_status = optional($order->payment)->status;
+                                $payment_description = optional($order->payment)->response_description;
+                                $status_class = match($payment_status) {
+                                    'paid' => 'success',
+                                    'pending' => 'warning',
+                                    'failed' => 'danger',
+                                    default => ''
+                                };
+                            @endphp
+                            <span>Payment : </span>
+                            <span class="{{ $status_class }}">
+                                {{ ucfirst($payment_status ?? 'unknown') }}. {{ $payment_description }}.
+                            </span>
+                        </p>
+                    </div>
                 </div>
             </div>
             <form action="{{ route('orders.update', ['order' => $order->id]) }}" method="post">
