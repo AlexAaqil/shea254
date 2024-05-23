@@ -13,7 +13,7 @@
     </div>
 
     <div class="product_search_results container">
-        <div class="card_wrapper">
+        <div class="products_wrapper">
             @foreach($products as $product)
                 @include('partials.product')
             @endforeach

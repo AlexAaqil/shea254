@@ -16,9 +16,9 @@
         @endforeach
     </div>
 
-    <div class="container">
+    <div class="container products">
         @include('partials.messages')
-        <div class="card_wrapper">
+        <div class="products_wrapper">
             @foreach($products as $product)
                 @include('partials.product')
             @endforeach
