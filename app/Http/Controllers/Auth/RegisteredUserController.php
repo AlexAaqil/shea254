@@ -34,8 +34,14 @@ class RegisteredUserController extends Controller
             'first_name' => ['required', 'string', 'max:80'],
             'last_name' => ['required', 'string', 'max:120'],
             'email' => ['required', 'string', 'lowercase', 'email:rfc,dns', 'max:255', 'unique:'.User::class],
-            'phone_number' => ['required', 'string', 'max:40'],
+            'phone_number' => [
+                'required', 
+                'string', 
+                'regex:/^(2547|2541)[0-9]{8}$/',
+            ],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        ], [
+            'phone_number.regex' => 'The phone number must start with 2547 or 2541 and have exactly 12 digits. (254746055xxx or 254116055xxx)',
         ]);
 
         $user = User::create([
