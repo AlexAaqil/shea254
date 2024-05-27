@@ -31,7 +31,7 @@
                                 {!! $user->user_level == 1 ? '<span class="td_span">admin</span>' : '' !!}
                             </td>
                             <td class="{{ $user->email_verified_at != Null ? 'verified' : 'unverified'  }}">{{ $user->email }}</td>
-                            <td>{{ $user->phone_number }}</td>
+                            <td>{{ format_phone_number($user->phone_number) }}</td>
                             <td class="{{ $user->user_status == 1 ? 'active' : 'inactive'  }}">{{ $user->user_status == 1 ? 'Active' : 'Inactive'  }}</td>
                             <td class="actions">
                                 <div class="action">
