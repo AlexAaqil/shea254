@@ -59,13 +59,10 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function() {
     Route::prefix('admin')->group(function() {
         Route::get('/dashboard', [DashboardController::class, 'admin_dashboard'])->name('admin.dashboard');
 
-        Route::get('/admins', [UserController::class, 'admins'])->name('admin.admins');
-        Route::get('/admins/{admin}/edit', [UserController::class, 'edit_admin'])->name('admin.edit');
-        Route::patch('/admins/{admin}', [UserController::class, 'update_admin'])->name('admin.update');
-
-        Route::get('/users', [UserController::class, 'users'])->name('admin.users');
-        Route::get('/users/{user}/edit', [UserController::class, 'edit_user'])->name('user.edit');
-        Route::patch('/users/{user}', [UserController::class, 'update_user'])->name('user.update');
+        Route::get('/users', [UserController::class, 'index'])->name('users.index');
+        Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('user.edit');
+        Route::patch('/users/{user}', [UserController::class, 'update'])->name('user.update');
+        Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('user.destroy');
 
         Route::resource('/product-measurements', ProductMeasurementController::class)->except('show');
         Route::resource('/product-categories', ProductCategoryController::class)->except('show');

@@ -171,6 +171,14 @@ $aside_width_l: 15%;
 
                             td {
                                 padding: 6px 6px 6px 0;
+
+                                span {
+                                    background: #9fe9ff;
+                                    border-radius: 32px;
+                                    padding: 1px 6px;
+                                    font-size: 0.65em;
+                                    font-weight: bold;
+                                }
                             }
 
                             .edit {

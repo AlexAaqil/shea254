@@ -12,7 +12,7 @@
                     </div>
                     <div class="text">
                         <p>
-                            <a href="{{ route('admin.admins') }}">Users</a>
+                            <a href="{{ route('admin.users') }}">Users</a>
                         </p>
                         <p>{{ $count_users }}</p>
                     </div>

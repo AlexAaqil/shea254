@@ -24,3 +24,12 @@ img {
     text-decoration: none;
     color: $link_color;
 }
+
+.active {
+    color: $success;
+}
+
+.inactive,
+.unverified {
+    color: $danger;
+}

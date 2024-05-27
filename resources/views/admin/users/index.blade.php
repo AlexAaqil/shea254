@@ -1,45 +1,61 @@
 <x-admin>
-    <div class="container users">
-        @include('admin.partials.users_navbar')
-        
+    <section class="container admins">
         <div class="header">
-            <h1>Users <span>({{ $users->count() }})</span></h1>
+            <h1>Users <span>({{ count($users) }})</span></h1>
             @include('partials.js_search')
         </div>
-
-        @include('partials.messages')
 
         <div class="body">
             <table>
                 <thead>
-                    <tr>
-                        <th>Names</th>
-                        <th>Email</th>
-                        <th>Phone Number</th>
-                        <th>User Level</th>
-                        <th>Status</th>
-                        <th>Actions</th>
-                    </tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone Number</th>
+                    <th>Status</th>
+                    <th>Action</th>
                 </thead>
+
                 <tbody>
-                    @foreach($users as $user)
-                    <tr class="searchable">
-                        <td>{{ $user->first_name }} {{ $user->last_name }}</td>
-                        <td>{{ $user->email }}</td>
-                        <td>{{ $user->phone_number }}</td>
-                        <td>{{ $user->user_level == 1 ? 'Admin':'User' }}</td>
-                        <td class="{{ $user->user_status == 1 ? '' : 'text-danger bold' }}">{{ $user->user_status == 1 ? 'Active' : 'Inactive'}} </td>
-                        <td class="actions">
-                            <div class="action">
-                                <a href="{{ route('user.edit', ['user' => $user->id]) }}">
-                                    <i class="fas fa-pencil-alt update"></i>
+                    @if(count($users) > 0)
+                        @php $id = 1 @endphp
+                        @foreach($users as $user)
+                        <tr>
+                            <td>
+                                <a href="{{ route('user.edit', ['user' => $user->id]) }}" class="update_link">
+                                    {{ $id++ }}
                                 </a>
-                            </div>
-                        </td>
-                    </tr>
-                    @endforeach
+                            </td>
+                            <td>
+                                {{ $user->first_name .' '. $user->last_name }} 
+                                {!! $user->user_level == 1 ? '<span class="td_span">admin</span>' : '' !!}
+                            </td>
+                            <td class="{{ $user->email_verified_at != Null ? 'verified' : 'unverified'  }}">{{ $user->email }}</td>
+                            <td>{{ $user->phone_number }}</td>
+                            <td class="{{ $user->user_status == 1 ? 'active' : 'inactive'  }}">{{ $user->user_status == 1 ? 'Active' : 'Inactive'  }}</td>
+                            <td class="actions">
+                                <div class="action">
+                                    <form id="deleteForm_{{ $user->id }}" action="{{ route('user.destroy', ['user' => $user->id]) }}" method="post">
+                                        @csrf
+                                        @method('DELETE')
+
+                                        <button type="button" onclick="deleteItem({{ $user->id }}, 'user');">
+                                            <i class="fas fa-trash-alt delete"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                        @endforeach
+                    @else
+                        <tr>
+                            <td colspan="5">No users yet</td>
+                        </tr>
+                    @endif
                 </tbody>
             </table>
         </div>
-    </div>
+    </section>
+
+    <x-sweetalert />
 </x-admin>
