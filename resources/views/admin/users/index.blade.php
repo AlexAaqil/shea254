@@ -20,7 +20,7 @@
                     @if(count($users) > 0)
                         @php $id = 1 @endphp
                         @foreach($users as $user)
-                        <tr>
+                        <tr class="searchable">
                             <td>
                                 <a href="{{ route('user.edit', ['user' => $user->id]) }}" class="update_link">
                                     {{ $id++ }}
