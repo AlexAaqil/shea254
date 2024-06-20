@@ -18,8 +18,8 @@
                         <span class="inline_alert">{{ $errors->first('full_name') }}</span>
                     </div>
                     <div class="input_group">
-                        <input type="email" name="email_address" id="email_address" placeholder="Email Address" value="{{ old('email_address') }}" />
-                        <span class="inline_alert">{{ $errors->first('email_address') }}</span>
+                        <input type="email" name="email" id="email" placeholder="Email Address" value="{{ old('email') }}" />
+                        <span class="inline_alert">{{ $errors->first('email') }}</span>
                     </div>
                     <div class="input_group">
                         <input type="text" name="phone_number" id="phone_number" placeholder="Phone Number" value="{{ old('phone_number') }}" />
