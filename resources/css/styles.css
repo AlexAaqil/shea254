@@ -417,6 +417,8 @@ nav .extra_links .links .btn_logout {
   background: #eb0404;
 }
 nav .extra_links .links .btn_login {
+  background: #000;
+  color: #eee;
   border: 1px solid grey;
 }
 nav .burger_menu {

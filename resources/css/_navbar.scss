@@ -76,6 +76,8 @@ nav {
             }
 
             .btn_login {
+                background: $dark_text;
+                color: $light_text;
                 border: 1px solid $faded;
             }
         }
