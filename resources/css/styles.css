@@ -1389,7 +1389,7 @@ footer .copyright {
   gap: 0.1em;
 }
 .Admin aside .nav_links ul li a span {
-  font-size: 0.8em;
+  font-size: 0.75em;
 }
 .Admin aside .nav_links ul li .fa-star {
   color: unset;
@@ -1418,6 +1418,7 @@ footer .copyright {
 }
 .Admin .admin_content .container {
   padding: 10px 15px;
+  overflow: scroll;
 }
 .Admin .admin_content .container .related_pages_navbar {
   margin: 0 0 0.5em;
@@ -1576,6 +1577,9 @@ footer .copyright {
   }
   .Admin .admin_content {
     margin-left: calc(15% + 0.5em);
+  }
+  .Admin .admin_content .container {
+    overflow: hidden;
   }
   .Admin .admin_content .container .header {
     display: grid;
