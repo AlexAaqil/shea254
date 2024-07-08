@@ -15,9 +15,9 @@
             ];
         @endphp
 
-        @if(Auth::user() && Auth::user()->user_level == 1)
+        @if(Auth::user() && Auth::user()->user_level == 2)
             <a href="{{ route('dashboard') }}">Dashboard</a>
-        @elseif(Auth::user() && Auth::user()->user_level == 0)
+        @elseif(Auth::user() && Auth::user()->user_level == 1)
             <a href="{{ route('admin.dashboard') }}">Dashboard</a>
         @endif
 
@@ -38,9 +38,15 @@
             </div>
 
             @if(Auth::user())
-                <a href="{{ route('profile.edit') }}" class="profile">
-                    <i class="fa fa-user"></i>
-                </a>
+                @if(Auth::user()->user_level == 2)
+                    <a href="{{ route('dashboard') }}">
+                        <i class="fas fa-user"></i>
+                    </a>
+                @elseif(Auth::user()->user_level == 1)
+                    <a href="{{ route('admin.dashboard') }}">
+                        <i class="fas fa-user"></i>
+                    </a>
+                @endif
 
                 <form action="{{ route('logout') }}" method="post">
                     @csrf
@@ -48,7 +54,7 @@
                     <button type="submit" class="btn btn_logout">Logout</button>
                 </form>
             @else
-                <a href="{{ route('login') }}" class="btn login_btn">Login</a>
+                <a href="{{ route('login') }}" class="btn btn_login">Login</a>
             @endif
         </div>
     </div>

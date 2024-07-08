@@ -74,6 +74,10 @@ nav {
             .btn_logout {
                 background: $danger;
             }
+
+            .btn_login {
+                border: 1px solid $faded;
+            }
         }
     }
 
@@ -85,14 +89,21 @@ nav {
 @media screen and (width <= 726px) {
     nav {
         display: grid;
-        grid-template-columns: 70% auto auto;
+        grid-template-columns: 2fr auto auto auto;
 
         .nav_links,
         .extra_links .btn_logout {
             display: none;
         }
 
+        .extra_links {
+            .links {
+                gap: 1em;
+            }
+        }
+
         .burger_menu {
+            margin-left: 0.5em;
             display: block;
             cursor: pointer;
 

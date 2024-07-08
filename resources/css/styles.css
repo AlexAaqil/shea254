@@ -416,6 +416,9 @@ nav .extra_links .links .btn {
 nav .extra_links .links .btn_logout {
   background: #eb0404;
 }
+nav .extra_links .links .btn_login {
+  border: 1px solid grey;
+}
 nav .burger_menu {
   display: none;
 }
@@ -423,13 +426,17 @@ nav .burger_menu {
 @media screen and (width <= 726px) {
   nav {
     display: grid;
-    grid-template-columns: 70% auto auto;
+    grid-template-columns: 2fr auto auto auto;
   }
   nav .nav_links,
   nav .extra_links .btn_logout {
     display: none;
   }
+  nav .extra_links .links {
+    gap: 1em;
+  }
   nav .burger_menu {
+    margin-left: 0.5em;
     display: block;
     cursor: pointer;
   }
