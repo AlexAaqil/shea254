@@ -352,105 +352,85 @@ button,
   text-decoration: underline;
 }
 
-nav,
-.nav_container,
-.nav_container a,
-.nav_container ul {
+nav {
   display: flex;
   align-items: center;
-}
-
-nav {
-  background: transparent;
-  -webkit-backdrop-filter: blur(5px);
-          backdrop-filter: blur(5px);
+  justify-content: space-between;
   height: 10vh;
-  box-shadow: 4px 4px 8px #000;
+  padding: 15px 5%;
   position: sticky;
   top: 0;
-  padding: 0.5em 3%;
+  background: rgba(255, 255, 255, 0.3);
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
+  box-shadow: 1px 1px 24px #adadad;
   z-index: 100;
 }
 nav a {
   text-decoration: none;
   color: #000;
+}
+nav .brand a span {
+  font-size: 1.2em;
   font-weight: bold;
 }
-nav .nav_container {
-  width: 100%;
-  justify-content: space-between;
+nav .nav_links {
+  display: flex;
+  gap: 1.5em;
 }
-nav .nav_container a {
-  gap: 0 0.3em;
+nav .nav_links a {
+  color: #4d4d4d;
 }
-nav .nav_container a img {
-  border-radius: 50%;
-  height: 35px;
-  width: 35px;
+nav .nav_links .active {
+  color: #000;
+  font-weight: bold;
 }
-nav .nav_container h1 {
-  font-size: 1.2em;
+nav .extra_links .links {
+  display: flex;
+  align-items: center;
+  gap: 1.5em;
 }
-nav .nav_container ul {
-  list-style: none;
-  gap: 0 1em;
-}
-nav .nav_container ul .cart {
+nav .extra_links .links .shopping_cart {
   position: relative;
 }
-nav .nav_container ul .cart span {
-  width: 16px;
+nav .extra_links .links .shopping_cart span {
+  position: absolute;
+  top: -0.9em;
+  right: -0.8em;
+  width: 18px;
   aspect-ratio: 1;
+  padding: 2px;
   display: flex;
   align-items: center;
   justify-content: center;
-  position: absolute;
-  top: -10px;
-  right: -10px;
-  background: green;
-  color: #fff;
-  border-radius: 50%;
-  padding: 2px;
-  font-weight: bold;
   font-size: 0.75em;
-}
-nav .nav_container ul .nav_authentication {
-  display: flex;
-  gap: 1em;
-}
-nav .nav_container ul .nav_authentication a {
-  background: #000;
-  color: #fff;
-  padding: 8px 16px;
-  border-radius: 32px;
-}
-nav .nav_container ul .nav_authentication .profile {
-  width: 100%;
-  height: 100%;
-  padding: 8px;
+  font-weight: bold;
+  background: green;
+  color: #eee;
   border-radius: 50%;
 }
-nav .nav_container ul .nav_authentication form button {
-  padding: 8px 16px;
-  background: red;
+nav .extra_links .links .btn {
   border-radius: 32px;
-  cursor: pointer;
+  padding: 6px 16px;
 }
-nav .nav_container ul .nav_authentication ul {
-  display: none;
+nav .extra_links .links .btn_logout {
+  background: #eb0404;
 }
-nav .nav_container .burger_menu {
+nav .burger_menu {
   display: none;
 }
 
 @media screen and (width <= 726px) {
   nav {
-    position: relative;
-    position: sticky;
-    top: 0;
+    display: grid;
+    grid-template-columns: 70% auto auto;
+  }
+  nav .nav_links,
+  nav .extra_links .btn_logout {
+    display: none;
   }
   nav .burger_menu {
-    display: block !important;
+    display: block;
     cursor: pointer;
   }
   nav .burger_menu .burger_icon {
@@ -465,34 +445,17 @@ nav .nav_container .burger_menu {
     height: 3px;
     background: #000;
   }
-  nav .nav_links {
-    display: none;
-  }
-  nav .nav_links ul {
-    display: none;
-    width: 60%;
-    height: 50vh;
-    background: #fff;
-    position: absolute;
-    flex-direction: column;
-    align-items: flex-end;
-    padding: 0.5em 1em;
-    gap: 2em 0;
-    top: 10vh;
-    right: 0.1em;
-  }
-  nav .nav_links ul li {
-    width: 80%;
-    margin: auto;
-  }
-  nav .nav_links ul .cart span {
-    position: unset;
-  }
   nav .show {
-    display: block;
-  }
-  nav .show ul {
+    position: absolute;
+    top: 10vh;
+    right: 0;
     display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 0.5em 1em;
+    width: 60%;
+    height: 60dvh;
+    background: white;
   }
   nav .active_burger span {
     transition: transform 0.3s ease, opacity 0.3s ease;
