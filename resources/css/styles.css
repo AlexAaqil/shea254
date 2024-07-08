@@ -2071,6 +2071,10 @@ footer .copyright {
   }
 }
 
+.invisible_product {
+  border: 2px solid red;
+}
+
 @media screen and (width >= 726px) {
   .Product_details .product_reviews_update .custom_form {
     width: 40%;

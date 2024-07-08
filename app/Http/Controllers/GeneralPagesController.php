@@ -17,6 +17,7 @@ class GeneralPagesController extends Controller
     {
         $featured_products = Product::where([
             ['featured', 1],
+            ['is_visible', 1],
             // ['stock_count', '>', 0]
         ])
         ->orderBy('product_order')
@@ -35,7 +36,9 @@ class GeneralPagesController extends Controller
 
     public function shop()
     {
-        $products = Product::orderBy('title','asc')->get();
+        $products = Product::orderBy('title','asc')->where([
+            ['is_visible', 1],
+        ])->get();
         $product_categories = ProductCategory::orderBy('title','asc')->take(18)->get();
         
         return view('shop', compact('products', 'product_categories'));

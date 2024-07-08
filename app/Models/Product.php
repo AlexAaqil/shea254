@@ -16,6 +16,7 @@ class Product extends Model
         'product_code',
         'category_id',
         'featured',
+        'is_visible',
         'stock_count',
         'safety_stock',
         'buying_price',

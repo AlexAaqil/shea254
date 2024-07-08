@@ -52,11 +52,29 @@
                     </div>
 
                     <div class="input_group">
+                        <label for="is_visible">Is Visible?</label>
+                        <div class="custom_radio_buttons">
+                            <label>
+                                <input class="option_radio" type="radio" name="is_visible" id="is_visible" value="1" {{ $product->is_visible ==1 ? 'checked' : '' }}>
+                                <span>Yes</span>
+                            </label>
+
+                            <label>
+                                <input class="option_radio" type="radio" name="is_visible" id="not_visible" value="0" {{ $product->is_visible == 0 ? 'checked' : '' }}>
+                                <span>No</span>
+                            </label>
+                        </div>
+                        <span class="inline_alert">{{ $errors->first('is_visible') }}</span>
+                    </div>
+                </div>
+
+                <div class="row_input_group">
+                    <div class="input_group">
                         <label for="stock_count">Stock Count</label>
                         <input type="number" name="stock_count" id="stock_count" placeholder="Stock in hand" value="{{ old('stock_count', $product->stock_count) }}" />
                         <span class="inline_alert">{{ $errors->first('stock_count') }}</span>
                     </div>
-
+    
                     <div class="input_group">
                         <label for="safety_stock">Safety Stock</label>
                         <input type="number" name="safety_stock" id="safety_stock" placeholder="Safety Stock" value="{{ old('safety_stock', $product->safety_stock) }}" />

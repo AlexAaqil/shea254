@@ -49,6 +49,7 @@ class ProductController extends Controller
 
         $validated['slug'] = Str::slug($validated['title']);
         $validated['featured'] = $request->featured;
+        $validated['is_visible'] = $request->is_visible;
 
         $product = Product::create($validated);
 
@@ -59,7 +60,10 @@ class ProductController extends Controller
 
     public function show($slug)
     {
-        $product = Product::with('measurement_unit')->where('slug', $slug)->firstOrFail();
+        $product = Product::with('measurement_unit')->where([
+            ['is_visible', 1],
+            ['slug', $slug],
+        ])->firstOrFail();
         $product_images = $product->getProductImages;
         $product_reviews = Product::with('product_reviews')->where('slug', $slug)->firstOrFail()->take(3);
         $related_products = Product::where('category_id', $product->category_id)
@@ -98,6 +102,7 @@ class ProductController extends Controller
 
         $validated['slug'] = Str::slug($validated['title']);
         $validated['featured'] = $request->featured;
+        $validated['is_visible'] = $request->is_visible;
         
         $product->update($validated);
 

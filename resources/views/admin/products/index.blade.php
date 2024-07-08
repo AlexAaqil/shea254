@@ -14,7 +14,7 @@
             <div class="body">
                 <div class="card_wrapper products_wrapper">
                     @foreach($products as $product)
-                    <div class="card product_card searchable">
+                    <div class="card product_card searchable {{ $product->is_visible && $product->is_visible == 1 ? '' : 'invisible_product' }}">
                         <div class="image">
                             <a href="{{ route('products.edit', ['product' => $product->id]) }}" class="title">
                                 <img src="{{ $product->getFirstImage() }}" alt="Product">
@@ -51,6 +51,9 @@
                                 </span>
                                 <span class="{{ $product->featured == 1 ? 'featured' : 'not_featured'}}">
                                     {{ $product->featured == 1 ? 'featured' : 'not featured'}}
+                                </span>
+                                <span class="{{ $product->is_visible == 1 ? 'featured' : 'not_featured'}}">
+                                    {{ $product->is_visible == 1 ? '' : 'not visible'}}
                                 </span>
                             </div>
                             
