@@ -1,5 +1,6 @@
 $aside_width_s: 20%;
 $aside_width_l: 15%;
+
 .Admin {
     aside {
         position: fixed;
@@ -300,7 +301,7 @@ $aside_width_l: 15%;
 
             .container {
                 overflow: hidden;
-                
+
                 .header {
                     display: grid;
                     grid-template-columns: repeat(3, 1fr);
