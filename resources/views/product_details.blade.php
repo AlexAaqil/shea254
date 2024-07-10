@@ -37,12 +37,16 @@
                 </p>
 
                 <div class="action">
-                    <form action="{{ route('cart.store', $product->id) }}" method="post">
-                        @csrf
-                        <button type="submit">
-                            <i class="fas fa-cart-plus add_to_cart_btn"></i> Add to Cart
-                        </button>
-                    </form>
+                    @if ($product->stock_count > 0)
+                        <form action="{{ route('cart.store', $product->id) }}" method="post">
+                            @csrf
+                            <button type="submit">
+                                <i class="fas fa-cart-plus add_to_cart_btn"></i> Add to Cart
+                            </button>
+                        </form>
+                    @else
+                        <span class="danger"><b>Out of Stock</b></span>
+                    @endif
 
                     @if(auth()->user() && !auth()->user()->hasReviewedProduct($product->id))
                         <a href="{{ route('product-reviews.create', $product->slug) }}">Review Product</a>

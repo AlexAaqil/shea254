@@ -10,17 +10,19 @@
             </span>
         @endif
 
-        <div class="actions">
-            <div class="action">
-                <form action="{{ route('cart.store', $product->id) }}" method="POST">
-                    @csrf
+        @if ($product->stock_count > 0)
+            <div class="actions">
+                <div class="action">
+                    <form action="{{ route('cart.store', $product->id) }}" method="POST">
+                        @csrf
 
-                    <button type="submit">
-                        <i class="fa fa-cart-plus"></i>
-                    </button>
-                </form>
+                        <button type="submit" title="Add to Cart">
+                            <i class="fa fa-cart-plus"></i>
+                        </button>
+                    </form>
+                </div>
             </div>
-        </div>
+        @endif
     </div>
 
     <div class="details">
@@ -31,6 +33,10 @@
                         {{ $product->product_category->title }}
                     </a>
                 </span>
+            @endif
+
+            @if($product->stock_count <= 0)
+                <span class="danger"><b>out of stock</b></span>
             @endif
         </div>
         
