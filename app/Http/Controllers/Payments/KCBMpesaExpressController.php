@@ -175,7 +175,7 @@ class KCBMpesaExpressController extends Controller
             if ($result_code === 0) {
                 $metadata = collect($callback['CallbackMetadata']['Item'] ?? [])
                     ->mapWithKeys(function ($item) {
-                        return [$item['Name'] => $item['Value']] ?? null;
+                        return isset($item['Value']) ? [$item['Name'] => $item['Value']] : [$item['Name'] => null];
                     })->toArray();
 
                 $payment->transaction_reference = $metadata['MpesaReceiptNumber'] ?? $payment->transaction_reference;
