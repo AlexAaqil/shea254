@@ -143,6 +143,7 @@ class OrderController extends Controller
             ]);
 
             Session::put('order_number', $order->order_number);
+            Session::put('order_id', $order->id); // Add this line
             Session::forget(['cart', 'cart_count']);
 
             return redirect()->route('order_success')->with('success', [
@@ -184,10 +185,9 @@ class OrderController extends Controller
     public function order_success()
     {
         $order_number = session('order_number');
-        $order_id = session('order_id');
-
-        // Get the full order with payment information
-        $order = Sale::with('payment')->find($order_id);
+        $order = Sale::with(['payment', 'order_delivery', 'order_items'])
+            ->where('order_number', $order_number)
+            ->first();
 
         if (!$order) {
             return redirect()->route('shop')->with('error', ['message' => 'Order not found']);
