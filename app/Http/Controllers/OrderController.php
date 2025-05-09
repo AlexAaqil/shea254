@@ -222,6 +222,7 @@ class OrderController extends Controller
             // $amount = $order->total_amount;
             $amount = 1;
             $phone_number = $order->order_delivery->phone_number;
+            $order_number = $order->order_number;
 
             $kcb_mpesa_express = new KCBMpesaExpressController();
             $response = $kcb_mpesa_express->initiatePayment($phone_number, $amount, $order_number);
