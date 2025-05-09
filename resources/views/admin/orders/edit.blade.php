@@ -80,6 +80,9 @@
 
                         <div class="payment-info">
                             <h4 class="{{ $status_class }}">Payment Status: {{ ucfirst($payment_status ?? 'unknown') }}</h4>
+                            @if($payment_status == 'failed' && isset($payment_info['ResultDesc']))
+                                <p class="text-danger"><strong>Reason:</strong> {{ $payment_info['ResultDesc'] }}</p>
+                            @endif
                             @if(!empty($payment_info))
                                 <div class="payment-details-grid">
                                     @if(isset($payment_info['mpesa_receipt']))
