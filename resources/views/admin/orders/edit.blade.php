@@ -78,7 +78,7 @@
                         @endphp
 
                         <div class="payment-info {{ $status_class }}">
-                            <h4>Payment Status: {{ ucfirst($payment_status ?? 'unknown') }}</h4>
+                            <h4 class="{{ $status_class }}">Payment Status: {{ ucfirst($payment_status ?? 'unknown') }}</h4>
                             @if(!empty($payment_info))
                                 <div class="payment-details-grid">
                                     @if(isset($payment_info['mpesa_receipt']))
