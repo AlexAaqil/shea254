@@ -23,14 +23,14 @@ class KCBMpesaExpressController extends Controller
 
     public function __construct()
     {
-        $this->base_url = env('KCBM_BASE_URL');
-        $this->authorization_url = env('KCBM_AUTHORIZATION_URL');
-        $this->stkpush_url = env('KCBM_STKPUSH_URL');
-        $this->callback_url = env('KCBM_CALLBACK_URL');
-        $this->consumer_key = env('KCBM_CONSUMER_KEY');
-        $this->consumer_secret = env('KCBM_CONSUMER_SECRET');
-        $this->org_short_code = env('KCBM_ORG_SHORT_CODE');
-        $this->org_pass_key = env('KCBM_ORG_PASS_KEY');
+        $this->base_url = env('KCB_BASE_URL');
+        $this->authorization_url = env('KCB_AUTHORIZATION_URL');
+        $this->stkpush_url = env('KCB_STKPUSH_URL');
+        $this->callback_url = env('KCB_CALLBACK_URL');
+        $this->consumer_key = env('KCB_CONSUMER_KEY');
+        $this->consumer_secret = env('KCB_CONSUMER_SECRET');
+        $this->org_short_code = env('KCB_ORG_SHORT_CODE');
+        $this->org_pass_key = env('KCB_ORG_PASS_KEY');
         $this->logger = Log::channel('kcb_mpesa_express');
 
         $this->logger->info('KCBMpesaExpressController initialized', [
