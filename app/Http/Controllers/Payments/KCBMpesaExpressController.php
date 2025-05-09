@@ -79,9 +79,9 @@ class KCBMpesaExpressController extends Controller
             $payload = [
                 "phoneNumber" => $phone_number,
                 "amount" => $amount,
-                "invoiceNumber" => $this->org_short_code . '_' . $order_number,
+                "invoiceNumber" => '7601656_' . $order_number,
                 // TODO: Add the business short code
-                "sharedShortCode" => true,
+                "sharedShortCode" => false,
                 "orgShortCode" => $this->org_short_code,
                 "orgPassKey" => $this->org_pass_key,
                 "callbackUrl" => $this->callback_url,
