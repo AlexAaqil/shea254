@@ -17,8 +17,9 @@ class OrderController extends Controller
 {
     public function index()
     {
-        $orders = Sale::with(['order_delivery', 'order_items'])->orderBy('id', 'desc')->get();
-        return view('admin.orders.index', compact('orders'));
+        $orders = Sale::with(['order_delivery', 'order_items'])->whereHas('order_delivery')->orderBy('id', 'desc')->get();
+	$orders_without_delivery = Sale::with(['order_delivery', 'order_items'])->whereDoesntHave('order_delivery')->orderBy('id', 'desc')->get();
+        return view('admin.orders.index', compact('orders', 'orders_without_delivery'));
     }
 
     public function create()

@@ -21,15 +21,15 @@
                 </thead>
                 <tbody>
                     @foreach($orders as $order)
-                        <tr class="searchable {{ $order->order_delivery->delivery_status == 'processed' ? 'del' : '' }}">
+                        <tr class="searchable {{ $order->order_delivery?->delivery_status == 'processed' ? 'del' : '' }}">
                             <td>
                                 <a href="{{ route('orders.edit', ['order'=>$order->id]) }}" class="update_link">
                                     {{ $order->order_number }}
                                 </a>
                             </td>
-                            <td>{{ $order->order_delivery->full_name }}</td>
-                            <td>{{ format_phone_number($order->order_delivery->phone_number) }}</td>
-                            <td>{!! Illuminate\Support\Str::limit($order->order_delivery->address, 15, ' ...') !!}</td>
+                            <td>{{ $order->order_delivery?->full_name }}</td>
+                            <td>{{ format_phone_number($order->order_delivery?->phone_number) }}</td>
+                            <td>{!! Illuminate\Support\Str::limit($order->order_delivery?->address, 15, ' ...') !!}</td>
                             <td>{{ number_format($order->total_amount) }}</td>
 
                             @php
@@ -62,6 +62,14 @@
                     @endforeach
                 </tbody>
             </table>
+	    <div>
+		<p>Invalid orders</p>
+		 @foreach($orders_without_delivery as $other)
+                        <tr>
+                                <td>{{ $other->order_number }}
+                        </tr>
+                    @endforeach
+	    </div>
         </div>
     </div>
     <x-sweetalert></x-sweetalert>

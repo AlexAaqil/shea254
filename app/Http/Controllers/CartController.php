@@ -17,25 +17,25 @@ class CartController extends Controller
     public function store($productId)
     {
         $product = Product::find($productId);
-
+    
         if (!$product) {
             return redirect()->route('shop')->with('error', ['message' => 'Product not found']);
         }
-
+    
         $cart = Session::get('cart', []);
-
+    
         if (array_key_exists($product->id, $cart)) {
             // Increment quantity if product is already in the cart
             $cart[$product->id]['quantity']++;
         } else {
             // Initialize price with regular price
             $price = $product->selling_price;
-
+    
             // Check if discount price is available and valid
             if ($product->discount_price > 0 && $product->discount_price < $product->selling_price) {
                 $price = $product->discount_price;
             }
-
+    
             // Add the product to the cart
             $cart[$product->id] = [
                 'id' => $product->id,
@@ -47,17 +47,44 @@ class CartController extends Controller
                 'quantity' => 1,
             ];
         }
-
-        // dd($cart);
-
+    
         Session::put('cart', $cart);
-
+    
         // Call the method to update cart count
         $this->update_cart_count();
-
+    
+        // Prepare Meta Pixel tracking data
+        $pixel_data = [
+            'content_name' => $product->title,
+            'content_ids' => [$product->id],
+            'content_type' => 'product',
+            'value' => $price, // Using the already calculated price
+            'currency' => 'KES',
+            'contents' => [[
+                'id' => $product->id,
+                'quantity' => $cart[$product->id]['quantity']
+            ]]
+        ];
+    
+        // Add category if available
+        if ($product->product_category) {
+            $pixel_data['content_category'] = $product->product_category->title;
+        }
+    
+        // For AJAX requests
+        if (request()->ajax()) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Product added to cart',
+                'cart_count' => Session::get('cart_count'),
+                'pixel_data' => $pixel_data
+            ]);
+        }
+    
+        // For regular requests, store pixel data in session flash
+        Session::flash('pixel_data', $pixel_data);
         return redirect()->back()->with('success', ['message' => 'Product has been added to cart']);
     }
-
     public function change_quantity(Request $request, $product_id)
     {
         $request->validate([

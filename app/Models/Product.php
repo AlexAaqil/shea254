@@ -102,4 +102,12 @@ class Product extends Model
 
         return $this->discount_percentage;
     }
+
+    public function getEffectivePrice()
+{
+    if ($this->discount_price > 0 && $this->discount_price < $this->selling_price) {
+        return $this->discount_price;
+    }
+    return $this->selling_price;
+}
 }

@@ -1,13 +1,22 @@
-<nav>
-    <div class="brand">
-        <a href="{{ route('home') }}">
-            <span>{{ env('APP_NAME') }}</span>
+<nav style=" margin-bottom: 15px;">
+    <div class="brand" style="display: flex; align-items: center; gap: 1rem;">
+        <a href="{{ route('home') }}" style="text-decoration: none;">
+
+            <!-- class="image"
+        style="background: linear-gradient(135deg, #1a237e, #5c6bc0); width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; animation: rotate 5s linear infinite;" -->
+            <div>
+                <img src="{{ asset('/assets/images/logo.jpg') }}" alt="Hero Logo"
+                    style="width: 50px; height: 40px;">
+            </div>
         </a>
     </div>
+
+
 
     <div class="nav_links">
         @php
             $nav_links = [
+                ['route' => 'home', 'text' => 'Home'],
                 ['route' => 'shop', 'text' => 'Shop'],
                 ['route' => 'about', 'text' => 'About'],
                 ['route' => 'users.blogs', 'text' => 'Blogs'],
@@ -22,7 +31,8 @@
         @endif
 
         @foreach($nav_links as $nav_link)
-            <a href="{{ $nav_link['route'] ? route($nav_link['route']) : '#' }}" class="nav_link {{ Route::currentRouteName() === $nav_link['route'] ? 'active' : '' }}">
+            <a href="{{ $nav_link['route'] ? route($nav_link['route']) : '#' }}"
+                class="nav_link {{ Route::currentRouteName() === $nav_link['route'] ? 'active' : '' }}">
                 {{ $nav_link['text'] }}
             </a>
         @endforeach

@@ -21,13 +21,14 @@ class ProductCategoriesSeeder extends Seeder
             'hair care',
             'liquid black soap',
             'raw black soap',
-            'raw cocoa butter',
-            'raw shea butter',
+            'raw butter',
+            // 'raw shea butter',
             'scrub',
-            'serum',
+            'toners & serums',
             'soap',
             'whipped cocoa',
-            'whipped shea & cocoa',
+            'whipped Butters',
+            'creams & gels',
         ];
 
         foreach($titles as $title)

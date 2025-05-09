@@ -13,4 +13,10 @@ class BlogCategory extends Model
         'title',
         'slug'
     ];
+
+    // Add relationship to blogs
+    public function blogs()
+    {
+        return $this->hasMany(Blog::class, 'category_id');
+    }
 }
