@@ -63,28 +63,44 @@
                     </p>
 
                     <div class="payment_details">
-                        <p>
-                            @php
-                                $payment_status = optional($order->payment)->status;
-                                $payment_description = optional($order->payment)->response_description;
-                                $status_class = match($payment_status) {
-                                    'paid' => 'success',
-                                    'pending' => 'warning',
-                                    'failed' => 'danger',
-                                    default => ''
-                                };
-                            @endphp
-                            <span>Payment : </span>
-                            <span class="{{ $status_class }}">
-                                {{ ucfirst($payment_status ?? 'unknown') }}. {{ $payment_description }}.
-                            </span>
-                        </p>
+                        @php
+                            $payment_status = optional($order->payment)->status;
+                            $payment_description = optional($order->payment)->response_description;
+                            $status_class = match($payment_status) {
+                                'paid' => 'success',
+                                'pending' => 'warning',
+                                'failed' => 'danger',
+                                default => ''
+                            };
+
+                            // Decode the JSON payment description
+                            $payment_info = json_decode($payment_description, true) ?? [];
+                        @endphp
+
+                        <div class="payment-info {{ $status_class }}">
+                            <h4>Payment Status: {{ ucfirst($payment_status ?? 'unknown') }}</h4>
+                            @if(!empty($payment_info))
+                                <div class="payment-details-grid">
+                                    @if(isset($payment_info['mpesa_receipt']))
+                                        <p><strong>M-Pesa Receipt:</strong> {{ $payment_info['mpesa_receipt'] }}</p>
+                                    @endif
+                                    @if(isset($payment_info['amount']))
+                                        <p><strong>Amount Paid:</strong> KES {{ number_format($payment_info['amount'], 2) }}</p>
+                                    @endif
+                                    @if(isset($payment_info['phone_number']))
+                                        <p><strong>Phone Number:</strong> +{{ format_phone_number($payment_info['phone_number']) }}</p>
+                                    @endif
+                                    @if(isset($payment_info['transaction_date']))
+                                        <p><strong>Transaction Date:</strong> {{ \Carbon\Carbon::createFromFormat('YmdHis', $payment_info['transaction_date'])->format('d M Y \a\t h:i A') }}</p>
+                                    @endif
+                                </div>
+                            @endif
+                        </div>
 
                         @if($payment_status == 'failed' || $payment_status == 'pending')
                             <form action="{{ route('payment.request_stkPush', $order->order_number) }}" method="post">
                                 @csrf
-
-                                <button type="submit">Request STK Push</button>
+                                <button type="submit" class="btn btn-primary">Request STK Push</button>
                             </form>
                         @endif
                     </div>
