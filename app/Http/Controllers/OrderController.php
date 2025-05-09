@@ -88,9 +88,7 @@ class OrderController extends Controller
             $area_name = 'Shop';
         }
 
-        // TODO: Temporarily set amount to 1 for testing
-        // $total_amount = $shipping_cost + $cart_subtotal;
-        $total_amount = 1;
+        $total_amount = $shipping_cost + $cart_subtotal;
         $order_number = 'ord_' . Str::random(6) . '_' . date('dmy');
         $user_id = Auth::check() ? Auth::user()->id : null;
 
@@ -218,9 +216,7 @@ class OrderController extends Controller
         $payment = optional($order->payment);
 
         if ($payment->status === 'failed' || $payment->status === 'pending') {
-            // TODO: Remove the fixed amount after testing
-            // $amount = $order->total_amount;
-            $amount = 1;
+            $amount = $order->total_amount;
             $phone_number = $order->order_delivery->phone_number;
             $order_number = $order->order_number;
 

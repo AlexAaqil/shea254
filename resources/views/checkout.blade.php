@@ -34,7 +34,7 @@
                             </div>
                         </div>
 
-                        <div class="input_group">
+                        <!-- <div class="input_group">
                             <label for="status" style="font-size: clamp(0.9rem, 4vw, 1rem); color: #1a237e; font-weight: 600;">Choose your preferred payment method</label>
                             <div class="custom_radio_buttons" style="display: flex; flex-wrap: wrap; gap: 1em; margin-top: 0.5em;">
                                 <label style="display: flex; align-items: center; gap: 0.5em; font-size: clamp(0.9rem, 4vw, 1rem);">
@@ -52,7 +52,7 @@
                                     <span>T-Kash</span>
                                 </label>
                             </div>
-                        </div>
+                        </div> -->
 
                         <div class="input_group">
                             <label for="status" style="font-size: clamp(0.9rem, 4vw, 1rem); color: #1a237e; font-weight: 600;">How Would you like to receive your Order?</label>
