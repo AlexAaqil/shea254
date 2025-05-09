@@ -103,6 +103,12 @@ class KCBMpesaExpressController extends Controller
                 'Content-Type' => 'application/json',
             ])->post("{$this->stkpush_url}", $payload);
 
+            $this->logger->info('Raw STK Push Response: ', [
+                'status' => $response->status(),
+                'headers' => $response->headers(),
+                'body' => $response->body()
+            ]);
+
             $response_data = $response->json();
 
             $formatted_response = [
