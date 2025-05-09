@@ -68,6 +68,7 @@
                             $payment_description = optional($order->payment)->response_description;
                             $status_class = match($payment_status) {
                                 'paid' => 'success',
+                                'success' => 'success',
                                 'pending' => 'warning',
                                 'failed' => 'danger',
                                 default => ''
@@ -77,7 +78,7 @@
                             $payment_info = json_decode($payment_description, true) ?? [];
                         @endphp
 
-                        <div class="payment-info {{ $status_class }}">
+                        <div class="payment-info">
                             <h4 class="{{ $status_class }}">Payment Status: {{ ucfirst($payment_status ?? 'unknown') }}</h4>
                             @if(!empty($payment_info))
                                 <div class="payment-details-grid">

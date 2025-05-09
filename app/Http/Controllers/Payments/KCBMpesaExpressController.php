@@ -185,7 +185,7 @@ class KCBMpesaExpressController extends Controller
                     'transaction_date' => $metadata['TransactionDate'] ?? null,
                     'phone_number' => $metadata['PhoneNumber'] ?? null
                 ]);
-                $payment->status = 'success';
+                $payment->status = 'paid';
                 $payment->response_code = $result_code;
                 $payment->customer_message = 'Payment completed successfully';
             } else {
