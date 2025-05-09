@@ -11,7 +11,7 @@ use App\Models\OrderDelivery;
 use App\Models\OrderItems;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Session;
-use App\Http\Controllers\Payments\SasaPayController;
+use App\Http\Controllers\Payments\KCBMpesaExpressController;
 
 class OrderController extends Controller
 {
@@ -88,21 +88,23 @@ class OrderController extends Controller
             $area_name = 'Shop';
         }
 
-        $total_amount = $shipping_cost + $cart_subtotal;
+        // TODO: Temporarily set amount to 1 for testing
+        // $total_amount = $shipping_cost + $cart_subtotal;
+        $total_amount = 1;
         $order_number = 'ord_' . Str::random(6) . '_' . date('dmy');
         $user_id = Auth::check() ? Auth::user()->id : null;
 
-        $sasaPayController = new SasaPayController();
-        $response = $sasaPayController->initiatePayment($phone_number, $total_amount, $order_number, $payment_gateway);
+        $kcb_mpesa_express = new KCBMpesaExpressController();
+        $response = $kcb_mpesa_express->initiatePayment($phone_number, $total_amount, $order_number);
 
-        if ($response->status) {
+        if ($response->header->statusCode === '0') {
             $order = Sale::create([
                 'order_number' => $order_number,
                 'order_type' => 1,
                 'discount_code' => null,
                 'discount' => 0,
                 'total_amount' => $total_amount,
-                'payment_method' => $request->input('payment_method'),
+                'payment_method' => 'kcb_mpesa',
                 'user_id' => $user_id,
             ]);
 
@@ -130,68 +132,28 @@ class OrderController extends Controller
             }
 
             $order->payment()->create([
-                'payment_gateway' => $payment_gateway,
-                'merchant_request_id' => $response->MerchantRequestID,
-                'checkout_request_id' => $response->CheckoutRequestID,
-                'transaction_reference' => $response->TransactionReference,
-                'response_code' => $response->ResponseCode,
-                'response_description' => $response->ResponseDescription,
-                'customer_message' => $response->CustomerMessage,
-                'status' => $response->status ? 'pending' : 'failed',
+                'payment_gateway' => 'kcb_mpesa',
+                'merchant_request_id' => $response->response->MerchantRequestID,
+                'checkout_request_id' => $response->response->CheckoutRequestID,
+                'transaction_reference' => $order_number, // Will be updated with actual MPesa receipt in callback
+                'response_code' => $response->response->ResponseCode,
+                'response_description' => $response->response->ResponseDescription,
+                'customer_message' => $response->response->CustomerMessage,
+                'status' => 'pending',
             ]);
 
             Session::put('order_number', $order->order_number);
             Session::forget(['cart', 'cart_count']);
 
-            return redirect()->route('order_success');
+            return redirect()->route('order_success')->with('success', [
+                'message' => 'Please complete the payment on your phone.',
+                'order_number' => $order_number
+            ]);
         } else {
-            return redirect()->route('checkout.create')->with('error', ['message' => 'Something went wrong. Please try again!']);
+            return redirect()->route('checkout.create')->with('error', [
+                'message' => $response->response->CustomerMessage ?? 'Payment initiation failed. Please try again.'
+            ]);
         }
-    }
-
-    public function edit(Sale $order)
-    {
-        return view('admin.orders.edit', compact('order'));
-    }
-
-    public function update(Request $request, Sale $order)
-    {
-        $validated = $request->validate([
-            'additional_information' => 'nullable|string',
-            'delivery_status' => 'required',
-        ]);
-
-        $order->order_delivery->additional_information = $validated['additional_information'];
-        $order->order_delivery->delivery_status = $validated['delivery_status'];
-        $order->order_delivery->save();
-
-        return redirect()->route('orders.index')->with('success', ['message' => 'Order has been updated']);
-    }
-
-    public function destroy(Sale $order)
-    {
-        $order->delete();
-        return redirect()->route('orders.index')->with('success', ['message' => 'Order has been deleted']);
-    }
-
-    public function order_success()
-    {
-        $order_number = session('order_number');
-        return view('order_success', compact('order_number'));
-    }
-
-    public function get_areas($locationId)
-    {
-        $areas = DeliveryArea::where('delivery_location_id', $locationId)->get();
-        return response()->json($areas);
-    }
-
-    public function get_shipping_price($areaId)
-    {
-        $area = DeliveryArea::findOrFail($areaId);
-        $price = $area->price;
-
-        return response()->json(['price' => $price]);
     }
 
     public function request_stkPush(Request $request, $order_number)
@@ -199,31 +161,33 @@ class OrderController extends Controller
         $order = Sale::where('order_number', $order_number)->firstOrFail();
         $payment = optional($order->payment);
 
-        $order_number = $order->order_number;
-        $phone_number = $order->order_delivery->phone_number;
-        $amount = $order->total_amount;
-        $payment_gateway = $payment->payment_gateway;
+        if ($payment->status === 'failed' || $payment->status === 'pending') {
+            // TODO: Temporarily set amount to 1 for testing
+            // $amount = $order->total_amount;
+            $amount = 1;
+            $phone_number = $order->order_delivery->phone_number;
 
-        if($payment->status == 'failed') {
-            $sasaPayController = new SasaPayController();
-            $response = $sasaPayController->initiatePayment($phone_number, $amount, $order_number, $payment_gateway);
+            $kcb_mpesa_express = new KCBMpesaExpressController();
+            $response = $kcb_mpesa_express->initiatePayment($phone_number, $amount, $order_number);
 
-            if($response->status) {
+            if ($response->header->statusCode === '0') {
                 $payment->update([
-                    'payment_gateway' => $payment_gateway,
-                    'merchant_request_id' => $response->MerchantRequestID,
-                    'checkout_request_id' => $response->CheckoutRequestID,
-                    'transaction_reference' => $response->TransactionReference,
-                    'response_code' => $response->ResponseCode,
-                    'response_description' => $response->ResponseDescription,
-                    'customer_message' => $response->CustomerMessage,
+                    'merchant_request_id' => $response->response->MerchantRequestID,
+                    'checkout_request_id' => $response->response->CheckoutRequestID,
+                    'response_code' => $response->response->ResponseCode,
+                    'response_description' => $response->response->ResponseDescription,
+                    'customer_message' => $response->response->CustomerMessage,
                     'status' => 'pending',
                 ]);
 
-                return redirect()->back()->with('success', ['message' => 'Payment retry initiated successfully.']);
-            } else {
-                return redirect()->back()->with('error', ['message' => 'Failed to initiate payment. Please try again.']);
+                return redirect()->back()->with('success', [
+                    'message' => 'Payment request sent. Please complete the payment on your phone.'
+                ]);
             }
         }
+
+        return redirect()->back()->with('error', [
+            'message' => 'Cannot initiate payment at this time.'
+        ]);
     }
 }
