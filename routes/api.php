@@ -21,4 +21,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 // Route::post('/payment/callback', [SasaPayController::class, 'paymentCallback']);
-Route::post('/payment/callback', [KCBMpesaExpressController::handleCallback])->name('payments.kcb-callback');
+Route::post('/payment/callback', [KCBMpesaExpressController::class, 'handleCallback'])->name('payments.kcb-callback');
