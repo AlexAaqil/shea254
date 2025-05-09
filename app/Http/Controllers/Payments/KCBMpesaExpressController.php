@@ -17,6 +17,7 @@ class KCBMpesaExpressController extends Controller
     protected $callback_url;
     protected $consumer_key;
     protected $consumer_secret;
+    protected $shared_short_code;
     protected $org_short_code;
     protected $org_pass_key;
     protected $logger;
@@ -29,6 +30,7 @@ class KCBMpesaExpressController extends Controller
         $this->callback_url = env('KCB_CALLBACK_URL');
         $this->consumer_key = env('KCB_CONSUMER_KEY');
         $this->consumer_secret = env('KCB_CONSUMER_SECRET');
+        $this->shared_short_code = env('KCB_SHARED_SHORT_CODE');
         $this->org_short_code = env('KCB_ORG_SHORT_CODE');
         $this->org_pass_key = env('KCB_ORG_PASS_KEY');
         $this->logger = Log::channel('kcb_mpesa_express');
@@ -79,8 +81,7 @@ class KCBMpesaExpressController extends Controller
             $payload = [
                 "phoneNumber" => $phone_number,
                 "amount" => $amount,
-                "invoiceNumber" => '7601656-' . $order_number,
-                // TODO: Add the business short code
+                "invoiceNumber" => $this->shared_short_code . '-' . $order_number,
                 "sharedShortCode" => true,
                 "orgShortCode" => $this->org_short_code,
                 "orgPassKey" => $this->org_pass_key,
