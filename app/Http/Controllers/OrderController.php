@@ -142,8 +142,10 @@ class OrderController extends Controller
                 'status' => $response->response->ResponseCode === '0' ? 'pending' : 'failed',
             ]);
 
-            Session::put('order_number', $order->order_number);
-            Session::put('order_id', $order->id); // Add this line
+            Session::put([
+                'order_number' => $order->order_number,
+                'order_id' => $order->id
+            ]);
             Session::forget(['cart', 'cart_count']);
 
             return redirect()->route('order_success')->with('success', [
