@@ -21,7 +21,7 @@
                         <span>Phone Number</span>
                         <span>+{{ format_phone_number($order->order_delivery->phone_number) }}</span>
                     </p>
-                    
+
                     <p>
                         <span>Address</span>
                         <span>{{ $order->order_delivery->address }}</span>
@@ -79,8 +79,8 @@
                                 {{ ucfirst($payment_status ?? 'unknown') }}. {{ $payment_description }}.
                             </span>
                         </p>
-    
-                        @if($payment_status == 'failed')
+
+                        @if($payment_status == 'failed' || $payment_status == 'pending')
                             <form action="{{ route('payment.request_stkPush', $order->order_number) }}" method="post">
                                 @csrf
 
