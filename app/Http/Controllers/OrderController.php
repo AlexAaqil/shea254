@@ -135,11 +135,11 @@ class OrderController extends Controller
                 'payment_gateway' => 'kcb_mpesa',
                 'merchant_request_id' => $response->response->MerchantRequestID,
                 'checkout_request_id' => $response->response->CheckoutRequestID,
-                'transaction_reference' => $order_number, // Will be updated with actual MPesa receipt in callback
+                'transaction_reference' => $order_number,
                 'response_code' => $response->response->ResponseCode,
                 'response_description' => $response->response->ResponseDescription,
                 'customer_message' => $response->response->CustomerMessage,
-                'status' => 'pending',
+                'status' => $response->response->ResponseCode === '0' ? 'pending' : 'failed',
             ]);
 
             Session::put('order_number', $order->order_number);
@@ -156,13 +156,13 @@ class OrderController extends Controller
         }
     }
 
-    public function request_stkPush(Request $request, $order_number)
+    public function request_stkPush($order_number)
     {
         $order = Sale::where('order_number', $order_number)->firstOrFail();
         $payment = optional($order->payment);
 
         if ($payment->status === 'failed' || $payment->status === 'pending') {
-            // TODO: Temporarily set amount to 1 for testing
+            // TODO: Remove the fixed amount after testing
             // $amount = $order->total_amount;
             $amount = 1;
             $phone_number = $order->order_delivery->phone_number;
@@ -177,13 +177,17 @@ class OrderController extends Controller
                     'response_code' => $response->response->ResponseCode,
                     'response_description' => $response->response->ResponseDescription,
                     'customer_message' => $response->response->CustomerMessage,
-                    'status' => 'pending',
+                    'status' => $response->response->ResponseCode === '0' ? 'pending' : 'failed',
                 ]);
 
                 return redirect()->back()->with('success', [
-                    'message' => 'Payment request sent. Please complete the payment on your phone.'
+                    'message' => $response->response->CustomerMessage
                 ]);
             }
+
+            return redirect()->back()->with('error', [
+                'message' => $response->response->CustomerMessage ?? 'Payment request failed. Please try again.'
+            ]);
         }
 
         return redirect()->back()->with('error', [

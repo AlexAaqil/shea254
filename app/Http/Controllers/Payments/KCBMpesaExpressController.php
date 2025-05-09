@@ -113,15 +113,15 @@ class KCBMpesaExpressController extends Controller
 
             $formatted_response = [
                 'response' => [
-                    'MerchantRequestID' => $response_data['MerchantRequestID'] ?? null,
-                    'ResponseCode' => $response_data['ResponseCode'] ?? '1',
-                    'CustomerMessage' => $response_data['CustomerMessage'] ?? 'Processing failed',
-                    'CheckoutRequestID' => $response_data['CheckoutRequestID'] ?? false,
-                    'ResponseDescription' => $response_data['ResponseDescription'] ?? 'System error occurred'
+                    'MerchantRequestID' => $response_data['response']['MerchantRequestID'] ?? null,
+                    'ResponseCode' => $response_data['response']['ResponseCode'] ?? '1',
+                    'CustomerMessage' => $response_data['response']['CustomerMessage'] ?? 'Processing failed',
+                    'CheckoutRequestID' => $response_data['response']['CheckoutRequestID'] ?? false,
+                    'ResponseDescription' => $response_data['response']['ResponseDescription'] ?? 'System error occurred'
                 ],
                 'header' => [
-                    'statusDescription' => $response_data['ResponseDescription'] ?? 'System error occurred',
-                    'statusCode' => $response_data['ResponseCode'] ?? '1'
+                    'statusDescription' => $response_data['header']['statusDescription'] ?? 'System error occurred',
+                    'statusCode' => $response_data['header']['statusCode'] ?? '1'
                 ]
             ];
 
