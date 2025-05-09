@@ -131,7 +131,13 @@ return [
             'driver' => 'single',
             'path' => storage_path('logs/payments.log'),
             'level' => 'debug',
-        ]
+        ],
+        
+        'kcb_mpesa_express' => [
+            'driver' =>'single',
+            'path' => storage_path('logs/kcb-mpesa-express.log'),
+            'level' => 'debug',
+        ],
     ],
 
 ];
