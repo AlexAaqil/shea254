@@ -156,6 +156,60 @@ class OrderController extends Controller
         }
     }
 
+    public function edit(Sale $order)
+    {
+        return view('admin.orders.edit', compact('order'));
+    }
+
+    public function update(Request $request, Sale $order)
+    {
+        $validated = $request->validate([
+            'additional_information' => 'nullable|string',
+            'delivery_status' => 'required',
+        ]);
+
+        $order->order_delivery->additional_information = $validated['additional_information'];
+        $order->order_delivery->delivery_status = $validated['delivery_status'];
+        $order->order_delivery->save();
+
+        return redirect()->route('orders.index')->with('success', ['message' => 'Order has been updated']);
+    }
+
+    public function destroy(Sale $order)
+    {
+        $order->delete();
+        return redirect()->route('orders.index')->with('success', ['message' => 'Order has been deleted']);
+    }
+
+    public function order_success()
+    {
+        $order_number = session('order_number');
+        $order_id = session('order_id');
+
+        // Get the full order with payment information
+        $order = Sale::with('payment')->find($order_id);
+
+        if (!$order) {
+            return redirect()->route('shop')->with('error', ['message' => 'Order not found']);
+        }
+
+        return view('order_success', compact('order_number', 'order'));
+    }
+
+    public function get_areas($locationId)
+    {
+        $areas = DeliveryArea::where('delivery_location_id', $locationId)->get();
+        return response()->json($areas);
+    }
+
+    public function get_shipping_price($areaId)
+    {
+        $area = DeliveryArea::findOrFail($areaId);
+        $price = $area->price;
+
+        return response()->json(['price' => $price]);
+    }
+
     public function request_stkPush($order_number)
     {
         $order = Sale::where('order_number', $order_number)->firstOrFail();
