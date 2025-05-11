@@ -216,7 +216,7 @@ class OrderController extends Controller
         $payment = optional($order->payment);
 
         if ($payment->status === 'failed' || $payment->status === 'pending') {
-            $amount = $order->total_amount;
+            $amount = (int) round($order->total_amount);
             $phone_number = $order->order_delivery->phone_number;
             $order_number = $order->order_number;
 
