@@ -15,6 +15,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductMeasurementController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ProductBarcodeController;
 use App\Http\Controllers\ProductReviewController;
 
 Route::get('/', [GeneralPagesController::class, 'home'])->name('home');
@@ -70,6 +71,9 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function() {
         Route::get('product/product-image/delete/{id}', [ProductController::class, 'delete_product_image'])->name('delete_product_image');
         Route::post('product/product_images_sort', [ProductController::class, 'product_images_sort'])->name('product_images_sort');
         Route::resource('product-reviews', ProductReviewController::class)->except('create', 'store');
+        Route::get('products/barcodes', [ProductBarcodeController::class, 'index'])->name('products-barcodes');
+        Route::get('products/barcodes/download', [ProductBarcodeController::class, 'downloadPdf'])->name('products-barcodes.download');
+
 
         Route::resource('/delivery/locations', DeliveryLocationController::class)->except('show');
         Route::resource('/delivery/areas', DeliveryAreaController::class)->except('show');
